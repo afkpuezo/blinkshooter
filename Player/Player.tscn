@@ -7,7 +7,6 @@
 script = ExtResource( 1 )
 ACCELERATION = 600
 MAX_SPEED = 300
-FRICTION = 1200
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
