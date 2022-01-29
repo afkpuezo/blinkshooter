@@ -1,6 +1,6 @@
 extends KinematicBody2D
 class_name Player
-## Player controller
+## primary player controller
 
 
 # movement speed values
@@ -15,6 +15,7 @@ var _input_vector := Vector2.ZERO
 
 ## currently takes care of movement itself
 ## will likely get changed to a state machine later
+## also controls direction
 func _physics_process(delta: float) -> void:
 	_input_vector = Vector2.ZERO
 	_input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -26,3 +27,5 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * velocity.length())
 	velocity = move_and_slide(velocity)
+
+	look_at(get_global_mouse_position())
