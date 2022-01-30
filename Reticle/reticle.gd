@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends Node2D
 class_name Reticle
 ## reticle used for player aiming
 ## should respond to mouse and/or controller input
@@ -7,17 +7,28 @@ class_name Reticle
 
 enum ReticleState {MOUSE, CONTROLLER, DISABLED}
 
-var current_state = ReticleState.DISABLED
-onready var sprite := $Sprite
+onready var sprite: Sprite = $Sprite
 onready var cursor_image = sprite.texture
+onready var vis:VisibilityNotifier2D = $VisibilityNotifier2D
+onready var vis_nodes: Array = $VisNodes.get_children()
 
-export var MAX_SPEED := 800
+var current_state = ReticleState.DISABLED
 var velocity := Vector2.ZERO
 var is_mouse_moving := false
+export var MAX_SPEED := 800
+export var CONTROLLER_MODE_SCREEN_MARGIN = 100
+var last_valid_position = Vector2.ZERO
 
 
+## start in mouse state (temp)
+## place vis nodes
 func _ready() -> void:
 	change_state(ReticleState.MOUSE)
+
+	vis_nodes[0].position = Vector2(position.x, position.y + CONTROLLER_MODE_SCREEN_MARGIN)
+	vis_nodes[1].position = Vector2(position.x + CONTROLLER_MODE_SCREEN_MARGIN, position.y)
+	vis_nodes[2].position = Vector2(position.x, position.y - CONTROLLER_MODE_SCREEN_MARGIN)
+	vis_nodes[3].position = Vector2(position.x - CONTROLLER_MODE_SCREEN_MARGIN, position.y)
 
 
 ## determine reticle position and state
@@ -58,7 +69,8 @@ func _process_mouse_state():
 
 func _enter_controller_state():
 	current_state = ReticleState.CONTROLLER
-	.set_global_position(get_global_mouse_position())
+	global_position = get_global_mouse_position()
+	last_valid_position = global_position
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	sprite.visible = true
 	is_mouse_moving = false
@@ -70,8 +82,15 @@ func _process_controller_state(delta: float):
 	if is_mouse_moving:
 		change_state(ReticleState.MOUSE)
 		return
-	velocity = _get_reticle_input() * MAX_SPEED
-	move_and_slide(velocity)
+
+	if not _is_within_screen_margin():
+		global_position = last_valid_position
+		return
+
+	last_valid_position = global_position
+	var input := _get_reticle_input()
+	velocity = _get_reticle_input() * MAX_SPEED * delta
+	global_position = global_position + velocity
 
 
 ## sums up right stick input
@@ -86,7 +105,15 @@ func _get_reticle_input() -> Vector2:
 	return input_vector.normalized()
 
 
-# tracks if mouse is moving
+## tracks if mouse is moving
 func _input(event):
 	if event is InputEventMouseMotion and event.relative:
 		is_mouse_moving = true
+
+
+## checks all vis nodes
+func _is_within_screen_margin():
+	for vis in vis_nodes:
+		if not vis.is_on_screen():
+			return false
+	return true
