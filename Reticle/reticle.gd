@@ -9,7 +9,6 @@ enum ReticleState {MOUSE, CONTROLLER, DISABLED}
 
 onready var sprite: Sprite = $Sprite
 onready var cursor_image = sprite.texture
-onready var vis:VisibilityNotifier2D = $VisibilityNotifier2D
 onready var vis_nodes_array: Array = $VisNodes.get_children()
 
 var current_state = ReticleState.DISABLED
