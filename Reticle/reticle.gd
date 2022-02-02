@@ -1,4 +1,4 @@
-extends Node2D
+extends KinematicBody2D
 class_name Reticle
 ## reticle used for player aiming
 ## should respond to mouse and/or controller input
@@ -12,11 +12,13 @@ onready var cursor_image = sprite.texture
 onready var vis_nodes_array: Array = $VisNodes.get_children()
 
 var current_state = ReticleState.DISABLED
-var velocity := Vector2.ZERO
 var is_mouse_moving := false
+export var SCREEN_MARGIN = 100
 export var MAX_SPEED := 800
-export var CONTROLLER_MODE_SCREEN_MARGIN = 100
-var last_valid_position = Vector2.ZERO
+export var ACCELERATION := 200
+export(float, 0.0, 1.0) var FRICTION := 0.1 # only applied when no movement input
+var _velocity := Vector2.ZERO
+var _last_valid_position = Vector2.ZERO
 
 
 ## start in mouse state (temp)
@@ -24,10 +26,10 @@ var last_valid_position = Vector2.ZERO
 func _ready() -> void:
 	change_state(ReticleState.MOUSE)
 
-	vis_nodes_array[0].position = Vector2(position.x, position.y + CONTROLLER_MODE_SCREEN_MARGIN)
-	vis_nodes_array[1].position = Vector2(position.x + CONTROLLER_MODE_SCREEN_MARGIN, position.y)
-	vis_nodes_array[2].position = Vector2(position.x, position.y - CONTROLLER_MODE_SCREEN_MARGIN)
-	vis_nodes_array[3].position = Vector2(position.x - CONTROLLER_MODE_SCREEN_MARGIN, position.y)
+	vis_nodes_array[0].position = Vector2(position.x, position.y + SCREEN_MARGIN)
+	vis_nodes_array[1].position = Vector2(position.x + SCREEN_MARGIN, position.y)
+	vis_nodes_array[2].position = Vector2(position.x, position.y - SCREEN_MARGIN)
+	vis_nodes_array[3].position = Vector2(position.x - SCREEN_MARGIN, position.y)
 
 
 ## determine reticle position and state
@@ -81,7 +83,7 @@ func _process_mouse_state():
 func _enter_controller_state():
 	current_state = ReticleState.CONTROLLER
 	global_position = get_global_mouse_position()
-	last_valid_position = global_position
+	_last_valid_position = global_position
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	sprite.visible = true
 	is_mouse_moving = false
@@ -95,13 +97,18 @@ func _process_controller_state(delta: float):
 		return
 
 	if not _is_within_screen_margin():
-		global_position = last_valid_position
+		global_position = _last_valid_position
+		_velocity = Vector2.ZERO
 		return
 
-	last_valid_position = global_position
+	_last_valid_position = global_position
 	var input := _get_reticle_input()
-	velocity = _get_reticle_input() * MAX_SPEED * delta
-	global_position = global_position + velocity
+
+	if input:
+		_velocity = _velocity.move_toward(input * MAX_SPEED, ACCELERATION * delta)
+	else: # if no input
+		_velocity = _velocity.move_toward(Vector2.ZERO, FRICTION * _velocity.length())
+	_velocity = move_and_slide(_velocity)
 
 
 ## sums up right stick input
