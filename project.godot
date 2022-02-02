@@ -29,6 +29,10 @@ _global_script_class_icons={
 config/name="blinkshooter"
 config/icon="res://icon.png"
 
+[autoload]
+
+TargetReticle="*res://reticle/reticle.tscn"
+
 [global]
 
 static=false

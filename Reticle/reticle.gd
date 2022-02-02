@@ -42,6 +42,18 @@ func _physics_process(delta: float) -> void:
 			pass
 
 
+## returns the current 'true' position of the reticle
+## needed because the actual reticle does not move while in MOUSE mode
+func get_true_global_position() -> Vector2:
+	match current_state:
+		ReticleState.MOUSE:
+			return(get_global_mouse_position())
+		ReticleState.CONTROLLER:
+			return global_position
+		_:
+			return Vector2.ZERO ## TODO handle this
+
+
 ## potentially unnecessary match method
 func change_state(new_state):
 	match new_state:

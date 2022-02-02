@@ -28,4 +28,4 @@ func _physics_process(delta: float) -> void:
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * velocity.length())
 	velocity = move_and_slide(velocity)
 
-	look_at(get_global_mouse_position())
+	look_at(TargetReticle.get_true_global_position())
