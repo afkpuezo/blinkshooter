@@ -10,7 +10,7 @@ enum ReticleState {MOUSE, CONTROLLER, DISABLED}
 onready var sprite: Sprite = $Sprite
 onready var cursor_image = sprite.texture
 onready var vis:VisibilityNotifier2D = $VisibilityNotifier2D
-onready var vis_nodes: Array = $VisNodes.get_children()
+onready var vis_nodes_array: Array = $VisNodes.get_children()
 
 var current_state = ReticleState.DISABLED
 var velocity := Vector2.ZERO
@@ -25,10 +25,10 @@ var last_valid_position = Vector2.ZERO
 func _ready() -> void:
 	change_state(ReticleState.MOUSE)
 
-	vis_nodes[0].position = Vector2(position.x, position.y + CONTROLLER_MODE_SCREEN_MARGIN)
-	vis_nodes[1].position = Vector2(position.x + CONTROLLER_MODE_SCREEN_MARGIN, position.y)
-	vis_nodes[2].position = Vector2(position.x, position.y - CONTROLLER_MODE_SCREEN_MARGIN)
-	vis_nodes[3].position = Vector2(position.x - CONTROLLER_MODE_SCREEN_MARGIN, position.y)
+	vis_nodes_array[0].position = Vector2(position.x, position.y + CONTROLLER_MODE_SCREEN_MARGIN)
+	vis_nodes_array[1].position = Vector2(position.x + CONTROLLER_MODE_SCREEN_MARGIN, position.y)
+	vis_nodes_array[2].position = Vector2(position.x, position.y - CONTROLLER_MODE_SCREEN_MARGIN)
+	vis_nodes_array[3].position = Vector2(position.x - CONTROLLER_MODE_SCREEN_MARGIN, position.y)
 
 
 ## determine reticle position and state
@@ -113,7 +113,7 @@ func _input(event):
 
 ## checks all vis nodes
 func _is_within_screen_margin():
-	for vis in vis_nodes:
+	for vis in vis_nodes_array:
 		if not vis.is_on_screen():
 			return false
 	return true
