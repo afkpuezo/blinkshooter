@@ -18,10 +18,22 @@ _global_script_classes=[ {
 "class": "Reticle",
 "language": "GDScript",
 "path": "res://reticle/reticle.gd"
+}, {
+"base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://state_machine/state.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://state_machine/state_machine.gd"
 } ]
 _global_script_class_icons={
 "Player": "",
-"Reticle": ""
+"Reticle": "",
+"State": "",
+"StateMachine": ""
 }
 
 [application]
