@@ -44,6 +44,7 @@ config/icon="res://icon.png"
 [autoload]
 
 TargetReticle="*res://reticle/reticle.tscn"
+GameEvents="*res://game_events/game_events.tscn"
 
 [global]
 
