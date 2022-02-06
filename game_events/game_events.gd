@@ -12,3 +12,4 @@ signal test_event(msg)
 
 # used for changes to player combat stats
 signal player_combat_stat_value_changed(msg)
+signal player_died(msg)
