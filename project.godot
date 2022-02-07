@@ -14,10 +14,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://combat_stat/combat_stat.gd"
 }, {
-"base": "KinematicBody2D",
-"class": "Player",
+"base": "Node",
+"class": "InputBasedMover",
 "language": "GDScript",
-"path": "res://player/Player.gd"
+"path": "res://input_based_mover/input_based_mover.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Players",
+"language": "GDScript",
+"path": "res://player/player.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Reticle",
@@ -36,7 +41,8 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "CombatStat": "",
-"Player": "",
+"InputBasedMover": "",
+"Players": "",
 "Reticle": "",
 "State": "",
 "StateMachine": ""

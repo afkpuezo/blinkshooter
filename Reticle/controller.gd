@@ -5,6 +5,7 @@ extends State
 
 var _is_mouse_moving := false
 var _last_valid_position = Vector2.ZERO
+onready var input_based_mover: InputBasedMover = $InputBasedMover
 
 
 # ----------
@@ -24,17 +25,7 @@ func physics_update(delta: float) -> void:
 		return
 
 	_last_valid_position = owner.global_position
-	var input := _get_reticle_input()
-
-	if input:
-		owner.velocity = owner.velocity.move_toward(
-				input * owner.MAX_SPEED,
-				owner.ACCELERATION * delta)
-	else: # if no input
-		owner.velocity = owner.velocity.move_toward(
-				Vector2.ZERO,
-				owner.FRICTION * owner.velocity.length())
-	owner.velocity = owner.move_and_slide(owner.velocity)
+	input_based_mover.physics_update(delta)
 
 
 ## disable mouse cursor and enable sprite
