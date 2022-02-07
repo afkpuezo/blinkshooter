@@ -49,4 +49,4 @@ func _get_input() -> Vector2:
 	return Vector2(
 		Input.get_action_strength(_dir_strings[0]) - Input.get_action_strength(_dir_strings[1]),
 		Input.get_action_strength(_dir_strings[2]) - Input.get_action_strength(_dir_strings[3])
-	)
+	).normalized()
