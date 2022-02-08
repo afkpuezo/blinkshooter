@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "InputBasedMover",
 "language": "GDScript",
-"path": "res://input_based_mover/input_based_mover.gd"
+"path": "res://player/input_based_mover/input_based_mover.gd"
 }, {
 "base": "Node",
 "class": "MovementStats",
@@ -32,7 +32,7 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Reticle",
 "language": "GDScript",
-"path": "res://reticle/reticle.gd"
+"path": "res://player/reticle/reticle.gd"
 }, {
 "base": "Node",
 "class": "State",
@@ -61,7 +61,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-TargetReticle="*res://reticle/reticle.tscn"
+TargetReticle="*res://player/reticle/reticle.tscn"
 GameEvents="*res://game_events/game_events.tscn"
 
 [global]

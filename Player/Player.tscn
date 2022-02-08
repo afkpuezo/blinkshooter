@@ -3,7 +3,7 @@
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://player/player_character.png" type="Texture" id=2]
 [ext_resource path="res://combat_resource/combat_resource.gd" type="Script" id=3]
-[ext_resource path="res://input_based_mover/input_based_mover.gd" type="Script" id=4]
+[ext_resource path="res://player/input_based_mover/input_based_mover.gd" type="Script" id=4]
 [ext_resource path="res://movement_stats/movement_stats.gd" type="Script" id=5]
 
 [node name="Player" type="KinematicBody2D"]
@@ -23,7 +23,6 @@ script = ExtResource( 3 )
 __meta__ = {
 "_editor_description_": ""
 }
-REGEN_PER_SECOND = -30.0
 
 [node name="Energy" type="Node" parent="CombatResources"]
 script = ExtResource( 3 )
