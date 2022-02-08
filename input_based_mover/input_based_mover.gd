@@ -46,7 +46,11 @@ func physics_update(delta: float) -> void:
 
 ## sums up input into a vector
 func _get_input() -> Vector2:
-	return Vector2(
+	var input = Vector2(
 		Input.get_action_strength(_dir_strings[0]) - Input.get_action_strength(_dir_strings[1]),
 		Input.get_action_strength(_dir_strings[2]) - Input.get_action_strength(_dir_strings[3])
-	).normalized()
+	)
+	if input.length_squared() > 1: # squared is apparently faster
+		return input.normalized()
+	else:
+		return input
