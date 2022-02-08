@@ -9,6 +9,7 @@ class_name InputBasedMover
 
 export var input_axis: String = "ui"
 var _dir_strings: Array ## right, left, down, up
+onready var _stats: MovementStats = owner.get_node("MovementStats")
 
 
 func _ready() -> void:
@@ -18,7 +19,6 @@ func _ready() -> void:
 	_dir_strings = []
 	for dir in dirs:
 		_dir_strings.append(template.format({'dir': dir}))
-	print("DEBUG: IBM's owner is " + owner.name)
 
 
 # ----------
@@ -31,12 +31,12 @@ func physics_update(delta: float) -> void:
 	var input := _get_input()
 
 	if input:
-		owner.velocity = \
-				owner.velocity.move_toward(input * owner.MAX_SPEED, owner.ACCELERATION * delta)
+		_stats.velocity = \
+				_stats.velocity.move_toward(input * _stats.MAX_SPEED, _stats.ACCELERATION * delta)
 	else:
-		owner.velocity = \
-				owner.velocity.move_toward(Vector2.ZERO, owner.FRICTION * owner.velocity.length())
-	owner.velocity = owner.move_and_slide(owner.velocity)
+		_stats.velocity = \
+				_stats.velocity.move_toward(Vector2.ZERO, _stats.FRICTION * _stats.velocity.length())
+	_stats.velocity = owner.move_and_slide(_stats.velocity)
 
 
 # ----------

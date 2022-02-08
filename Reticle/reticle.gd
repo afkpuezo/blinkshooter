@@ -12,10 +12,6 @@ onready var vis_nodes_array: Array = $VisNodes.get_children()
 onready var state_machine: StateMachine = $StateMachine
 
 export var SCREEN_MARGIN = 100
-export var MAX_SPEED := 800
-export var ACCELERATION := 200
-export(float, 0.0, 1.0) var FRICTION := 0.1 # only applied when no movement input
-var velocity := Vector2.ZERO
 
 
 ## start in mouse state (temp)

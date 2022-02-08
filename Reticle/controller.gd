@@ -6,6 +6,7 @@ extends State
 var _is_mouse_moving := false
 var _last_valid_position = Vector2.ZERO
 onready var input_based_mover: InputBasedMover = $InputBasedMover
+onready var _owner_movement_stats: MovementStats = owner.get_node("MovementStats")
 
 
 # ----------
@@ -21,7 +22,7 @@ func physics_update(delta: float) -> void:
 
 	if not owner.is_within_screen_margin(): # NOTE: assumes owner has this method
 		owner.global_position = _last_valid_position
-		owner.velocity = Vector2.ZERO
+		_owner_movement_stats.velocity = Vector2.ZERO
 		return
 
 	_last_valid_position = owner.global_position

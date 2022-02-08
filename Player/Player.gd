@@ -1,15 +1,9 @@
 extends KinematicBody2D
-class_name Players
+class_name Player
 ## primary player controller
 
 
 # movement speed values
-export var ACCELERATION := 500
-export var MAX_SPEED := 100
-export(float, 0.0, 1.0) var FRICTION := 0.1 # only applied when no movement input
-
-var velocity := Vector2.ZERO
-
 onready var input_based_mover: InputBasedMover = $InputBasedMover
 
 

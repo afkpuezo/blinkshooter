@@ -19,8 +19,13 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://input_based_mover/input_based_mover.gd"
 }, {
+"base": "Node",
+"class": "MovementStats",
+"language": "GDScript",
+"path": "res://movement_stats/movement_stats.gd"
+}, {
 "base": "KinematicBody2D",
-"class": "Players",
+"class": "Player",
 "language": "GDScript",
 "path": "res://player/player.gd"
 }, {
@@ -42,7 +47,8 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "CombatStat": "",
 "InputBasedMover": "",
-"Players": "",
+"MovementStats": "",
+"Player": "",
 "Reticle": "",
 "State": "",
 "StateMachine": ""
