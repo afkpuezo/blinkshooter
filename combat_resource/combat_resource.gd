@@ -1,15 +1,15 @@
 extends Node
-class_name CombatStat
-## Represents a single stat/bar for a character, eg health or energy
+class_name CombatResource
+## Represents a single Resource/bar for a character, eg health or energy
 
 signal value_changed(new_value)
 
-enum CombatStatType {HEALTH, ENERGY}
+enum CombatResourceType {HEALTH, ENERGY}
 
 export var MAX_VALUE: float = 100.0
 export var MIN_VALUE: float = 0.0 # needed?
 export var REGEN_PER_SECOND: float = 0.0
-export(CombatStatType) var type = CombatStatType.HEALTH
+export(CombatResourceType) var type = CombatResourceType.HEALTH
 export var is_player := false ## If set to true, will trigger relevant events
 
 onready var current_value := MAX_VALUE
@@ -56,7 +56,7 @@ func _report_value_change(amount: float):
 	emit_signal("value_changed", current_value)
 	if is_player:
 		GameEvents.emit_signal(
-				"player_combat_stat_value_changed",
+				"player_combat_resource_value_changed",
 				{
 					"combat_stat_type": type,
 					"new_value": current_value,

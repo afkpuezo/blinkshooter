@@ -10,9 +10,9 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
-"class": "CombatStat",
+"class": "CombatResource",
 "language": "GDScript",
-"path": "res://combat_stat/combat_stat.gd"
+"path": "res://combat_resource/combat_resource.gd"
 }, {
 "base": "Node",
 "class": "InputBasedMover",
@@ -45,7 +45,7 @@ _global_script_classes=[ {
 "path": "res://state_machine/state_machine.gd"
 } ]
 _global_script_class_icons={
-"CombatStat": "",
+"CombatResource": "",
 "InputBasedMover": "",
 "MovementStats": "",
 "Player": "",
