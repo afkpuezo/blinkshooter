@@ -15,7 +15,6 @@ var _values := {
 
 ## Connect to events
 func _ready() -> void:
-	GameEvents.connect("player_combat_resource_max_value_set", self, "update_max_value")
 	GameEvents.connect("player_combat_resource_value_changed", self, "update_value")
 
 
@@ -29,17 +28,11 @@ func _process(delta: float) -> void:
 # ----------
 
 
-func update_max_value(msg: Dictionary):
-	match msg['type']:
-		CombatResource.CombatResourceType.HEALTH:
-			_values['hp_max'] = msg['value']
-		CombatResource.CombatResourceType.ENERGY:
-			_values['nrg_max'] = msg['value']
-
-
 func update_value(msg: Dictionary):
 	match msg['type']:
 		CombatResource.CombatResourceType.HEALTH:
 			_values['hp'] = msg['value']
+			_values['hp_max'] = msg['max']
 		CombatResource.CombatResourceType.ENERGY:
 			_values['nrg'] = msg['value']
+			_values['hp_max'] = msg['max']

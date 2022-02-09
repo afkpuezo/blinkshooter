@@ -17,8 +17,7 @@ onready var current_value := MAX_VALUE
 
 ## report max value for set up
 func _ready() -> void:
-	_report_max_value_set()
-	_report_value_change(MAX_VALUE)
+	_report_value_change(0)
 
 
 ## Apply regen - NOTE: should that be only every second?
@@ -58,23 +57,15 @@ func decrease_value(amount: float) -> bool:
 # ----------
 
 
-func _report_value_change(amount: float):
+## change is the amount that the value changed
+func _report_value_change(change: float):
 	emit_signal("value_changed", current_value)
 	if is_player:
 		GameEvents.emit_signal(
 				"player_combat_resource_value_changed",
 				{
-					"combat_stat_type": type,
+					"type": type,
 					"value": current_value,
-				})
-
-
-func _report_max_value_set():
-	emit_signal("max_value_set", current_value)
-	if is_player:
-		GameEvents.emit_signal(
-				"player_combat_resource_max_value_set",
-				{
-					"combat_stat_type": type,
-					"value": MAX_VALUE,
+					"change": change,
+					"max": MAX_VALUE,
 				})
