@@ -23,6 +23,7 @@ script = ExtResource( 3 )
 __meta__ = {
 "_editor_description_": ""
 }
+is_player = true
 
 [node name="Energy" type="Node" parent="CombatResources"]
 script = ExtResource( 3 )
