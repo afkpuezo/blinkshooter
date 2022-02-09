@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://player/player.gd"
 }, {
+"base": "CanvasLayer",
+"class": "PlayerMonitorText",
+"language": "GDScript",
+"path": "res://ui/player_monitor_text.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Reticle",
 "language": "GDScript",
@@ -49,6 +54,7 @@ _global_script_class_icons={
 "InputBasedMover": "",
 "MovementStats": "",
 "Player": "",
+"PlayerMonitorText": "",
 "Reticle": "",
 "State": "",
 "StateMachine": ""

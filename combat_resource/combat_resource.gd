@@ -18,6 +18,7 @@ onready var current_value := MAX_VALUE
 ## report max value for set up
 func _ready() -> void:
 	_report_max_value_set()
+	_report_value_change(MAX_VALUE)
 
 
 ## Apply regen - NOTE: should that be only every second?
@@ -64,7 +65,7 @@ func _report_value_change(amount: float):
 				"player_combat_resource_value_changed",
 				{
 					"combat_stat_type": type,
-					"new_value": current_value,
+					"value": current_value,
 				})
 
 
@@ -75,5 +76,5 @@ func _report_max_value_set():
 				"player_combat_resource_max_value_set",
 				{
 					"combat_stat_type": type,
-					"new_value": MAX_VALUE,
+					"value": MAX_VALUE,
 				})

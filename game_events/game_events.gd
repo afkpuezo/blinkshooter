@@ -11,6 +11,9 @@ signal test_event(msg)
 
 
 # used for changes to player combat stats
+# msg fields: "type", "value"
 signal player_combat_resource_max_value_set(msg)
 signal player_combat_resource_value_changed(msg)
+
+# RIP
 signal player_died(msg)
