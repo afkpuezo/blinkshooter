@@ -15,6 +15,11 @@ export var is_player := false ## If set to true, will trigger relevant events
 onready var current_value := MAX_VALUE
 
 
+## report max value for set up
+func _ready() -> void:
+	_report_max_value_set()
+
+
 ## Apply regen - NOTE: should that be only every second?
 func _process(delta: float) -> void:
 	if REGEN_PER_SECOND >= 0:
@@ -60,4 +65,15 @@ func _report_value_change(amount: float):
 				{
 					"combat_stat_type": type,
 					"new_value": current_value,
+				})
+
+
+func _report_max_value_set():
+	emit_signal("max_value_set", current_value)
+	if is_player:
+		GameEvents.emit_signal(
+				"player_combat_resource_max_value_set",
+				{
+					"combat_stat_type": type,
+					"new_value": MAX_VALUE,
 				})
