@@ -20,14 +20,14 @@ onready var current_value := MAX_VALUE
 func _ready() -> void:
 	_report_value_change(0)
 	var timer := Timer.new()
-	timer.connect("timeout", self, "apply_regen")
+	timer.connect("timeout", self, "_apply_regen")
 	add_child(timer)
 	timer.start(REGEN_PERIOD)
 
 
-## triggered by timer
-func apply_regen():
-	change_value(REGEN)
+# ----------
+# public methods
+# ----------
 
 
 ## can take a positive or negative value, ignores 0
@@ -47,6 +47,11 @@ func change_value(amount: int) -> bool:
 # ----------
 # private methods
 # ----------
+
+
+## triggered by timer
+func _apply_regen():
+	change_value(REGEN)
 
 
 ## if the value is not already maxed increase current value by the given amount
