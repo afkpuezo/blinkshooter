@@ -4,12 +4,12 @@ class_name CombatResource
 
 signal value_changed(new_value)
 
-enum CombatResourceType {HEALTH, ENERGY}
+enum Type {HEALTH, ENERGY}
 
 export var MAX_VALUE: float = 100.0
 export var MIN_VALUE: float = 0.0 # needed?
 export var REGEN_PER_SECOND: float = 0.0
-export(CombatResourceType) var type = CombatResourceType.HEALTH
+export(Type) var type = Type.HEALTH
 export var is_player := false ## If set to true, will trigger relevant events
 
 onready var current_value := MAX_VALUE

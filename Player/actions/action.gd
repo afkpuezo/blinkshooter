@@ -9,7 +9,11 @@ signal action_started(msg)
 signal action_ended(msg)
 
 
-export var cost:= {
-	CombatResource.CombatResourceType.HEALTH: 0.0,
-	CombatResource.CombatResourceType.ENERGY: 0.0,
+# it's a little gross to manually put each type of resource?
+export var health_cost := 0.0
+export var energy_cost := 0.0
+
+var cost:= {
+	CombatResource.Type.HEALTH: health_cost,
+	CombatResource.Type.ENERGY: energy_cost,
 }

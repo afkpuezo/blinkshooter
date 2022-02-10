@@ -30,9 +30,9 @@ func _process(delta: float) -> void:
 
 func update_value(msg: Dictionary):
 	match msg['type']:
-		CombatResource.CombatResourceType.HEALTH:
+		CombatResource.Type.HEALTH:
 			_values['hp'] = int(msg['value'])
 			_values['hp_max'] = int(msg['max'])
-		CombatResource.CombatResourceType.ENERGY:
+		CombatResource.Type.ENERGY:
 			_values['nrg'] = int(msg['value'])
 			_values['nrg_max'] = int(msg['max'])
