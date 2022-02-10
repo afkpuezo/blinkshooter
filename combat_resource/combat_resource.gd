@@ -8,24 +8,32 @@ enum Type {HEALTH, ENERGY}
 
 export var MAX_VALUE := 100
 export var MIN_VALUE := 0 # needed?
-export var REGEN_PER_SECOND := 0
+export var REGEN := 0
+export(float, 0.1, 3.0) var REGEN_PERIOD = 0.1
 export(Type) var type = Type.HEALTH
 export var is_player := false ## If set to true, will trigger relevant events
 
 onready var current_value := MAX_VALUE
 
 
-## report max value for set up
+## report max value for set up, create regen timer
 func _ready() -> void:
 	_report_value_change(0)
+	var timer := Timer.new()
+	timer.connect("timeout", self, "apply_regen")
+	add_child(timer)
+	timer.start(REGEN_PERIOD)
+	print("DEBUG: timer added")
 
 
-## Apply regen - NOTE: should that be only every second?
-func _process(delta: float) -> void:
-	if REGEN_PER_SECOND >= 0:
-		increase_value(REGEN_PER_SECOND * delta)
-	else:
-		decrease_value(REGEN_PER_SECOND * delta)
+## triggered by timer
+func apply_regen():
+	print("DEBUG: apply_regen")
+	if REGEN > 0:
+		increase_value(REGEN)
+	elif REGEN < 0:
+		decrease_value(REGEN)
+	# does nothing if exactly 0
 
 
 ## if the value is not already maxed increase current value by the given amount

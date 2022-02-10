@@ -8,3 +8,5 @@
 [node name="PlayerMonitorText" parent="." instance=ExtResource( 2 )]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
+
+[editable path="Player"]
