@@ -6,9 +6,9 @@ signal value_changed(new_value)
 
 enum Type {HEALTH, ENERGY}
 
-export var MAX_VALUE: float = 100.0
-export var MIN_VALUE: float = 0.0 # needed?
-export var REGEN_PER_SECOND: float = 0.0
+export var MAX_VALUE := 100
+export var MIN_VALUE := 0 # needed?
+export var REGEN_PER_SECOND := 0
 export(Type) var type = Type.HEALTH
 export var is_player := false ## If set to true, will trigger relevant events
 
@@ -31,7 +31,7 @@ func _process(delta: float) -> void:
 ## if the value is not already maxed increase current value by the given amount
 ## and return true.
 ## if the value is already maxed, return false.
-func increase_value(amount: float) -> bool:
+func increase_value(amount: int) -> bool:
 	if current_value == MAX_VALUE:
 		return false
 	else:
@@ -43,7 +43,7 @@ func increase_value(amount: float) -> bool:
 ## if the value is not already at the minimum, decrease current value by the
 ## given amount and return true.
 ## if the value is already at the minimum, return false.
-func decrease_value(amount: float) -> bool:
+func decrease_value(amount: int) -> bool:
 	if current_value == MIN_VALUE:
 		return false
 	else:
@@ -58,7 +58,7 @@ func decrease_value(amount: float) -> bool:
 
 
 ## change is the amount that the value changed
-func _report_value_change(change: float):
+func _report_value_change(change: int):
 	emit_signal("value_changed", current_value)
 	if is_player:
 		GameEvents.emit_signal(

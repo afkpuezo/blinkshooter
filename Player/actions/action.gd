@@ -10,8 +10,8 @@ signal action_ended(msg)
 
 
 # it's a little gross to manually put each type of resource?
-export var health_cost := 0.0
-export var energy_cost := 0.0
+export var health_cost := 0
+export var energy_cost := 0
 
 var cost:= {
 	CombatResource.Type.HEALTH: health_cost,
