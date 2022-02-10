@@ -23,46 +23,53 @@ func _ready() -> void:
 	timer.connect("timeout", self, "apply_regen")
 	add_child(timer)
 	timer.start(REGEN_PERIOD)
-	print("DEBUG: timer added")
 
 
 ## triggered by timer
 func apply_regen():
-	print("DEBUG: apply_regen")
-	if REGEN > 0:
-		increase_value(REGEN)
-	elif REGEN < 0:
-		decrease_value(REGEN)
-	# does nothing if exactly 0
+	change_value(REGEN)
+
+
+## can take a positive or negative value, ignores 0
+## if there would be no change (eg healing when at max), does nothing
+## returns true if the value was changed, false otherwise
+func change_value(amount: int) -> bool:
+	var was_changed := false
+	if amount > 0:
+		was_changed = _increase_value(amount)
+	elif amount < 0:
+		was_changed = _decrease_value(amount)
+	if was_changed:
+		_report_value_change(amount)
+	return was_changed
+
+
+# ----------
+# private methods
+# ----------
 
 
 ## if the value is not already maxed increase current value by the given amount
 ## and return true.
 ## if the value is already maxed, return false.
-func increase_value(amount: int) -> bool:
+func _increase_value(amount: int) -> bool:
 	if current_value == MAX_VALUE:
 		return false
 	else:
 		current_value = min(MAX_VALUE, current_value + amount)
-		_report_value_change(amount)
 		return true
 
 
 ## if the value is not already at the minimum, decrease current value by the
 ## given amount and return true.
 ## if the value is already at the minimum, return false.
-func decrease_value(amount: int) -> bool:
+func _decrease_value(amount: int) -> bool:
 	if current_value == MIN_VALUE:
 		return false
 	else:
 		current_value = max(MIN_VALUE, current_value + amount)
-		_report_value_change(amount * -1)
 		return true
 
-
-# ----------
-# private methods
-# ----------
 
 
 ## change is the amount that the value changed
