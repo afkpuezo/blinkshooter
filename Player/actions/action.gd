@@ -1,6 +1,6 @@
 extends Node
 class_name Action
-## This is an 'abstract' class that represents a single player (or enemy?) action/ability/spell
+## This is an 'abstract' class that represents a single user (or enemy?) action/ability/spell
 ## It should be attached to an ActionBar node
 ## Specific action subclasses should mostly only need to overwrite the do_effect() method
 
@@ -23,8 +23,8 @@ export(float, 0.0, 60.0) var cooldown = 0.1
 var _cooldown_timer: Timer
 var is_cooling_down := false
 
-onready var player = owner.owner # TODO: make this less sketchy
-var player_combat_resources: Dictionary
+onready var user: Node # set by ActionBar
+var user_combat_resources: Dictionary
 
 
 func _ready() -> void:
@@ -33,11 +33,6 @@ func _ready() -> void:
 	_cooldown_timer.autostart = false
 	_cooldown_timer.one_shot = true
 	add_child(_cooldown_timer)
-	# get the player combat resources
-	# NOTE: assumes certain scene architecture
-	for rsrc in player.get_node("CombatResources").get_children():
-		if rsrc is CombatResource:
-			print("DEBUG: CombatResource found: " + rsrc.name)
 
 
 # ----------
@@ -55,6 +50,15 @@ func do_action() -> void:
 # ----------
 
 
-## Called by the ActionBar when the player uses this ability.
+## Called by the ActionBar when the Action node is attached / when the Action is unlocked
+func configure_user(new_user) -> void:
+	user = new_user
+	# NOTE: assumes particular scene architecture
+	user_combat_resources = {} # reset if changing users I guess?
+	for rsrc in user.get_node("CombatResources").get_children():
+		user_combat_resources[rsrc.type] = rsrc
+
+
+## Called by the ActionBar when the user uses this ability.
 func trigger() -> void:
 	pass

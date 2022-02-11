@@ -15,6 +15,11 @@ _global_script_classes=[ {
 "path": "res://player/actions/action.gd"
 }, {
 "base": "Node",
+"class": "ActionBar",
+"language": "GDScript",
+"path": "res://player/actions/action_bar.gd"
+}, {
+"base": "Node",
 "class": "CombatResource",
 "language": "GDScript",
 "path": "res://combat_resource/combat_resource.gd"
@@ -56,6 +61,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Action": "",
+"ActionBar": "",
 "CombatResource": "",
 "InputBasedMover": "",
 "MovementStats": "",
