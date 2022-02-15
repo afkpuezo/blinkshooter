@@ -9,4 +9,5 @@ onready var user := get_parent() # gross
 
 func _ready() -> void:
 	for action in get_children():
-		action.configure_user(user)
+		if action.has_method("configure_user"):
+			action.configure_user(user)
