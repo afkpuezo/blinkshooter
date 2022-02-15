@@ -13,7 +13,7 @@ export(float, 0.1, 3.0) var REGEN_PERIOD = 0.1
 export(Type) var type = Type.HEALTH
 export var is_player := false ## If set to true, will trigger relevant events
 
-onready var current_value := MAX_VALUE
+onready var value := MAX_VALUE
 
 
 ## report max value for set up, create regen timer
@@ -58,10 +58,10 @@ func _apply_regen():
 ## and return true.
 ## if the value is already maxed, return false.
 func _increase_value(amount: int) -> bool:
-	if current_value == MAX_VALUE:
+	if value == MAX_VALUE:
 		return false
 	else:
-		current_value = min(MAX_VALUE, current_value + amount)
+		value = min(MAX_VALUE, value + amount)
 		return true
 
 
@@ -69,23 +69,23 @@ func _increase_value(amount: int) -> bool:
 ## given amount and return true.
 ## if the value is already at the minimum, return false.
 func _decrease_value(amount: int) -> bool:
-	if current_value == MIN_VALUE:
+	if value == MIN_VALUE:
 		return false
 	else:
-		current_value = max(MIN_VALUE, current_value + amount)
+		value = max(MIN_VALUE, value + amount)
 		return true
 
 
 
 ## change is the amount that the value changed
 func _report_value_change(change: int):
-	emit_signal("value_changed", current_value)
+	emit_signal("value_changed", value)
 	if is_player:
 		GameEvents.emit_signal(
 				"player_combat_resource_value_changed",
 				{
 					"type": type,
-					"value": current_value,
+					"value": value,
 					"change": change,
 					"max": MAX_VALUE,
 				})

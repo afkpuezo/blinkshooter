@@ -69,12 +69,13 @@ func configure_user(new_user) -> void:
 ## Called by the ActionBar when the user uses this ability.
 ## Returns true if the action is executed, false otherwise (eg cooldown or no resources)
 func trigger() -> bool:
-	if not (is_cooldown_ready() and can_user_pay()) and can_do_action():
+	if is_cooldown_ready() and can_user_pay() and can_do_action():
+		emit_signal("action_started")
+		do_action()
+		# TODO: rethink the action_ended signal
+		return true
+	else:
 		return false
-	emit_signal("action_started")
-	do_action()
-	# TODO: rethink the action_ended signal
-	return true
 
 
 ## Returns true if the cooldown timer is not currently running
