@@ -16,5 +16,9 @@ func can_do_action() -> bool:
 
 
 func do_action():
-	user.global_position = \
-			user.global_position.move_towards(TargetReticle.get_true_global_position(), MAX_RANGE)
+	var target_position = TargetReticle.get_true_global_position()
+	var distance = user.position.distance_to(target_position)
+	if distance < MAX_RANGE:
+		user.position = target_position
+	else:
+		print("too far!")

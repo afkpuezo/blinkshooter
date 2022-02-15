@@ -5,9 +5,28 @@ class_name ActionBar
 
 
 onready var user := get_parent() # gross
+var actions: Array # seems better than constatly calling get_child
+
+export var num_slots := 3 # There's probably a better way to set this up
+var action_slot_events := {}
 
 
 func _ready() -> void:
+	# set up action slots
+	var slot_template := "action_slot_%d"
+	for n in range(0, num_slots):
+		action_slot_events[slot_template % (n + 1)] = n
+	# set up actions
 	for action in get_children():
 		if action.has_method("configure_user"):
 			action.configure_user(user)
+			actions.append(action)
+
+
+## Triggers the equipped action corresponding to the button pressed
+func _unhandled_input(event: InputEvent) -> void:
+	for ase in action_slot_events:
+		if event.is_action_pressed(ase):
+			var slot = action_slot_events[ase]
+			if slot < len(actions) and actions[slot].has_method("trigger"):
+				actions[slot].trigger()
