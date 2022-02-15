@@ -13,7 +13,7 @@ signal cooldown_finished(msg) # when action is ready again
 # it's a little gross to manually put each type of resource?
 export var health_cost := 0
 export var energy_cost := 0
-var cost:= {
+onready var cost:= {
 	CombatResource.Type.HEALTH: health_cost,
 	CombatResource.Type.ENERGY: energy_cost,
 }
@@ -71,6 +71,8 @@ func configure_user(new_user) -> void:
 func trigger() -> bool:
 	if is_cooldown_ready() and can_user_pay() and can_do_action():
 		emit_signal("action_started")
+		_start_cooldown()
+		_pay_cost()
 		do_action()
 		# TODO: rethink the action_ended signal
 		return true
@@ -89,3 +91,20 @@ func can_user_pay() -> bool:
 		if not type in user_combat_resources or user_combat_resources[type].value < cost[type]:
 			return false
 	return true
+
+
+# ----------
+# private methods
+# ----------
+
+
+## Probably overkill right now
+func _start_cooldown():
+	_cooldown_timer.start(cooldown)
+
+
+## Informs the combat resources that they have been spent
+## Assumes the player has enough
+func _pay_cost():
+	for type in cost:
+		user_combat_resources[type].change_value(cost[type] * -1)

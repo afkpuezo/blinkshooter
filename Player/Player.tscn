@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://player/player_character.png" type="Texture" id=2]
 [ext_resource path="res://combat_resource/combat_resource.gd" type="Script" id=3]
 [ext_resource path="res://player/input_based_mover/input_based_mover.gd" type="Script" id=4]
 [ext_resource path="res://movement_stats/movement_stats.gd" type="Script" id=5]
-[ext_resource path="res://player/actions/blink.gd" type="Script" id=6]
 [ext_resource path="res://player/actions/action_bar.gd" type="Script" id=7]
 
 [node name="Player" type="KinematicBody2D"]
@@ -29,6 +28,7 @@ is_player = true
 
 [node name="Energy" type="Node" parent="CombatResources"]
 script = ExtResource( 3 )
+REGEN = 2
 type = 1
 is_player = true
 
@@ -41,10 +41,5 @@ MAX_SPEED = 800
 
 [node name="ActionBar" type="Node" parent="."]
 script = ExtResource( 7 )
-
-[node name="Blink" type="Node" parent="ActionBar"]
-script = ExtResource( 6 )
-energy_cost = 40
-cooldown = 1.0
 
 [connection signal="value_changed" from="CombatResources/Health" to="." method="_check_for_death"]

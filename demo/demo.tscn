@@ -1,14 +1,20 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui/player_monitor_text.tscn" type="PackedScene" id=2]
 [ext_resource path="res://player/actions/demo_action.gd" type="Script" id=3]
+[ext_resource path="res://player/actions/blink.gd" type="Script" id=4]
 
 [node name="World" type="Node2D"]
 
 [node name="PlayerMonitorText" parent="." instance=ExtResource( 2 )]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
+
+[node name="Blink" type="Node" parent="Player/ActionBar" index="0"]
+script = ExtResource( 4 )
+energy_cost = 40
+cooldown = 1.0
 
 [node name="DemoAction" type="Node" parent="Player/ActionBar" index="1"]
 script = ExtResource( 3 )
