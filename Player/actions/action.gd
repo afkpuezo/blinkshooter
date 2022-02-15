@@ -39,6 +39,14 @@ func _ready() -> void:
 # ----------
 
 
+## Returns true if the action could be executed right now.
+## This is for conditions that are specific to the particular action (eg target in range), and not
+## generic conditions like cooldown and resource cost.
+## TODO: reconsider the name
+func can_do_action() -> bool:
+	return false
+
+
 ## Executes the actual effects of the action. You don't need to handle cooldown or costs here
 func do_action() -> void:
 	pass
@@ -61,7 +69,7 @@ func configure_user(new_user) -> void:
 ## Called by the ActionBar when the user uses this ability.
 ## Returns true if the action is executed, false otherwise (eg cooldown or no resources)
 func trigger() -> bool:
-	if not (is_cooldown_ready() and can_user_pay()):
+	if not (is_cooldown_ready() and can_user_pay()) and can_do_action():
 		return false
 	emit_signal("action_started")
 	do_action()
