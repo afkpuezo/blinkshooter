@@ -12,7 +12,6 @@ onready var input_based_mover: InputBasedMover = $InputBasedMover
 ## also controls direction
 func _physics_process(delta: float) -> void:
 	input_based_mover.physics_update(delta)
-
 	look_at(TargetReticle.get_true_global_position())
 
 

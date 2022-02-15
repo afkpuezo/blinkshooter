@@ -37,7 +37,6 @@ script = ExtResource( 4 )
 [node name="MovementStats" type="Node" parent="."]
 script = ExtResource( 5 )
 MAX_SPEED = 800
-FRICTION = 0.2
 
 [node name="ActionBar" type="Node" parent="."]
 script = ExtResource( 7 )

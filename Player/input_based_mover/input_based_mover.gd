@@ -35,8 +35,13 @@ func physics_update(delta: float) -> void:
 				_stats.velocity.move_toward(input * _stats.MAX_SPEED, _stats.ACCELERATION * delta)
 	else:
 		_stats.velocity = \
-				_stats.velocity.move_toward(Vector2.ZERO, _stats.FRICTION * _stats.velocity.length())
+				_stats.velocity.move_toward(
+						Vector2.ZERO,
+						max(
+								_stats.FRICTION * _stats.velocity.length(),
+								1)) # fixes very slow friction at low speeds
 	_stats.velocity = owner.move_and_slide(_stats.velocity)
+	print("player speed: " + str(_stats.velocity.length()))
 
 
 # ----------
