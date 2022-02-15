@@ -7,7 +7,6 @@ class_name Action
 
 # TODO these are placeholder
 signal action_started(msg)
-signal action_ended(msg)
 signal cooldown_finished(msg) # when action is ready again
 
 
