@@ -10,9 +10,24 @@ extends Node
 signal test_event(msg)
 
 
+# ----------
+# Player related
+# ----------
+
+
 # used for changes to player combat stats
 # msg fields: "type", "value", "change", "max"
 signal player_combat_resource_value_changed(msg)
 
+
 # RIP
 signal player_died(msg)
+
+
+# ----------
+# Spawner related
+# ----------
+
+
+# msg fields: "object"
+signal game_object_spawned(msg)
