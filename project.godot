@@ -78,6 +78,11 @@ _global_script_classes=[ {
 "class": "TeleportEffect",
 "language": "GDScript",
 "path": "res://player/effects/teleport_effect.gd"
+}, {
+"base": "Node",
+"class": "WeaponBar",
+"language": "GDScript",
+"path": "res://player/weapons/weapon_bar.gd"
 } ]
 _global_script_class_icons={
 "Action": "",
@@ -93,7 +98,8 @@ _global_script_class_icons={
 "Spawner": "",
 "State": "",
 "StateMachine": "",
-"TeleportEffect": ""
+"TeleportEffect": "",
+"WeaponBar": ""
 }
 
 [application]
