@@ -73,6 +73,11 @@ _global_script_classes=[ {
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://state_machine/state_machine.gd"
+}, {
+"base": "Node2D",
+"class": "TeleportEffect",
+"language": "GDScript",
+"path": "res://player/effects/teleport_effect.gd"
 } ]
 _global_script_class_icons={
 "Action": "",
@@ -87,7 +92,8 @@ _global_script_class_icons={
 "Reticle": "",
 "Spawner": "",
 "State": "",
-"StateMachine": ""
+"StateMachine": "",
+"TeleportEffect": ""
 }
 
 [application]

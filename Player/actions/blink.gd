@@ -4,6 +4,7 @@ class_name Blink
 
 
 export var MAX_RANGE := 500
+export(PackedScene) var effect_scene
 
 
 # ----------
@@ -24,4 +25,7 @@ func do_action():
 		var direction: Vector2 = \
 				user.position.direction_to(target_position).normalized()
 		target_position = user.position + (direction * MAX_RANGE)
+	if effect_scene:
+		GameSpawner.spawn_node(effect_scene.instance(), user.position)
+		GameSpawner.spawn_node(effect_scene.instance(), target_position)
 	user.position = target_position # should this be global position?
