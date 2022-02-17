@@ -6,7 +6,10 @@ class_name Spawner
 # TODO: make this a component of a world node, rather than a singleton?
 
 
-## places the given Node2D at the given location and adds it to the scene tree
-func spawn_node(node: Node2D, location: Vector2):
-	node.position = location
+## places the given Node2D at the given spawn_position and adds it to the scene tree
+## if spawn_rotation is specified, the spawned node will be rotated
+func spawn_node(node: Node2D, spawn_position: Vector2, spawn_rotation := 0):
+	node.position = spawn_position
+	if spawn_rotation:
+		node.rotation = spawn_rotation
 	add_child(node) # TODO: spawn them somewhere else?
