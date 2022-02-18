@@ -4,7 +4,6 @@ class_name InputBasedMover
 ## Listens to a particular input axis and moves this node's owner accordingly.
 ## Gets the movement stats (max speed, etc) from the owner
 ## Assumes owner is a KinematicBody2D
-## TODO: create movement_stats node?
 
 
 export var input_axis: String = "ui"

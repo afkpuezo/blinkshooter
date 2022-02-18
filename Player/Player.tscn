@@ -3,7 +3,7 @@
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://player/player_character.png" type="Texture" id=2]
 [ext_resource path="res://combat_resource/combat_resource.gd" type="Script" id=3]
-[ext_resource path="res://player/input_based_mover/input_based_mover.gd" type="Script" id=4]
+[ext_resource path="res://player/input_based_mover.gd" type="Script" id=4]
 [ext_resource path="res://movement_stats/movement_stats.gd" type="Script" id=5]
 [ext_resource path="res://player/actions/action_bar.gd" type="Script" id=7]
 

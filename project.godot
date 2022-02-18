@@ -25,6 +25,11 @@ _global_script_classes=[ {
 "path": "res://player/actions/blink.gd"
 }, {
 "base": "Node",
+"class": "BulletMover",
+"language": "GDScript",
+"path": "res://bullet/bullet_mover.gd"
+}, {
+"base": "Node",
 "class": "CombatResource",
 "language": "GDScript",
 "path": "res://combat_resource/combat_resource.gd"
@@ -37,7 +42,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "InputBasedMover",
 "language": "GDScript",
-"path": "res://player/input_based_mover/input_based_mover.gd"
+"path": "res://player/input_based_mover.gd"
 }, {
 "base": "Node",
 "class": "MovementStats",
@@ -88,6 +93,7 @@ _global_script_class_icons={
 "Action": "",
 "ActionBar": "",
 "Blink": "",
+"BulletMover": "",
 "CombatResource": "",
 "DemoAction": "",
 "InputBasedMover": "",
