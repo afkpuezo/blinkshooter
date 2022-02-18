@@ -24,5 +24,6 @@ script = ExtResource( 3 )
 
 [node name="Bullet" parent="." instance=ExtResource( 6 )]
 position = Vector2( 130, 189 )
+rotation = 0.436332
 
 [editable path="Player"]
