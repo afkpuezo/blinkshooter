@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://bullet/bullet_mover.gd"
 }, {
+"base": "Node2D",
+"class": "BulletSpawnPoint",
+"language": "GDScript",
+"path": "res://player/weapons/bullet_spawn_point.gd"
+}, {
 "base": "Node",
 "class": "CombatResource",
 "language": "GDScript",
@@ -90,6 +95,11 @@ _global_script_classes=[ {
 "path": "res://player/effects/teleport_effect.gd"
 }, {
 "base": "Node",
+"class": "Weapon",
+"language": "GDScript",
+"path": "res://player/weapons/weapon.gd"
+}, {
+"base": "Node",
 "class": "WeaponBar",
 "language": "GDScript",
 "path": "res://player/weapons/weapon_bar.gd"
@@ -100,6 +110,7 @@ _global_script_class_icons={
 "Blink": "",
 "Bullet": "",
 "BulletMover": "",
+"BulletSpawnPoint": "",
 "CombatResource": "",
 "DemoAction": "",
 "InputBasedMover": "",
@@ -111,6 +122,7 @@ _global_script_class_icons={
 "State": "",
 "StateMachine": "",
 "TeleportEffect": "",
+"Weapon": "",
 "WeaponBar": ""
 }
 
