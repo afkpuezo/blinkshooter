@@ -4,7 +4,7 @@ class_name CombatResource
 
 signal value_changed(new_value)
 
-enum Type {HEALTH, ENERGY}
+enum Type {HEALTH, ENERGY, BASIC_AMMO}
 
 export var MAX_VALUE := 100
 export var MIN_VALUE := 0 # needed?
@@ -14,6 +14,26 @@ export(Type) var type = Type.HEALTH
 export var is_player := false ## If set to true, will trigger relevant events
 
 onready var value := MAX_VALUE
+
+
+# ----------
+# static util methods
+# ----------
+
+
+## Returns true if the given combat resource is some kind of ammo, false otherwise.
+## Takes either a CombatResource node, or a Type enum.
+## NOTE: this is static/class level rather than instance because events related to combat resources
+## will not provide a reference to the actual CombatResource node.
+static func is_ammo(rsrc) -> bool:
+	if typeof(rsrc) != TYPE_INT:
+		rsrc = rsrc.type
+	return rsrc in [Type.BASIC_AMMO]
+
+
+# ----------
+# ready/constructor methods
+# ----------
 
 
 ## report max value for set up, create regen timer
