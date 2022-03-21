@@ -15,9 +15,14 @@ signal test_event(msg)
 # ----------
 
 
-# used for changes to player combat stats
-# msg fields: "type", "value", "change", "max"
+## used for changes to player combat stats
+## msg fields: "type", "value", "change", "max"
 signal player_combat_resource_value_changed(msg)
+
+
+## used for changes to player ammo supply
+## msg fields: "type", "value", "change", "max"
+signal player_ammo_value_changed(msg)
 
 
 # RIP

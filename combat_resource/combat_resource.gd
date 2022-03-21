@@ -28,7 +28,7 @@ onready var value := MAX_VALUE
 static func is_ammo(rsrc) -> bool:
 	if typeof(rsrc) != TYPE_INT:
 		rsrc = rsrc.type
-	return rsrc in [Type.BASIC_AMMO]
+	return rsrc in [Type.BASIC_AMMO] # potentially slow lookup?
 
 
 # ----------
@@ -96,16 +96,26 @@ func _decrease_value(amount: int) -> bool:
 		return true
 
 
-
 ## change is the amount that the value changed
 func _report_value_change(change: int):
 	emit_signal("value_changed", value)
 	if is_player:
-		GameEvents.emit_signal(
-				"player_combat_resource_value_changed",
-				{
-					"type": type,
-					"value": value,
-					"change": change,
-					"max": MAX_VALUE,
-				})
+		# send a special signal if this is ammo
+		if CombatResource.is_ammo(type):
+			GameEvents.emit_signal(
+					"player_ammo_value_changed",
+					{
+						"type": type,
+						"value": value,
+						"change": change,
+						"max": MAX_VALUE,
+					})
+		else:
+			GameEvents.emit_signal(
+					"player_combat_resource_value_changed",
+					{
+						"type": type,
+						"value": value,
+						"change": change,
+						"max": MAX_VALUE,
+					})
