@@ -101,7 +101,7 @@ func _report_value_change(change: int):
 	emit_signal("value_changed", value)
 	if is_player:
 		# send a special signal if this is ammo
-		if CombatResource.is_ammo(type):
+		if is_ammo(type):
 			GameEvents.emit_signal(
 					"player_ammo_value_changed",
 					{

@@ -32,6 +32,11 @@ REGEN = 2
 type = 1
 is_player = true
 
+[node name="Ammo" type="Node" parent="CombatResources"]
+script = ExtResource( 3 )
+type = 2
+is_player = true
+
 [node name="InputBasedMover" type="Node" parent="."]
 script = ExtResource( 4 )
 
