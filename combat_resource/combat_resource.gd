@@ -100,22 +100,11 @@ func _decrease_value(amount: int) -> bool:
 func _report_value_change(change: int):
 	emit_signal("value_changed", value)
 	if is_player:
-		# send a special signal if this is ammo
-		if is_ammo(type):
-			GameEvents.emit_signal(
-					"player_ammo_value_changed",
-					{
-						"type": type,
-						"value": value,
-						"change": change,
-						"max": MAX_VALUE,
-					})
-		else:
-			GameEvents.emit_signal(
-					"player_combat_resource_value_changed",
-					{
-						"type": type,
-						"value": value,
-						"change": change,
-						"max": MAX_VALUE,
-					})
+		GameEvents.emit_signal(
+				"player_combat_resource_value_changed",
+				{
+					"type": type,
+					"value": value,
+					"change": change,
+					"max": MAX_VALUE,
+				})
