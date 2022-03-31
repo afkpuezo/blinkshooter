@@ -9,11 +9,12 @@ enum Type {HEALTH, ENERGY, BASIC_AMMO}
 export var MAX_VALUE := 100
 export var MIN_VALUE := 0 # needed?
 export var REGEN := 0
+export var INITIAL_VALUE: int = 999999 # note - will get clmaped
 export(float, 0.1, 3.0) var REGEN_PERIOD = 0.1
 export(Type) var type = Type.HEALTH
 export var is_player := false ## If set to true, will trigger relevant events
 
-onready var value := MAX_VALUE
+onready var value = clamp(INITIAL_VALUE, MIN_VALUE, MAX_VALUE)
 
 
 # ----------

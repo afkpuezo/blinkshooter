@@ -13,6 +13,9 @@
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 
+[node name="Ammo" parent="Player/CombatResources" index="2"]
+INITIAL_VALUE = 0
+
 [node name="Blink" type="Node" parent="Player/ActionBar" index="0"]
 script = ExtResource( 4 )
 energy_cost = 40
