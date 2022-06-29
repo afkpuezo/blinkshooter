@@ -4,7 +4,7 @@ class_name PlayerMonitorText
 
 
 onready var label: Label = $Label
-var _template: String = "Health: {hp} / {hp_max}\nEnergy: {nrg} / {nrg_max}\nAmmo: {ammo} / {ammo_max}"
+var _template: String = "Health: {hp} / {hp_max}\nEnergy: {nrg} / {nrg_max}\nAmmo: {ammo} / {ammo_max}\nBig Ammo: {big_ammo} / {big_ammo_max}"
 var _values := {
 	'hp': 0,
 	'hp_max': 0,
@@ -12,6 +12,8 @@ var _values := {
 	'nrg_max': 0,
 	'ammo': 0,
 	'ammo_max': 0,
+	'big_ammo': 0,
+	'big_ammo_max': 0,
 }
 
 
@@ -39,5 +41,7 @@ func update_value(msg: Dictionary):
 			v = 'nrg'
 		CombatResource.Type.BASIC_AMMO:
 			v = 'ammo'
+		CombatResource.Type.BIG_AMMO:
+			v = 'big_ammo'
 	_values[v] = msg['value']
 	_values[v + "_max"] = msg['max']

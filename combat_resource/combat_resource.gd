@@ -4,7 +4,7 @@ class_name CombatResource
 
 signal value_changed(new_value)
 
-enum Type {HEALTH, ENERGY, BASIC_AMMO}
+enum Type {HEALTH, ENERGY, BASIC_AMMO, BIG_AMMO}
 
 export var MAX_VALUE := 100
 export var MIN_VALUE := 0 # needed?

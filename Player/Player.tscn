@@ -37,6 +37,11 @@ script = ExtResource( 3 )
 type = 2
 is_player = true
 
+[node name="BigAmmo" type="Node" parent="CombatResources"]
+script = ExtResource( 3 )
+type = 3
+is_player = true
+
 [node name="InputBasedMover" type="Node" parent="."]
 script = ExtResource( 4 )
 

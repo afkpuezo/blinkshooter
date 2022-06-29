@@ -2,6 +2,7 @@ extends Node
 class_name ActionBar
 ## Acts as an interface between the player node and the actions they can perform
 ## NOTE: this is currently a placeholder
+## NOTE: needs a way to add/remove actions?
 
 
 onready var user := get_parent() # gross
