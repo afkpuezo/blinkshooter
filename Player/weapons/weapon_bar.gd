@@ -16,6 +16,7 @@ var weapon_select_events := {}
 export var select_template := "weapon_select_%d"
 export var weapon_shoot_event := "weapon_shoot"
 
+var is_firing = false
 
 func _ready() -> void:
 	# set up weapon selects
@@ -28,12 +29,20 @@ func _ready() -> void:
 			weapons.append(weapon)
 
 
+## triggers the currently selected weapon if the button is held
+func _process(_delta: float) -> void:
+	if is_firing:
+		var current_weapon: Weapon = weapons[current_slot]
+		current_weapon.trigger() # TODO: do something with result?
+
+
 ## handles selecting current gun AND shooting
 func _unhandled_input(event: InputEvent) -> void:
 	# if shooting
 	if event.is_action_pressed(weapon_shoot_event):
-		var current_weapon: Weapon = weapons[current_slot]
-		current_weapon.trigger() # TODO: do something with result?
+		is_firing = true
+	elif event.is_action_released(weapon_shoot_event):
+		is_firing = false
 	# if selecting a slot
 	var slot_num = 0
 	for wse in weapon_select_events:
