@@ -20,9 +20,9 @@ signal test_event(msg)
 signal player_combat_resource_value_changed(msg)
 
 
-## used for changes to player ammo supply
-## msg fields: "type", "value", "change", "max"
-#signal player_ammo_value_changed(msg)
+## used when the player changes weapon slots
+## msg fields: "old_weapon_slot", "new_weapon_slot"
+signal player_changed_weapon(msg)
 
 
 # RIP

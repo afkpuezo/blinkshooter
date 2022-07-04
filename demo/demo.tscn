@@ -27,6 +27,7 @@ script = ExtResource( 3 )
 
 [node name="WeaponBar" type="Node" parent="Player"]
 script = ExtResource( 8 )
+num_slots = 2
 
 [node name="SmallGun" parent="Player/WeaponBar" instance=ExtResource( 9 )]
 

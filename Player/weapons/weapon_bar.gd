@@ -5,6 +5,9 @@ class_name WeaponBar
 ## NOTE: should this be related to the weapon bar?
 ## NOTE: currently doesn't have a way to
 
+# msg args: "old_weapon_slot", "new_weapon_slot"
+signal weapon_changed(msg)
+
 
 onready var user := get_parent() # gross
 var weapons: Array # seems better than constatly calling get_child
@@ -57,11 +60,15 @@ func _unhandled_input(event: InputEvent) -> void:
 ## NOTE: placeholder
 func _change_slot(slot_num: int) -> bool:
 	if slot_num < 0 or slot_num > num_slots:
-		print("DEBUG: invalid weapon slot selection: %d" % slot_num)
 		return false
 	else:
+		var msg_args = {
+				"old_weapon_slot": current_slot,
+				"new_weapon_slot": slot_num,
+			}
+		emit_signal("weapon_changed", msg_args)
+		GameEvents.emit_signal("player_changed_weapon", msg_args)
 		current_slot = slot_num
-		print("DEBUG: valid weapon slot selection: %d" % slot_num)
 		return true
 
 
