@@ -6,9 +6,9 @@
 [ext_resource path="res://player/actions/blink.gd" type="Script" id=4]
 [ext_resource path="res://player/effects/teleport_effect.tscn" type="PackedScene" id=5]
 [ext_resource path="res://bullet/bullet.tscn" type="PackedScene" id=6]
-[ext_resource path="res://player/weapons/weapon.gd" type="Script" id=7]
+[ext_resource path="res://player/weapons/big_gun.tscn" type="PackedScene" id=7]
 [ext_resource path="res://player/weapons/weapon_bar.gd" type="Script" id=8]
-[ext_resource path="res://bullet/big_bullet.tscn" type="PackedScene" id=9]
+[ext_resource path="res://player/weapons/small_gun.tscn" type="PackedScene" id=9]
 
 [node name="World" type="Node2D"]
 
@@ -28,15 +28,11 @@ script = ExtResource( 3 )
 [node name="WeaponBar" type="Node" parent="Player"]
 script = ExtResource( 8 )
 
-[node name="BasicWeapon" type="Node" parent="Player/WeaponBar"]
-script = ExtResource( 7 )
-basic_ammo_cost = 1
-bullet_scene = ExtResource( 6 )
+[node name="SmallGun" parent="Player/WeaponBar" instance=ExtResource( 9 )]
 
-[node name="BigWeapon" type="Node" parent="Player/WeaponBar"]
-script = ExtResource( 7 )
-big_ammo_cost = 3
-cooldown = 1.0
-bullet_scene = ExtResource( 9 )
+[node name="BigGun" parent="Player/WeaponBar" instance=ExtResource( 7 )]
+
+[node name="Bullet" parent="." instance=ExtResource( 6 )]
 
 [editable path="Player"]
+[editable path="Bullet"]

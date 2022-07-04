@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://player/weapons/weapon.gd" type="Script" id=1]
+[ext_resource path="res://bullet/small_bullet.tscn" type="PackedScene" id=2]
+
+[node name="SmallGun" type="Node"]
+script = ExtResource( 1 )
+basic_ammo_cost = 1
+bullet_scene = ExtResource( 2 )
