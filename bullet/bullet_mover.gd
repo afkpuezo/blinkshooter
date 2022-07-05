@@ -4,10 +4,17 @@ class_name BulletMover
 
 
 onready var _stats: MovementStats = owner.get_node("MovementStats")
+var initial_velocity: Vector2 = Vector2.ZERO
+
+
+func set_initial_velocity(i_v: Vector2):
+	initial_velocity = i_v
 
 
 func _ready() -> void:
-	_stats.velocity = Vector2(_stats.MAX_SPEED, 0).rotated(owner.rotation)
+	var vel = Vector2(_stats.MAX_SPEED, 0).rotated(owner.rotation)
+	vel = vel + initial_velocity
+	_stats.velocity = vel
 
 
 func _physics_process(delta: float) -> void:

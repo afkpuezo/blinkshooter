@@ -4,5 +4,10 @@ class_name Bullet
 ## Flies forward until it hits something or times out
 
 
+## maybe overkill, but acts as interface between the outside and inside?
+func set_initial_velocity(initial_velocity: Vector2):
+	$BulletMover.set_initial_velocity(initial_velocity)
+
+
 func _on_Timer_timeout() -> void:
 	queue_free()

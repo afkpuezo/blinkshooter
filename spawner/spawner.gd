@@ -8,8 +8,22 @@ class_name Spawner
 
 ## places the given Node2D at the given spawn_position and adds it to the scene tree
 ## if spawn_rotation is specified, the spawned node will be rotated
-func spawn_node(node: Node2D, spawn_position: Vector2, spawn_rotation := 0.0):
-	#node.position = spawn_position
+## if initial velocity
+func spawn_node(
+		node: Node2D,
+		spawn_position: Vector2,
+		spawn_rotation := 0.0):
 	node.translate(spawn_position)
 	node.rotate(spawn_rotation)
 	add_child(node) # TODO: spawn them somewhere else?
+
+
+## bullets have a specific method to deal with the "initial velocity" parameter
+## that is, including the player's current momentum in the bullet's
+func spawn_bullet(
+		bullet: Bullet,
+		spawn_position: Vector2,
+		spawn_rotation,
+		initial_velocity: Vector2):
+	bullet.set_initial_velocity(initial_velocity)
+	spawn_node(bullet, spawn_position, spawn_rotation)
