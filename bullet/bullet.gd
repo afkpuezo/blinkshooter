@@ -4,6 +4,10 @@ class_name Bullet
 ## Flies forward until it hits something or times out
 
 
+## damage dealt to target when hit
+export var damage = 1
+
+
 ## maybe overkill, but acts as interface between the outside and inside?
 func set_initial_velocity(initial_velocity: Vector2):
 	$BulletMover.set_initial_velocity(initial_velocity)
