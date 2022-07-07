@@ -8,7 +8,7 @@ class_name InputBasedMover
 
 export var input_axis: String = "ui"
 var _dir_strings: Array ## right, left, down, up
-onready var _stats: MovementStats = owner.get_node("MovementStats")
+onready var stats: MovementStats = owner.get_node("MovementStats")
 
 
 func _ready() -> void:
@@ -30,16 +30,17 @@ func physics_update(delta: float) -> void:
 	var input := _get_input()
 
 	if input:
-		_stats.velocity = \
-				_stats.velocity.move_toward(input * _stats.MAX_SPEED, _stats.ACCELERATION * delta)
+		stats.velocity = \
+				stats.velocity.move_toward(input * stats.MAX_SPEED, stats.ACCELERATION * delta)
 	else:
-		_stats.velocity = \
-				_stats.velocity.move_toward(
+		stats.velocity = \
+				stats.velocity.move_toward(
 						Vector2.ZERO,
 						max(
-								_stats.FRICTION * _stats.velocity.length(),
+								stats.FRICTION * stats.velocity.length(),
 								1)) # fixes very slow friction at low speeds
-	_stats.velocity = owner.move_and_slide(_stats.velocity)
+	#stats.velocity = owner.move_and_slide(stats.velocity)
+	owner.move_and_collide(stats.velocity * delta)
 
 
 # ----------

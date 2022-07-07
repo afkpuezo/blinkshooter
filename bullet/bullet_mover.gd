@@ -18,4 +18,5 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	_stats.velocity = owner.move_and_slide(_stats.velocity)
+	#_stats.velocity = owner.move_and_slide(_stats.velocity)
+	owner.move_and_collide(_stats.velocity * delta)

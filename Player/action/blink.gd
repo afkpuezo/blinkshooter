@@ -5,6 +5,7 @@ class_name Blink
 
 export var MAX_RANGE := 500
 export var MIN_RANGE := 100
+export var TELEPORT_WAIT_TIME := 0.25
 export(PackedScene) var effect_scene
 
 
@@ -30,8 +31,8 @@ func do_action():
 		target_position = user.position + (direction * MAX_RANGE)
 	# now actually teleport
 	if effect_scene:
-		GameSpawner.spawn_node(effect_scene.instance(), user.get_position)
+		GameSpawner.spawn_node(effect_scene.instance(), user.get_position())
 		GameSpawner.spawn_node(effect_scene.instance(), target_position)
 	user.do_teleport_animation()
-	yield(get_tree().create_timer(0.25), "timeout")
+	yield(get_tree().create_timer(TELEPORT_WAIT_TIME), "timeout")
 	user.set_position(target_position) # should this be global position?
