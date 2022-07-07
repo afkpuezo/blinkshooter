@@ -5,6 +5,7 @@ class_name Player
 
 # movement speed values
 onready var input_based_mover: InputBasedMover = $InputBasedMover
+onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 
 ## currently takes care of movement itself
@@ -20,3 +21,13 @@ func _check_for_death(new_health_value) -> void:
 	if new_health_value == 0:
 		GameEvents.emit_signal("player_died")
 		queue_free()
+
+
+## call the animation on the animation player
+func do_teleport_animation():
+	anim_player.play("Teleport")
+
+
+## reset animation
+func _on_animation_end(old_anim):
+	anim_player.play("Idle")

@@ -28,4 +28,16 @@ func do_action():
 	if effect_scene:
 		GameSpawner.spawn_node(effect_scene.instance(), user.position)
 		GameSpawner.spawn_node(effect_scene.instance(), target_position)
+	user.do_teleport_animation()
+	_wait(0.25)
+
 	user.position = target_position # should this be global position?
+
+func _wait(time: float):
+	var t = Timer.new()
+	t.set_wait_time(time)
+	t.set_one_shot(true)
+	self.add_child(t)
+	t.start()
+	yield(t, "timeout")
+	t.queue_free()

@@ -17,7 +17,7 @@
 
 [node name="Blink" type="Node" parent="Player/ActionBar" index="0"]
 script = ExtResource( 4 )
-energy_cost = 40
+energy_cost = 30
 cooldown = 1.0
 effect_scene = ExtResource( 5 )
 
