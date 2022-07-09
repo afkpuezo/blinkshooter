@@ -1,5 +1,5 @@
 extends Node
-class_name InputBasedMover
+class_name InputMover
 ## TODO: a better name lol
 ## Listens to a particular input axis and moves this node's owner accordingly.
 ## Gets the movement stats (max speed, etc) from the owner

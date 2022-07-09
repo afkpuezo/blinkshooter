@@ -4,7 +4,7 @@ class_name Player
 
 
 # movement speed values
-onready var input_based_mover: InputBasedMover = $InputBasedMover
+onready var input_mover: InputMover = $InputMover
 onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 
@@ -12,7 +12,7 @@ onready var anim_player: AnimationPlayer = $AnimationPlayer
 ## will likely get changed to a state machine later
 ## also controls direction
 func _physics_process(delta: float) -> void:
-	input_based_mover.physics_update(delta)
+	input_mover.physics_update(delta)
 	look_at(TargetReticle.get_true_global_position())
 
 

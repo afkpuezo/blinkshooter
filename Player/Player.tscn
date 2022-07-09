@@ -3,7 +3,7 @@
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://player/player_character.png" type="Texture" id=2]
 [ext_resource path="res://combat_resource/combat_resource.gd" type="Script" id=3]
-[ext_resource path="res://player/input_based_mover.gd" type="Script" id=4]
+[ext_resource path="res://player/input_mover.gd" type="Script" id=4]
 [ext_resource path="res://movement_stats/movement_stats.gd" type="Script" id=5]
 [ext_resource path="res://player/weapon/bullet_spawn_point.gd" type="Script" id=6]
 [ext_resource path="res://player/action/action_bar.gd" type="Script" id=7]
@@ -61,7 +61,7 @@ script = ExtResource( 3 )
 type = 3
 is_player = true
 
-[node name="InputBasedMover" type="Node" parent="."]
+[node name="InputMover" type="Node" parent="."]
 script = ExtResource( 4 )
 
 [node name="MovementStats" type="Node" parent="."]

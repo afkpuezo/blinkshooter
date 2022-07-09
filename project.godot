@@ -60,9 +60,9 @@ _global_script_classes=[ {
 "path": "res://hit_boxes/hitbox.gd"
 }, {
 "base": "Node",
-"class": "InputBasedMover",
+"class": "InputMover",
 "language": "GDScript",
-"path": "res://player/input_based_mover.gd"
+"path": "res://player/input_mover.gd"
 }, {
 "base": "Node",
 "class": "MovementStats",
@@ -125,7 +125,7 @@ _global_script_class_icons={
 "DemoAction": "",
 "Enemy": "",
 "HitBox": "",
-"InputBasedMover": "",
+"InputMover": "",
 "MovementStats": "",
 "Player": "",
 "PlayerMonitorText": "",
