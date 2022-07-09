@@ -251,6 +251,13 @@ weapon_shoot={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Wall"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="Enemy"
+2d_physics/layer_4="Attack"
+
 [physics]
 
 common/enable_pause_aware_picking=true

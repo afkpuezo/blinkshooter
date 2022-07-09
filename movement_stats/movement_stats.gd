@@ -19,14 +19,27 @@ static func has_movement_stats(n: Node) -> bool:
 
 
 ## Returns null if no such child found.
+## First checks to see if there is a child called MovementStats, then checks all of the chidlren
+## for a node of that class.
+## TODO: maybe make the name required?
 static func get_movement_stats(n: Node) -> MovementStats:
+	if n.has_node(get_movement_stats_class()):
+		var mvs: MovementStats = n.get_node(get_movement_stats_class())
+		return mvs
 	for child in n.get_children():
 		#print("DEBUG: child.get_class(): %s" % child.get_class())
-		if child.get_class() == "MovementStats":
+		if child.get_class() == get_movement_stats_class():
 			return child
 	return null
 
 
+## wish I could just have static vars
+static func get_movement_stats_class() -> String:
+	return "MovementStats"
+
+
 ## Has to be overriden or this will just return "Node"
 func get_class() -> String:
-	return "MovementStats"
+	return get_movement_stats_class()
+
+

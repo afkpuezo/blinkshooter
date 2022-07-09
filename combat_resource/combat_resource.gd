@@ -18,7 +18,7 @@ onready var value = clamp(INITIAL_VALUE, MIN_VALUE, MAX_VALUE)
 
 
 # ----------
-# static util methods
+# static and/or util methods
 # ----------
 
 
@@ -29,7 +29,52 @@ onready var value = clamp(INITIAL_VALUE, MIN_VALUE, MAX_VALUE)
 static func is_ammo(rsrc) -> bool:
 	if typeof(rsrc) != TYPE_INT:
 		rsrc = rsrc.type
-	return rsrc in [Type.BASIC_AMMO] # potentially slow lookup?
+	return rsrc in [Type.BASIC_AMMO, Type.BIG_AMMO] # potentially slow lookup?
+
+
+## Returns true if the given node has a "CombatResources" child node to group any actual combat
+## resources it has.
+## TODO: rethink these "CombatResources" nodes
+static func has_combat_resources(n: Node) -> bool:
+	return n.has_node("CombatResources")
+
+
+## Returns an array of all of the combat resource nodes of the given node
+## NOTE: will this have side effects if the returned array is changed?
+## Will break if the node doesn't have a CombatResources child group node
+static func get_combat_resources(n: Node) -> Array:
+	return n.get_node("CombatResources").get_children()
+
+
+## Returns true if the given node has the specific type of resource given.
+## TODO: version with string names?
+static func has_resource(n: Node, type: int) -> bool:
+	var has_group := has_combat_resources(n)
+	if not has_group:
+		return false
+	var resources := get_combat_resources(n)
+	for rsrc in resources:
+		if rsrc.type == type:
+			return true
+	return false
+
+
+## Returns the CombatResource node for the given node of the given type
+## returns null if no such resource found
+static func get_resource(n: Node, type: int) -> CombatResource:
+	var resources = get_combat_resources(n)
+	for rsrc in resources:
+		if rsrc.type == type:
+			return rsrc
+	return null
+
+## wish I could just have static vars
+static func get_combat_resource_class() -> String:
+	return "CombatResource"
+
+
+func get_class() -> String:
+	return get_combat_resource_class()
 
 
 # ----------
