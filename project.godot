@@ -69,6 +69,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://movement_stats/movement_stats.gd"
 }, {
+"base": "Node",
+"class": "Mover",
+"language": "GDScript",
+"path": "res://unit/mover.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
@@ -104,6 +109,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://player/effect/teleport_effect.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "Unit",
+"language": "GDScript",
+"path": "res://unit/unit.gd"
+}, {
 "base": "Action",
 "class": "Weapon",
 "language": "GDScript",
@@ -127,6 +137,7 @@ _global_script_class_icons={
 "HitBox": "",
 "InputMover": "",
 "MovementStats": "",
+"Mover": "",
 "Player": "",
 "PlayerMonitorText": "",
 "Reticle": "",
@@ -134,6 +145,7 @@ _global_script_class_icons={
 "State": "",
 "StateMachine": "",
 "TeleportEffect": "",
+"Unit": "",
 "Weapon": "",
 "WeaponBar": ""
 }
