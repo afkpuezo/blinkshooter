@@ -34,5 +34,5 @@ func do_action():
 		GameSpawner.spawn_node(effect_scene.instance(), user.get_position())
 		GameSpawner.spawn_node(effect_scene.instance(), target_position)
 	user.do_teleport_animation()
-	yield(get_tree().create_timer(TELEPORT_WAIT_TIME), "timeout")
+	yield(get_tree().create_timer(TELEPORT_WAIT_TIME, false), "timeout")
 	user.set_position(target_position) # should this be global position?

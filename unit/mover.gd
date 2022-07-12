@@ -6,5 +6,6 @@ class_name Mover
 
 ## The given unit should be the user/owner of this Mover.
 ## That unit should call this method during it's _physics_update() method.
-func physics_update(unit: Unit, movement_stats: MovementStats, delta: float):
+func physics_update(unit, movement_stats: MovementStats, delta: float):
+	print("DEBUG: Mover.physics_update() called")
 	unit.move_and_collide(Vector2.ZERO)

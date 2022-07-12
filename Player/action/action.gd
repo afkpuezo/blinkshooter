@@ -27,7 +27,6 @@ var _cooldown_timer: Timer
 var is_cooling_down := false
 
 onready var user: Player # set by ActionBar
-var user_combat_resources: Dictionary
 
 
 func _ready() -> void:
@@ -66,10 +65,6 @@ func do_action() -> void:
 ## Called by the ActionBar when the Action node is attached / when the Action is unlocked
 func configure_user(new_user) -> void:
 	user = new_user
-	# NOTE: assumes particular scene architecture
-	user_combat_resources = {} # reset if changing users I guess?
-	for rsrc in user.get_node("CombatResources").get_children():
-		user_combat_resources[rsrc.type] = rsrc
 
 
 ## Called by the ActionBar when the user TRIES to use this ability.
@@ -95,7 +90,7 @@ func is_cooldown_ready() -> bool:
 ## Returns true if the user has the resources to pay for this action
 func can_user_pay() -> bool:
 	for type in cost:
-		if not type in user_combat_resources or user_combat_resources[type].value < cost[type]:
+		if not user.can_spend_resource(type, cost[type]):
 			return false
 	return true
 
@@ -114,4 +109,5 @@ func _start_cooldown():
 ## Assumes the player has enough
 func _pay_cost():
 	for type in cost:
-		user_combat_resources[type].change_value(cost[type] * -1)
+		#user_combat_resources[type].change_value(cost[type] * -1)
+		user.spend_resource(type, cost[type])

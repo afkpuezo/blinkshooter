@@ -26,7 +26,7 @@ func physics_update(delta: float) -> void:
 		return
 
 	_last_valid_position = owner.global_position
-	input_mover.physics_update(delta)
+	input_mover.physics_update(owner, _owner_movement_stats, delta)
 
 
 ## disable mouse cursor and enable sprite

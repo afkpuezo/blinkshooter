@@ -43,3 +43,5 @@ func get_class() -> String:
 	return get_movement_stats_class()
 
 
+func _ready() -> void:
+	print("DEBUG: acceleration, max_speed: %d, %d" % [ACCELERATION, MAX_SPEED])

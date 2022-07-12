@@ -1,18 +1,29 @@
-extends KinematicBody2D
+extends Unit
 class_name Player
 ## primary player controller
 
 
 # movement speed values
-onready var input_mover: InputMover = $InputMover
+#onready var input_mover: InputMover = $InputMover
 onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 
+func setup_mover() -> Mover:
+	var mover = $InputMover
+	return mover
+
+
+## NOTE: replaced by Unit method(s)
 ## currently takes care of movement itself
 ## will likely get changed to a state machine later
 ## also controls direction
+#func _physics_process(delta: float) -> void:
+	#input_mover.physics_update(delta)
+	#look_at(TargetReticle.get_true_global_position())
+
+
 func _physics_process(delta: float) -> void:
-	input_mover.physics_update(delta)
+	._physics_process(delta)
 	look_at(TargetReticle.get_true_global_position())
 
 
