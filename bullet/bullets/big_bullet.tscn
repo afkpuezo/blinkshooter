@@ -4,10 +4,14 @@
 [ext_resource path="res://bullet/bullet.tscn" type="PackedScene" id=2]
 
 [node name="BigBullet" instance=ExtResource( 2 )]
-scale = Vector2( 4, 3 )
+scale = Vector2( 3, 3 )
+damage = 35
 
 [node name="MovementStats" parent="." index="0"]
 MAX_SPEED = 200
 
 [node name="Sprite" type="Sprite" parent="." index="3"]
 texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" parent="." index="5"]
+visible = false

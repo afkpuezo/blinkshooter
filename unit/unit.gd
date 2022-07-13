@@ -83,3 +83,16 @@ func can_gain_resource(type: int, amount: int) -> bool:
 ## returns true/false based on if the amount was actually gained
 func gain_resource(type: int, amount: int) -> bool:
 	return can_gain_resource(type, amount) and combat_resources[type].change_amount(amount)
+
+
+## should be connected to hitbox signals
+## just calls lose_resource method
+func take_damage(amount: int, source):
+	lose_resource(CombatResource.Type.HEALTH, amount)
+
+
+## should be connected to the signal of the health resource
+## if the new amount is 0, we ded
+func _check_for_death(new_health_value) -> void:
+	if new_health_value == 0:
+		queue_free() # NOTE: should have a seperate die() method?

@@ -49,7 +49,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://player/action/demo_action.gd"
 }, {
-"base": "KinematicBody2D",
+"base": "Unit",
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://enemy/enemy.gd"
@@ -57,7 +57,12 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "HitBox",
 "language": "GDScript",
-"path": "res://hit_boxes/hitbox.gd"
+"path": "res://hit_boxes/hit_box.gd"
+}, {
+"base": "Area2D",
+"class": "HurtBox",
+"language": "GDScript",
+"path": "res://hit_boxes/hurt_box.gd"
 }, {
 "base": "Node",
 "class": "InputMover",
@@ -135,6 +140,7 @@ _global_script_class_icons={
 "DemoAction": "",
 "Enemy": "",
 "HitBox": "",
+"HurtBox": "",
 "InputMover": "",
 "MovementStats": "",
 "Mover": "",

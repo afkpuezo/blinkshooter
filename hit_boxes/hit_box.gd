@@ -3,10 +3,6 @@ class_name HitBox
 ## Bullets and attacks have these
 
 
+## NOTE: probably redundant
 func get_class() -> String:
 	return "HitBox"
-
-
-## TODO: better way of doing this?
-func get_damage() -> int:
-	return owner.damage

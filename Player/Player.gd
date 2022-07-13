@@ -42,3 +42,9 @@ func do_teleport_animation():
 ## reset animation
 func _on_animation_end(old_anim):
 	anim_player.play("Idle")
+
+
+## the fact that I have to extend this makes me think I'm doing something wrong
+func take_damage(amount, source) -> void:
+	#print("DEBUG: enemy taking damage: %d" % amount)
+	.take_damage(amount, source)
