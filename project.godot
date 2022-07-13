@@ -12,17 +12,17 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Action",
 "language": "GDScript",
-"path": "res://player/action/action.gd"
+"path": "res://unit/player/action/action.gd"
 }, {
 "base": "Node",
 "class": "ActionBar",
 "language": "GDScript",
-"path": "res://player/action/action_bar.gd"
+"path": "res://unit/player/action/action_bar.gd"
 }, {
 "base": "Action",
 "class": "Blink",
 "language": "GDScript",
-"path": "res://player/action/blink.gd"
+"path": "res://unit/player/action/blink.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Bullet",
@@ -37,22 +37,22 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "BulletSpawnPoint",
 "language": "GDScript",
-"path": "res://player/weapon/bullet_spawn_point.gd"
+"path": "res://unit/player/weapon/bullet_spawn_point.gd"
 }, {
 "base": "Node",
 "class": "CombatResource",
 "language": "GDScript",
-"path": "res://combat_resource/combat_resource.gd"
+"path": "res://unit/combat_resource/combat_resource.gd"
 }, {
 "base": "Action",
 "class": "DemoAction",
 "language": "GDScript",
-"path": "res://player/action/demo_action.gd"
+"path": "res://unit/player/action/demo_action.gd"
 }, {
 "base": "Unit",
 "class": "Enemy",
 "language": "GDScript",
-"path": "res://enemy/enemy.gd"
+"path": "res://unit/enemy/enemy.gd"
 }, {
 "base": "Area2D",
 "class": "HitBox",
@@ -67,7 +67,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "InputMover",
 "language": "GDScript",
-"path": "res://player/input_mover.gd"
+"path": "res://unit/player/input_mover.gd"
 }, {
 "base": "Node",
 "class": "MovementStats",
@@ -82,7 +82,7 @@ _global_script_classes=[ {
 "base": "Unit",
 "class": "Player",
 "language": "GDScript",
-"path": "res://player/player.gd"
+"path": "res://unit/player/player.gd"
 }, {
 "base": "CanvasLayer",
 "class": "PlayerMonitorText",
@@ -92,7 +92,7 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Reticle",
 "language": "GDScript",
-"path": "res://player/reticle/reticle.gd"
+"path": "res://unit/player/reticle/reticle.gd"
 }, {
 "base": "Node2D",
 "class": "Spawner",
@@ -112,22 +112,27 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "TeleportEffect",
 "language": "GDScript",
-"path": "res://player/effect/teleport_effect.gd"
+"path": "res://unit/player/effect/teleport_effect.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Unit",
 "language": "GDScript",
 "path": "res://unit/unit.gd"
 }, {
+"base": "StaticBody2D",
+"class": "Wall",
+"language": "GDScript",
+"path": "res://terrain/wall/wall.gd"
+}, {
 "base": "Action",
 "class": "Weapon",
 "language": "GDScript",
-"path": "res://player/weapon/weapon.gd"
+"path": "res://unit/player/weapon/weapon.gd"
 }, {
 "base": "Node",
 "class": "WeaponBar",
 "language": "GDScript",
-"path": "res://player/weapon/weapon_bar.gd"
+"path": "res://unit/player/weapon/weapon_bar.gd"
 } ]
 _global_script_class_icons={
 "Action": "",
@@ -152,6 +157,7 @@ _global_script_class_icons={
 "StateMachine": "",
 "TeleportEffect": "",
 "Unit": "",
+"Wall": "",
 "Weapon": "",
 "WeaponBar": ""
 }
@@ -159,12 +165,12 @@ _global_script_class_icons={
 [application]
 
 config/name="blinkshooter"
-config/icon="res://icon.png"
+config/icon="res://terrain/wall/icon.png"
 
 [autoload]
 
 GameEvents="*res://game_events/game_events.tscn"
-TargetReticle="*res://player/reticle/reticle.tscn"
+TargetReticle="*res://unit/player/reticle/reticle.tscn"
 GameSpawner="*res://spawner/spawner.gd"
 
 [global]

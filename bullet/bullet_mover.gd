@@ -3,6 +3,9 @@ class_name BulletMover
 ## Just launches a bullet in the direction it's fired.
 
 
+signal collided(collision)
+
+
 onready var _stats: MovementStats = owner.get_node("MovementStats")
 var initial_velocity: Vector2 = Vector2.ZERO
 
@@ -19,4 +22,6 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	#_stats.velocity = owner.move_and_slide(_stats.velocity)
-	var collision = owner.move_and_collide(_stats.velocity * delta)
+	var collision: KinematicCollision2D = owner.move_and_collide(_stats.velocity * delta)
+	if collision:
+		emit_signal("collided", collision)

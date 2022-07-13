@@ -1,20 +1,22 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://player/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://unit/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui/player_monitor_text.tscn" type="PackedScene" id=2]
-[ext_resource path="res://player/action/demo_action.gd" type="Script" id=3]
-[ext_resource path="res://player/action/blink.gd" type="Script" id=4]
-[ext_resource path="res://player/effect/teleport_effect.tscn" type="PackedScene" id=5]
-[ext_resource path="res://enemy/enemy.tscn" type="PackedScene" id=6]
-[ext_resource path="res://player/weapon/weapons/big_gun.tscn" type="PackedScene" id=7]
-[ext_resource path="res://player/weapon/weapon_bar.gd" type="Script" id=8]
-[ext_resource path="res://player/weapon/weapons/small_gun.tscn" type="PackedScene" id=9]
+[ext_resource path="res://unit/player/action/demo_action.gd" type="Script" id=3]
+[ext_resource path="res://unit/player/action/blink.gd" type="Script" id=4]
+[ext_resource path="res://unit/player/effect/teleport_effect.tscn" type="PackedScene" id=5]
+[ext_resource path="res://unit/enemy/enemy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://unit/player/weapon/weapons/big_gun.tscn" type="PackedScene" id=7]
+[ext_resource path="res://unit/player/weapon/weapon_bar.gd" type="Script" id=8]
+[ext_resource path="res://unit/player/weapon/weapons/small_gun.tscn" type="PackedScene" id=9]
+[ext_resource path="res://terrain/wall/wall.tscn" type="PackedScene" id=10]
 
 [node name="World" type="Node2D"]
 
 [node name="PlayerMonitorText" parent="." instance=ExtResource( 2 )]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 200, 100 )
 
 [node name="MovementStats" parent="Player" index="3"]
 MAX_SPEED = 200
@@ -28,6 +30,12 @@ effect_scene = ExtResource( 5 )
 [node name="DemoAction" type="Node" parent="Player/ActionBar" index="1"]
 script = ExtResource( 3 )
 
+[node name="HurtBox" parent="Player" index="8"]
+visible = false
+
+[node name="CollisionPolygon2D" parent="Player/HurtBox" index="0"]
+visible = false
+
 [node name="WeaponBar" type="Node" parent="Player"]
 script = ExtResource( 8 )
 num_slots = 2
@@ -38,5 +46,8 @@ num_slots = 2
 
 [node name="Enemy" parent="." instance=ExtResource( 6 )]
 position = Vector2( 500, 500 )
+
+[node name="Wall" parent="." instance=ExtResource( 10 )]
+position = Vector2( 800, 500 )
 
 [editable path="Player"]

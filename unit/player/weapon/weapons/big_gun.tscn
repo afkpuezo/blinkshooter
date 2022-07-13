@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://player/weapon/weapon.gd" type="Script" id=1]
+[ext_resource path="res://unit/player/weapon/weapon.gd" type="Script" id=1]
 [ext_resource path="res://bullet/bullets/big_bullet.tscn" type="PackedScene" id=2]
 
 [node name="BigGun" type="Node"]

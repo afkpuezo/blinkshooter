@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/reticle.png-3251c34b07628f4dc4876787b612d513.stex"
+path="res://.import/player_character.png-317584c023d7670543775fdbe37d5a06.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/reticle/reticle.png"
-dest_files=[ "res://.import/reticle.png-3251c34b07628f4dc4876787b612d513.stex" ]
+source_file="res://unit/player/player_character.png"
+dest_files=[ "res://.import/player_character.png-317584c023d7670543775fdbe37d5a06.stex" ]
 
 [params]
 

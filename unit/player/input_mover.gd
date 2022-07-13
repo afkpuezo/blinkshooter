@@ -40,7 +40,8 @@ func physics_update(unit, movement_stats: MovementStats, delta: float):
 								movement_stats.FRICTION * movement_stats.velocity.length(),
 								1)) # fixes very slow friction at low speeds
 	#stats.velocity = owner.move_and_slide(stats.velocity)
-	unit.move_and_collide(movement_stats.velocity * delta)
+	#unit.move_and_collide(movement_stats.velocity * delta)
+	unit.move_and_slide(movement_stats.velocity)
 
 
 # ----------

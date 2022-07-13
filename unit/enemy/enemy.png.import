@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/teleport_particle.png-0ed13f7b2765322700b5314dc5c8bdb3.stex"
+path="res://.import/enemy.png-d94876b0cb00acc83e410afb536121d4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/effect/teleport_particle.png"
-dest_files=[ "res://.import/teleport_particle.png-0ed13f7b2765322700b5314dc5c8bdb3.stex" ]
+source_file="res://unit/enemy/enemy.png"
+dest_files=[ "res://.import/enemy.png-d94876b0cb00acc83e410afb536121d4.stex" ]
 
 [params]
 

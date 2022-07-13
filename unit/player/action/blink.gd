@@ -15,6 +15,11 @@ export(PackedScene) var effect_scene
 
 
 func can_do_action() -> bool:
+	var target_position = TargetReticle.get_true_global_position()
+	var distance = user.position.distance_to(target_position)
+	if distance < MIN_RANGE:
+		return false # TODO: explain why it failed?
+	# TODO check for room at target location
 	return true
 
 
@@ -22,8 +27,8 @@ func can_do_action() -> bool:
 func do_action():
 	var target_position = TargetReticle.get_true_global_position()
 	var distance = user.position.distance_to(target_position)
-	if distance < MIN_RANGE:
-		return # TODO: explain why it failed?
+	#if distance < MIN_RANGE: # covered in can_do_action()
+		#return # TODO: explain why it failed?
 	if distance > MAX_RANGE:
 		# go as far as we can
 		var direction: Vector2 = \

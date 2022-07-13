@@ -17,6 +17,7 @@ func _on_Timer_timeout() -> void:
 	queue_free()
 
 
+## handles collisions with things that can be hurt, EG units
 func _on_HitBox_area_entered(area) -> void:
 	#print("DEBUG: bullet hitbox area entered by: %s" % area.name)
 	if area is HurtBox:
@@ -24,3 +25,12 @@ func _on_HitBox_area_entered(area) -> void:
 		queue_free()
 	else:
 		print("DEBUG: Bullet._on_HitBox_area_entered() passed a non-HurtBox area: %s" % area.name)
+
+
+## handles collisions with things that aren't hurt, like walls
+func _on_BulletMover_collided(collision: KinematicCollision2D) -> void:
+	var other = collision.collider
+	if other is Wall:
+		queue_free()
+	else:
+		print("DEBUG: Bullet._on_BulletMover_collided() doesn't recognize collided object: %s" % other.name)
