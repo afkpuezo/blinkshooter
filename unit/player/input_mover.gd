@@ -1,4 +1,4 @@
-extends Node
+extends Mover
 class_name InputMover
 ## TODO: a better name lol
 ## Listens to a particular input axis and moves this node's owner accordingly.

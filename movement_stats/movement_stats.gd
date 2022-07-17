@@ -44,4 +44,5 @@ func get_class() -> String:
 
 
 func _ready() -> void:
-	print("DEBUG: acceleration, max_speed: %d, %d" % [ACCELERATION, MAX_SPEED])
+	#print("DEBUG: acceleration, max_speed: %d, %d" % [ACCELERATION, MAX_SPEED])
+	pass

@@ -64,7 +64,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://hit_boxes/hurt_box.gd"
 }, {
-"base": "Node",
+"base": "Mover",
 "class": "InputMover",
 "language": "GDScript",
 "path": "res://unit/player/input_mover.gd"
@@ -92,7 +92,7 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Reticle",
 "language": "GDScript",
-"path": "res://unit/player/reticle/reticle.gd"
+"path": "res://ui/reticle/reticle.gd"
 }, {
 "base": "Node2D",
 "class": "Spawner",
@@ -170,7 +170,7 @@ config/icon="res://terrain/wall/icon.png"
 [autoload]
 
 GameEvents="*res://game_events/game_events.tscn"
-TargetReticle="*res://unit/player/reticle/reticle.tscn"
+TargetReticle="*res://ui/reticle/reticle.tscn"
 GameSpawner="*res://spawner/spawner.gd"
 
 [global]

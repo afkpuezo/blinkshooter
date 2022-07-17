@@ -15,5 +15,5 @@ func _check_for_death(new_health_value) -> void:
 
 ## the fact that I have to extend this makes me think I'm doing something wrong
 func take_damage(amount, source) -> void:
-	print("DEBUG: enemy taking damage: %d" % amount)
+	#print("DEBUG: enemy taking damage: %d" % amount)
 	.take_damage(amount, source)
