@@ -22,7 +22,7 @@ _global_script_classes=[ {
 "base": "Action",
 "class": "Blink",
 "language": "GDScript",
-"path": "res://unit/player/action/blink.gd"
+"path": "res://unit/player/action/blink/blink.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Bullet",
@@ -112,7 +112,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "TeleportEffect",
 "language": "GDScript",
-"path": "res://unit/player/effect/teleport_effect.gd"
+"path": "res://unit/player/action/blink/effect/teleport_effect.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Unit",

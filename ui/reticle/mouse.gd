@@ -35,6 +35,7 @@ func exit() -> void:
 
 ## return mouse position
 func get_true_global_position() -> Vector2:
+	# has to be owner since the owner is a Node2D and has this method
 	return owner.get_global_mouse_position()
 
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/teleport_particle.png-e02b3040c3e76e716c6adbecde91ba47.stex"
+path="res://.import/teleport_particle.png-989135e0c5bcf4804199c9c35dcf8a2c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://unit/player/effect/teleport_particle.png"
-dest_files=[ "res://.import/teleport_particle.png-e02b3040c3e76e716c6adbecde91ba47.stex" ]
+source_file="res://unit/player/action/blink/effect/teleport_particle.png"
+dest_files=[ "res://.import/teleport_particle.png-989135e0c5bcf4804199c9c35dcf8a2c.stex" ]
 
 [params]
 
