@@ -42,6 +42,7 @@ func physics_update(unit, movement_stats: MovementStats, delta: float):
 	#stats.velocity = owner.move_and_slide(stats.velocity)
 	#unit.move_and_collide(movement_stats.velocity * delta)
 	unit.move_and_slide(movement_stats.velocity)
+	unit.look_at(TargetReticle.get_true_global_position())
 
 
 # ----------

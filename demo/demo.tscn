@@ -18,7 +18,7 @@
 position = Vector2( 200, 100 )
 
 [node name="MovementStats" parent="Player" index="3"]
-MAX_SPEED = 200
+MAX_SPEED = 300
 
 [node name="Blink" parent="Player/ActionBar" index="0" instance=ExtResource( 4 )]
 

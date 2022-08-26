@@ -7,7 +7,7 @@ class_name Unit
 
 ## will be set on ready if one is present?
 ## can be changed by extending classes
-var current_mover: Mover
+var mover
 
 ## not sure if this is the best way to do this
 ## will be built based on children of the CombatResources node
@@ -25,14 +25,13 @@ onready var movement_stats: MovementStats = $MovementStats
 
 # calls setup_mover() and setup_combat_resources()
 func _ready() -> void:
-	current_mover = setup_mover()
+	# potential problems if there are multiple movers?
+	for c in get_children():
+		if c is Mover:
+			mover = c
+			break
+
 	combat_resources = setup_combat_resources()
-
-
-## should be overridden to assign other movers
-func setup_mover() -> Mover:
-	var mover: Mover = $Mover
-	return mover
 
 
 ## returns a dictionary mapping combat resource type -> combat resource node
@@ -51,7 +50,7 @@ func setup_combat_resources() -> Dictionary:
 
 ## calls mover's physics update
 func _physics_process(delta: float) -> void:
-	current_mover.physics_update(self, movement_stats, delta)
+	mover.physics_update(self, movement_stats, delta)
 
 
 func has_combat_resource(type: int) -> bool:

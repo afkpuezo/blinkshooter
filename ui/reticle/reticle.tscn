@@ -6,7 +6,7 @@
 [ext_resource path="res://ui/reticle/controller.gd" type="Script" id=4]
 [ext_resource path="res://ui/reticle/reticle.png" type="Texture" id=5]
 [ext_resource path="res://ui/reticle/disabled.gd" type="Script" id=6]
-[ext_resource path="res://unit/player/input_mover.gd" type="Script" id=7]
+[ext_resource path="res://unit/player/player_mover.gd" type="Script" id=7]
 [ext_resource path="res://movement_stats/movement_stats.gd" type="Script" id=8]
 
 [node name="Reticle" type="KinematicBody2D"]

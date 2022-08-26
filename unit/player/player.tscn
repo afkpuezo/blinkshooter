@@ -3,7 +3,7 @@
 [ext_resource path="res://unit/player/weapon/bullet_spawn_point.gd" type="Script" id=1]
 [ext_resource path="res://unit/player/action/action_bar.gd" type="Script" id=2]
 [ext_resource path="res://unit/combat_resource/combat_resource.gd" type="Script" id=3]
-[ext_resource path="res://unit/player/input_mover.gd" type="Script" id=4]
+[ext_resource path="res://unit/player/player_mover.gd" type="Script" id=4]
 [ext_resource path="res://unit/player/player_character.png" type="Texture" id=5]
 [ext_resource path="res://movement_stats/movement_stats.gd" type="Script" id=6]
 [ext_resource path="res://hit_boxes/hurt_box.gd" type="Script" id=7]
@@ -73,11 +73,12 @@ script = ExtResource( 3 )
 type = 3
 is_player = true
 
-[node name="InputMover" type="Node" parent="."]
+[node name="PlayerMover" type="Node" parent="."]
 script = ExtResource( 4 )
 
 [node name="MovementStats" type="Node" parent="."]
 script = ExtResource( 6 )
+MAX_SPEED = 500
 FRICTION = 0.15
 
 [node name="ActionBar" type="Node" parent="."]

@@ -67,7 +67,7 @@ _global_script_classes=[ {
 "base": "Mover",
 "class": "InputMover",
 "language": "GDScript",
-"path": "res://unit/player/input_mover.gd"
+"path": "res://unit/player/player_mover.gd"
 }, {
 "base": "Node",
 "class": "MovementStats",

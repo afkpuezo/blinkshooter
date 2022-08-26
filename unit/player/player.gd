@@ -22,11 +22,6 @@ func setup_mover() -> Mover:
 	#look_at(TargetReticle.get_true_global_position())
 
 
-func _physics_process(delta: float) -> void:
-	._physics_process(delta)
-	look_at(TargetReticle.get_true_global_position())
-
-
 ## if the new amount is 0, we ded
 func _check_for_death(new_health_value) -> void:
 	if new_health_value == 0:
