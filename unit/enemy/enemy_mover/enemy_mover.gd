@@ -26,15 +26,9 @@ func physics_update(unit, movement_stats: MovementStats, delta: float):
 			break
 
 	if player_found:
-		var direction = (player.position - unit.position).normalized()
-		movement_stats.velocity = \
-				movement_stats.velocity.move_toward(direction * movement_stats.MAX_SPEED, movement_stats.ACCELERATION * delta)
+		var direction: Vector2 = (player.position - unit.position).normalized()
+		accelerate_towards(unit, movement_stats, delta, direction)
 	else: # if no player found
-		movement_stats.velocity = \
-				movement_stats.velocity.move_toward(
-						Vector2.ZERO,
-						max(
-								movement_stats.FRICTION * movement_stats.velocity.length(),
-								1)) # fixes very slow friction at low speeds
+		apply_friction(unit, movement_stats, delta)
 
 	unit.move_and_slide(movement_stats.velocity)
