@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://unit/enemy/enemy.gd" type="Script" id=1]
 [ext_resource path="res://unit/combat_resource/combat_resource.gd" type="Script" id=2]
 [ext_resource path="res://hit_boxes/hit_box.gd" type="Script" id=3]
 [ext_resource path="res://unit/enemy/enemy.png" type="Texture" id=4]
 [ext_resource path="res://hit_boxes/hurt_box.gd" type="Script" id=5]
-[ext_resource path="res://unit/mover.gd" type="Script" id=6]
+[ext_resource path="res://unit/enemy/enemy_mover/enemy_mover.tscn" type="PackedScene" id=6]
+[ext_resource path="res://movement_stats/movement_stats.gd" type="Script" id=7]
 
 [node name="Enemy" type="KinematicBody2D"]
 collision_layer = 4
@@ -41,8 +42,10 @@ script = ExtResource( 5 )
 build_mode = 1
 polygon = PoolVector2Array( -10, 0, -27, -30, 24, 0, -27, 30 )
 
-[node name="Mover" type="Node2D" parent="."]
-script = ExtResource( 6 )
+[node name="EnemyMover" parent="." instance=ExtResource( 6 )]
+
+[node name="MovementStats" type="Node" parent="."]
+script = ExtResource( 7 )
 
 [connection signal="value_changed" from="CombatResources/Health" to="." method="_check_for_death"]
 [connection signal="took_damage" from="HurtBox" to="." method="take_damage"]
