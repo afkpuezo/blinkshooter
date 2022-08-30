@@ -32,9 +32,6 @@ polygon = PoolVector2Array( 28, 0, -26, 30, -10, 0, -26, -30 )
 [node name="Health" type="Node" parent="CombatResources"]
 script = ExtResource( 2 )
 
-[node name="Mover" type="Node" parent="."]
-script = ExtResource( 6 )
-
 [node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 0
@@ -43,6 +40,9 @@ script = ExtResource( 5 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HurtBox"]
 build_mode = 1
 polygon = PoolVector2Array( -10, 0, -27, -30, 24, 0, -27, 30 )
+
+[node name="Mover" type="Node2D" parent="."]
+script = ExtResource( 6 )
 
 [connection signal="value_changed" from="CombatResources/Health" to="." method="_check_for_death"]
 [connection signal="took_damage" from="HurtBox" to="." method="take_damage"]

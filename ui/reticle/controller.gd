@@ -5,7 +5,7 @@ extends State
 
 var _is_mouse_moving := false
 var _last_valid_position = Vector2.ZERO
-onready var input_mover: InputMover = $InputMover
+onready var player_mover: PlayerMover = $PlayerMover
 onready var _owner_movement_stats: MovementStats = owner.get_node("MovementStats")
 
 
@@ -26,7 +26,7 @@ func physics_update(delta: float) -> void:
 		return
 
 	_last_valid_position = owner.global_position
-	input_mover.physics_update(owner, _owner_movement_stats, delta)
+	player_mover.physics_update(owner, _owner_movement_stats, delta)
 
 
 ## disable mouse cursor and enable sprite

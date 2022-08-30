@@ -73,9 +73,6 @@ script = ExtResource( 3 )
 type = 3
 is_player = true
 
-[node name="PlayerMover" type="Node" parent="."]
-script = ExtResource( 4 )
-
 [node name="MovementStats" type="Node" parent="."]
 script = ExtResource( 6 )
 MAX_SPEED = 500
@@ -103,6 +100,9 @@ script = ExtResource( 7 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HurtBox"]
 build_mode = 1
 polygon = PoolVector2Array( -10, 0, -27, -30, 24, 0, -27, 30 )
+
+[node name="PlayerMover" type="Node2D" parent="."]
+script = ExtResource( 4 )
 
 [connection signal="value_changed" from="CombatResources/Health" to="." method="_check_for_death"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_end"]

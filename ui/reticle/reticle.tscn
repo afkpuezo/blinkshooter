@@ -40,9 +40,8 @@ script = ExtResource( 2 )
 [node name="Controller" type="Node" parent="StateMachine"]
 script = ExtResource( 4 )
 
-[node name="InputMover" type="Node" parent="StateMachine/Controller"]
+[node name="PlayerMover" type="Node2D" parent="StateMachine/Controller"]
 script = ExtResource( 7 )
-input_axis = "ui_reticle"
 
 [node name="Disabled" type="Node" parent="StateMachine"]
 script = ExtResource( 6 )

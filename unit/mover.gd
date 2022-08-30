@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 class_name Mover
 ## Movers are used by Units to control their movement.
 ## This base version won't add any movement, but the class can be extended.

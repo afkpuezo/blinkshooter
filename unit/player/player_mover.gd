@@ -1,5 +1,5 @@
 extends Mover
-class_name InputMover
+class_name PlayerMover
 ## TODO: a better name lol
 ## Listens to a particular input axis and moves this node's owner accordingly.
 ## Gets the movement stats (max speed, etc) from the owner
