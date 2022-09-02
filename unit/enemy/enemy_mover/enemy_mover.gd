@@ -14,18 +14,10 @@ onready var player_detection: Area2D = $PlayerDetection
 ## The given unit should be the user/owner of this Mover.
 ## That unit should call this method during it's _physics_update() method.
 func physics_update(unit, movement_stats: MovementStats, delta: float):
-	var player_found := false
-	var player
-	var overlaps = player_detection.get_overlapping_bodies() # should be areas?
-	for n in overlaps:
-#		print("DEBUG: EnemyMover.physics_update() found node in overlapping bodies: %s" % n.name)
-		if n is Player:
-			player_found = true
-			player = n
-			unit.look_at(player.position)
-			break
+	var player = unit.get_player_if_detected()
 
-	if player_found:
+	if player:
+		unit.look_at(player.position)
 		var direction: Vector2 = (player.position - unit.position).normalized()
 		accelerate_towards(unit, movement_stats, delta, direction)
 	else: # if no player found
