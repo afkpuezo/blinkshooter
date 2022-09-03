@@ -5,7 +5,6 @@
 
 [node name="BigBullet" instance=ExtResource( 2 )]
 scale = Vector2( 3, 3 )
-damage = 35
 
 [node name="MovementStats" parent="." index="0"]
 MAX_SPEED = 200

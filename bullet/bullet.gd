@@ -4,8 +4,8 @@ class_name Bullet
 ## Flies forward until it hits something or times out
 
 
-## damage dealt to target when hit
-export var damage = 1
+## damage dealt to target when hit, set by weapon
+var damage = 1
 
 
 ## maybe overkill, but acts as interface between the outside and inside?

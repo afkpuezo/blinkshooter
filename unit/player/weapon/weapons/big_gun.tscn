@@ -8,3 +8,4 @@ script = ExtResource( 1 )
 big_ammo_cost = 3
 cooldown = 1.0
 bullet_scene = ExtResource( 2 )
+damage = 35

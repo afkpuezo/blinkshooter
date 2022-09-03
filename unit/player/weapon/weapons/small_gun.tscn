@@ -7,3 +7,4 @@
 script = ExtResource( 1 )
 basic_ammo_cost = 1
 bullet_scene = ExtResource( 2 )
+damage = 10

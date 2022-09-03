@@ -7,6 +7,7 @@ class_name Weapon
 export(PackedScene) var bullet_scene
 var spawn_location_source: Node2D
 var user_movement_stats: MovementStats
+export var damage := 1
 
 # ----------
 # virtual methods from Action
@@ -26,8 +27,11 @@ func do_action():
 	if not user_movement_stats:
 		user_movement_stats = MovementStats.get_movement_stats(user) # assume it has one
 
+	var new_bullet: Bullet = bullet_scene.instance()
+	new_bullet.damage = damage
+
 	GameSpawner.spawn_bullet(
-		bullet_scene.instance(),
+		new_bullet,
 		spawn_location_source.get_global_position(),
 		user.get_global_rotation(),
 		user_movement_stats.velocity)
