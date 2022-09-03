@@ -35,8 +35,13 @@ func _ready() -> void:
 ## triggers the currently selected weapon if the button is held
 func _process(_delta: float) -> void:
 	if is_firing:
-		var current_weapon: Weapon = weapons[current_slot]
-		current_weapon.trigger() # TODO: do something with result?
+		if weapons.size() == 0:
+			print("DEBUG: WeaponBar._process() not firing due to not having any weapons")
+		elif current_slot >= weapons.size():
+			print("DEBUG: WeaponBar._process() not firing due to current_slot being out of bounds (%d of %d)" % [current_slot, weapons.size()])
+		else:
+			var current_weapon: Weapon = weapons[current_slot]
+			current_weapon.trigger() # TODO: do something with result?
 
 
 ## handles selecting current gun AND shooting

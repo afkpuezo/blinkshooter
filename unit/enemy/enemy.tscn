@@ -9,7 +9,7 @@
 [ext_resource path="res://movement_stats/movement_stats.gd" type="Script" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 384.0
+radius = 256.0
 
 [node name="Enemy" type="KinematicBody2D"]
 collision_layer = 4
@@ -46,8 +46,7 @@ build_mode = 1
 polygon = PoolVector2Array( -10, 0, -27, -30, 24, 0, -27, 30 )
 
 [node name="EnemyMover" parent="." instance=ExtResource( 6 )]
-stop_chasing_threshold = 256
-too_close_threshold = 128
+stop_chasing_threshold = 160
 
 [node name="MovementStats" type="Node" parent="."]
 script = ExtResource( 7 )

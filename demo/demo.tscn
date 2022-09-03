@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://unit/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui/player_monitor_text.tscn" type="PackedScene" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://unit/player/action/blink/blink.tscn" type="PackedScene" id=4]
 [ext_resource path="res://unit/enemy/enemy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://unit/player/weapon/weapons/big_gun.tscn" type="PackedScene" id=7]
-[ext_resource path="res://unit/player/weapon/weapon_bar.gd" type="Script" id=8]
 [ext_resource path="res://unit/player/weapon/weapons/small_gun.tscn" type="PackedScene" id=9]
 [ext_resource path="res://terrain/wall/wall.tscn" type="PackedScene" id=10]
 
@@ -31,13 +30,9 @@ visible = false
 [node name="CollisionPolygon2D" parent="Player/HurtBox" index="0"]
 visible = false
 
-[node name="WeaponBar" type="Node" parent="Player"]
-script = ExtResource( 8 )
-num_slots = 2
+[node name="SmallGun" parent="Player/WeaponBar" index="0" instance=ExtResource( 9 )]
 
-[node name="SmallGun" parent="Player/WeaponBar" instance=ExtResource( 9 )]
-
-[node name="BigGun" parent="Player/WeaponBar" instance=ExtResource( 7 )]
+[node name="BigGun" parent="Player/WeaponBar" index="1" instance=ExtResource( 7 )]
 
 [node name="Enemy" parent="." instance=ExtResource( 6 )]
 position = Vector2( 500, 500 )
