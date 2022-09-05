@@ -26,7 +26,7 @@ export(float, 0.0, 60.0) var cooldown = 0.1
 var _cooldown_timer: Timer
 var is_cooling_down := false
 
-onready var user: Player # set by ActionBar
+onready var user: Unit # set from the outside
 
 
 func _ready() -> void:
