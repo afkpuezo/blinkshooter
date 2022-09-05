@@ -32,5 +32,5 @@ func get_player_if_detected() -> Player:
 
 
 ## is this redundant?
-func has_detected_player() -> bool:
+func is_player_detected() -> bool:
 	return get_player_if_detected() != null

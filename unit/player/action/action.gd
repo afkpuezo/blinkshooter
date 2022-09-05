@@ -26,7 +26,7 @@ export(float, 0.0, 60.0) var cooldown = 0.1
 var _cooldown_timer: Timer
 var is_cooling_down := false
 
-onready var user: Unit # set from the outside
+var user: Unit # set from the outside
 
 
 func _ready() -> void:
@@ -38,7 +38,7 @@ func _ready() -> void:
 
 
 # ----------
-# replace this method(s) for each specific action
+# replace these method(s) for each specific action
 # ----------
 
 
@@ -71,7 +71,7 @@ func configure_user(new_user) -> void:
 ## Returns true if the action is executed, false otherwise (eg cooldown or no resources)
 func trigger() -> bool:
 	#print("DEBUG: trigger called")
-	if is_cooldown_ready() and can_user_pay() and can_do_action():
+	if is_ready():
 		emit_signal("action_started") # TODO send args?
 		_start_cooldown()
 		_pay_cost()
@@ -93,6 +93,12 @@ func can_user_pay() -> bool:
 		if not user.can_spend_resource(type, cost[type]):
 			return false
 	return true
+
+
+## returns true if ALL conditions for using the action are true
+func is_ready() -> bool:
+	return is_cooldown_ready() and can_user_pay() and can_do_action()
+
 
 
 # ----------

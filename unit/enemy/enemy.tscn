@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://unit/enemy/enemy.gd" type="Script" id=1]
 [ext_resource path="res://unit/combat_resource/combat_resource.gd" type="Script" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://hit_boxes/hurt_box.gd" type="Script" id=5]
 [ext_resource path="res://unit/enemy/enemy_mover/enemy_mover.tscn" type="PackedScene" id=6]
 [ext_resource path="res://movement_stats/movement_stats.gd" type="Script" id=7]
+[ext_resource path="res://unit/player/weapon/bullet_spawn_point.gd" type="Script" id=8]
+[ext_resource path="res://unit/enemy/enemy_weapon_bar.gd" type="Script" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 256.0
@@ -57,6 +59,13 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
 shape = SubResource( 1 )
+
+[node name="BulletSpawnPoint" type="Node2D" parent="."]
+position = Vector2( 48, 0 )
+script = ExtResource( 8 )
+
+[node name="EnemyWeaponBar" type="Node" parent="."]
+script = ExtResource( 9 )
 
 [connection signal="value_changed" from="CombatResources/Health" to="." method="_check_for_death"]
 [connection signal="took_damage" from="HurtBox" to="." method="take_damage"]

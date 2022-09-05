@@ -59,18 +59,24 @@ func has_combat_resource(type: int) -> bool:
 
 ## returns false if this unit does not have the given type of resource
 func can_spend_resource(type: int, amount: int) -> bool:
+	if amount == 0:
+		return true
 	return has_combat_resource(type) and combat_resources[type].value >= amount
 
 
 ## returns true/false based on if the amount was actually spent
 ## NOTE: distinct from losing
 func spend_resource(type: int, amount: int) -> bool:
+	if amount == 0:
+		return true
 	return can_spend_resource(type, amount) and combat_resources[type].change_value(amount * -1)
 
 
 ## returns true/false based on if the amount was actually lost
 ## NOTE: distinct from spending
 func lose_resource(type: int, amount: int) -> bool:
+	if amount == 0:
+		return true
 	return has_combat_resource(type) and combat_resources[type].change_value(amount * -1)
 
 
