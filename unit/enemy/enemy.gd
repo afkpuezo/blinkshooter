@@ -3,6 +3,9 @@ class_name Enemy
 ## VERY placeholder right now
 
 onready var player_detection = $PlayerDetection
+# seperate from radius of PlayerDetection, effectively the real threshold is the minimum of the two
+export var maximum_detection_range := 256
+onready var range_squared = pow(maximum_detection_range, 2)
 
 
 # -
@@ -23,7 +26,8 @@ func get_player_if_detected() -> Player:
 	for n in overlaps:
 #		print("DEBUG: EnemyMover.physics_update() found node in overlapping bodies: %s" % n.name)
 		if n is Player:
-			return n
+			#print("DEBUG: player found, distance squared: %d" % position.distance_squared_to(n.position))
+			return n if position.distance_squared_to(n.position) <= range_squared else null
 	return null
 
 
