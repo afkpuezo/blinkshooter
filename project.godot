@@ -27,12 +27,12 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Bullet",
 "language": "GDScript",
-"path": "res://bullet/bullet.gd"
+"path": "res://scripts/bullet.gd"
 }, {
 "base": "Node",
 "class": "BulletMover",
 "language": "GDScript",
-"path": "res://bullet/bullet_mover.gd"
+"path": "res://scripts/movers/bullet_mover.gd"
 }, {
 "base": "Node2D",
 "class": "BulletSpawnPoint",
