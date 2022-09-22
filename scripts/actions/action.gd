@@ -29,6 +29,21 @@ var is_cooling_down := false
 var user: Unit # set from the outside
 
 
+# ----------
+# static functions
+# ----------
+
+
+## probably overkill
+static func is_action(n: Node) -> bool: return n.has_method("trigger")
+
+
+# ----------
+# _ready()
+# ----------
+
+
+## shouldn't have to be overrided for most specific actions
 func _ready() -> void:
 	# prepare cooldown timer
 	_cooldown_timer = Timer.new()

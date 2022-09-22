@@ -29,5 +29,5 @@ func _unhandled_input(event: InputEvent) -> void:
 	for ase in action_slot_events:
 		if event.is_action_pressed(ase):
 			var slot = action_slot_events[ase]
-			if slot < len(actions) and actions[slot].has_method("trigger"):
+			if slot < len(actions) and Action.is_action(actions[slot]):
 				actions[slot].trigger()
