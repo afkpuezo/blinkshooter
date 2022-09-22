@@ -25,7 +25,7 @@ func get_player_if_detected() -> Player:
 	var overlaps = player_detection.get_overlapping_bodies() # should be areas?
 	for n in overlaps:
 #		print("DEBUG: EnemyMover.physics_update() found node in overlapping bodies: %s" % n.name)
-		if n is Player:
+		if Player.is_player(n):
 			#print("DEBUG: player found, distance squared: %d" % position.distance_squared_to(n.position))
 			return n if position.distance_squared_to(n.position) <= range_squared else null
 	return null
