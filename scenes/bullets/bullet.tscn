@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://hit_boxes/hit_box.gd" type="Script" id=1]
-[ext_resource path="res://scripts/movers/bullet_mover.gd" type="Script" id=2]
-[ext_resource path="res://movement_stats/movement_stats.gd" type="Script" id=3]
+[ext_resource path="res://scripts/hit_boxes/hit_box.gd" type="Script" id=1]
+[ext_resource path="res://scripts/units/movers/bullet_mover.gd" type="Script" id=2]
+[ext_resource path="res://scripts/movement_stats.gd" type="Script" id=3]
 [ext_resource path="res://scripts/bullet.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
