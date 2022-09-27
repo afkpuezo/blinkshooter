@@ -22,15 +22,17 @@ func _on_HitBox_area_entered(area) -> void:
 	#print("DEBUG: bullet hitbox area entered by: %s" % area.name)
 	if area is HurtBox:
 		area.take_damage(damage, self)
-		queue_free()
+		_handle_hit()
 	else:
 		print("DEBUG: Bullet._on_HitBox_area_entered() passed a non-HurtBox area: %s" % area.name)
 
 
 ## handles collisions with things that aren't hurt, like walls
+## NOTE: just assumes that anything in the Wall collision layer (1) is a wall
 func _on_BulletMover_collided(collision: KinematicCollision2D) -> void:
-	var other = collision.collider
-	if other is Wall:
-		queue_free()
-	else:
-		print("DEBUG: Bullet._on_BulletMover_collided() doesn't recognize collided object: %s" % other.name)
+	_handle_hit() # at some point, explode on the wall or something
+
+
+## EG if there are animations that play on hitting a unit or wall
+func _handle_hit():
+	queue_free()
