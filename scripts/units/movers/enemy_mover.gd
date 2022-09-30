@@ -30,7 +30,7 @@ func chase_player(unit, movement_stats: MovementStats, delta: float, player):
 	var next_location = nav_agent.get_next_location()
 	#print("DEBUG: EnemyMover.chase_player(): next_location is %s" % next_location)
 	var direction: Vector2 = unit.position.direction_to(next_location).normalized()
-	accelerate_towards(unit, movement_stats, delta, direction)
+	accelerate_towards(movement_stats, delta, direction)
 	unit.move_and_slide(movement_stats.velocity)
 
 
@@ -46,12 +46,12 @@ func _update_pathing(new_target_location: Vector2):
 ## called when the player is detected too close for comfort and the enemy wants to back away
 func back_away_from_player(unit, movement_stats: MovementStats, delta: float, player):
 	var direction: Vector2 = (player.position - unit.position).normalized() * -1
-	accelerate_towards(unit, movement_stats, delta, direction)
+	accelerate_towards(movement_stats, delta, direction)
 	unit.move_and_slide(movement_stats.velocity)
 
 
 ## just a rename of apply_friction, called from the outside
 ## NOTE: player arg may be ignored, just included to match other methods
 func stand_still(unit, movement_stats: MovementStats, delta: float, _player = null):
-	apply_friction(unit, movement_stats, delta)
+	apply_friction(movement_stats, delta)
 	unit.move_and_slide(movement_stats.velocity)

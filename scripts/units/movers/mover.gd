@@ -14,7 +14,7 @@ func physics_update(unit, _movement_stats: MovementStats, _delta: float):
 ## Helper method, can be used in physics update, accelerates the unit in the
 ## given (normalized) direction. Updates the unit's velocity, does not actually
 ## call move_and_slide.
-func accelerate_towards(_unit, movement_stats: MovementStats, delta: float, direction: Vector2):
+func accelerate_towards(movement_stats: MovementStats, delta: float, direction: Vector2):
 	movement_stats.velocity = \
 			movement_stats.velocity.move_toward(direction * movement_stats.MAX_SPEED, movement_stats.ACCELERATION * delta)
 
@@ -22,7 +22,7 @@ func accelerate_towards(_unit, movement_stats: MovementStats, delta: float, dire
 ## Helper method, can be used in physics update, decelerates the unit using
 ## friction. Updates the unit's velocity, does not actually
 ## call move_and_slide.
-func apply_friction(_unit, movement_stats: MovementStats, _delta: float):
+func apply_friction(movement_stats: MovementStats, _delta: float):
 	movement_stats.velocity = \
 			movement_stats.velocity.move_toward(
 					Vector2.ZERO,

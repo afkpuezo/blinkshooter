@@ -30,9 +30,9 @@ func physics_update(unit, movement_stats: MovementStats, delta: float):
 	var input := _get_input()
 
 	if input:
-		accelerate_towards(unit, movement_stats, delta, input)
+		accelerate_towards(movement_stats, delta, input)
 	else: # if no player found
-		apply_friction(unit, movement_stats, delta)
+		apply_friction(movement_stats, delta)
 	#stats.velocity = owner.move_and_slide(stats.velocity)
 	#unit.move_and_collide(movement_stats.velocity * delta)
 	unit.move_and_slide(movement_stats.velocity)
