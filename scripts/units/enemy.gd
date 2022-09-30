@@ -76,6 +76,7 @@ func should_attack() -> bool:
 
 ## random equipped action
 func attack():
+# warning-ignore:return_value_discarded
 	weapon_bar.trigger_random_action()
 
 

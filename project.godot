@@ -134,11 +134,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/units/unit.gd"
 }, {
-"base": "StaticBody2D",
-"class": "Wall",
-"language": "GDScript",
-"path": "res://scripts/terrain/wall.gd"
-}, {
 "base": "Action",
 "class": "Weapon",
 "language": "GDScript",
@@ -175,7 +170,6 @@ _global_script_class_icons={
 "StateMachine": "",
 "TeleportEffect": "",
 "Unit": "",
-"Wall": "",
 "Weapon": "",
 "WeaponBar": ""
 }
