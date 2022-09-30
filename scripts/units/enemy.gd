@@ -2,17 +2,26 @@ extends Unit
 class_name Enemy
 ## VERY placeholder right now
 
+## -- child nodes
 onready var player_detection: PlayerDetection = $PlayerDetection
+onready var enemy_mover: EnemyMover = $EnemyMover # mover var declared in parent class - bad?
+onready var weapon_bar: EnemyWeaponBar = $EnemyWeaponBar
+
+
+## -- behavior control
 # seperate from radius of PlayerDetection, effectively the real threshold is the minimum of the two
 export var maximum_detection_range := 256
+export var minimum_chase_distance := 200
+export var too_close_threshold := 100
+
 onready var range_squared = pow(maximum_detection_range, 2)
-onready var weapon_bar: EnemyWeaponBar = $EnemyWeaponBar
+onready var chasing_squared = pow(minimum_chase_distance, 2) # faster calculations apparently
+onready var too_close_squared = pow(too_close_threshold, 2)
 
 
 
 func _physics_process(delta: float) -> void:
-	._physics_process(delta) # movement in super
-	think()
+	think(delta)
 
 
 # -
@@ -28,11 +37,35 @@ func _physics_process(delta: float) -> void:
 
 
 ## holds behavior logic
-##		currently only attacks, movement is handled by the mover
+## if player is detected:
+##		- look at player
+##		- try to attack
+##		- if far away, move closer
+##		- if too close, back away
+##		- if just right, stand still
+## if player is not detected:
+##		- stand still
 ## should be called in _physics_process() (or _process()?)
-func think():
-	if should_attack():
-		attack()
+func think(delta):
+	var player = player_detection.get_player_if_detected()
+
+	if player:
+		self.look_at(player.position)
+
+		if should_attack():
+			attack()
+
+		var distance_squared = position.distance_squared_to(player.position)
+
+		if distance_squared > chasing_squared:
+			enemy_mover.chase_player(self, movement_stats, delta, player)
+		elif distance_squared < too_close_squared:
+			enemy_mover.back_away_from_player(self, movement_stats, delta, player)
+		else:
+			enemy_mover.stand_still(self, movement_stats, delta)
+
+	else: # no player
+		enemy_mover.stand_still(self, movement_stats, delta)
 
 
 ## returns true if this enemy should attack the player right now
