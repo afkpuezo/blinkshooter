@@ -8,7 +8,7 @@
 [ext_resource path="res://assets/terrain/terrain_tileset.tres" type="TileSet" id=6]
 [ext_resource path="res://scenes/actions/blink.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/weapons/small_gun.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/units/enemy.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/units/enemy/enemy.tscn" type="PackedScene" id=9]
 
 [node name="World" type="Node2D"]
 

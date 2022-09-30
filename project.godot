@@ -89,6 +89,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/units/player.gd"
 }, {
+"base": "Node2D",
+"class": "PlayerDetection",
+"language": "GDScript",
+"path": "res://scenes/units/enemy/player_detection.gd"
+}, {
 "base": "CanvasLayer",
 "class": "PlayerMonitorText",
 "language": "GDScript",
@@ -161,6 +166,7 @@ _global_script_class_icons={
 "MovementStats": "",
 "Mover": "",
 "Player": "",
+"PlayerDetection": "",
 "PlayerMonitorText": "",
 "PlayerMover": "",
 "Reticle": "",

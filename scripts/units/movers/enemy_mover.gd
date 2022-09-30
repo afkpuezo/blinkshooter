@@ -28,7 +28,7 @@ func physics_update(unit, movement_stats: MovementStats, delta: float):
 	if player:
 		unit.look_at(player.position)
 		var distance_to_player = unit.position.distance_squared_to(player.position)
-		print("DEBUG: EnemyMover.physics_update(): [distance, threshold] %d, %d" % [sqrt(distance_to_player), stop_chasing_threshold])
+		#print("DEBUG: EnemyMover.physics_update(): [distance, threshold] %d, %d" % [sqrt(distance_to_player), stop_chasing_threshold])
 		if distance_to_player > chasing_squared:
 			_chase_player(unit, movement_stats, delta, player)
 		elif distance_to_player < too_close_squared:
