@@ -29,7 +29,7 @@ func _on_HitBox_area_entered(area) -> void:
 
 ## handles collisions with things that aren't hurt, like walls
 ## NOTE: just assumes that anything in the Wall collision layer (1) is a wall
-func _on_BulletMover_collided(collision: KinematicCollision2D) -> void:
+func _on_BulletMover_collided(_collision: KinematicCollision2D) -> void:
 	_handle_hit() # at some point, explode on the wall or something
 
 

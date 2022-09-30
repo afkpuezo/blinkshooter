@@ -41,6 +41,7 @@ func _process(_delta: float) -> void:
 			print("DEBUG: WeaponBar._process() not firing due to current_slot being out of bounds (%d of %d)" % [current_slot, weapons.size()])
 		else:
 			var current_weapon: Weapon = weapons[current_slot]
+# warning-ignore:return_value_discarded
 			current_weapon.trigger() # TODO: do something with result?
 
 
@@ -55,6 +56,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	var slot_num = 0
 	for wse in weapon_select_events:
 		if event.is_action_pressed(wse):
+# warning-ignore:return_value_discarded
 			_change_slot(slot_num)
 			return
 		slot_num += 1

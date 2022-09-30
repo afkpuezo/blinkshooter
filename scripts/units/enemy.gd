@@ -93,3 +93,4 @@ func get_player_if_detected() -> Player:
 ## is this redundant?
 func is_player_detected() -> bool:
 	return player_detection.is_player_detected()
+

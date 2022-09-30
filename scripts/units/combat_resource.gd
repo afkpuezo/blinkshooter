@@ -48,23 +48,23 @@ static func get_combat_resources(n: Node) -> Array:
 
 ## Returns true if the given node has the specific type of resource given.
 ## TODO: version with string names?
-static func has_resource(n: Node, type: int) -> bool:
+static func has_resource(n: Node, q_type: int) -> bool:
 	var has_group := has_combat_resources(n)
 	if not has_group:
 		return false
 	var resources := get_combat_resources(n)
 	for rsrc in resources:
-		if rsrc.type == type:
+		if rsrc.type == q_type:
 			return true
 	return false
 
 
 ## Returns the CombatResource node for the given node of the given type
 ## returns null if no such resource found
-static func get_resource(n: Node, type: int) -> CombatResource:
+static func get_resource(n: Node, q_type: int) -> CombatResource:
 	var resources = get_combat_resources(n)
 	for rsrc in resources:
-		if rsrc.type == type:
+		if rsrc.type == q_type:
 			return rsrc
 	return null
 
@@ -86,6 +86,7 @@ func get_class() -> String:
 func _ready() -> void:
 	_report_value_change(0)
 	var timer := Timer.new()
+	# warning-ignore:return_value_discarded
 	timer.connect("timeout", self, "_apply_regen")
 	add_child(timer)
 	timer.start(REGEN_PERIOD)
@@ -117,6 +118,7 @@ func change_value(amount: int) -> bool:
 
 ## triggered by timer
 func _apply_regen():
+	# warning-ignore:return_value_discarded
 	change_value(REGEN)
 
 

@@ -81,7 +81,7 @@ func lose_resource(type: int, amount: int) -> bool:
 
 
 ## returns false if doesnt have that resource or if already at max
-func can_gain_resource(type: int, amount: int) -> bool:
+func can_gain_resource(type: int, _amount: int) -> bool:
 	return has_combat_resource(type) and (combat_resources[type].value < combat_resources[type].MAX_VALUE)
 
 
@@ -92,7 +92,8 @@ func gain_resource(type: int, amount: int) -> bool:
 
 ## should be connected to hitbox signals
 ## just calls lose_resource method
-func take_damage(amount: int, source):
+func take_damage(amount: int, _source):
+	# warning-ignore:return_value_discarded
 	lose_resource(CombatResource.Type.HEALTH, amount)
 
 

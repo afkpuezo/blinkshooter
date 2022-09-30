@@ -15,7 +15,7 @@ onready var nav_update_timer: Timer = $NavUpdateTimer
 
 ## NOTE - trying a new idea where the enemy decided behavior in its own script and calls the
 ## appropriate movement method directly.
-func physics_update(unit, movement_stats: MovementStats, delta: float):
+func physics_update(_unit, _movement_stats: MovementStats, _delta: float):
 	pass
 
 
@@ -52,6 +52,6 @@ func back_away_from_player(unit, movement_stats: MovementStats, delta: float, pl
 
 ## just a rename of apply_friction, called from the outside
 ## NOTE: player arg may be ignored, just included to match other methods
-func stand_still(unit, movement_stats: MovementStats, delta: float, player = null):
+func stand_still(unit, movement_stats: MovementStats, delta: float, _player = null):
 	apply_friction(unit, movement_stats, delta)
 	unit.move_and_slide(movement_stats.velocity)

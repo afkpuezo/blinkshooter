@@ -77,7 +77,6 @@ is_player = true
 [node name="MovementStats" type="Node" parent="."]
 script = ExtResource( 6 )
 MAX_SPEED = 500
-FRICTION = 0.15
 
 [node name="ActionBar" type="Node" parent="."]
 script = ExtResource( 2 )

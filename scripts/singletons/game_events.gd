@@ -7,6 +7,7 @@ extends Node
 
 
 # dummy event for demo purposes
+# warning-ignore:unused_signal
 signal test_event(msg)
 
 
@@ -17,15 +18,18 @@ signal test_event(msg)
 
 ## used for changes to player combat stats
 ## msg fields: "type", "value", "change", "max"
+# warning-ignore:unused_signal
 signal player_combat_resource_value_changed(msg)
 
 
 ## used when the player changes weapon slots
 ## msg fields: "old_weapon_slot", "new_weapon_slot"
+# warning-ignore:unused_signal
 signal player_changed_weapon(msg)
 
 
 # RIP
+# warning-ignore:unused_signal
 signal player_died(msg)
 
 
@@ -35,4 +39,5 @@ signal player_died(msg)
 
 
 # msg fields: "object"
+# warning-ignore:unused_signal
 signal game_object_spawned(msg)

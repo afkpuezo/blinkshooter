@@ -6,6 +6,7 @@ class_name State
 
 
 ## Called by this node to tell
+# warning-ignore:unused_signal
 signal state_change_triggered(target_state, msg)
 
 

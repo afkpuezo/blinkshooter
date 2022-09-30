@@ -7,6 +7,7 @@ class_name Action
 
 # TODO these are placeholder
 signal action_started(msg)
+# warning-ignore:unused_signal
 signal cooldown_finished(msg) # when action is ready again
 
 
@@ -131,4 +132,5 @@ func _start_cooldown():
 func _pay_cost():
 	for type in cost:
 		#user_combat_resources[type].change_value(cost[type] * -1)
+		# warning-ignore:return_value_discarded
 		user.spend_resource(type, cost[type])

@@ -33,6 +33,7 @@ func trigger_random_action() -> bool:
 		return false
 	else:
 		var action: Action = ready_actions[rng.randi_range(0, ready_actions.size() - 1)]
+		# warning-ignore:return_value_discarded
 		action.trigger()
 		return true
 

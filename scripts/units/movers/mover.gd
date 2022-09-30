@@ -6,7 +6,7 @@ class_name Mover
 
 ## The given unit should be the user/owner of this Mover.
 ## That unit should call this method during it's _physics_update() method.
-func physics_update(unit, movement_stats: MovementStats, delta: float):
+func physics_update(unit, _movement_stats: MovementStats, _delta: float):
 	#print("DEBUG: Mover.physics_update() called")
 	unit.move_and_collide(Vector2.ZERO)
 
@@ -14,7 +14,7 @@ func physics_update(unit, movement_stats: MovementStats, delta: float):
 ## Helper method, can be used in physics update, accelerates the unit in the
 ## given (normalized) direction. Updates the unit's velocity, does not actually
 ## call move_and_slide.
-func accelerate_towards(unit, movement_stats: MovementStats, delta: float, direction: Vector2):
+func accelerate_towards(_unit, movement_stats: MovementStats, delta: float, direction: Vector2):
 	movement_stats.velocity = \
 			movement_stats.velocity.move_toward(direction * movement_stats.MAX_SPEED, movement_stats.ACCELERATION * delta)
 
@@ -22,7 +22,7 @@ func accelerate_towards(unit, movement_stats: MovementStats, delta: float, direc
 ## Helper method, can be used in physics update, decelerates the unit using
 ## friction. Updates the unit's velocity, does not actually
 ## call move_and_slide.
-func apply_friction(unit, movement_stats: MovementStats, delta: float):
+func apply_friction(_unit, movement_stats: MovementStats, _delta: float):
 	movement_stats.velocity = \
 			movement_stats.velocity.move_toward(
 					Vector2.ZERO,

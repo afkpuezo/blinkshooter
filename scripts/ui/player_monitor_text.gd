@@ -21,12 +21,14 @@ var _values := {
 
 ## Connect to events
 func _ready() -> void:
+# warning-ignore:return_value_discarded
 	GameEvents.connect("player_combat_resource_value_changed", self, "update_resource_value")
+# warning-ignore:return_value_discarded
 	GameEvents.connect("player_changed_weapon", self, "update_current_weapon")
 
 
 ## Update text
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	#label.text = _template.format(_values)
 	var lines = []
 	for key in _values:

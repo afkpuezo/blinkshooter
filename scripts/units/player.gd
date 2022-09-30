@@ -46,7 +46,7 @@ func do_teleport_animation():
 
 
 ## reset animation
-func _on_animation_end(old_anim):
+func _on_animation_end(_old_anim):
 	anim_player.play("Idle")
 
 
