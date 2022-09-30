@@ -62,3 +62,5 @@ script = ExtResource( 5 )
 
 [connection signal="value_changed" from="CombatResources/Health" to="." method="_check_for_death"]
 [connection signal="took_damage" from="HurtBox" to="." method="take_damage"]
+
+[editable path="PlayerDetection"]

@@ -24,7 +24,8 @@ func _on_HitBox_area_entered(area) -> void:
 		area.take_damage(damage, self)
 		_handle_hit()
 	else:
-		print("DEBUG: Bullet._on_HitBox_area_entered() passed a non-HurtBox area: %s" % area.name)
+		#print("DEBUG: Bullet._on_HitBox_area_entered() passed a non-HurtBox area: %s" % area.name)
+		pass
 
 
 ## handles collisions with things that aren't hurt, like walls

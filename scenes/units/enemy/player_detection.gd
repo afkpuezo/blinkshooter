@@ -3,19 +3,33 @@ class_name PlayerDetection
 
 
 onready var user = owner
-onready var area = $Area2D
+onready var ray: RayCast2D = $RayCast2D
+onready var area: Area2D = $Area2D
 export var maximum_detection_range := 256
 onready var range_squared = pow(maximum_detection_range, 2)
 
 
-## Returns null if the player is not currently in the detection area
+## Returns null if the player is not currently detected
 func get_player_if_detected() -> Player:
-	var overlaps = area.get_overlapping_bodies() # should be areas?
-	for n in overlaps:
-#		print("DEBUG: EnemyMover.physics_update() found node in overlapping bodies: %s" % n.name)
-		if Player.is_player(n):
-			#print("DEBUG: player found, distance squared: %d" % position.distance_squared_to(n.position))
-			return n if owner.position.distance_squared_to(n.position) <= range_squared else null
+	# first check if the player is close enough
+	var bodies = area.get_overlapping_bodies()
+	if bodies.empty():
+		return null
+
+	var player: Player
+	for body in bodies:
+		if body is Player:
+			player = body
+			break
+
+	# now try raycast
+	ray.look_at(player.position)
+	if ray.is_colliding():
+		print("DEBUG: PlayerDetection.get_player_if_detected(): ray is colliding")
+		# have to declare and type result of get_collider()?
+		var hit = ray.get_collider()
+		if hit is Player:
+			return hit
 	return null
 
 
