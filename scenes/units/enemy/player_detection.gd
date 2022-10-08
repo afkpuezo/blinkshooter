@@ -25,7 +25,7 @@ func get_player_if_detected() -> Player:
 	# now try raycast
 	ray.look_at(player.position)
 	if ray.is_colliding():
-		print("DEBUG: PlayerDetection.get_player_if_detected(): ray is colliding")
+		#print("DEBUG: PlayerDetection.get_player_if_detected(): ray is colliding")
 		# have to declare and type result of get_collider()?
 		var hit = ray.get_collider()
 		if hit is Player:

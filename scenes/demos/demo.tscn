@@ -51,3 +51,4 @@ tile_data = PoolIntArray( -1, 1, 0, -65536, 1, 1, -65535, 1, 1, -65534, 1, 1, -6
 
 [editable path="Player"]
 [editable path="Enemy"]
+[editable path="Enemy/PlayerDetection"]
