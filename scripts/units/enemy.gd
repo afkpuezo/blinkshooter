@@ -15,6 +15,7 @@ export var too_close_threshold := 100
 
 onready var chasing_squared = pow(minimum_chase_distance, 2) # faster calculations apparently
 onready var too_close_squared = pow(too_close_threshold, 2)
+onready var stop_looking_distance = pow(player_detection.detection_range, 2)
 
 
 func _physics_process(delta: float) -> void:
@@ -47,12 +48,12 @@ func think(delta):
 	var player = player_detection.get_player_if_detected()
 
 	if player:
+		var distance_squared = position.distance_squared_to(player.position)
+
 		self.look_at(player.position)
 
 		if should_attack():
 			attack()
-
-		var distance_squared = position.distance_squared_to(player.position)
 
 		if distance_squared > chasing_squared:
 			enemy_mover.chase_player(self, movement_stats, delta, player)
