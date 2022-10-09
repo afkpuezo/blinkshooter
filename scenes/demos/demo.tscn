@@ -38,7 +38,6 @@ visible = false
 
 [node name="Enemy" parent="." instance=ExtResource( 9 )]
 position = Vector2( 700, 400 )
-maximum_detection_range = 800
 
 [node name="EnemyGun" parent="Enemy/EnemyWeaponBar" index="0" instance=ExtResource( 4 )]
 

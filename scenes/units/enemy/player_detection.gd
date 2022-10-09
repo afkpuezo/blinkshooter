@@ -1,13 +1,19 @@
 extends Node2D
 class_name PlayerDetection
 
-
-onready var user = owner
+# child nodes
 onready var ray: RayCast2D = $RayCast2D
 onready var area: Area2D = $Area2D
-export var maximum_detection_range := 256
-onready var range_squared = pow(maximum_detection_range, 2)
 
+# export vars
+export var detection_range := 256
+onready var range_squared = pow(detection_range, 2)
+
+
+## configures components based on export vars
+func _ready() -> void:
+	ray.cast_to = Vector2(detection_range, 0)
+	area.get_node("CollisionShape2D").shape.radius = detection_range
 
 ## Returns null if the player is not currently detected
 func get_player_if_detected() -> Player:

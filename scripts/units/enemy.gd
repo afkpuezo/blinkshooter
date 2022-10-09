@@ -10,14 +10,11 @@ onready var weapon_bar: EnemyWeaponBar = $EnemyWeaponBar
 
 ## -- behavior control
 # seperate from radius of PlayerDetection, effectively the real threshold is the minimum of the two
-export var maximum_detection_range := 256
 export var minimum_chase_distance := 200
 export var too_close_threshold := 100
 
-onready var range_squared = pow(maximum_detection_range, 2)
 onready var chasing_squared = pow(minimum_chase_distance, 2) # faster calculations apparently
 onready var too_close_squared = pow(too_close_threshold, 2)
-
 
 
 func _physics_process(delta: float) -> void:
