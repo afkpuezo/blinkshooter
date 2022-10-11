@@ -36,6 +36,10 @@ visible = false
 
 [node name="BigGun" parent="Player/WeaponBar" index="1" instance=ExtResource( 2 )]
 
+[node name="Camera2D" type="Camera2D" parent="Player"]
+current = true
+process_mode = 0
+
 [node name="Enemy" parent="." instance=ExtResource( 9 )]
 position = Vector2( 700, 400 )
 

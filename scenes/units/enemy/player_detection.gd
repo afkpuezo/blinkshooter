@@ -22,7 +22,7 @@ export var num_ray_hits_required := 1
 ## configures components based on export vars
 func _ready() -> void:
 	rays_arr = _make_rays(num_rays, max_ray_deg)
-	print("DEBUG: PlayerDetection._ready(): how many rays?: %d" % rays_arr.size())
+	#print("DEBUG: PlayerDetection._ready(): how many rays?: %d" % rays_arr.size())
 	for ray in rays_arr:
 		rays_node.add_child(ray)
 	num_ray_hits_required = min(num_ray_hits_required, num_rays)
@@ -47,7 +47,7 @@ func _make_rays(nr: int, mrd: float) -> Array:
 		var ray: RayCast2D = RayCast2D.new()
 		ray.cast_to = Vector2(detection_range, 0)
 		var ray_rads = start_angle + (step_per_ray * n)
-		print("DEBUG: PlayerDetection._ready(): creating ray #%d with rotation %f" % [n, rad2deg(ray_rads)])
+		#print("DEBUG: PlayerDetection._ready(): creating ray #%d with rotation %f" % [n, rad2deg(ray_rads)])
 		ray.rotate(ray_rads)
 		ray.enabled = true
 		ray.collision_mask = 0b11 # wall and player
