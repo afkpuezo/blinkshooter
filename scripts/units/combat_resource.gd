@@ -4,6 +4,7 @@ class_name CombatResource
 
 signal value_changed(new_value)
 
+# NOTE: update get_all_types() when creating a new type!
 enum Type {HEALTH, ENERGY, BASIC_AMMO, BIG_AMMO}
 
 export var MAX_VALUE := 100
@@ -75,6 +76,11 @@ static func get_combat_resource_class() -> String:
 
 func get_class() -> String:
 	return get_combat_resource_class()
+
+
+## NOTE: needs to be manually updated when new types are added!!!
+static func get_all_types() -> Array:
+	return [Type.HEALTH, Type.ENERGY, Type.BASIC_AMMO, Type.BIG_AMMO]
 
 
 # ----------
