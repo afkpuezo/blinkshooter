@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/actions/demo_action.gd" type="Script" id=1]
 [ext_resource path="res://scenes/weapons/big_gun.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scenes/actions/blink.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/weapons/small_gun.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/units/enemy/enemy.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/actions/saw_blade.tscn" type="PackedScene" id=10]
 
 [node name="World" type="Node2D"]
 
@@ -35,6 +36,9 @@ visible = false
 [node name="SmallGun" parent="Player/WeaponBar" index="0" instance=ExtResource( 8 )]
 
 [node name="BigGun" parent="Player/WeaponBar" index="1" instance=ExtResource( 2 )]
+
+[node name="SawBlade" parent="Player" instance=ExtResource( 10 )]
+z_index = -1
 
 [node name="Enemy" parent="." instance=ExtResource( 9 )]
 position = Vector2( 900, 400 )
