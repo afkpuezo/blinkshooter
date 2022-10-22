@@ -6,6 +6,7 @@ class_name SawBlade
 # child nodes
 onready var animation_player: AnimationPlayer = $AnimationPlayer
 onready var spin_anim: Animation = animation_player.get_animation("spin")
+onready var hit_box: HitBox = $HitBox
 
 
 func _ready() -> void:
