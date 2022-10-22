@@ -56,9 +56,9 @@ func think(delta):
 			attack()
 
 		if distance_squared > chasing_squared:
-			enemy_mover.chase_player(self, movement_stats, delta, player)
+			enemy_mover.move_to(self, movement_stats, delta, player.position)
 		elif distance_squared < too_close_squared:
-			enemy_mover.back_away_from_player(self, movement_stats, delta, player)
+			enemy_mover.back_away_from(self, movement_stats, delta, player.position)
 		else:
 			enemy_mover.stand_still(self, movement_stats, delta)
 
