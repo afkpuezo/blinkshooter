@@ -5,23 +5,41 @@ class_name SawBladeAttack
 
 var damage_cooldown_scene = load("res://scenes/buffs/damage_cooldown.tscn")
 
+var was_ready_called := false
+
 export var damage := 30 # should this be set in the action scene?
 export var damage_cooldown := 0.5
+
+export var sprite_rotation_speed_deg = 720 # per second?
 
 # child nodes
 onready var animation_player: AnimationPlayer = $AnimationPlayer
 onready var spin_anim: Animation = animation_player.get_animation("spin")
 onready var hit_box: HitBox = $HitBox
+onready var sprite: Sprite = $Sprite
 
 
 func _ready() -> void:
-	spin_anim.set_loop(true)
-	animation_player.play("spin")
+	was_ready_called = true
+
+
+## called when entering tree
+func start() -> void:
+	# if called before ready, onready vars aren't set yet
+	if was_ready_called:
+		# in case the animation is still playing from before
+		animation_player.stop(true)
+		animation_player.play("spin")
 
 
 ## Checking collisions happens here because an enemy could stay in the hit box
 ## and continue to take damage (rather than using an on_entered signal)
 func _physics_process(delta: float) -> void:
+	handle_damage()
+	handle_sprite_rotation(delta)
+
+
+func handle_damage():
 	# NOTE: if i add more buff sources it may make sense to put some of this
 	# logic into a shared location
 	var victim_areas = get_potential_victim_areas()
@@ -55,3 +73,7 @@ func handle_victim(victim_area):
 		var dc: DamageCooldown = damage_cooldown_scene.instance()
 		dc.setup(self, damage_cooldown)
 		victim.add_buff(dc)
+
+
+func handle_sprite_rotation(delta):
+	sprite.rotate(deg2rad(sprite_rotation_speed_deg * delta))
