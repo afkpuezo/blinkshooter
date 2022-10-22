@@ -110,6 +110,11 @@ _global_script_classes=[ {
 "path": "res://scripts/ui/reticle/reticle.gd"
 }, {
 "base": "Node2D",
+"class": "SawBlade",
+"language": "GDScript",
+"path": "res://scripts/actions/saw_blade.gd"
+}, {
+"base": "Node2D",
 "class": "Spawner",
 "language": "GDScript",
 "path": "res://scripts/singletons/spawner.gd"
@@ -165,6 +170,7 @@ _global_script_class_icons={
 "PlayerMonitorText": "",
 "PlayerMover": "",
 "Reticle": "",
+"SawBlade": "",
 "Spawner": "",
 "State": "",
 "StateMachine": "",

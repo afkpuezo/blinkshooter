@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/saw_blade.png-58a48453002b90ad67b5fdf2b5c1a2fc.stex"
+path="res://.import/saw_blade.png-29002689492d8037b6b8337e1d83b624.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/bullets/saw_blade.png"
-dest_files=[ "res://.import/saw_blade.png-58a48453002b90ad67b5fdf2b5c1a2fc.stex" ]
+source_file="res://assets/effects/saw_blade.png"
+dest_files=[ "res://.import/saw_blade.png-29002689492d8037b6b8337e1d83b624.stex" ]
 
 [params]
 
