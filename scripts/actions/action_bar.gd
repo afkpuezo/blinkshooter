@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 class_name ActionBar
 ## Acts as an interface between the player node and the actions they can perform
 ## NOTE: this is currently a placeholder

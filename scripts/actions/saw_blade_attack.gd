@@ -1,5 +1,5 @@
 extends Node2D
-class_name SawBlade
+class_name SawBladeAttack
 ## this scene/node is the actual blade with the sprite and hurtbox, but not the
 ## action that uses/creates it
 

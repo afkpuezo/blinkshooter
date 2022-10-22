@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/actions/saw_blade_action.gd" type="Script" id=1]
+[ext_resource path="res://scenes/actions/saw_blade/saw_blade_attack.tscn" type="PackedScene" id=2]
+
+[node name="SawBladeAction" type="Node2D"]
+script = ExtResource( 1 )
+energy_cost = 40
+cooldown = 2.0
+
+[node name="SawBladeAttack" parent="." instance=ExtResource( 2 )]
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/actions/action.gd"
 }, {
-"base": "Node",
+"base": "Node2D",
 "class": "ActionBar",
 "language": "GDScript",
 "path": "res://scripts/actions/action_bar.gd"
@@ -114,10 +114,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/ui/reticle/reticle.gd"
 }, {
-"base": "Node2D",
-"class": "SawBlade",
+"base": "Action",
+"class": "SawBladeAction",
 "language": "GDScript",
-"path": "res://scripts/actions/saw_blade.gd"
+"path": "res://scripts/actions/saw_blade_action.gd"
+}, {
+"base": "Node2D",
+"class": "SawBladeAttack",
+"language": "GDScript",
+"path": "res://scripts/actions/saw_blade_attack.gd"
 }, {
 "base": "Node2D",
 "class": "Spawner",
@@ -176,7 +181,8 @@ _global_script_class_icons={
 "PlayerMonitorText": "",
 "PlayerMover": "",
 "Reticle": "",
-"SawBlade": "",
+"SawBladeAction": "",
+"SawBladeAttack": "",
 "Spawner": "",
 "State": "",
 "StateMachine": "",

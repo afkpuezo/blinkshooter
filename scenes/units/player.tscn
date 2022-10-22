@@ -78,7 +78,7 @@ is_player = true
 script = ExtResource( 6 )
 MAX_SPEED = 500
 
-[node name="ActionBar" type="Node" parent="."]
+[node name="ActionBar" type="Node2D" parent="."]
 script = ExtResource( 2 )
 
 [node name="BulletSpawnPoint" type="Node2D" parent="."]
