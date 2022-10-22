@@ -42,26 +42,25 @@ func _physics_process(delta: float) -> void:
 func handle_damage():
 	# NOTE: if i add more buff sources it may make sense to put some of this
 	# logic into a shared location
-	var victim_areas = get_potential_victim_areas()
+	var victim_areas = _get_potential_victims()
 	for victim in victim_areas:
-		handle_victim(victim)
+		_handle_victim(victim)
 
 
-func get_potential_victim_areas() -> Array:
+func _get_potential_victims() -> Array:
 	var areas: Array = hit_box.get_overlapping_areas()
 
-	var victim_areas := []
+	var victims := []
 	for area in areas:
-		if area.has_method("take_damage"): # if it's a hurtbox
-			victim_areas.append(area)
+		if area.has_method("get_unit"): # if it's a hurtbox
+			victims.append(area.get_unit())
 
-	return victim_areas
+	return victims
 
 
 ## If the victim can take buffs and does not have the DamageCooldown buff for
 ## the sawblade, deal damage and apply the buff.
-func handle_victim(victim_area):
-	var victim = victim_area.owner
+func _handle_victim(victim):
 	if victim.has_method("get_buffs"):
 		var buffs: Array = victim.get_buffs()
 		for buff in buffs:
@@ -69,10 +68,10 @@ func handle_victim(victim_area):
 				return
 
 		# if we got here, we can deal damage
-		victim_area.take_damage(damage, self)
 		var dc: DamageCooldown = damage_cooldown_scene.instance()
 		dc.setup(self, damage_cooldown)
 		victim.add_buff(dc)
+		victim.take_damage(damage, self)
 
 
 func handle_sprite_rotation(delta):

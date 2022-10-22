@@ -117,4 +117,3 @@ smoothing_speed = 7.0
 
 [connection signal="value_changed" from="CombatResources/Health" to="." method="_check_for_death"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_end"]
-[connection signal="took_damage" from="HurtBox" to="." method="take_damage"]

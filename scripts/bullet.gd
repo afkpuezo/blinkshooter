@@ -20,8 +20,9 @@ func _on_Timer_timeout() -> void:
 ## handles collisions with things that can be hurt, EG units
 func _on_HitBox_area_entered(area) -> void:
 	#print("DEBUG: bullet hitbox area entered by: %s" % area.name)
-	if area is HurtBox:
-		area.take_damage(damage, self)
+	if area.has_method("get_unit"):
+		var victim = area.get_unit()
+		victim.take_damage(damage, self)
 		_handle_hit()
 	else:
 		#print("DEBUG: Bullet._on_HitBox_area_entered() passed a non-HurtBox area: %s" % area.name)
