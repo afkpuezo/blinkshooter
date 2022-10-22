@@ -93,7 +93,7 @@ anims/Teleport = SubResource( 2 )
 polygon = PoolVector2Array( 28, 0, -26, 30, -10, 0, -26, -30 )
 
 [node name="HurtBox" type="Area2D" parent="."]
-collision_layer = 4
+collision_layer = 2
 collision_mask = 0
 script = ExtResource( 7 )
 
@@ -112,6 +112,8 @@ num_slots = 2
 current = true
 smoothing_enabled = true
 smoothing_speed = 7.0
+
+[node name="Buffs" type="Node2D" parent="."]
 
 [connection signal="value_changed" from="CombatResources/Health" to="." method="_check_for_death"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_end"]

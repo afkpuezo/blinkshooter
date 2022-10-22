@@ -45,6 +45,14 @@ position = Vector2( 900, 400 )
 
 [node name="EnemyGun" parent="Enemy/EnemyWeaponBar" index="0" instance=ExtResource( 4 )]
 
+[node name="Enemy" parent="Enemy" instance=ExtResource( 9 )]
+position = Vector2( 900, 400 )
+
+[node name="EnemyGun" parent="Enemy/Enemy/EnemyWeaponBar" index="0" instance=ExtResource( 4 )]
+
+[node name="Enemy2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 1000, 500 )
+
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -50
 tile_set = ExtResource( 6 )
@@ -57,3 +65,5 @@ tile_data = PoolIntArray( -262149, 1, 0, -262148, 1, 1, -262147, 1, 1, -262146, 
 [editable path="Player"]
 [editable path="Enemy"]
 [editable path="Enemy/PlayerDetection"]
+[editable path="Enemy/Enemy"]
+[editable path="Enemy2"]

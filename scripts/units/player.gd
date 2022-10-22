@@ -9,7 +9,7 @@ onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 
 # ----------
-# static funcs
+# static funcs		if should_attack():		if should_attack():
 # ----------
 
 
