@@ -23,6 +23,7 @@ func do_action():
 
 	var new_bullet: Bullet = bullet_scene.instance()
 	new_bullet.damage = damage
+	new_bullet.source = user
 
 	GameSpawner.spawn_bullet(
 		new_bullet,

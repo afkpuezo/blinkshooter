@@ -71,7 +71,7 @@ func _handle_victim(victim):
 		var dc: DamageCooldown = damage_cooldown_scene.instance()
 		dc.setup(self, damage_cooldown)
 		victim.add_buff(dc)
-		victim.take_damage(damage, self)
+		victim.take_damage(damage, owner)
 
 
 func handle_sprite_rotation(delta):

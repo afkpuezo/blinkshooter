@@ -17,9 +17,34 @@ onready var chasing_squared = pow(minimum_chase_distance, 2) # faster calculatio
 onready var too_close_squared = pow(too_close_threshold, 2)
 onready var stop_looking_distance = pow(player_detection.detection_range, 2)
 
+# NOTE: has to be onready or our position will not be set yet!
+onready var last_known_player_position: Vector2 = self.position
+
+
+# -
+# ----------
+# from Node / basic util methods
+# ----------
+# -
+
 
 func _physics_process(delta: float) -> void:
 	think(delta)
+
+
+# -
+# ----------
+# inherited from Unit
+# ----------
+# -
+
+
+## if shot by the player from far away, we know where they are
+func take_damage(amount: int, source):
+	print("DEBUG: enemy take_damage() source: %s" % source.name)
+	if source is Player:
+		last_known_player_position = source.position
+	.take_damage(amount, source)
 
 
 # -
@@ -45,50 +70,38 @@ func _physics_process(delta: float) -> void:
 ##		- stand still
 ## should be called in _physics_process() (or _process()?)
 func think(delta):
+	var target_position
 	var player = player_detection.get_player_if_detected()
 
+	if player != null:
+		target_position = player.position
+		last_known_player_position = player.position
+	else:
+		target_position = last_known_player_position
+
+	var moved = false
+
+	var distance_squared = position.distance_squared_to(target_position)
+	self.look_at(target_position)
+
 	if player:
-		var distance_squared = position.distance_squared_to(player.position)
+		attack()
+		# only back away from the player, not an empty space where they used to
+		# be
+		if distance_squared < too_close_squared:
+			enemy_mover.back_away_from(self, movement_stats, delta, target_position)
+			moved = true
 
-		self.look_at(player.position)
-
-		if should_attack():
-			attack()
-
+	# don't move to or stand still if we've already backed away from the player
+	if not moved:
 		if distance_squared > chasing_squared:
-			enemy_mover.move_to(self, movement_stats, delta, player.position)
-		elif distance_squared < too_close_squared:
-			enemy_mover.back_away_from(self, movement_stats, delta, player.position)
+			enemy_mover.move_to(self, movement_stats, delta, target_position)
 		else:
 			enemy_mover.stand_still(self, movement_stats, delta)
-
-	else: # no player
-		enemy_mover.stand_still(self, movement_stats, delta)
-
-
-## returns true if this enemy should attack the player right now
-## currently only cares if the player is detected or not
-func should_attack() -> bool:
-	return player_detection.is_player_detected()
 
 
 ## random equipped action
 func attack():
 # warning-ignore:return_value_discarded
 	weapon_bar.trigger_random_action()
-
-
-# ----------
-# player-detection related
-# ----------
-
-
-## Returns null if the player is not currently in the detection area
-func get_player_if_detected() -> Player:
-	return player_detection.get_player_if_detected()
-
-
-## is this redundant?
-func is_player_detected() -> bool:
-	return player_detection.is_player_detected()
 
