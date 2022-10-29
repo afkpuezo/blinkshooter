@@ -3,9 +3,10 @@ class_name Blink
 ## Teleport the player towards the target reticle
 
 
-export var MAX_RANGE := 500
-export var MIN_RANGE := 100
-export var TELEPORT_WAIT_TIME := 0.25
+export var max_range := 500
+onready var max_range_squared := pow(max_range, 2)
+export var min_range := 100
+export var teleport_wait_time := 0.25
 export(PackedScene) var effect_scene
 
 # these are used to tell if the teleport location is clear
@@ -23,40 +24,56 @@ func _ready() -> void:
 # ----------
 
 
+## Steps:
+## - if the target is too close, return false
+## - if the target is too far, treat the farthest reachable point as the target
+## - if the target area is clear, return true
 func can_do_action() -> bool:
 	var target_position = TargetReticle.get_true_global_position()
-	return self._is_target_beyond_minimum_range(target_position) and self._is_target_area_clear(target_position)
+
+	if not _is_target_beyond_minimum_range(target_position):
+		return false
+
+	target_position = _cap_target_at_max_range(target_position)
+	return _is_target_area_clear(target_position)
 
 
-## Teleport at most MAX_RANGE towards the target
+## Teleport at most max_range towards the target
 func do_action():
 	var target_position = TargetReticle.get_true_global_position()
-	var distance = user.position.distance_to(target_position)
-	#if distance < MIN_RANGE: # covered in can_do_action()
-		#return # TODO: explain why it failed?
-	if distance > MAX_RANGE:
-		# go as far as we can
-		var direction: Vector2 = \
-				user.position.direction_to(target_position).normalized()
-		target_position = user.position + (direction * MAX_RANGE)
+	target_position = _cap_target_at_max_range(target_position)
 	# now actually teleport
 	if effect_scene:
 		GameSpawner.spawn_node(effect_scene.instance(), user.get_position())
 		GameSpawner.spawn_node(effect_scene.instance(), target_position)
 	user.do_teleport_animation()
-	yield(get_tree().create_timer(TELEPORT_WAIT_TIME, false), "timeout")
+	yield(get_tree().create_timer(teleport_wait_time, false), "timeout")
 	user.set_position(target_position) # should this be global position?
+
 
 # ----------
 # private/helper method(s)
 # ----------
 
+
 ## does what it says
 func _is_target_beyond_minimum_range(target_position: Vector2) -> bool:
-	return user.position.distance_to(target_position) >= MIN_RANGE
+	return user.position.distance_to(target_position) >= min_range
+
 
 ## does what it says
 func _is_target_area_clear(target_position: Vector2) -> bool:
 	buffer_params.transform = Transform2D(0, target_position)
 	var intersected = physics_state.intersect_shape(buffer_params)
 	return intersected.size() == 0
+
+
+## if the given pos is outside of range, return a new position which is on the
+## same line, but at max range. otherwise return the given target pos
+func _cap_target_at_max_range(target_position: Vector2) -> Vector2:
+	if user.position.distance_squared_to(target_position) > max_range_squared:
+		var direction: Vector2 = \
+			user.position.direction_to(target_position).normalized()
+		return user.position + (direction * max_range)
+	else:
+		return target_position
