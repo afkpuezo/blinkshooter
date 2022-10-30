@@ -14,6 +14,8 @@ export(Shape2D) var teleport_buffer
 var buffer_params := Physics2DShapeQueryParameters.new()
 onready var physics_state := get_viewport().get_world_2d().direct_space_state
 
+var cached_target_position = null
+
 func _ready() -> void:
 	buffer_params.set_shape(teleport_buffer)
 	buffer_params.collision_layer = 0b111
@@ -35,13 +37,24 @@ func can_do_action() -> bool:
 		return false
 
 	target_position = _cap_target_at_max_range(target_position)
-	return _is_target_area_clear(target_position)
+	if _is_target_area_clear(target_position):
+		cached_target_position = target_position
+		return true
+	else:
+		return false
 
 
 ## Teleport at most max_range towards the target
 func do_action():
-	var target_position = TargetReticle.get_true_global_position()
-	target_position = _cap_target_at_max_range(target_position)
+	# NOTE: this cache idea might be unnecessary or even potentially bad, but
+	# i'm leaving it for now
+	var target_position = cached_target_position
+	#var target_position
+	#if cached_target_position:
+	#	target_position = cached_target_position
+	#else:
+	#	target_position = TargetReticle.get_true_global_position()
+	#	target_position = _cap_target_at_max_range(target_position)
 	# now actually teleport
 	if effect_scene:
 		GameSpawner.spawn_node(effect_scene.instance(), user.get_position())
@@ -49,6 +62,7 @@ func do_action():
 	user.do_teleport_animation()
 	yield(get_tree().create_timer(teleport_wait_time, false), "timeout")
 	user.set_position(target_position) # should this be global position?
+
 
 
 # ----------
