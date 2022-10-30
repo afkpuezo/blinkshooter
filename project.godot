@@ -319,6 +319,8 @@ weapon_shoot={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="Attack"
+2d_physics/layer_5="Floor"
+2d_navigation/layer_1="floor"
 
 [physics]
 
