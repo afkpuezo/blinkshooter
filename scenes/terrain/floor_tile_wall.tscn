@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://assets/terrain/floor_tileset.tres" type="TileSet" id=1]
-
-[node name="FloorTileMap" type="TileMap"]
-tile_set = ExtResource( 1 )
-collision_layer = 16
-collision_mask = 0
-format = 1
