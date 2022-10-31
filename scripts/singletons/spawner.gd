@@ -8,11 +8,15 @@ class_name Spawner
 
 ## places the given Node2D at the given spawn_position and adds it to the scene tree
 ## if spawn_rotation is specified, the spawned node will be rotated
-## if initial velocity
 func spawn_node(
 		node: Node2D,
 		spawn_position: Vector2,
-		spawn_rotation := 0.0):
+		spawn_rotation := 0.0,
+		spawn_delay := 0.0):
+
+	if spawn_delay > 0.0:
+		yield(get_tree().create_timer(spawn_delay), "timeout")
+
 	node.translate(spawn_position)
 	node.rotate(spawn_rotation)
 	add_child(node) # TODO: spawn them somewhere else?

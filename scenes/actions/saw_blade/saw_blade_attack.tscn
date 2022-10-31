@@ -74,5 +74,5 @@ script = ExtResource( 3 )
 position = Vector2( 24, 0 )
 shape = SubResource( 3 )
 
-[connection signal="tree_entered" from="." to="." method="start"]
 [connection signal="tree_entered" from="." to="." method="_on_SawBladeAttack_tree_entered"]
+[connection signal="tree_entered" from="." to="." method="start"]

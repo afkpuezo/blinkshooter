@@ -30,6 +30,7 @@ func _ready() -> void:
 	#floor_buffer_params.collision_layer = 0b10000 # floor layer
 	# configure raycast
 	raycast.cast_to = Vector2(max_range, 0)
+	raycast.force_raycast_update()
 	._ready()
 
 
@@ -68,7 +69,7 @@ func do_action():
 
 	if effect_scene:
 		GameSpawner.spawn_node(effect_scene.instance(), user.get_position())
-		GameSpawner.spawn_node(effect_scene.instance(), target_position)
+		GameSpawner.spawn_node(effect_scene.instance(), target_position, 0, 0.1)
 	user.do_teleport_animation()
 	yield(get_tree().create_timer(teleport_wait_time, false), "timeout")
 	user.set_position(target_position) # should this be global position?
