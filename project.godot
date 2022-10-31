@@ -208,7 +208,6 @@ GameSpawner="*res://scripts/singletons/spawner.gd"
 
 window/size/resizable=false
 window/size/borderless=true
-window/size/fullscreen=true
 
 [global]
 
