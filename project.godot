@@ -64,7 +64,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/units/movers/enemy_mover.gd"
 }, {
-"base": "Node",
+"base": "Node2D",
 "class": "EnemyWeaponBar",
 "language": "GDScript",
 "path": "res://scripts/units/enemy_weapon_bar.gd"
@@ -154,7 +154,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/weapons/weapon.gd"
 }, {
-"base": "Node",
+"base": "Node2D",
 "class": "WeaponBar",
 "language": "GDScript",
 "path": "res://scenes/weapons/weapon_bar.gd"

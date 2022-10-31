@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 class_name EnemyWeaponBar
 ## very placeholder
 ## managers enemy attacks, when the player is detected, find all of the attacks which are off

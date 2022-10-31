@@ -105,7 +105,7 @@ polygon = PoolVector2Array( -10, 0, -27, -30, 24, 0, -27, 30 )
 [node name="PlayerMover" type="Node2D" parent="."]
 script = ExtResource( 4 )
 
-[node name="WeaponBar" type="Node" parent="."]
+[node name="WeaponBar" type="Node2D" parent="."]
 script = ExtResource( 9 )
 num_slots = 2
 

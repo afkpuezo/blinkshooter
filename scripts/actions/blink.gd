@@ -19,9 +19,9 @@ var cached_target_position = null
 
 func _ready() -> void:
 	clear_buffer_params.set_shape(teleport_buffer)
-	clear_buffer_params.collision_layer = 0b111
+	clear_buffer_params.collision_layer = 0b111 # Wall, Player, Enemy
 	floor_buffer_params.set_shape(teleport_buffer)
-	floor_buffer_params.collision_layer = 0b10000
+	floor_buffer_params.collision_layer = 0b10000 # floor layer
 	._ready()
 
 
@@ -92,6 +92,12 @@ func _is_target_area_clear(target_position: Vector2) -> bool:
 	clear_buffer_params.transform = Transform2D(0, target_position)
 	var intersected = physics_state.intersect_shape(clear_buffer_params)
 	return intersected.empty()
+
+
+## starting from the given point and casting towards the current location of the
+## user, find the closest
+func _find_nearest_floor(target_position: Vector2) -> Vector2:
+	return Vector2.ZERO
 
 
 ## if the given pos is outside of range, return a new position which is on the
