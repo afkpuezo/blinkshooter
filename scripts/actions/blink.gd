@@ -9,17 +9,21 @@ export var min_range := 100
 export var teleport_wait_time := 0.25
 export(PackedScene) var effect_scene
 
-# these are used to tell if the teleport location is clear
+# these are used to tell if the teleport location is clear (and floor)
 export(Shape2D) var teleport_buffer
-var buffer_params := Physics2DShapeQueryParameters.new()
+var clear_buffer_params := Physics2DShapeQueryParameters.new()
+var floor_buffer_params := Physics2DShapeQueryParameters.new()
 onready var physics_state := get_viewport().get_world_2d().direct_space_state
 
 var cached_target_position = null
 
 func _ready() -> void:
-	buffer_params.set_shape(teleport_buffer)
-	buffer_params.collision_layer = 0b111
+	clear_buffer_params.set_shape(teleport_buffer)
+	clear_buffer_params.collision_layer = 0b111
+	floor_buffer_params.set_shape(teleport_buffer)
+	floor_buffer_params.collision_layer = 0b10000
 	._ready()
+
 
 # ----------
 # virtual method(s) from Action
@@ -29,7 +33,8 @@ func _ready() -> void:
 ## Steps:
 ## - if the target is too close, return false
 ## - if the target is too far, treat the farthest reachable point as the target
-## - if the target area is clear, return true
+## - if the target area is floor and is clear, return true
+## - else false
 func can_do_action() -> bool:
 	var target_position = TargetReticle.get_true_global_position()
 
@@ -37,7 +42,7 @@ func can_do_action() -> bool:
 		return false
 
 	target_position = _cap_target_at_max_range(target_position)
-	if _is_target_area_clear(target_position):
+	if _is_target_area_floor(target_position) and _is_target_area_clear(target_position):
 		cached_target_position = target_position
 		return true
 	else:
@@ -76,10 +81,17 @@ func _is_target_beyond_minimum_range(target_position: Vector2) -> bool:
 
 
 ## does what it says
+func _is_target_area_floor(target_position: Vector2) -> bool:
+	floor_buffer_params.transform = Transform2D(0, target_position)
+	var intersected = physics_state.intersect_shape(floor_buffer_params)
+	return not intersected.empty()
+
+
+## does what it says
 func _is_target_area_clear(target_position: Vector2) -> bool:
-	buffer_params.transform = Transform2D(0, target_position)
-	var intersected = physics_state.intersect_shape(buffer_params)
-	return intersected.size() == 0
+	clear_buffer_params.transform = Transform2D(0, target_position)
+	var intersected = physics_state.intersect_shape(clear_buffer_params)
+	return intersected.empty()
 
 
 ## if the given pos is outside of range, return a new position which is on the
