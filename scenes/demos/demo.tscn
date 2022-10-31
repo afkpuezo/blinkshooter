@@ -27,7 +27,7 @@ energy_cost = 40
 
 [node name="SawBladeAction" parent="Player/ActionBar" index="1" instance=ExtResource( 10 )]
 
-[node name="DemoAction" type="Node" parent="Player/ActionBar" index="2"]
+[node name="DemoAction" type="Node2D" parent="Player/ActionBar" index="2"]
 script = ExtResource( 1 )
 
 [node name="HurtBox" parent="Player" index="7"]

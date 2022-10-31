@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 class_name Action
 ## This is an 'abstract' class that represents a single user (or enemy?) action/ability/spell
 ## It should be attached to an ActionBar node
