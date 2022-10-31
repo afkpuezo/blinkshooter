@@ -10,9 +10,9 @@ var duration # time in seconds it lasts
 
 
 ## Can this be called before adding the node to the tree?
-func setup(source, duration):
-	self.source = source
-	self.duration = duration
+func setup(new_source, new_duration):
+	self.source = new_source
+	self.duration = new_duration
 
 
 func _ready() -> void:

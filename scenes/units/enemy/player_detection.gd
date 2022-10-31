@@ -25,7 +25,7 @@ func _ready() -> void:
 	#print("DEBUG: PlayerDetection._ready(): how many rays?: %d" % rays_arr.size())
 	for ray in rays_arr:
 		rays_node.add_child(ray)
-	num_ray_hits_required = min(num_ray_hits_required, num_rays)
+	num_ray_hits_required = int(min(num_ray_hits_required, num_rays))
 	area.get_node("CollisionShape2D").shape.radius = detection_range
 
 

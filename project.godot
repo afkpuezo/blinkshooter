@@ -196,7 +196,6 @@ _global_script_class_icons={
 
 config/name="blinkshooter"
 run/main_scene="res://scenes/demos/demo.tscn"
-config/icon="res://terrain/wall/icon.png"
 
 [autoload]
 

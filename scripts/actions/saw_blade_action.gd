@@ -25,6 +25,7 @@ func enable():
 
 func disable():
 	remove_child(saw_blade_attack)
+	timer.stop()
 
 
 func _on_Timer_timeout() -> void:
