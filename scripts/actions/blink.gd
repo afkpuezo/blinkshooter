@@ -9,10 +9,13 @@ class_name Blink
 onready var raycast: RayCast2D = $RayCast2D
 
 export var max_range := 500
-onready var max_range_squared := pow(max_range, 2)
 export var min_range := 100
 export var teleport_wait_time := 0.25
 export(PackedScene) var effect_scene
+
+# faster calcs for distance squared
+onready var max_range_squared := pow(max_range, 2)
+onready var min_squared = pow(min_range, 2)
 
 # these are used to tell if the teleport location is clear (and floor)
 #export(Shape2D) var teleport_buffer
@@ -51,7 +54,10 @@ func can_do_action() -> bool:
 	target_position = _cap_target_at_max_range(target_position)
 	target_position = _find_nearest_floor(target_position)
 
+	print("DEBUG: Blink._find_nearest_floor() returned %s" % target_position)
+
 	if not _is_target_beyond_minimum_range(target_position):
+		print("DEBUG: Blink._is_target_beyond_minimum_range() was false")
 		return false
 
 	if target_position:
@@ -82,7 +88,7 @@ func do_action():
 
 ## does what it says
 func _is_target_beyond_minimum_range(target_position: Vector2) -> bool:
-	return user.position.distance_to(target_position) >= min_range
+	return global_position.distance_squared_to(target_position) >= min_squared
 
 
 ## does what it says
@@ -106,6 +112,7 @@ func _find_nearest_floor(target_position: Vector2):
 	# place and angle ray
 	raycast.global_position = target_position
 	raycast.look_at(global_position)
+	raycast.force_raycast_update()
 
 	return raycast.get_collision_point()
 
