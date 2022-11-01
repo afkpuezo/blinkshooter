@@ -54,10 +54,7 @@ func can_do_action() -> bool:
 	target_position = _cap_target_at_max_range(target_position)
 	target_position = _find_nearest_floor(target_position)
 
-	print("DEBUG: Blink._find_nearest_floor() returned %s" % target_position)
-
 	if not _is_target_beyond_minimum_range(target_position):
-		print("DEBUG: Blink._is_target_beyond_minimum_range() was false")
 		return false
 
 	if target_position:

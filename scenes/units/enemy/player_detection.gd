@@ -75,6 +75,7 @@ func get_player_if_detected() -> Player:
 	var num_hits = 0
 	for ray in rays_arr:
 		#print("DEBUG: PlayerDetection._ready(): checking ray")
+		ray.force_raycast_update()
 		if ray.is_colliding() and ray.get_collider() is Player:
 			num_hits += 1
 
