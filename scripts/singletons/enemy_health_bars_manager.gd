@@ -2,12 +2,15 @@ extends Node2D
 class_name EnemyHealthBarsManager
 ## responsible for attaching health bars to enemies when they spawn.
 
+var ehp_scene = load("res://scenes/ui/bars/EnemyHealthBar.tscn")
+
 
 func _ready() -> void:
-	print("EnemyHealthBarsManager.ready()")
 	GameEvents.connect("enemy_spawned", self, "handle_enemy_spawn")
 
 
 func handle_enemy_spawn(args):
-	print("EnemyHealthBarsManager.handle_enemy_spawn()")
+	var ehp: EnemyHealthBar = ehp_scene.instance()
+	add_child(ehp)
+	ehp.assign_enemy(args['enemy'])
 
