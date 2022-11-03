@@ -28,6 +28,10 @@ onready var last_known_player_position: Vector2 = self.position
 # -
 
 
+func _ready() -> void:
+	GameEvents.emit_signal("enemy_spawned", {'enemy': self})
+
+
 func _physics_process(delta: float) -> void:
 	think(delta)
 
@@ -42,7 +46,7 @@ func _physics_process(delta: float) -> void:
 ## if shot by the player from far away, we know where they are
 func take_damage(amount: int, source):
 	#print("DEBUG: enemy take_damage() amount / source: %d / %s" % [amount, source.name])
-	if source is Player:
+	if source.has_method("_is_player_help"):
 		last_known_player_position = source.global_position
 	.take_damage(amount, source)
 
@@ -104,4 +108,3 @@ func think(delta):
 func attack():
 # warning-ignore:return_value_discarded
 	weapon_bar.trigger_random_action()
-

@@ -33,11 +33,10 @@ func setup_mover() -> Mover:
 	return mover
 
 
-## if the new amount is 0, we ded
-func _check_for_death(new_health_value, _max) -> void:
-	if new_health_value == 0:
-		GameEvents.emit_signal("player_died")
-		queue_free()
+## from Unit
+func die():
+	GameEvents.emit_signal("player_died")
+	.die()
 
 
 ## call the animation on the animation player

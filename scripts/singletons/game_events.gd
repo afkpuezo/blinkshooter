@@ -41,3 +41,14 @@ signal player_died(msg)
 # msg fields: "object"
 # warning-ignore:unused_signal
 signal game_object_spawned(msg)
+
+
+# ----------
+# Enemy related
+# ----------
+
+# msg fields: "enemy"
+# NOTE: should this be under spawner? I think I'm going to have enemies call
+# this themselves as they are created
+# warning-ignore:unused_signal
+signal enemy_spawned(msg)

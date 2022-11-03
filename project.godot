@@ -59,6 +59,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/units/enemy.gd"
 }, {
+"base": "Node2D",
+"class": "EnemyHealthBar",
+"language": "GDScript",
+"path": "res://scripts/ui/bars/enemy_health_bar.gd"
+}, {
+"base": "Node2D",
+"class": "EnemyHealthBarsManager",
+"language": "GDScript",
+"path": "res://scripts/singletons/enemy_health_bars_manager.gd"
+}, {
 "base": "Mover",
 "class": "EnemyMover",
 "language": "GDScript",
@@ -117,7 +127,7 @@ _global_script_classes=[ {
 "base": "ProgressBar",
 "class": "ResourceBar",
 "language": "GDScript",
-"path": "res://scripts/ui/health_bar.gd"
+"path": "res://scripts/ui/bars/health_bar.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Reticle",
@@ -180,6 +190,8 @@ _global_script_class_icons={
 "DamageCooldown": "",
 "DemoAction": "",
 "Enemy": "",
+"EnemyHealthBar": "",
+"EnemyHealthBarsManager": "",
 "EnemyMover": "",
 "EnemyWeaponBar": "",
 "HitBox": "",

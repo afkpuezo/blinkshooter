@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scripts/ui/player_ui.gd" type="Script" id=1]
-[ext_resource path="res://scenes/ui/resource_bar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/ui/bars/resource_bar.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/ui/player_energy_bar_theme.tres" type="Theme" id=4]
 
 [node name="PlayerUI" type="CanvasLayer"]

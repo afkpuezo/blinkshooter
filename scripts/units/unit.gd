@@ -5,6 +5,9 @@ class_name Unit
 ## (and between different child nodes?)
 
 
+signal died()
+
+
 ## will be set on ready if one is present?
 ## can be changed by extending classes
 var mover
@@ -110,7 +113,12 @@ func take_damage(amount: int, _source):
 ## if the new amount is 0, we ded
 func _check_for_death(new_health_value, _max) -> void:
 	if new_health_value == 0:
-		queue_free() # NOTE: should have a seperate die() method?
+		die()
+
+
+func die():
+	emit_signal("died")
+	queue_free()
 
 
 # ----------
