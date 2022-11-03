@@ -152,7 +152,7 @@ func _decrease_value(amount: int) -> bool:
 
 ## change is the amount that the value changed
 func _report_value_change(change: int):
-	emit_signal("value_changed", value)
+	emit_signal("value_changed", value, MAX_VALUE)
 	if is_player:
 		GameEvents.emit_signal(
 				"player_combat_resource_value_changed",

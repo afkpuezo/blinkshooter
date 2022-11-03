@@ -34,7 +34,7 @@ func setup_mover() -> Mover:
 
 
 ## if the new amount is 0, we ded
-func _check_for_death(new_health_value) -> void:
+func _check_for_death(new_health_value, _max) -> void:
 	if new_health_value == 0:
 		GameEvents.emit_signal("player_died")
 		queue_free()

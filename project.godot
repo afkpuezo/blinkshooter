@@ -69,11 +69,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/units/enemy_weapon_bar.gd"
 }, {
-"base": "ProgressBar",
-"class": "HealthBar",
-"language": "GDScript",
-"path": "res://scripts/ui/health_bar.gd"
-}, {
 "base": "Area2D",
 "class": "HitBox",
 "language": "GDScript",
@@ -113,6 +108,16 @@ _global_script_classes=[ {
 "class": "PlayerMover",
 "language": "GDScript",
 "path": "res://scripts/units/movers/player_mover.gd"
+}, {
+"base": "CanvasLayer",
+"class": "PlayerUI",
+"language": "GDScript",
+"path": "res://scripts/ui/player_ui.gd"
+}, {
+"base": "ProgressBar",
+"class": "ResourceBar",
+"language": "GDScript",
+"path": "res://scripts/ui/health_bar.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Reticle",
@@ -177,7 +182,6 @@ _global_script_class_icons={
 "Enemy": "",
 "EnemyMover": "",
 "EnemyWeaponBar": "",
-"HealthBar": "",
 "HitBox": "",
 "HurtBox": "",
 "MovementStats": "",
@@ -186,6 +190,8 @@ _global_script_class_icons={
 "PlayerDetection": "",
 "PlayerMonitorText": "",
 "PlayerMover": "",
+"PlayerUI": "",
+"ResourceBar": "",
 "Reticle": "",
 "SawBladeAction": "",
 "SawBladeAttack": "",

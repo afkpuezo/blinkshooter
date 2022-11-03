@@ -108,7 +108,7 @@ func take_damage(amount: int, _source):
 
 ## should be connected to the signal of the health resource
 ## if the new amount is 0, we ded
-func _check_for_death(new_health_value) -> void:
+func _check_for_death(new_health_value, _max) -> void:
 	if new_health_value == 0:
 		queue_free() # NOTE: should have a seperate die() method?
 
