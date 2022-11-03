@@ -2,7 +2,7 @@ extends Node
 class_name CombatResource
 ## Represents a single Resource/bar for a character, eg health or energy
 
-signal value_changed(new_value)
+signal value_changed(new_value, max_value)
 
 # NOTE: update get_all_types() when creating a new type!
 enum Type {HEALTH, ENERGY, BASIC_AMMO, BIG_AMMO}
