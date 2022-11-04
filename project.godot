@@ -139,11 +139,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/actions/saw_blade_attack.gd"
 }, {
-"base": "Node2D",
-"class": "Spawner",
-"language": "GDScript",
-"path": "res://scripts/singletons/spawner.gd"
-}, {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
@@ -201,7 +196,6 @@ _global_script_class_icons={
 "Reticle": "",
 "SawBladeAction": "",
 "SawBladeAttack": "",
-"Spawner": "",
 "State": "",
 "StateMachine": "",
 "TeleportEffect": "",
@@ -219,7 +213,7 @@ run/main_scene="res://scenes/demos/demo.tscn"
 
 GameEvents="*res://scripts/singletons/game_events.gd"
 TargetReticle="*res://scenes/ui/reticle.tscn"
-GameSpawner="*res://scripts/singletons/spawner.gd"
+Spawner="*res://scripts/singletons/spawner.gd"
 EnemyBarManager="*res://scripts/singletons/enemy_bar_manager.gd"
 
 [display]

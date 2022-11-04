@@ -52,3 +52,4 @@ signal game_object_spawned(msg)
 # this themselves as they are created
 # warning-ignore:unused_signal
 signal enemy_spawned(msg)
+

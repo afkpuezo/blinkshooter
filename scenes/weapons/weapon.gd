@@ -25,7 +25,7 @@ func do_action():
 	new_bullet.damage = damage
 	new_bullet.source = user
 
-	GameSpawner.spawn_bullet(
+	Spawner.spawn_bullet(
 		new_bullet,
 		spawn_location.get_global_position(),
 		user.get_global_rotation(),

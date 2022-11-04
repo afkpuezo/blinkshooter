@@ -1,5 +1,5 @@
 extends Node2D
-class_name Spawner
+#class_name Spawner no class name for singleton
 ## Autoload singleton that handles spawning new objects that need to be unattached from their
 ## creators.
 ## May be extended by spawners for specific objects (eg bullets)?
