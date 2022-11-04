@@ -3,7 +3,7 @@ extends Node2D
 ## responsible for attaching health bars to enemies when they spawn.
 
 
-var ehp_scene = load("res://scenes/ui/bars/EnemyHealthBar.tscn")
+var ehp_scene = load("res://scenes/ui/bars/enemy_health_bar.tscn")
 
 
 func _ready() -> void:
