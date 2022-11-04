@@ -11,11 +11,12 @@ func assign_enemy(e):
 	enemy.connect("died", self, "on_enemy_died")
 	var hp: CombatResource = CombatResource.get_resource(enemy, CombatResource.Type.HEALTH)
 	if hp:
+		# warning-ignore:return_value_discarded
 		hp.connect("value_changed", $HealthBar, "change_value")
 
 
 ## moves to follow the enemy
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	global_position = enemy.global_position
 
 

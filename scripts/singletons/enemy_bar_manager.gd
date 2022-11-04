@@ -7,6 +7,7 @@ var ehp_scene = load("res://scenes/ui/bars/EnemyHealthBar.tscn")
 
 
 func _ready() -> void:
+	# warning-ignore:return_value_discarded
 	GameEvents.connect("enemy_spawned", self, "handle_enemy_spawn")
 
 

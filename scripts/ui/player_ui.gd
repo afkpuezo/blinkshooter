@@ -7,6 +7,7 @@ var bars := {}
 
 func _ready() -> void:
 	# get signals about changes
+	# warning-ignore:return_value_discarded
 	GameEvents.connect(
 		"player_combat_resource_value_changed",
 		self,
