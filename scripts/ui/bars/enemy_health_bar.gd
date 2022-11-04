@@ -11,7 +11,7 @@ onready var bar = $HealthBar
 func assign_enemy(e):
 	enemy = e
 	# to follow an enemy
-	enemy.connect("died", self, "on_enemy_died")
+	enemy.connect("tree_exiting", self, "on_enemy_died")
 	var hp: CombatResource = CombatResource.get_resource(enemy, CombatResource.Type.HEALTH)
 	if hp:
 		# warning-ignore:return_value_discarded

@@ -16,6 +16,11 @@ signal test_event(msg)
 # ----------
 
 
+## msg fields: "player"
+# warning-ignore:unused_signal
+signal player_spawned(msg)
+
+
 ## used for changes to player combat stats
 ## msg fields: "type", "value", "change", "max"
 # warning-ignore:unused_signal

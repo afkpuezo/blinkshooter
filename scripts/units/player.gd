@@ -9,7 +9,7 @@ onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 
 # ----------
-# static funcs		if should_attack():		if should_attack():
+# static funcs
 # ----------
 
 
@@ -21,6 +21,9 @@ static func is_player(n: Node): return n.has_method("_is_player_help")
 # instance-level methods
 # ----------
 
+
+func _ready() -> void:
+	GameEvents.emit_signal("player_spawned", {'player': self})
 
 ## can't use the Player class in this script, looking for this method will do the same thing
 ## pretty gross
