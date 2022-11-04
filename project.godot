@@ -64,11 +64,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/ui/bars/enemy_health_bar.gd"
 }, {
-"base": "Node2D",
-"class": "EnemyHealthBarsManager",
-"language": "GDScript",
-"path": "res://scripts/singletons/enemy_health_bars_manager.gd"
-}, {
 "base": "Mover",
 "class": "EnemyMover",
 "language": "GDScript",
@@ -191,7 +186,6 @@ _global_script_class_icons={
 "DemoAction": "",
 "Enemy": "",
 "EnemyHealthBar": "",
-"EnemyHealthBarsManager": "",
 "EnemyMover": "",
 "EnemyWeaponBar": "",
 "HitBox": "",
@@ -226,6 +220,7 @@ run/main_scene="res://scenes/demos/demo.tscn"
 GameEvents="*res://scripts/singletons/game_events.gd"
 TargetReticle="*res://scenes/ui/reticle.tscn"
 GameSpawner="*res://scripts/singletons/spawner.gd"
+EnemyBarManager="*res://scripts/singletons/enemy_bar_manager.gd"
 
 [display]
 

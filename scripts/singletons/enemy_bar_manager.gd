@@ -1,6 +1,7 @@
 extends Node2D
-class_name EnemyHealthBarsManager
+#class_name EnemyHealthBarsManager # no need for class name for a singleton
 ## responsible for attaching health bars to enemies when they spawn.
+
 
 var ehp_scene = load("res://scenes/ui/bars/EnemyHealthBar.tscn")
 
