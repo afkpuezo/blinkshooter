@@ -6,8 +6,12 @@ class_name Enemy
 ## msg args: "player"
 signal detected_player(msg)
 
-## -- child nodes
+# -- child nodes
 onready var player_detection: PlayerDetection = $PlayerDetection
+## when the enemy sees the player, this timer starts. As long as the timer is
+## running, can_currently_see_player can't be set to false.
+onready var player_memory_timer: Timer = $PlayerMemoryTimer
+
 onready var enemy_mover: EnemyMover = $EnemyMover # mover var declared in parent class - bad?
 onready var weapon_bar: EnemyWeaponBar = $EnemyWeaponBar
 
@@ -136,18 +140,23 @@ func attack():
 ## If setting to true, updates the last known location to the player's location
 ## I didn't use a setget since it can require the player var
 ## Player should be included if setting to true, not included if setting to false
-## NOTE: might have to have a timer that doesn't allow can_currently_see_player
-## to be set to false when it has recently been updated to true; the player can
-## be between two of the rays and the enemy will think it's lost them for a moment
+## Has a timer that doesn't allow can_currently_see_player to be set to false
+## 	when it has recently been updated to true; the player can be between two of
+## 	the rays and the enemy will think it's lost them for a moment
 func _update_knowledge_of_player(new_value: bool, player = null):
-	if can_currently_see_player == false and new_value == true:
-		# setting it here so that it's true before sending a message, to avoid
-		# a possible infinite loop of messaging back and forth forever
-		can_currently_see_player = true
+	if new_value:
+		player_memory_timer.start()
 		last_known_player_position = player.global_position
-		_report_detected_player(player)
-	else:
-		can_currently_see_player = new_value
+		if not can_currently_see_player:
+			# setting it here so that it's true before sending a message, to avoid
+			# a possible infinite loop of messaging back and forth forever
+			can_currently_see_player = true
+			_report_detected_player(player)
+	else: # if new_value is false
+		if player_memory_timer.is_stopped():
+			#if name == "Enemy":
+			#	print("DEBUG: %s 's player_memory_timer is stopped" % name)
+			can_currently_see_player = new_value
 
 
 ## A little redundant with the signal, but this method allows for other logic here if needed
@@ -159,4 +168,4 @@ func _report_detected_player(player):
 ## receive a message from another enemy about the player's location
 ## expects msg to include: 'player'
 func receive_enemy_message(msg):
-	_update_knowledge_of_player(msg['player'])
+	_update_knowledge_of_player(true, msg['player'])

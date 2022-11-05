@@ -65,4 +65,8 @@ num_rays = 5
 
 [node name="Buffs" type="Node2D" parent="."]
 
+[node name="PlayerMemoryTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="value_changed" from="CombatResources/Health" to="." method="_check_for_death"]
