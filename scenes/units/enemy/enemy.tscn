@@ -61,8 +61,7 @@ script = ExtResource( 5 )
 
 [node name="PlayerDetection" parent="." instance=ExtResource( 10 )]
 detection_range = 512
-num_rays = 3
-max_ray_deg = 15.0
+num_rays = 5
 
 [node name="Buffs" type="Node2D" parent="."]
 
