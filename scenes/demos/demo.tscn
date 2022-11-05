@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/actions/demo_action.gd" type="Script" id=1]
 [ext_resource path="res://scenes/weapons/big_gun.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/ui/player_monitor_text.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/weapons/enemy_gun.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/units/player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/terrain/floor_tile_map.tscn" type="PackedScene" id=6]
@@ -16,9 +15,6 @@
 [node name="World" type="Node2D"]
 
 [node name="PlayerUI" parent="." instance=ExtResource( 12 )]
-
-[node name="PlayerMonitorText" parent="." instance=ExtResource( 3 )]
-visible = false
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( 200, 200 )
@@ -52,8 +48,12 @@ position = Vector2( 900, 400 )
 [node name="Enemy2" parent="." instance=ExtResource( 9 )]
 position = Vector2( 1000, 500 )
 
+[node name="EnemyGun" parent="Enemy2/EnemyWeaponBar" index="0" instance=ExtResource( 4 )]
+
 [node name="Enemy3" parent="." instance=ExtResource( 9 )]
 position = Vector2( 450, 950 )
+
+[node name="EnemyGun" parent="Enemy3/EnemyWeaponBar" index="0" instance=ExtResource( 4 )]
 
 [node name="Tiles" type="Node2D" parent="."]
 

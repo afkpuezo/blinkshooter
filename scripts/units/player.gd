@@ -38,7 +38,7 @@ func setup_mover() -> Mover:
 
 ## from Unit
 func die():
-	GameEvents.emit_signal("player_died")
+	GameEvents.emit_signal("player_died", {'player': self})
 	.die()
 
 

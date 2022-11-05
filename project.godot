@@ -215,6 +215,7 @@ GameEvents="*res://scripts/singletons/game_events.gd"
 TargetReticle="*res://scenes/ui/reticle.tscn"
 Spawner="*res://scripts/singletons/spawner.gd"
 EnemyBarManager="*res://scripts/singletons/enemy_bar_manager.gd"
+CameraManager="*res://scripts/singletons/camera_manager.gd"
 
 [display]
 
