@@ -112,7 +112,7 @@ func check() -> Dictionary:
 			num_hits += 1
 			#if ray == center_ray:
 			if ray.name == CENTER_RAY_NAME:
-				print("DEBUG: ray.name is CenterRay")
+				#print("DEBUG: ray.name is CenterRay")
 				return_dict["is_detected_by_center"] = true
 
 	if num_hits >= num_ray_hits_required:

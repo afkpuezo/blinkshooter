@@ -2,6 +2,10 @@ extends Unit
 class_name Enemy
 ## VERY placeholder right now
 
+
+## msg args: "player"
+signal detected_player(msg)
+
 ## -- child nodes
 onready var player_detection: PlayerDetection = $PlayerDetection
 onready var enemy_mover: EnemyMover = $EnemyMover # mover var declared in parent class - bad?
@@ -20,6 +24,10 @@ onready var stop_looking_distance = pow(player_detection.detection_range, 2)
 # NOTE: has to be onready or our position will not be set yet!
 onready var last_known_player_position: Vector2 = self.position
 
+# blegh name, keeping track of this explicitly avoids an infinite loop with
+# messaging
+var can_currently_see_player := false
+
 
 # -
 # ----------
@@ -33,6 +41,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	#if name == "Enemy":
+	#	print("DEBUG: %s can currently see player: %s" % [name, can_currently_see_player])
 	think(delta)
 
 
@@ -82,9 +92,11 @@ func think(delta):
 	var is_detected_by_center = check_results["is_detected_by_center"]
 
 	if is_player_detected:
+		can_currently_see_player = true
 		target_position = player.position
 		last_known_player_position = player.position
 	else:
+		can_currently_see_player = false
 		target_position = last_known_player_position
 
 	var moved = false
@@ -111,5 +123,15 @@ func think(delta):
 
 ## random equipped action
 func attack():
-# warning-ignore:return_value_discarded
+	# warning-ignore:return_value_discarded
 	weapon_bar.trigger_random_action()
+
+
+## A little redundant with the signal, but this method allows for other logic here if needed
+func report_detected_player(player):
+	emit_signal("detected_player", {'player': player})
+
+
+## receive a message from another enemy about the player's location
+func receive_enemy_message(msg):
+	pass
