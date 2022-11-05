@@ -75,9 +75,13 @@ func take_damage(amount: int, source):
 ## should be called in _physics_process() (or _process()?)
 func think(delta):
 	var target_position
-	var player = player_detection.get_player_if_detected()
 
-	if player != null:
+	var check_results = player_detection.check()
+	var is_player_detected: bool = check_results["is_player_detected"]
+	var player = check_results["player"]
+	var is_detected_by_center = check_results["is_detected_by_center"]
+
+	if is_player_detected:
 		target_position = player.position
 		last_known_player_position = player.position
 	else:
@@ -88,8 +92,9 @@ func think(delta):
 	var distance_squared = position.distance_squared_to(target_position)
 	self.look_at(target_position)
 
-	if player:
-		attack()
+	if is_player_detected:
+		if is_detected_by_center:
+			attack()
 		# only back away from the player, not an empty space where they used to
 		# be
 		if distance_squared < too_close_squared:
