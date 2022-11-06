@@ -7,7 +7,6 @@ signal received_message(msg)
 
 
 ## other enemies whose receivers are inside our sender can hear our messages
-## NOTE: I think this only works if sender is longer than receiver
 export var sender_radius := 128
 export var receiver_radius := 32
 const RAY_OFFSET := 1 # LOSRay is placed this far past the receiver radius
@@ -36,6 +35,10 @@ func _ready() -> void:
 func send_message(msg):
 	#print("DEBUG: EnemyMessager.send_message() called")
 	for area in sender.get_overlapping_areas():
+		# don't send a message to ourself
+		if area == receiver:
+			continue
+
 		if area.has_method("receive_message"):
 			if _check_los(area):
 				area.receive_message(msg)
@@ -69,6 +72,6 @@ func _check_los(target) -> bool:
 		pass
 	else:
 		if get_owner().name == "Enemy":
-			print("DEBUG: EnemyMessager._check_los(): Enemy0 los_ray didn't collide with anything")
+			print("DEBUG: EnemyMessager._check_los(): Enemy los_ray didn't collide with anything")
 	# - end debug
 	return not los_ray.is_colliding() # only collides with walls
