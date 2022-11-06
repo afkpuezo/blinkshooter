@@ -17,43 +17,58 @@ const RAY_OFFSET := 1 # LOSRay is placed this far past the receiver radius
 onready var sender: Area2D = $Sender
 onready var receiver: Area2D = $Receiver
 # rotate the pivot to keep the ray at a fixed radius
-onready var los_pivot: Node2D = $LOSPivot
-onready var los_ray: RayCast2D = $LOSPivot/LOSRay
+onready var los_ray: RayCast2D = $Receiver/LOSRay
+
+# debug
+var effect_scene = load("res://scenes/effects/teleport_effect.tscn")
 
 
 func _ready() -> void:
+	los_ray.force_raycast_update()
+	#los_ray.force_update_transform()
 	# set size of areas
 	sender.get_node("CollisionShape2D").shape.radius = sender_radius
 	receiver.get_node("CollisionShape2D").shape.radius = receiver_radius
-	# the ray should start just outside our receiver to avoid sending to
-	# ourselves, but reach the same point as our sender radius
-	los_ray.position = Vector2(receiver_radius + RAY_OFFSET, 0)
-	los_ray.cast_to = Vector2(sender_radius, 0)
 
 
 ## only sends messages to other enemies whose receiving areas are within our
 ## sender_radius AND in line-of-sight
 func send_message(msg):
-	print("DEBUG: EnemyMessager.send_message() called")
+	#print("DEBUG: EnemyMessager.send_message() called")
 	for area in sender.get_overlapping_areas():
 		if area.has_method("receive_message"):
 			if _check_los(area):
 				area.receive_message(msg)
 			else:
-				print("DEBUG: EnemyMessager.send_message() check_los() call failed")
+				#print("DEBUG: EnemyMessager.send_message() check_los() call failed")
 				pass
 		else:
-			print("DEBUG: EnemyMessager.send_message() found overlapping area that doesn't have receive_message(): %s " % area.name)
+			print("WARN: EnemyMessager.send_message() found overlapping area that doesn't have receive_message(): %s " % area.name)
 
 
 func receive_message(msg):
-	print("DEBUG: EnemyMessager.received_message() called")
+	#print("DEBUG: EnemyMessager.received_message() called")
 	emit_signal("received_message", msg)
 
 
 ## Returns true if we can raycast to the target area's location without hitting
 ## any walls
 func _check_los(target) -> bool:
-	los_pivot.look_at(target.global_position)
+	# cast_to has to be RELATIVE to the ray
+	los_ray.cast_to = target.global_position - los_ray.global_position
+	#los_ray.cast_to = los_ray.global_position - target.global_position
 	los_ray.force_raycast_update()
-	return los_ray.is_colliding() # only collides with walls
+	#los_ray.force_update_transform()
+	if get_owner().name == "Enemy":
+		print("DEBUG: EnemyMessager._check_los(): Enemy's target's owner is %s" % target.get_owner().get_owner().name)
+		#Spawner.spawn_node(effect_scene.instance(), los_ray.global_position + los_ray.cast_to)
+	# - debug
+	if los_ray.is_colliding():
+		#var hit = los_ray.get_collider()
+		#print("DEBUG: EnemyMessager._check_los(): los_ray collided with %s" % hit.name)
+		pass
+	else:
+		if get_owner().name == "Enemy":
+			print("DEBUG: EnemyMessager._check_los(): Enemy0 los_ray didn't collide with anything")
+	# - end debug
+	return not los_ray.is_colliding() # only collides with walls
