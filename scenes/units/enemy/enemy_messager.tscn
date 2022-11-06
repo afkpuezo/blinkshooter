@@ -32,6 +32,5 @@ shape = SubResource( 2 )
 enabled = true
 cast_to = Vector2( 33, 0 )
 collide_with_areas = true
-collide_with_bodies = false
 
 [connection signal="message_received" from="Receiver" to="." method="receive_message"]

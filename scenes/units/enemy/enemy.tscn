@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/weapons/bullet_spawn_point.gd" type="Script" id=1]
 [ext_resource path="res://scripts/units/combat_resource.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://scenes/units/enemy/enemy_mover.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/units/enemy/player_detection.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/units/enemy/enemy_messager.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/weapons/enemy_gun.tscn" type="PackedScene" id=12]
 
 [node name="Enemy" type="KinematicBody2D"]
 collision_layer = 4
@@ -32,6 +33,7 @@ build_mode = 1
 polygon = PoolVector2Array( -10, 0, -27, -30, 24, 0, -27, 30 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
 polygon = PoolVector2Array( 28, 0, -26, 30, -10, 0, -26, -30 )
 
 [node name="CombatResources" type="Node" parent="."]
@@ -60,6 +62,8 @@ script = ExtResource( 1 )
 [node name="EnemyWeaponBar" type="Node2D" parent="."]
 script = ExtResource( 5 )
 
+[node name="EnemyGun" parent="EnemyWeaponBar" instance=ExtResource( 12 )]
+
 [node name="PlayerDetection" parent="." instance=ExtResource( 10 )]
 detection_range = 512
 num_rays = 5
@@ -71,7 +75,6 @@ wait_time = 0.5
 one_shot = true
 
 [node name="EnemyMessager" parent="." instance=ExtResource( 11 )]
-sender_radius = 512
 
 [connection signal="detected_player" from="." to="EnemyMessager" method="send_message"]
 [connection signal="value_changed" from="CombatResources/Health" to="." method="_check_for_death"]

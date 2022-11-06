@@ -22,6 +22,7 @@ onready var los_ray: RayCast2D = $LOSPivot/LOSRay
 
 
 func _ready() -> void:
+	print("DEBUG: EnemyMessager._ready(): radii are %d - %d" % [sender_radius, receiver_radius])
 	# set size of areas
 	sender.get_node("CollisionShape2D").shape.radius = sender_radius
 	receiver.get_node("CollisionShape2D").shape.radius = receiver_radius
