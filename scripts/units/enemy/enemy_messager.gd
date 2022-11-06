@@ -64,14 +64,15 @@ func _check_los(target) -> bool:
 	#los_ray.force_update_transform()
 	if get_owner().name == "Enemy":
 		print("DEBUG: EnemyMessager._check_los(): Enemy's target's owner is %s" % target.get_owner().get_owner().name)
-		#Spawner.spawn_node(effect_scene.instance(), los_ray.global_position + los_ray.cast_to)
+		Spawner.spawn_node(effect_scene.instance(), los_ray.global_position + los_ray.cast_to)
+		Spawner.spawn_node(effect_scene.instance(), los_ray.global_position)
 	# - debug
-	if los_ray.is_colliding():
+	#if los_ray.is_colliding():
 		#var hit = los_ray.get_collider()
 		#print("DEBUG: EnemyMessager._check_los(): los_ray collided with %s" % hit.name)
-		pass
-	else:
-		if get_owner().name == "Enemy":
-			print("DEBUG: EnemyMessager._check_los(): Enemy los_ray didn't collide with anything")
+	#	pass
+	#else:
+	#	if get_owner().name == "Enemy":
+	#		print("DEBUG: EnemyMessager._check_los(): Enemy was targeting %s and los_ray didn't collide with anything" % target.get_owner().get_owner().name)
 	# - end debug
 	return not los_ray.is_colliding() # only collides with walls
