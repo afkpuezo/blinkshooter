@@ -57,17 +57,17 @@ _global_script_classes=[ {
 "base": "Unit",
 "class": "Enemy",
 "language": "GDScript",
-"path": "res://scripts/units/enemy.gd"
+"path": "res://scripts/units/enemy/enemy.gd"
 }, {
 "base": "Node2D",
 "class": "EnemyHealthBar",
 "language": "GDScript",
 "path": "res://scripts/ui/bars/enemy_health_bar.gd"
 }, {
-"base": "Area2D",
+"base": "Node2D",
 "class": "EnemyMessager",
 "language": "GDScript",
-"path": "res://scripts/units/enemy_messager.gd"
+"path": "res://scripts/units/enemy/enemy_messager.gd"
 }, {
 "base": "Mover",
 "class": "EnemyMover",
@@ -77,7 +77,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "EnemyWeaponBar",
 "language": "GDScript",
-"path": "res://scripts/units/enemy_weapon_bar.gd"
+"path": "res://scripts/units/enemy/enemy_weapon_bar.gd"
 }, {
 "base": "Area2D",
 "class": "HitBox",
@@ -107,7 +107,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "PlayerDetection",
 "language": "GDScript",
-"path": "res://scenes/units/enemy/player_detection.gd"
+"path": "res://scripts/units/enemy/player_detection.gd"
 }, {
 "base": "CanvasLayer",
 "class": "PlayerMonitorText",
@@ -123,6 +123,11 @@ _global_script_classes=[ {
 "class": "PlayerUI",
 "language": "GDScript",
 "path": "res://scripts/ui/player_ui.gd"
+}, {
+"base": "Area2D",
+"class": "Receiver",
+"language": "GDScript",
+"path": "res://scripts/units/enemy/receiver.gd"
 }, {
 "base": "ProgressBar",
 "class": "ResourceBar",
@@ -198,6 +203,7 @@ _global_script_class_icons={
 "PlayerMonitorText": "",
 "PlayerMover": "",
 "PlayerUI": "",
+"Receiver": "",
 "ResourceBar": "",
 "Reticle": "",
 "SawBladeAction": "",
@@ -225,6 +231,8 @@ CameraManager="*res://scripts/singletons/camera_manager.gd"
 
 [display]
 
+window/size/width=1366
+window/size/height=768
 window/size/resizable=false
 window/size/borderless=true
 
@@ -338,6 +346,8 @@ weapon_shoot={
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="Attack"
 2d_physics/layer_5="Floor"
+2d_physics/layer_6="EnemyMessagingSender"
+2d_physics/layer_7="EnemyMessagingReceiver"
 2d_navigation/layer_1="floor"
 
 [physics]

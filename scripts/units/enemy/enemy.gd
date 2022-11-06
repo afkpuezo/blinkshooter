@@ -161,7 +161,7 @@ func _update_knowledge_of_player(new_value: bool, player = null):
 
 ## A little redundant with the signal, but this method allows for other logic here if needed
 func _report_detected_player(player):
-	print("DEBUG: Enemy._report_detected_player() called")
+	#print("DEBUG: Enemy._report_detected_player() called")
 	emit_signal("detected_player", {'player': player})
 
 
