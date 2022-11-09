@@ -158,8 +158,8 @@ func _update_knowledge_of_player(new_value: bool, player = null):
 			# setting it here so that it's true before sending a message, to avoid
 			# a possible infinite loop of messaging back and forth forever
 			can_currently_see_player = true
-			if name == "Enemy3":
-				print("DEBUG: Enemy._update_knowledge_of_player(): Enemy3 can now see the player")
+			#if name == "Enemy3":
+			#	print("DEBUG: Enemy._update_knowledge_of_player(): Enemy3 can now see the player")
 			_report_detected_player(player)
 	else: # if new_value is false
 		if player_memory_timer.is_stopped():
@@ -177,6 +177,6 @@ func _report_detected_player(player):
 ## receive a message from another enemy about the player's location
 ## expects msg to include: 'player'
 func receive_enemy_message(msg):
-	if name == "Enemy3":
-		print("DEBUG: Enemy.receive_enemy_message() called in Enemy3")
+	#if name == "Enemy3":
+	#	print("DEBUG: Enemy.receive_enemy_message() called in Enemy3")
 	_update_knowledge_of_player(true, msg['player'])

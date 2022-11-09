@@ -1,71 +1,140 @@
 extends Node2D
 class_name EnemyMessager
-## When one enemy detects the player, it tells nearby enemies about it using this
+## When one enemy detects the player, it tells nearby enemyies about it using this
+## NOTE: this LOS solution will end up duplicating work between different
+## target and might be perfomance intensive. Might have to change to a smarter
+## system later
 
 
 signal received_message(msg)
 
 
-## other enemies whose receivers are inside our sender can hear our messages
+## other target whose receivers are inside our sender can hear our messages
 export var sender_radius := 128
 export var receiver_radius := 32
-const RAY_OFFSET := 1 # LOSRay is placed this far past the receiver radius
+
+
+## messaging related
+export var num_rays := 3
+
+var rays := {} # maps rays to true/false if they are in-use
+var current_targets := {} # maps target to the ray watching them. null if no ray
 
 
 # refs to nodes
 onready var sender: Area2D = $Sender
 onready var receiver: Area2D = $Receiver
-# rotate the pivot to keep the ray at a fixed radius
-onready var los_ray: RayCast2D = $Receiver/LOSRay
 
+
+# ----------
+# setup
+# ----------
 
 func _ready() -> void:
-	los_ray.force_raycast_update()
-	#los_ray.force_update_transform()
 	# set size of areas
 	sender.get_node("CollisionShape2D").shape.radius = sender_radius
 	receiver.get_node("CollisionShape2D").shape.radius = receiver_radius
+	# rays
+	_setup_rays()
 
 
-## only sends messages to other enemies whose receiving areas are within our
-## sender_radius AND in line-of-sight
+## i guess this should use parameters rather than having side effects but I
+## can't be bothered
+func _setup_rays():
+	for x in range(num_rays):
+		# no need to set enabled or cast_to in here
+		var ray = RayCast2D.new()
+		ray.exclude_parent = true
+		ray.collision_mask = 0b1 # walls
+		ray.collide_with_areas = true
+		ray.collide_with_bodies = true
+		rays[ray] = false
+		receiver.add_child(ray)
+
+
+# ----------
+# running methods
+# ----------
+
+
+func _process(_delta: float) -> void:
+	update_ray_cast_tos()
+
+
+## should be called periodically
+func update_ray_cast_tos():
+	for target in current_targets:
+		var ray = current_targets[target]
+		if ray:
+			ray.cast_to = ray.to_local(target.global_position)
+
+
+## if there's an unused ray, assigh it to this target. otherwise just keep track
+## of this new target for later
+## called from signal from Sender area
+## only adds if target can receive messages
+func add_target(target):
+	if not target.has_method("receive_message"):
+		return
+
+	var ray: RayCast2D = null
+
+	# look for a ray that's not in use
+	for temp_ray in rays:
+		if rays[temp_ray] == false:
+			ray = temp_ray
+			ray.enabled = true
+			break
+	# end for
+	_assign_ray_to_target(ray, target)
+
+
+## remove this target from current_targets. if it had an assigned ray, free that
+## ray.
+## if there was an enemy waiting for that ray, assign it to the waiting enemy
+## called from signal from Sender area
+func remove_target(target):
+	var ray: RayCast2D = current_targets[target]
+
+	var removed = current_targets.erase(target)
+	if not removed:
+		return
+
+	var unassign_ray = true
+
+	if ray:
+		# look for a replacement enemy
+		for target in current_targets:
+			if current_targets[target] == null:
+				_assign_ray_to_target(ray, target)
+				unassign_ray = false
+
+	if unassign_ray:
+		rays[ray] = false
+		ray.enabled = false
+# end remove_target()
+
+
+## handles null ray
+func _assign_ray_to_target(ray: RayCast2D, target):
+	if ray:
+		rays[ray] = true
+		ray.enabled = true
+		ray.cast_to = ray.to_local(target.position)
+		ray.force_raycast_update()
+	current_targets[target] = ray
+
+
+## send the given message to enemies within LOS
 func send_message(msg):
-	#print("DEBUG: EnemyMessager.send_message() called")
-	for area in sender.get_overlapping_areas():
-		# don't send a message to ourself
-		if area == receiver:
-			continue
-
-		if area.has_method("receive_message"):
-			if _check_los(area):
-				area.receive_message(msg)
-			else:
-				#print("DEBUG: EnemyMessager.send_message() check_los() call failed")
-				pass
-		else:
-			print("WARN: EnemyMessager.send_message() found overlapping area that doesn't have receive_message(): %s " % area.name)
+	for target in current_targets:
+		var ray: RayCast2D = current_targets[target]
+		if ray:
+			if not ray.is_colliding():
+				target.receive_message(msg)
 
 
 func receive_message(msg):
-	#print("DEBUG: EnemyMessager.received_message() called")
+	#print("DEBUG: targetMessager.received_message() called")
 	emit_signal("received_message", msg)
 
-
-## Returns true if we can raycast to the target area's location without hitting
-## any walls
-func _check_los(target) -> bool:
-	# cast_to has to be RELATIVE to the ray
-	los_ray.cast_to = target.global_position - los_ray.global_position
-	#los_ray.cast_to = los_ray.global_position - target.global_position
-	los_ray.force_raycast_update()
-	#los_ray.force_update_transform()
-	# - debug
-	#if los_ray.is_colliding():
-		#var hit = los_ray.get_collider()
-		#print("DEBUG: EnemyMessager._check_los(): los_ray collided with %s" % hit.name)
-	#	pass
-	#else:
-	#	if get_owner().name == "Enemy":
-	#		print("DEBUG: EnemyMessager._check_los(): Enemy was targeting %s and los_ray didn't collide with anything" % target.get_owner().get_owner().name)
-	# - end debug
-	return not los_ray.is_colliding() # only collides with walls

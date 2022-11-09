@@ -71,7 +71,7 @@ wait_time = 0.5
 one_shot = true
 
 [node name="EnemyMessager" parent="." instance=ExtResource( 11 )]
-sender_radius = 256
+sender_radius = 512
 
 [connection signal="detected_player" from="." to="EnemyMessager" method="send_message"]
 [connection signal="value_changed" from="CombatResources/Health" to="." method="_check_for_death"]

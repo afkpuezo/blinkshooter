@@ -11,6 +11,7 @@ radius = 32.0
 [node name="EnemyMessager" type="Node2D"]
 visible = false
 script = ExtResource( 1 )
+sender_radius = 256
 receiver_radius = 8
 
 [node name="Sender" type="Area2D" parent="."]
@@ -28,8 +29,6 @@ script = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Receiver"]
 shape = SubResource( 2 )
 
-[node name="LOSRay" type="RayCast2D" parent="Receiver"]
-enabled = true
-collide_with_areas = true
-
+[connection signal="area_entered" from="Sender" to="." method="add_target"]
+[connection signal="area_exited" from="Sender" to="." method="remove_target"]
 [connection signal="message_received" from="Receiver" to="." method="receive_message"]
