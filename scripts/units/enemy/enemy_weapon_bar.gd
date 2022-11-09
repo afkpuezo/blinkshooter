@@ -11,12 +11,21 @@ var actions := []
 var rng = RandomNumberGenerator.new()
 
 
+## TODO rework this
 func _ready() -> void:
 	rng.randomize()
 	for c in get_children():
 		if c is Action:
 			actions.append(c)
 			c.configure_user(user) # this method is probably bad
+
+
+## TODO rework this
+## takes care of childing it
+func add_action(action):
+	add_child(action)
+	actions.append(action)
+	action.configure_user(user)
 
 
 ## triggers a random (ready) action from the currently equipped actions

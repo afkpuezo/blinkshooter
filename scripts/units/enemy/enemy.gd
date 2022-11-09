@@ -35,6 +35,10 @@ onready var last_known_player_position: Vector2 = self.position
 var can_currently_see_player := false
 
 
+## an instance of this weapon is added to the weapon bar
+export(PackedScene) var starting_weapon_scene = load("res://scenes/weapons/enemy_gun.tscn")
+
+
 # -
 # ----------
 # from Node / basic util methods
@@ -44,6 +48,9 @@ var can_currently_see_player := false
 
 func _ready() -> void:
 	GameEvents.emit_signal("enemy_spawned", {'enemy': self})
+
+	if starting_weapon_scene:
+		weapon_bar.add_action(starting_weapon_scene.instance())
 
 
 func _physics_process(delta: float) -> void:

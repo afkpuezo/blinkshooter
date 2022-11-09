@@ -18,9 +18,6 @@ onready var receiver: Area2D = $Receiver
 # rotate the pivot to keep the ray at a fixed radius
 onready var los_ray: RayCast2D = $Receiver/LOSRay
 
-# debug
-var effect_scene = load("res://scenes/effects/teleport_effect.tscn")
-
 
 func _ready() -> void:
 	los_ray.force_raycast_update()
@@ -62,10 +59,6 @@ func _check_los(target) -> bool:
 	#los_ray.cast_to = los_ray.global_position - target.global_position
 	los_ray.force_raycast_update()
 	#los_ray.force_update_transform()
-	if get_owner().name == "Enemy":
-		print("DEBUG: EnemyMessager._check_los(): Enemy's target's owner is %s" % target.get_owner().get_owner().name)
-		Spawner.spawn_node(effect_scene.instance(), los_ray.global_position + los_ray.cast_to)
-		Spawner.spawn_node(effect_scene.instance(), los_ray.global_position)
 	# - debug
 	#if los_ray.is_colliding():
 		#var hit = los_ray.get_collider()
