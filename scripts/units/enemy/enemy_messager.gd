@@ -41,7 +41,7 @@ func _ready() -> void:
 ## i guess this should use parameters rather than having side effects but I
 ## can't be bothered
 func _setup_rays():
-	for x in range(num_rays):
+	for _x in range(num_rays):
 		# no need to set enabled or cast_to in here
 		var ray = RayCast2D.new()
 		ray.exclude_parent = true

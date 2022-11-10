@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/weapons/bullet_spawn_point.gd" type="Script" id=1]
 [ext_resource path="res://scripts/actions/action_bar.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scripts/hit_boxes/hurt_box.gd" type="Script" id=7]
 [ext_resource path="res://scripts/units/player.gd" type="Script" id=8]
 [ext_resource path="res://scenes/weapons/weapon_bar.gd" type="Script" id=9]
+[ext_resource path="res://scenes/units/death_animator.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Idle"
@@ -111,5 +112,8 @@ num_slots = 2
 
 [node name="Buffs" type="Node2D" parent="."]
 
+[node name="DeathAnimator" parent="." instance=ExtResource( 10 )]
+
+[connection signal="died" from="." to="DeathAnimator" method="on_death"]
 [connection signal="value_changed" from="CombatResources/Health" to="." method="_check_for_death"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_end"]

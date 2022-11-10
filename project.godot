@@ -49,6 +49,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/buffs/damage_cooldown.gd"
 }, {
+"base": "Node2D",
+"class": "DeathAnimator",
+"language": "GDScript",
+"path": "res://scripts/units/death_animator.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "DeathParticle",
+"language": "GDScript",
+"path": "res://scripts/units/death_particle.gd"
+}, {
 "base": "Action",
 "class": "DemoAction",
 "language": "GDScript",
@@ -188,6 +198,8 @@ _global_script_class_icons={
 "BulletSpawnPoint": "",
 "CombatResource": "",
 "DamageCooldown": "",
+"DeathAnimator": "",
+"DeathParticle": "",
 "DemoAction": "",
 "Enemy": "",
 "EnemyHealthBar": "",

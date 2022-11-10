@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/units/unit.gd" type="Script" id=1]
 [ext_resource path="res://scripts/units/movers/mover.gd" type="Script" id=2]
 [ext_resource path="res://scripts/movement_stats.gd" type="Script" id=3]
+[ext_resource path="res://scenes/units/death_animator.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -24,3 +25,7 @@ script = ExtResource( 2 )
 script = ExtResource( 3 )
 
 [node name="Buffs" type="Node2D" parent="."]
+
+[node name="DeathAnimator" parent="." instance=ExtResource( 4 )]
+
+[connection signal="died" from="." to="DeathAnimator" method="on_death"]

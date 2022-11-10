@@ -19,7 +19,8 @@ func spawn_node(
 
 	node.translate(spawn_position)
 	node.rotate(spawn_rotation)
-	add_child(node) # TODO: spawn them somewhere else?
+	#add_child(node) # TODO: spawn them somewhere else?
+	call_deferred("add_child", node)
 
 
 ## bullets have a specific method to deal with the "initial velocity" parameter
