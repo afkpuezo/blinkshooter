@@ -26,7 +26,6 @@ func configure_particle(
 	new_rotation_speed_deg,
 	new_modulation
 	):
-	print("configure_particle()")
 	move_speed = new_move_speed
 	sprite_rotation_speed_deg = new_rotation_speed_deg
 	modulation = new_modulation

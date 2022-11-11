@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/death_particle.png-3bd020a7a969b1c94c0091223c553c8f.stex"
+path="res://.import/shuriken.png-7e74c0385145f4ac625a9ffec8893d18.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/units/death_particle.png"
-dest_files=[ "res://.import/death_particle.png-3bd020a7a969b1c94c0091223c553c8f.stex" ]
+source_file="res://assets/effects/shuriken.png"
+dest_files=[ "res://.import/shuriken.png-7e74c0385145f4ac625a9ffec8893d18.stex" ]
 
 [params]
 
