@@ -10,8 +10,8 @@ export(PackedScene) var projectile_scene
 func do_action():
 	var projectile = projectile_scene.instance()
 	projectile.target = user
+	projectile.launch_to = TargetReticle.get_true_global_position()
 	Spawner.spawn_node(
 		projectile,
 		global_position
 	)
-	projectile.launch(TargetReticle.get_true_global_position())

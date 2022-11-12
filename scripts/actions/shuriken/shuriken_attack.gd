@@ -9,7 +9,11 @@ onready var movement_stats = $MovementStats
 
 export var sprite_rotation_speed_deg := 360
 var target # tries to return to the player
-#var launch_to: Vector2
+var launch_to: Vector2
+
+
+func _ready() -> void:
+	launch(launch_to)
 
 
 ## launches at full speed to the launch_to point, then follows the target until

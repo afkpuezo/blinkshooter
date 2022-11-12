@@ -16,6 +16,6 @@ func chase(unit, movement_stats: MovementStats, target_position):
 	accelerate_towards(
 		movement_stats,
 		get_physics_process_delta_time(),
-		unit.position.direction_to(target_position.position)
+		unit.position.direction_to(target_position)
 	)
 	unit.move_and_slide(movement_stats.velocity)

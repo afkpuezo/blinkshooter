@@ -19,9 +19,15 @@ func _ready() -> void:
 		action_slot_events[slot_template % (n + 1)] = n
 	# set up actions
 	for action in get_children():
-		if action.has_method("configure_user"):
-			action.configure_user(user)
-			actions.append(action)
+		add_action(action, true)
+
+
+func add_action(action, is_already_child = false):
+	if action.has_method("configure_user"):
+		if not is_already_child:
+			add_child(action)
+		action.configure_user(user)
+		actions.append(action)
 
 
 ## Triggers the equipped action corresponding to the button pressed

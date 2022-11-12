@@ -3,9 +3,10 @@ class_name Player
 ## primary player controller
 
 
-# movement speed values
-#onready var input_mover: InputMover = $InputMover
 onready var anim_player: AnimationPlayer = $AnimationPlayer
+
+export(Array, PackedScene) var starting_actions
+export(Array, PackedScene) var starting_weapons
 
 
 # ----------
@@ -18,12 +19,35 @@ static func is_player(n: Node): return n.has_method("_is_player_help")
 
 
 # ----------
-# instance-level methods
+# ready and setup methods
 # ----------
 
 
 func _ready() -> void:
+	_setup_starting_actions()
+	_setup_starting_weapons()
+
 	GameEvents.emit_signal("player_spawned", {'player': self})
+
+
+func _setup_starting_actions():
+	var action_bar = $ActionBar
+	for scene in starting_actions:
+		var action = scene.instance()
+		action_bar.add_action(action)
+
+
+func _setup_starting_weapons():
+	var weapon_bar = $WeaponBar
+	for scene in starting_weapons:
+		var weapon = scene.instance()
+		weapon_bar.add_weapon(weapon)
+
+
+# ----------
+# instance-level methods
+# ----------
+
 
 ## can't use the Player class in this script, looking for this method will do the same thing
 ## pretty gross

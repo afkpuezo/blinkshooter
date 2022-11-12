@@ -17,7 +17,8 @@ texture = ExtResource( 1 )
 
 [node name="MovementStats" type="Node" parent="."]
 script = ExtResource( 2 )
-MAX_SPEED = 1000
+ACCELERATION = 1000
+MAX_SPEED = 900
 
 [node name="ShurikenMover" type="Node2D" parent="."]
 script = ExtResource( 3 )

@@ -27,9 +27,15 @@ func _ready() -> void:
 		weapon_select_events[select_template % (n + 1)] = n
 	# set up weapons
 	for weapon in get_children():
-		if weapon.has_method("configure_user"):
-			weapon.configure_user(user)
-			weapons.append(weapon)
+		add_weapon(weapon, true)
+
+
+func add_weapon(weapon, is_already_child = false):
+	if weapon.has_method("configure_user"):
+		if not is_already_child:
+			add_child(weapon)
+		weapon.configure_user(user)
+		weapons.append(weapon)
 
 
 ## triggers the currently selected weapon if the button is held
