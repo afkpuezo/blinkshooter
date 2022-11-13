@@ -39,3 +39,14 @@ func _physics_process(delta: float) -> void:
 ## called by various causes
 func die():
 	queue_free()
+
+
+## signalled from mover
+## dies either way, but handles player vs wall differently
+func on_collision(col: KinematicCollision2D):
+	var collider = col.collider
+	#print("DEBUG: shuriken colliding with %s" % collider.name)
+	if Player.is_player(collider):
+		die()
+	else: # assume wall
+		die()
