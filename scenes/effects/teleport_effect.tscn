@@ -22,7 +22,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.5, 0.5 ), Vector2( 1.25, 1.25 ), Vector2( 0, 0 ) ]
 }
 
-[node name="teleport_effect" type="Node2D"]
+[node name="TeleportEffect" type="Node2D"]
 scale = Vector2( 1e-05, 1e-05 )
 script = ExtResource( 2 )
 

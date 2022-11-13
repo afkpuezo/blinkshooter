@@ -12,6 +12,8 @@ export var sprite_rotation_speed_deg := 360
 var target # tries to return to the player
 var launch_to: Vector2
 
+export(PackedScene) var explosion_scene
+
 
 func _ready() -> void:
 	launch(launch_to)
@@ -49,4 +51,5 @@ func on_collision(col: KinematicCollision2D):
 	if Player.is_player(collider):
 		die()
 	else: # assume wall
+		Spawner.spawn_node(explosion_scene.instance(), global_position)
 		die()

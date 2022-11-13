@@ -4,6 +4,7 @@ class_name DeathAnimator
 
 # vars
 
+export(PackedScene) var explosion_scene
 export(PackedScene) var particle_scene
 
 export var min_num_particles := 3
@@ -27,6 +28,10 @@ func _ready() -> void:
 
 
 func on_death():
+	# big central explosion
+	Spawner.spawn_node(explosion_scene.instance(), global_position)
+
+	# random particles
 	var num_particles: int = custom_randi_range(min_num_particles, max_num_particles)
 
 	for _x in range(num_particles):
