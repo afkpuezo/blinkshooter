@@ -34,7 +34,7 @@ script = ExtResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="Timer" type="Timer" parent="."]
+[node name="LifeTimer" type="Timer" parent="."]
 wait_time = 4.0
 one_shot = true
 autostart = true
@@ -53,4 +53,4 @@ script = ExtResource( 6 )
 shape = SubResource( 2 )
 
 [connection signal="collided" from="ShurikenMover" to="." method="on_collision"]
-[connection signal="timeout" from="Timer" to="." method="die"]
+[connection signal="timeout" from="LifeTimer" to="." method="time_out"]

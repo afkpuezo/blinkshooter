@@ -6,6 +6,12 @@ class_name ShurikenAction
 
 export(PackedScene) var projectile_scene
 
+## the projectile's speed may be modified in order to reach the original
+## mouse cursor location within this time
+export var launch_duration := 0.5
+
+export var min_launch_range := 64
+
 var spawn_point # bullet spawn point if the user has one
 
 
@@ -22,8 +28,18 @@ func do_action():
 	var projectile = projectile_scene.instance()
 	projectile.user = user
 	projectile.target = user
-	projectile.launch_to = TargetReticle.get_true_global_position()
+
+	# launch_to must be a minimum away
+	var launch_to = TargetReticle.get_true_global_position()
+	projectile.launch_to = launch_to
+
+
+	projectile.launch_duration = launch_duration
 	Spawner.spawn_node(
 		projectile,
 		spawn_point.global_position
 	)
+
+
+func can_do_action() -> bool:
+	return user.position.distance_to(TargetReticle.get_true_global_position()) >= min_launch_range
