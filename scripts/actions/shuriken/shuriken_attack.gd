@@ -9,8 +9,12 @@ onready var movement_stats = $MovementStats
 onready var sprite = $Sprite
 
 export var sprite_rotation_speed_deg := 360
+
+# there are passed from the Action
 var target # tries to return to the player
 var launch_to: Vector2
+var user setget ,get_user
+func get_user(): return user
 
 export(PackedScene) var explosion_scene
 

@@ -4,6 +4,8 @@ class_name SawBladeAttack
 ## action that uses/creates it
 
 var was_ready_called := false
+var user
+func get_user(): return user # KLUUUUUUDGE
 
 export var sprite_rotation_speed_deg = 720 # per second?
 

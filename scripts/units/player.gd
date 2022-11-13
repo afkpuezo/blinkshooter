@@ -18,6 +18,21 @@ export(Array, PackedScene) var starting_weapons
 static func is_player(n: Node): return n.has_method("_is_player_help")
 
 
+## Currently used by enemies to figure out who an attack came from.
+## I kludged it so that bullets have the player as a source but the attacks
+## from actions (such as the shuriken) point to the action node.
+## This method will handle both cases.
+## Returns the player node if it is the source of this attack, otherwise
+## null
+static func get_player_if_source(n: Node):
+	if is_player(n):
+		return n
+	elif n.has_method("get_user") and is_player(n.get_user()):
+		return n.get_user()
+	else:
+		return false
+
+
 # ----------
 # ready and setup methods
 # ----------

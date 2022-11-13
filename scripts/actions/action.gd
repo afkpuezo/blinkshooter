@@ -27,7 +27,9 @@ export(float, 0.0, 60.0) var cooldown = 0.1
 var _cooldown_timer: Timer
 var is_cooling_down := false
 
-var user: Unit # set from the outside
+var user: Unit setget set_user,get_user # set from the outside
+func set_user(new_user): user = new_user
+func get_user() -> Unit: return user # kludge
 
 
 # ----------

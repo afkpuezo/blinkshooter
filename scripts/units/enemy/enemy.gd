@@ -69,10 +69,11 @@ func _physics_process(delta: float) -> void:
 ## if shot by the player from far away, we know where they are
 func take_damage(amount: int, source):
 	#print("DEBUG: enemy take_damage() amount / source: %d / %s" % [amount, source.name])
-	if source.has_method("_is_player_help"):
+	var true_source = Player.get_player_if_source(source)
+	if true_source:
 		#last_known_player_position = source.global_position
-		_update_knowledge_of_player(true, source)
-	.take_damage(amount, source)
+		_update_knowledge_of_player(true, true_source)
+	.take_damage(amount, true_source)
 
 
 # -

@@ -14,12 +14,19 @@ func _ready() -> void:
 
 ## inherited from Action
 ##
+
+func set_user(new_user):
+	saw_blade_attack.user = new_user
+	.set_user(new_user)
+
+
 func do_action():
 	enable()
 	timer.start()
 
 
 func enable():
+	saw_blade_attack.user = user
 	add_child(saw_blade_attack)
 
 

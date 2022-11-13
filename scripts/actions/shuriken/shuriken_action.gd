@@ -20,6 +20,7 @@ func _setup_spawn_location():
 func do_action():
 	_setup_spawn_location()
 	var projectile = projectile_scene.instance()
+	projectile.user = user
 	projectile.target = user
 	projectile.launch_to = TargetReticle.get_true_global_position()
 	Spawner.spawn_node(
