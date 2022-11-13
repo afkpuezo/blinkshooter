@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/effects/saw_blade.png" type="Texture" id=1]
 [ext_resource path="res://scripts/actions/saw_blade/saw_blade_attack.gd" type="Script" id=2]
 [ext_resource path="res://scripts/hit_boxes/hit_box.gd" type="Script" id=3]
-
+[ext_resource path="res://scripts/actions/area_over_time_attack.gd" type="Script" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
@@ -66,12 +66,15 @@ anims/idle = SubResource( 1 )
 anims/spin = SubResource( 2 )
 "anims/spin (backup)" = SubResource( 4 )
 
-[node name="HitBox" type="Area2D" parent="."]
+[node name="AreaOverTimeAttack" type="Node2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="HitBox" type="Area2D" parent="AreaOverTimeAttack"]
 collision_layer = 8
 collision_mask = 4
 script = ExtResource( 3 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaOverTimeAttack/HitBox"]
 position = Vector2( 24, 0 )
 shape = SubResource( 3 )
 
