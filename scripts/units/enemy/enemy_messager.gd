@@ -109,9 +109,9 @@ func remove_target(target):
 				_assign_ray_to_target(ray, target)
 				unassign_ray = false
 
-	if unassign_ray:
-		rays[ray] = false
-		rays[ray].enabled = false
+		if unassign_ray:
+			rays[ray] = false
+			ray.enabled = false
 # end remove_target()
 
 

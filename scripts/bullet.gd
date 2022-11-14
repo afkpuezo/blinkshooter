@@ -4,12 +4,24 @@ class_name Bullet
 ## Flies forward until it hits something or times out
 
 
+# I've messed up something with the inheritence to make this necessary
+export var shape_x := 1
+export var shape_y := 1
+
+
 ## damage dealt to target when hit, set by weapon
 var damage = 1
 
 ## the unit responsible for shooting this bullet
 var source
 
+
+func _ready() -> void:
+	# I've messed up something with the inheritence to make this necessary
+	var col_shapes = [$CollisionShape2D, $HitBox/CollisionShape2D]
+	for col_shape in col_shapes:
+		col_shape.shape.extents.x = shape_x
+		col_shape.shape.extents.y = shape_y
 
 ## maybe overkill, but acts as interface between the outside and inside?
 func set_initial_velocity(initial_velocity: Vector2):

@@ -4,7 +4,8 @@
 [ext_resource path="res://scenes/bullets/bullet.tscn" type="PackedScene" id=2]
 
 [node name="BigBullet" instance=ExtResource( 2 )]
-scale = Vector2( 3, 3 )
+shape_x = 15
+shape_y = 9
 
 [node name="MovementStats" parent="." index="0"]
 MAX_SPEED = 200
