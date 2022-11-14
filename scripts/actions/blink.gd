@@ -70,12 +70,17 @@ func do_action():
 	# i'm leaving it for now
 	var target_position = cached_target_position
 
+	var destination_effect
 	if effect_scene:
 		Spawner.spawn_node(effect_scene.instance(), user.get_position())
-		Spawner.spawn_node(effect_scene.instance(), target_position, 0, 0.1)
+		destination_effect = effect_scene.instance()
+		Spawner.spawn_node(destination_effect, target_position, 0, 0.1)
 	user.do_teleport_animation()
 	yield(get_tree().create_timer(teleport_wait_time, false), "timeout")
 	user.set_position(target_position) # should this be global position?
+	if destination_effect:
+		yield(get_tree().create_timer(0.05, false), "timeout")
+		destination_effect.position = user.get_position()
 
 
 # ----------
