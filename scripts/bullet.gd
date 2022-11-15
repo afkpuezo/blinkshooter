@@ -4,10 +4,16 @@ class_name Bullet
 ## Flies forward until it hits something or times out
 
 
+export var has_explosion := true
+export(String, "white", "green", "red") var explosion_color = "white"
+export(String, "small", "normal") var explosion_size = "normal"
+export(String, "normal", "fast") var explosion_speed = "normal"
+
+export(PackedScene) var explosion_scene
+
 # I've messed up something with the inheritence to make this necessary
 export var shape_x := 1
 export var shape_y := 1
-
 
 ## damage dealt to target when hit, set by weapon
 var damage = 1
@@ -52,4 +58,15 @@ func _on_BulletMover_collided(_collision: KinematicCollision2D) -> void:
 
 ## EG if there are animations that play on hitting a unit or wall
 func _handle_hit():
+	if has_explosion:
+		var explosion = explosion_scene.instance()
+		if explosion.has_method("set_explosion_mode"):
+			explosion.set_explosion_mode(
+				explosion_color,
+				explosion_size,
+				explosion_speed
+			)
+
+		Spawner.spawn_node(explosion, global_position)
+	# end if explosion_mode
 	queue_free()

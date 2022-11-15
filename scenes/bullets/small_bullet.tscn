@@ -4,6 +4,9 @@
 [ext_resource path="res://scenes/bullets/bullet.tscn" type="PackedScene" id=2]
 
 [node name="SmallBullet" instance=ExtResource( 2 )]
+explosion_color = "green"
+explosion_size = "small"
+explosion_speed = "fast"
 shape_x = 7
 shape_y = 5
 

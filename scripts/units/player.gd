@@ -15,7 +15,8 @@ export(Array, PackedScene) var starting_weapons
 
 
 ## Overkill for now, might be more correct later if code gets more complicated
-static func is_player(n: Node): return n.has_method("_is_player_help")
+static func is_player(n: Node):
+	return n != null and n.has_method("_is_player_help")
 
 
 ## Currently used by enemies to figure out who an attack came from.

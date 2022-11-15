@@ -4,6 +4,8 @@
 [ext_resource path="res://scenes/bullets/bullet.tscn" type="PackedScene" id=2]
 
 [node name="EnemyBullet" instance=ExtResource( 2 )]
+explosion_color = "red"
+explosion_size = "small"
 
 [node name="MovementStats" parent="." index="0"]
 MAX_SPEED = 300
