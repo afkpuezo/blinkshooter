@@ -44,12 +44,20 @@ func _physics_process(delta: float) -> void:
 
 
 func time_out():
-	Spawner.spawn_node(explosion_scene.instance(), global_position)
-	die()
+	die(true)
 
 
 ## called by various causes
-func die():
+func die(has_explosion := false):
+	if has_explosion:
+		var explosion = explosion_scene.instance()
+		if explosion.has_method("set_explosion_mode"):
+			explosion.set_explosion_mode(
+				"green",
+				"normal",
+				"fast"
+			)
+		Spawner.spawn_node(explosion, global_position)
 	queue_free()
 
 
@@ -61,5 +69,16 @@ func on_collision(col: KinematicCollision2D):
 	if Player.is_player(collider):
 		die()
 	else: # assume wall
-		Spawner.spawn_node(explosion_scene.instance(), global_position)
-		die()
+		die(true)
+
+
+## triggered by signal, creates a small explosion
+func on_dealing_damage(_victim):
+	var explosion = explosion_scene.instance()
+	if explosion.has_method("set_explosion_mode"):
+		explosion.set_explosion_mode(
+			"green",
+			"small",
+			"fast"
+		)
+	Spawner.spawn_node(explosion, global_position)

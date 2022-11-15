@@ -6,6 +6,10 @@ class_name AreaOverTimeAttack
 ## a cooldown to pass before damaging that target again. Each target has a
 ## seperate cooldown
 
+
+signal dealt_damage(victim)
+
+
 export(PackedScene) var damage_cooldown_scene = load("res://scenes/buffs/damage_cooldown.tscn")
 
 export var damage := 30
@@ -51,5 +55,6 @@ func _handle_victim(victim):
 		dc.setup(self, damage_cooldown)
 		victim.add_buff(dc)
 		victim.take_damage(damage, owner)
+		emit_signal("dealt_damage", victim)
 
 
