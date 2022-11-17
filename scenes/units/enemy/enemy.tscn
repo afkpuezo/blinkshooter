@@ -11,7 +11,7 @@
 [ext_resource path="res://scenes/units/enemy/enemy_mover.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/units/enemy/player_detection.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/units/enemy/enemy_messager.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/units/death_animator.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/effects/death_animator.tscn" type="PackedScene" id=12]
 
 [node name="Enemy" type="KinematicBody2D"]
 collision_layer = 4
