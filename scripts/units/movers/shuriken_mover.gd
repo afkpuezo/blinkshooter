@@ -22,7 +22,6 @@ func launch_towards(
 	# account for acceleration in the opposite direction
 	var launch_speed = (distance / duration) + (movement_stats.ACCELERATION * duration * 0.5)
 	launch_speed = clamp(MIN_LAUNCH_SPEED, launch_speed, movement_stats.MAX_SPEED)
-	print("distance and launch_speed: %d, %d" % [distance, launch_speed])
 
 	movement_stats.velocity = launch_speed * unit.position.direction_to(target_position)
 	var col = unit.move_and_collide(movement_stats.velocity * get_physics_process_delta_time())

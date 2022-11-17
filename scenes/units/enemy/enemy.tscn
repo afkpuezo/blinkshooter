@@ -80,6 +80,7 @@ sender_radius = 512
 [node name="GibletsAnimator" parent="Animators" instance=ExtResource( 12 )]
 
 [node name="ExplosionAnimator" parent="Animators" instance=ExtResource( 13 )]
+sprite_z = "5"
 
 [connection signal="detected_player" from="." to="EnemyMessager" method="send_message"]
 [connection signal="died" from="." to="Animators/GibletsAnimator" method="on_death"]

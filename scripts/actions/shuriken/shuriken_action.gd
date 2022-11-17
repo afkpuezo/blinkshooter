@@ -32,9 +32,11 @@ func do_action():
 	# launch_to must be a minimum away
 	var launch_to = TargetReticle.get_true_global_position()
 	projectile.launch_to = launch_to
-
-
 	projectile.launch_duration = launch_duration
+
+	if user.has_signal("died"):
+		user.connect("died", projectile, "on_target_death")
+
 	Spawner.spawn_node(
 		projectile,
 		spawn_point.global_position

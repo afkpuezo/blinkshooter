@@ -118,6 +118,7 @@ num_slots = 2
 [node name="GibletsAnimator" parent="Animators" instance=ExtResource( 10 )]
 
 [node name="ExplosionAnimator" parent="Animators" instance=ExtResource( 11 )]
+sprite_z = "5"
 
 [connection signal="died" from="." to="Animators/GibletsAnimator" method="on_death"]
 [connection signal="died" from="." to="Animators/ExplosionAnimator" method="create_explosion"]

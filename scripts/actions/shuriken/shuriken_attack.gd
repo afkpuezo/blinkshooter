@@ -21,6 +21,8 @@ var launch_duration: float
 var user setget ,get_user
 func get_user(): return user
 
+var chase_position # remembers last position of target
+
 export(PackedScene) var explosion_scene
 
 
@@ -39,12 +41,19 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	shuriken_mover.chase(
+		self,
+		movement_stats,
+		get_chase_position()
+	)
+
+
+func get_chase_position():
 	if target:
-		shuriken_mover.chase(
-			self,
-			movement_stats,
-			target.position
-		)
+		chase_position = target.position
+	else:
+		print("get_chase_position: NOT target")
+	return chase_position
 
 
 func time_out():
@@ -69,5 +78,12 @@ func on_collision(col: KinematicCollision2D):
 
 
 ## triggered by signal, creates a small explosion
-func on_dealing_damage(_victim):
+func on_dealing_damage(_victim, _amount):
 	emit_signal("hit")
+
+
+## the shuriken retains a reference to the player, which can cause problems after the player has
+## been freed
+func on_target_death():
+	print("on_target_death called")
+	target = null

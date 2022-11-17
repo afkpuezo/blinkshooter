@@ -10,6 +10,7 @@ var red = preload("res://assets/effects/red_explosion.png")
 ## set this to another color before adding explosion to tree
 var sprite_color = white
 
+export var tiny_scale_multiplier := 0.35
 export var small_scale_multiplier := 0.5
 export var medium_scale_multiplier := 0.75
 export var fast_speed_mutiplier := 2.0
@@ -35,6 +36,8 @@ func set_explosion_mode(
 			sprite_color = red
 
 	match size:
+		"tiny":
+			scale *= tiny_scale_multiplier
 		"small":
 			scale *= small_scale_multiplier
 		"medium":
