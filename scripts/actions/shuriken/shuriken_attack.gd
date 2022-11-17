@@ -54,7 +54,7 @@ func die(has_explosion := false):
 		if explosion.has_method("set_explosion_mode"):
 			explosion.set_explosion_mode(
 				"green",
-				"normal",
+				"medium",
 				"fast"
 			)
 		Spawner.spawn_node(explosion, global_position)

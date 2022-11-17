@@ -11,6 +11,7 @@ var red = preload("res://assets/effects/red_explosion.png")
 var sprite_color = white
 
 export var small_scale_multiplier := 0.5
+export var medium_scale_multiplier := 0.75
 export var fast_speed_mutiplier := 2.0
 var anim_speed = 1.0
 
@@ -36,6 +37,8 @@ func set_explosion_mode(
 	match size:
 		"small":
 			scale *= small_scale_multiplier
+		"medium":
+			scale *= medium_scale_multiplier
 
 	match speed:
 		"fast":
