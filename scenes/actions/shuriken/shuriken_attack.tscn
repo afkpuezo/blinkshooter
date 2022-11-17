@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/effects/shuriken.png" type="Texture" id=1]
 [ext_resource path="res://scripts/movement_stats.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/effects/explosion.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scripts/hit_boxes/hit_box.gd" type="Script" id=6]
 [ext_resource path="res://scripts/actions/area_over_time_attack.gd" type="Script" id=7]
+[ext_resource path="res://scenes/effects/explosion_animator.tscn" type="PackedScene" id=8]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 22.0
@@ -52,6 +53,17 @@ script = ExtResource( 6 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaOverTimeAttack/HitBox"]
 shape = SubResource( 2 )
 
+[node name="DeathExplosionAnimator" parent="." instance=ExtResource( 8 )]
+explosion_color = "green"
+explosion_size = "medium"
+
+[node name="OnHitExplosionAnimator" parent="." instance=ExtResource( 8 )]
+explosion_color = "green"
+explosion_size = "small"
+explosion_speed = "fast"
+
+[connection signal="exploded" from="." to="DeathExplosionAnimator" method="create_explosion"]
+[connection signal="hit" from="." to="OnHitExplosionAnimator" method="create_explosion"]
 [connection signal="collided" from="ShurikenMover" to="." method="on_collision"]
 [connection signal="timeout" from="LifeTimer" to="." method="time_out"]
 [connection signal="dealt_damage" from="AreaOverTimeAttack" to="." method="on_dealing_damage"]

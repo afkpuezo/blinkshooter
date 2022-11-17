@@ -19,3 +19,5 @@ func create_explosion(explosion_position := global_position):
 	)
 
 	Spawner.spawn_node(explosion, explosion_position)
+
+

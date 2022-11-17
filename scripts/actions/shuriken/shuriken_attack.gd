@@ -3,6 +3,10 @@ class_name ShurikenAttack
 ## the actual shuriken projectile, NOT the Action that creates it
 
 
+signal exploded()
+signal hit()
+
+
 # child nodes
 onready var shuriken_mover: ShurikenMover = $ShurikenMover
 onready var movement_stats = $MovementStats
@@ -49,15 +53,6 @@ func time_out():
 
 ## called by various causes
 func die(has_explosion := false):
-	if has_explosion:
-		var explosion = explosion_scene.instance()
-		if explosion.has_method("set_explosion_mode"):
-			explosion.set_explosion_mode(
-				"green",
-				"medium",
-				"fast"
-			)
-		Spawner.spawn_node(explosion, global_position)
 	queue_free()
 
 
@@ -69,16 +64,10 @@ func on_collision(col: KinematicCollision2D):
 	if Player.is_player(collider):
 		die()
 	else: # assume wall
+		emit_signal("exploded")
 		die(true)
 
 
 ## triggered by signal, creates a small explosion
 func on_dealing_damage(_victim):
-	var explosion = explosion_scene.instance()
-	if explosion.has_method("set_explosion_mode"):
-		explosion.set_explosion_mode(
-			"green",
-			"small",
-			"fast"
-		)
-	Spawner.spawn_node(explosion, global_position)
+	emit_signal("hit")
