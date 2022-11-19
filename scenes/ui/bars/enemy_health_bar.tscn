@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://scripts/ui/bars/enemy_health_bar.gd" type="Script" id=1]
+[ext_resource path="res://scenes/ui/bars/enemy_health_bar.gd" type="Script" id=1]
 [ext_resource path="res://scenes/ui/bars/resource_bar.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/ui/enemy_health_bar_theme.tres" type="Theme" id=3]
+[ext_resource path="res://scenes/ui/bars/themes/enemy_health_bar_theme.tres" type="Theme" id=3]
 
 [node name="EnemyHealthBar" type="Node2D"]
 script = ExtResource( 1 )

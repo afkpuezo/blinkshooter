@@ -1,0 +1,89 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://scenes/hit_boxes/hit_box.gd" type="Script" id=1]
+[ext_resource path="res://scenes/units/enemies/enemy.gd" type="Script" id=2]
+[ext_resource path="res://scenes/hit_boxes/hurt_box.gd" type="Script" id=3]
+[ext_resource path="res://scenes/units/enemies/enemy.png" type="Texture" id=4]
+[ext_resource path="res://scenes/units/enemies/enemy_components/enemy_weapon_bar.gd" type="Script" id=5]
+[ext_resource path="res://scenes/movement/movement_stats.gd" type="Script" id=6]
+[ext_resource path="res://scenes/units/unit_components/bullet_spawn_point.gd" type="Script" id=7]
+[ext_resource path="res://scenes/units/unit_components/combat_resource.gd" type="Script" id=8]
+[ext_resource path="res://scenes/units/enemies/enemy_components/enemy_messager.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/units/enemies/enemy_components/player_detection.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/units/enemies/enemy_components/enemy_mover.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/effects/explosions/explosion_animator.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/effects/giblets_animator.tscn" type="PackedScene" id=13]
+
+[node name="Enemy" type="KinematicBody2D"]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource( 2 )
+minimum_chase_distance = 250
+too_close_threshold = 150
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 4 )
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource( 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitBox"]
+build_mode = 1
+polygon = PoolVector2Array( -10, 0, -27, -30, 24, 0, -27, 30 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 28, 0, -26, 30, -10, 0, -26, -30 )
+
+[node name="CombatResources" type="Node" parent="."]
+
+[node name="Health" type="Node" parent="CombatResources"]
+script = ExtResource( 8 )
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource( 3 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HurtBox"]
+build_mode = 1
+polygon = PoolVector2Array( -10, 0, -27, -30, 24, 0, -27, 30 )
+
+[node name="EnemyMover" parent="." instance=ExtResource( 11 )]
+
+[node name="MovementStats" type="Node" parent="."]
+script = ExtResource( 6 )
+
+[node name="BulletSpawnPoint" type="Node2D" parent="."]
+position = Vector2( 48, 0 )
+script = ExtResource( 7 )
+
+[node name="EnemyWeaponBar" type="Node2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="PlayerDetection" parent="." instance=ExtResource( 10 )]
+detection_range = 512
+num_rays = 5
+
+[node name="Buffs" type="Node2D" parent="."]
+
+[node name="PlayerMemoryTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="EnemyMessager" parent="." instance=ExtResource( 9 )]
+sender_radius = 512
+
+[node name="Animators" type="Node2D" parent="."]
+
+[node name="GibletsAnimator" parent="Animators" instance=ExtResource( 13 )]
+
+[node name="ExplosionAnimator" parent="Animators" instance=ExtResource( 12 )]
+sprite_z = "5"
+
+[connection signal="detected_player" from="." to="EnemyMessager" method="send_message"]
+[connection signal="died" from="." to="Animators/GibletsAnimator" method="on_death"]
+[connection signal="died" from="." to="Animators/ExplosionAnimator" method="create_explosion"]
+[connection signal="value_changed" from="CombatResources/Health" to="." method="_check_for_death"]
+[connection signal="received_message" from="EnemyMessager" to="." method="receive_enemy_message"]

@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scenes/ui/reticle/controller.gd" type="Script" id=1]
+[ext_resource path="res://scenes/ui/reticle/disabled.gd" type="Script" id=2]
+[ext_resource path="res://scenes/state_machine/state_machine.gd" type="Script" id=3]
+[ext_resource path="res://scenes/ui/reticle/reticle.gd" type="Script" id=4]
+[ext_resource path="res://scenes/ui/reticle/mouse.gd" type="Script" id=5]
+[ext_resource path="res://scenes/units/player/player_components/player_mover.gd" type="Script" id=6]
+[ext_resource path="res://scenes/movement/movement_stats.gd" type="Script" id=7]
+[ext_resource path="res://scenes/ui/reticle/reticle.png" type="Texture" id=8]
+
+[node name="Reticle" type="KinematicBody2D"]
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 8 )
+
+[node name="VisNodes" type="Node2D" parent="."]
+
+[node name="Up" type="VisibilityNotifier2D" parent="VisNodes"]
+rect = Rect2( -2, -2, 4, 4 )
+
+[node name="Right" type="VisibilityNotifier2D" parent="VisNodes"]
+rect = Rect2( -2, -2, 4, 4 )
+
+[node name="Down" type="VisibilityNotifier2D" parent="VisNodes"]
+rect = Rect2( -2, -2, 4, 4 )
+
+[node name="Left" type="VisibilityNotifier2D" parent="VisNodes"]
+rect = Rect2( -2, -2, 4, 4 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 3 )
+initial_state = NodePath("Mouse")
+
+[node name="Mouse" type="Node" parent="StateMachine"]
+script = ExtResource( 5 )
+
+[node name="Controller" type="Node" parent="StateMachine"]
+script = ExtResource( 1 )
+
+[node name="PlayerMover" type="Node2D" parent="StateMachine/Controller"]
+script = ExtResource( 6 )
+
+[node name="Disabled" type="Node" parent="StateMachine"]
+script = ExtResource( 2 )
+
+[node name="MovementStats" type="Node" parent="."]
+script = ExtResource( 7 )
+ACCELERATION = 800
+MAX_SPEED = 1200
+FRICTION = 1.0
