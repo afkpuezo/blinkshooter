@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/units/player/player_components/action_bar.gd" type="Script" id=1]
 [ext_resource path="res://scenes/hit_boxes/hurt_box.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://scenes/units/unit_components/combat_resource.gd" type="Script" id=9]
 [ext_resource path="res://scenes/effects/explosions/explosion_animator.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/effects/giblets_animator.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/units/player/player_components/pickup_grabber.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Idle"
@@ -120,7 +121,10 @@ num_slots = 2
 [node name="ExplosionAnimator" parent="Animators" instance=ExtResource( 10 )]
 sprite_z = "5"
 
+[node name="PickupGrabber" parent="." instance=ExtResource( 12 )]
+
 [connection signal="died" from="." to="Animators/GibletsAnimator" method="on_death"]
 [connection signal="died" from="." to="Animators/ExplosionAnimator" method="create_explosion"]
 [connection signal="value_changed" from="CombatResources/Health" to="." method="_check_for_death"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_end"]
+[connection signal="found_item" from="PickupGrabber" to="." method="_on_PickupGrabber_found_item"]

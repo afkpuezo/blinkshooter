@@ -96,3 +96,7 @@ func _on_animation_end(_old_anim):
 func take_damage(amount, source) -> void:
 	#print("DEBUG: enemy taking damage: %d" % amount)
 	.take_damage(amount, source)
+
+
+func _on_PickupGrabber_found_item(item) -> void:
+	print("DEBUG: Player._on_PickupGrabber_found_item() called with item: %s" % item.name)
