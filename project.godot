@@ -124,6 +124,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/units/movers/mover.gd"
 }, {
+"base": "Node2D",
+"class": "Pickup",
+"language": "GDScript",
+"path": "res://scripts/pickup.gd"
+}, {
 "base": "Unit",
 "class": "Player",
 "language": "GDScript",
@@ -243,6 +248,7 @@ _global_script_class_icons={
 "HurtBox": "",
 "MovementStats": "",
 "Mover": "",
+"Pickup": "",
 "Player": "",
 "PlayerDetection": "",
 "PlayerMonitorText": "",
@@ -396,6 +402,7 @@ weapon_shoot={
 2d_physics/layer_5="Floor"
 2d_physics/layer_6="EnemyMessagingSender"
 2d_physics/layer_7="EnemyMessagingReceiver"
+2d_physics/layer_8="Pickup"
 2d_navigation/layer_1="floor"
 
 [physics]
