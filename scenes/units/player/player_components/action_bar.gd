@@ -44,16 +44,13 @@ func add_action(new_action, is_already_child = false):
 		if 0 <= default_slot and default_slot < num_slots and actions[default_slot] == null:
 			actions[default_slot] = new_action
 			added = true
-			print("DEBUG: action added to default slot")
 
 	# if it couldn't go in the default slot, put it in the first empty slot
 	if not added:
 		if first_empty_slot != -1:
 			actions[first_empty_slot] = new_action
 			added = true
-			print("DEBUG: action added to first open slot")
 		else:
-			print("DEBUG: no room for action")
 			return
 
 	# setup

@@ -2,8 +2,10 @@ extends Node2D
 class_name WeaponBar
 ## Holds a set of weapons for the player
 ## Keeps track of the currently selected weapon, and fires it when the fire button is pressed
-## NOTE: should this be related to the weapon bar?
+## NOTE: should this be related to the action bar?
 ## NOTE: currently doesn't have a way to
+## NOTE: I'm once again noticing a lot of overlap with the action bar
+
 
 # msg args: "old_weapon_slot", "new_weapon_slot"
 signal weapon_changed(msg)
@@ -24,27 +26,59 @@ var is_firing = false
 func _ready() -> void:
 	# set up weapon selects
 	for n in range(0, num_slots):
+		weapons.append(null)
 		weapon_select_events[select_template % (n + 1)] = n
 	# set up weapons
 	for weapon in get_children():
 		add_weapon(weapon, true)
 
 
-func add_weapon(weapon, is_already_child = false):
-	if weapon.has_method("configure_user"):
-		if not is_already_child:
-			add_child(weapon)
-		weapon.configure_user(user)
-		weapons.append(weapon)
+func add_weapon(new_weapon, is_already_child = false):
+	var first_empty_slot := -1
+
+	# do we already have this kind of weapon?
+	for x in range(num_slots):
+		var existing_weapon = weapons[x]
+		if existing_weapon == null:
+			if first_empty_slot == -1:
+				first_empty_slot = x
+		elif existing_weapon.name == new_weapon.name:
+			return # maybe handle this differently?
+
+	var added := false
+
+	# can it go in its default slot?
+	if new_weapon.has_method("get_default_slot"):
+		var default_slot = new_weapon.get_default_slot()
+		if 0 <= default_slot and default_slot < num_slots and weapons[default_slot] == null:
+			weapons[default_slot] = new_weapon
+			added = true
+
+	# if it couldn't go in the default slot, put it in the first empty slot
+	if not added:
+		if first_empty_slot != -1:
+			weapons[first_empty_slot] = new_weapon
+			added = true
+		else:
+			print("DEBUG: no room for weapon")
+			return
+
+	# setup
+	if not is_already_child:
+		add_child(new_weapon)
+	if new_weapon.has_method("configure_user"):
+		new_weapon.configure_user(user)
 
 
 ## triggers the currently selected weapon if the button is held
 func _process(_delta: float) -> void:
 	if is_firing:
 		if weapons.size() == 0:
-			print("DEBUG: WeaponBar._process() not firing due to not having any weapons")
+			#print("DEBUG: WeaponBar._process() not firing due to not having any weapons")
+			pass
 		elif current_slot >= weapons.size():
-			print("DEBUG: WeaponBar._process() not firing due to current_slot being out of bounds (%d of %d)" % [current_slot, weapons.size()])
+			#print("DEBUG: WeaponBar._process() not firing due to current_slot being out of bounds (%d of %d)" % [current_slot, weapons.size()])
+			pass
 		else:
 			var current_weapon: Weapon = weapons[current_slot]
 			# warning-ignore:return_value_discarded
