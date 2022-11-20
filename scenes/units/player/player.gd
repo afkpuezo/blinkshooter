@@ -9,6 +9,11 @@ export(Array, PackedScene) var starting_actions
 export(Array, PackedScene) var starting_weapons
 
 
+# child nodes
+onready var action_bar: ActionBar = $ActionBar
+onready var weapon_bar: WeaponBar = $WeaponBar
+
+
 # ----------
 # static funcs
 # ----------
@@ -98,5 +103,14 @@ func take_damage(amount, source) -> void:
 	.take_damage(amount, source)
 
 
+## goes through the player since the item could be an action, weapon, or other
 func _on_PickupGrabber_found_item(item) -> void:
 	print("DEBUG: Player._on_PickupGrabber_found_item() called with item: %s" % item.name)
+	if Weapon.is_weapon(item):
+		print("DEBUG: added item is a weapon")
+	elif Action.is_action(item):
+		print("DEBUG: added item is an action")
+		action_bar.add_action(item)
+	else:
+		print("DEBUG: added item is neither a weapon or action. currently unhandled")
+		pass

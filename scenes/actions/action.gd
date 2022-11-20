@@ -27,6 +27,11 @@ export(float, 0.0, 60.0) var cooldown = 0.1
 var _cooldown_timer: Timer
 var is_cooling_down := false
 
+## used by the player when picking up this Action
+export var default_slot := -1 setget ,get_default_slot
+func get_default_slot() -> int: return default_slot
+
+# did I give this a setget for get_method()?
 var user: Unit setget set_user,get_user # set from the outside
 func set_user(new_user): user = new_user
 func get_user() -> Unit: return user # kludge
@@ -38,7 +43,8 @@ func get_user() -> Unit: return user # kludge
 
 
 ## probably overkill
-static func is_action(n: Node) -> bool: return n.has_method("trigger")
+static func is_action(n: Node) -> bool:
+	return n != null and n.has_method("trigger")
 
 
 # ----------

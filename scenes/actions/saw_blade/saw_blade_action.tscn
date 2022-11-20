@@ -7,6 +7,7 @@
 script = ExtResource( 1 )
 energy_cost = 40
 cooldown = 2.0
+default_slot = 1
 
 [node name="SawBladeAttack" parent="." instance=ExtResource( 2 )]
 

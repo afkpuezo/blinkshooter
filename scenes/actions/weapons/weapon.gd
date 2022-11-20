@@ -11,6 +11,15 @@ export var damage := 1
 
 
 # ----------
+# static methods
+# ----------
+
+
+static func is_weapon(w) -> bool:
+	return w.has_method("is_weapon")
+
+
+# ----------
 # virtual methods from Action
 # ----------
 
