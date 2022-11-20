@@ -33,7 +33,7 @@ var can_currently_see_player := false
 
 
 ## an instance of this weapon is added to the weapon bar
-export(PackedScene) var starting_weapon_scene = load("res://scenes/weapons/enemy_gun.tscn")
+export(PackedScene) var starting_weapon_scene = load("res://scenes/actions/weapons/enemy_gun/enemy_gun.tscn")
 
 
 # -

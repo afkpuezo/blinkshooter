@@ -52,14 +52,12 @@ func _ready() -> void:
 
 
 func _setup_starting_actions():
-	var action_bar = $ActionBar
 	for scene in starting_actions:
 		var action = scene.instance()
 		action_bar.add_action(action)
 
 
 func _setup_starting_weapons():
-	var weapon_bar = $WeaponBar
 	for scene in starting_weapons:
 		var weapon = scene.instance()
 		weapon_bar.add_weapon(weapon)
