@@ -34,27 +34,27 @@ tile_data = PoolIntArray( -327689, 0, 0, -327688, 0, 1, -327687, 0, 1, -327686, 
 [node name="Pickups" type="Node2D" parent="."]
 
 [node name="BlinkPickup" parent="Pickups" instance=ExtResource( 3 )]
-position = Vector2( -245, 420 )
+position = Vector2( 271, 317 )
 item_scene = ExtResource( 7 )
 sprite_texture = ExtResource( 13 )
 
 [node name="SawPickup" parent="Pickups" instance=ExtResource( 3 )]
-position = Vector2( -288, -119 )
+position = Vector2( 298, 235 )
 item_scene = ExtResource( 10 )
 sprite_texture = ExtResource( 1 )
 
 [node name="ShurikenPickup" parent="Pickups" instance=ExtResource( 3 )]
-position = Vector2( 110, -139 )
+position = Vector2( 291, 147 )
 item_scene = ExtResource( 15 )
 sprite_texture = ExtResource( 14 )
 
 [node name="SmallGunPickup" parent="Pickups" instance=ExtResource( 3 )]
-position = Vector2( 499, 192 )
+position = Vector2( 372, 223 )
 item_scene = ExtResource( 8 )
 sprite_texture = ExtResource( 16 )
 
 [node name="BigGunPickup" parent="Pickups" instance=ExtResource( 3 )]
-position = Vector2( 190, 540 )
+position = Vector2( 360, 317 )
 item_scene = ExtResource( 2 )
 sprite_texture = ExtResource( 18 )
 

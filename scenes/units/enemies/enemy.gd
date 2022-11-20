@@ -10,7 +10,6 @@ signal detected_player(msg)
 # -- child nodes
 onready var player_detection: PlayerDetection = $PlayerDetection
 ## when the enemy sees the player, this timer starts. As long as the timer is
-## running, can_currently_see_player can't be set to false.
 onready var player_memory_timer: Timer = $PlayerMemoryTimer
 
 onready var enemy_mover: EnemyMover = $EnemyMover # mover var declared in parent class - bad?
@@ -21,10 +20,7 @@ onready var weapon_bar: EnemyWeaponBar = $EnemyWeaponBar
 # seperate from radius of PlayerDetection, effectively the real threshold is the minimum of the two
 export var minimum_chase_distance := 200
 export var too_close_threshold := 100
-
-onready var chasing_squared = pow(minimum_chase_distance, 2) # faster calculations apparently
-onready var too_close_squared = pow(too_close_threshold, 2)
-onready var stop_looking_distance = pow(player_detection.detection_range, 2)
+export var minimum_chase_distance_no_player := 10
 
 # NOTE: has to be onready or our position will not be set yet!
 onready var last_known_player_position: Vector2 = self.position
@@ -113,7 +109,8 @@ func think(delta):
 
 	var moved = false
 
-	var distance_squared = position.distance_squared_to(last_known_player_position)
+	#var distance_squared = position.distance_squared_to(last_known_player_position)
+	var distance = position.distance_to(last_known_player_position)
 	self.look_at(last_known_player_position)
 
 	if is_player_detected:
@@ -121,16 +118,23 @@ func think(delta):
 			attack()
 		# only back away from the player, not an empty space where they used to
 		# be
-		if distance_squared < too_close_squared:
+		#if distance_squared < too_close_squared:
+		if distance < too_close_threshold:
 			enemy_mover.back_away_from(self, movement_stats, delta, last_known_player_position)
 			moved = true
 
 	# don't move to or stand still if we've already backed away from the player
 	if not moved:
-		if distance_squared > chasing_squared:
-			enemy_mover.move_to(self, movement_stats, delta, last_known_player_position)
-		else:
+		var too_close = false
+		if is_player_detected and distance < minimum_chase_distance:
+			too_close = true
+		elif (not is_player_detected) and distance < minimum_chase_distance_no_player:
+			too_close = true
+
+		if too_close:
 			enemy_mover.stand_still(self, movement_stats, delta)
+		else:
+			enemy_mover.move_to(self, movement_stats, delta, last_known_player_position)
 
 
 ## random equipped action
@@ -160,13 +164,9 @@ func _update_knowledge_of_player(new_value: bool, player = null):
 			# setting it here so that it's true before sending a message, to avoid
 			# a possible infinite loop of messaging back and forth forever
 			can_currently_see_player = true
-			#if name == "Enemy3":
-			#	print("DEBUG: Enemy._update_knowledge_of_player(): Enemy3 can now see the player")
 			_report_detected_player(player)
 	else: # if new_value is false
 		if player_memory_timer.is_stopped():
-			#if name == "Enemy":
-			#	print("DEBUG: %s 's player_memory_timer is stopped" % name)
 			can_currently_see_player = new_value
 
 
@@ -179,6 +179,4 @@ func _report_detected_player(player):
 ## receive a message from another enemy about the player's location
 ## expects msg to include: 'player'
 func receive_enemy_message(msg):
-	#if name == "Enemy3":
-	#	print("DEBUG: Enemy.receive_enemy_message() called in Enemy3")
 	_update_knowledge_of_player(true, msg['player'])
