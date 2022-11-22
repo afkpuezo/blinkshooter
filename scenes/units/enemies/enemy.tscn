@@ -20,6 +20,7 @@ collision_mask = 7
 script = ExtResource( 2 )
 minimum_chase_distance = 250
 too_close_threshold = 150
+minimum_chase_distance_no_player = 150
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 4 )
