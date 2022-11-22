@@ -18,6 +18,16 @@ export var weapon_shoot_event := "weapon_shoot"
 var is_firing = false
 
 
+# ----------
+# overriding from ActionBar
+# ----------
+
+
+## making this a function makes it override-able i guess?
+static func get_event_signal_string() -> String:
+	return "player_weapon_bar_tick"
+
+
 func setup_events():
 	for n in range(0, num_slots):
 		monitored_events[select_template % (n + 1)] = n
@@ -25,27 +35,6 @@ func setup_events():
 
 func add_weapon(w):
 	add_action(w)
-
-
-## triggers the currently selected weapon if the button is held
-func _process(_delta: float) -> void:
-	if is_firing:
-		if actions.size() == 0:
-			#print("DEBUG: WeaponBar._process() not firing due to not having any weapons")
-			pass
-		elif current_slot >= actions.size():
-			#print("DEBUG: WeaponBar._process() not firing due to current_slot being out of bounds (%d of %d)" % [current_slot, weapons.size()])
-			pass
-		else:
-			var current_weapon: Weapon = actions[current_slot]
-			if current_weapon != null:
-				# warning-ignore:return_value_discarded
-				current_weapon.trigger() # TODO: do something with result?
-
-
-## handles selecting current gun AND shooting
-func _unhandled_input(event: InputEvent) -> void:
-	handle_event(event)
 
 
 func handle_event(event: InputEvent) -> void:
@@ -62,6 +51,33 @@ func handle_event(event: InputEvent) -> void:
 			_change_slot(slot_num)
 			return
 		slot_num += 1
+
+
+## handles selecting current gun AND shooting
+#func _unhandled_input(event: InputEvent) -> void:
+#	handle_event(event)
+
+
+# ----------
+# new to WeaponBar
+# ----------
+
+
+## triggers the currently selected weapon if the button is held
+func _process(_delta: float) -> void:
+	if is_firing:
+		if actions.size() == 0:
+			#print("DEBUG: WeaponBar._process() not firing due to not having any weapons")
+			pass
+		elif current_slot >= actions.size():
+			#print("DEBUG: WeaponBar._process() not firing due to current_slot being out of bounds (%d of %d)" % [current_slot, weapons.size()])
+			pass
+		else:
+			var current_weapon: Weapon = actions[current_slot]
+			if current_weapon != null:
+				# warning-ignore:return_value_discarded
+				#current_weapon.trigger() # TODO: do something with result?
+				trigger_action(current_slot)
 
 
 ## if the given slot number is valid, change the current slot to it

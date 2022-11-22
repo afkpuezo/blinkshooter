@@ -27,15 +27,27 @@ signal player_spawned(msg)
 signal player_combat_resource_value_changed(msg)
 
 
+# RIP
+# warning-ignore:unused_signal
+signal player_died(msg)
+
+
 ## used when the player changes weapon slots
 ## msg fields: "old_weapon_slot", "new_weapon_slot"
 # warning-ignore:unused_signal
 signal player_changed_weapon(msg)
 
 
-# RIP
+## action/weapon bars emit these periodically.
+## msg fields: "actions" -> list of currently equipped actions/weapons where
+##		index is their slot number
+## each action has a sub-dict with these fields:
+##		"name", "cooldown_remaining", "can_be_triggered", "triggered_this_frame"
+## empty slots will have the name "empty"
 # warning-ignore:unused_signal
-signal player_died(msg)
+signal player_action_bar_tick(msg)
+# warning-ignore:unused_signal
+signal player_weapon_bar_tick(msg)
 
 
 # ----------

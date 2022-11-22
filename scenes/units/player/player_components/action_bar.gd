@@ -9,12 +9,27 @@ var actions := [] # seems better than constatly calling get_child
 export var num_slots := 3 # There's probably a better way to set this up
 var monitored_events := {}
 
+# arr of bools, matching index of actions.
+# might make sense to do a dict or something else instead?
+var actions_activated_this_frame := []
+
+
+## making this a function makes it override-able i guess?
+static func get_event_signal_string() -> String:
+	return "player_action_bar_tick"
+
+
+# ----------
+# setup
+# ----------
+
 
 func _ready() -> void:
 	setup_events()
 	# set up action slots
 	for _n in range(0, num_slots):
 		actions.append(null)
+		actions_activated_this_frame.append(false)
 	# set up actions
 	for action in get_children():
 		add_action(action, true)
@@ -24,6 +39,16 @@ func setup_events():
 	var slot_template := "action_slot_%d"
 	for n in range(0, num_slots):
 		monitored_events[slot_template % (n + 1)] = n
+
+
+# ----------
+# common with ActionBar and WeaponBar
+# ----------
+
+
+## Triggers the equipped action corresponding to the button pressed
+func _unhandled_input(event: InputEvent) -> void:
+	handle_event(event)
 
 
 func add_action(new_action, is_already_child = false):
@@ -64,9 +89,35 @@ func add_action(new_action, is_already_child = false):
 		new_action.configure_user(user)
 
 
-## Triggers the equipped action corresponding to the button pressed
-func _unhandled_input(event: InputEvent) -> void:
-	handle_event(event)
+## called by handle_event or other sources
+func trigger_action(slot: int):
+	actions[slot].trigger()
+	actions_activated_this_frame[slot] = true
+
+
+## called periodically to emit a GameEvent signal describing the status of the
+## currently equipped
+func emit_update_tick():
+	var actions_arr := []
+
+	for x in range(num_slots):
+		var action: Action = actions[x]
+		var sub := {}
+		if action == null:
+			sub['name'] = "empty"
+			sub['cooldown_remaining'] = 0.0
+			sub['can_be_triggered'] = false
+			sub['triggered_this_frame'] = false
+		else:
+			sub['name'] = action.name
+			sub['cooldown_remaining'] = action.get_remaining_cooldown()
+			sub['can_be_triggered'] = action.can_do_ation()
+			sub['triggered_this_frame'] = false
+
+
+# ----------
+# should be overridden by WeaponBar
+# ----------
 
 
 ## Putting this in a helper method lets WeaponBar override the logic. For some
@@ -76,4 +127,4 @@ func handle_event(event: InputEvent):
 		if event.is_action_pressed(ase):
 			var slot = monitored_events[ase]
 			if slot < len(actions) and Action.is_action(actions[slot]):
-				actions[slot].trigger()
+				trigger_action(slot)

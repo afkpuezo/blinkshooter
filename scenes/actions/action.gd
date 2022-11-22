@@ -108,7 +108,11 @@ func trigger() -> bool:
 
 ## Returns true if the cooldown timer is not currently running
 func is_cooldown_ready() -> bool:
-	return _cooldown_timer.time_left == 0 # NOTE: should this be .stopped()?
+	return get_remaining_cooldown() == 0 # NOTE: should this be .stopped()?
+
+
+func get_remaining_cooldown() -> float:
+	return _cooldown_timer.time_left
 
 
 ## Returns true if the user has the resources to pay for this action
