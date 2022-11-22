@@ -11,12 +11,7 @@ var monitored_events := {}
 
 # arr of bools, matching index of actions.
 # might make sense to do a dict or something else instead?
-var actions_activated_this_frame := []
-
-
-## making this a function makes it override-able i guess?
-static func get_event_signal_string() -> String:
-	return "player_action_bar_tick"
+var actions_triggered_this_frame := []
 
 
 # ----------
@@ -29,7 +24,7 @@ func _ready() -> void:
 	# set up action slots
 	for _n in range(0, num_slots):
 		actions.append(null)
-		actions_activated_this_frame.append(false)
+		actions_triggered_this_frame.append(false)
 	# set up actions
 	for action in get_children():
 		add_action(action, true)
@@ -44,6 +39,14 @@ func setup_events():
 # ----------
 # common with ActionBar and WeaponBar
 # ----------
+
+
+func _process(_delta: float) -> void:
+	during_process()
+	emit_update_tick()
+	# reset actions_triggered_this_frame
+	for x in range(num_slots):
+		actions_triggered_this_frame[x] = false
 
 
 ## Triggers the equipped action corresponding to the button pressed
@@ -87,12 +90,13 @@ func add_action(new_action, is_already_child = false):
 		#add_child(new_action)
 	if new_action.has_method("configure_user"):
 		new_action.configure_user(user)
+# end add_action()
 
 
 ## called by handle_event or other sources
 func trigger_action(slot: int):
 	actions[slot].trigger()
-	actions_activated_this_frame[slot] = true
+	actions_triggered_this_frame[slot] = true
 
 
 ## called periodically to emit a GameEvent signal describing the status of the
@@ -111,13 +115,30 @@ func emit_update_tick():
 		else:
 			sub['name'] = action.name
 			sub['cooldown_remaining'] = action.get_remaining_cooldown()
-			sub['can_be_triggered'] = action.can_do_ation()
-			sub['triggered_this_frame'] = false
+			sub['can_be_triggered'] = action.can_do_action()
+			sub['triggered_this_frame'] = actions_triggered_this_frame[x]
+
+		actions_arr.append(sub)
+	# end for x
+	var msg = {
+		'actions': actions_arr
+	}
+
+	GameEvents.emit_signal(
+		get_event_signal_string(),
+		msg
+	)
+# end emit_update_tick()
 
 
 # ----------
 # should be overridden by WeaponBar
 # ----------
+
+
+## making this a function makes it override-able i guess?
+static func get_event_signal_string() -> String:
+	return "player_action_bar_tick"
 
 
 ## Putting this in a helper method lets WeaponBar override the logic. For some
@@ -128,3 +149,11 @@ func handle_event(event: InputEvent):
 			var slot = monitored_events[ase]
 			if slot < len(actions) and Action.is_action(actions[slot]):
 				trigger_action(slot)
+
+
+## because logic handling actions_triggered_this_frame and emit_update_tick()
+## takes place in the _process() method, it's hard to extend that in WeaponBar
+## This method lets WeaponBar deal with firing without interfering with the
+## signalling logic
+func during_process():
+	pass

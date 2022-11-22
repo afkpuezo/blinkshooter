@@ -53,31 +53,22 @@ func handle_event(event: InputEvent) -> void:
 		slot_num += 1
 
 
-## handles selecting current gun AND shooting
-#func _unhandled_input(event: InputEvent) -> void:
-#	handle_event(event)
+## triggers the currently selected weapon if the button is held
+func during_process():
+	if is_firing:
+		if actions.size() == 0:
+			pass
+		elif current_slot >= actions.size():
+			pass
+		else:
+			var current_weapon: Weapon = actions[current_slot]
+			if current_weapon != null:
+				trigger_action(current_slot)
 
 
 # ----------
 # new to WeaponBar
 # ----------
-
-
-## triggers the currently selected weapon if the button is held
-func _process(_delta: float) -> void:
-	if is_firing:
-		if actions.size() == 0:
-			#print("DEBUG: WeaponBar._process() not firing due to not having any weapons")
-			pass
-		elif current_slot >= actions.size():
-			#print("DEBUG: WeaponBar._process() not firing due to current_slot being out of bounds (%d of %d)" % [current_slot, weapons.size()])
-			pass
-		else:
-			var current_weapon: Weapon = actions[current_slot]
-			if current_weapon != null:
-				# warning-ignore:return_value_discarded
-				#current_weapon.trigger() # TODO: do something with result?
-				trigger_action(current_slot)
 
 
 ## if the given slot number is valid, change the current slot to it
