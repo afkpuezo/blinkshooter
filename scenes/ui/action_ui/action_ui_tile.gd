@@ -2,17 +2,20 @@ extends Control
 class_name ActionUITile
 ## Component of the Action UI, this models a single equipped action
 
+var type: String = "Default"
 
 export(Color) var default_modulate
 export(Color) var not_ready_modulate
+
+export var no_cooldown_threshold := 0.1
 
 # keys are the actual node names of actions
 # NOTE: wasn't sure how/where to have this
 const types_to_textures = {
 	"Default": "res://scenes/ui/action_ui/assets/blink_item.png",
 	"Blink": "res://scenes/ui/action_ui/assets/blink_item.png",
-	"Sawblade": "res://scenes/ui/action_ui/assets/sawblade_item.png",
-	"Shuriken": "res://scenes/ui/action_ui/assets/shuriken_item.png",
+	"SawbladeAction": "res://scenes/ui/action_ui/assets/sawblade_item.png",
+	"ShurikenAction": "res://scenes/ui/action_ui/assets/shuriken_item.png",
 	"SmallGun": "res://scenes/ui/action_ui/assets/small_gun_item.png",
 	"BigGun": "res://scenes/ui/action_ui/assets/big_gun_item.png",
 }
@@ -26,16 +29,19 @@ onready var hotkey_label: Label = $HotkeyLabel
 
 func _ready() -> void:
 	set_can_trigger()
-
-
-## type should be the name of the Action node
-func set_type(type: String):
 	var texture
 	if type in types_to_textures:
 		texture = types_to_textures[type]
 	else:
 		texture = types_to_textures['Default']
-	sprite.texture = texture
+	sprite.texture = load(texture)
+
+
+## type should be the name of the Action node
+## should be called BEFORE ready
+func set_type(new_type: String):
+	type = new_type
+
 
 func set_can_trigger(value = true):
 	if value:
@@ -44,16 +50,17 @@ func set_can_trigger(value = true):
 		sprite.modulate = not_ready_modulate
 
 
-func set_triggered():
-	anim.stop()
-	anim.play("Triggered")
+func set_was_triggered(value = false):
+	if value:
+		anim.stop()
+		anim.play("Triggered")
 
 
 ## takes care of formatting
 func set_cooldown(amount: float):
 	var text: String
 
-	if amount == 0:
+	if amount == 0 or amount < no_cooldown_threshold:
 		text = ""
 	elif amount >= 1:
 		text = String(ceil(amount))

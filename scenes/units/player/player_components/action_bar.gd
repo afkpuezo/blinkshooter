@@ -110,13 +110,13 @@ func emit_update_tick():
 		if action == null:
 			sub['name'] = "empty"
 			sub['cooldown_remaining'] = 0.0
-			sub['can_be_triggered'] = false
-			sub['triggered_this_frame'] = false
+			sub['can_trigger'] = false
+			sub['was_triggered_this_frame'] = false
 		else:
 			sub['name'] = action.name
 			sub['cooldown_remaining'] = action.get_remaining_cooldown()
-			sub['can_be_triggered'] = action.can_do_action()
-			sub['triggered_this_frame'] = actions_triggered_this_frame[x]
+			sub['can_trigger'] = action.can_do_action() # should I rename can_do_action?
+			sub['was_triggered_this_frame'] = actions_triggered_this_frame[x]
 
 		actions_arr.append(sub)
 	# end for x
