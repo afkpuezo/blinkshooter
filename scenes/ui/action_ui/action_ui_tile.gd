@@ -14,7 +14,7 @@ export var no_cooldown_threshold := 0.1
 const types_to_textures = {
 	"Default": "res://scenes/ui/action_ui/assets/blink_item.png",
 	"Blink": "res://scenes/ui/action_ui/assets/blink_item.png",
-	"SawbladeAction": "res://scenes/ui/action_ui/assets/sawblade_item.png",
+	"SawBladeAction": "res://scenes/ui/action_ui/assets/sawblade_item.png",
 	"ShurikenAction": "res://scenes/ui/action_ui/assets/shuriken_item.png",
 	"SmallGun": "res://scenes/ui/action_ui/assets/small_gun_item.png",
 	"BigGun": "res://scenes/ui/action_ui/assets/big_gun_item.png",
@@ -28,7 +28,7 @@ onready var hotkey_label: Label = $HotkeyLabel
 
 
 func _ready() -> void:
-	set_can_trigger()
+	set_is_ready()
 	var texture
 	if type in types_to_textures:
 		texture = types_to_textures[type]
@@ -43,7 +43,7 @@ func set_type(new_type: String):
 	type = new_type
 
 
-func set_can_trigger(value = true):
+func set_is_ready(value = true):
 	if value:
 		sprite.modulate = default_modulate
 	else:

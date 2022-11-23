@@ -24,6 +24,10 @@
 [node name="PlayerUI" parent="." instance=ExtResource( 12 )]
 
 [node name="ActionUIPanel" parent="PlayerUI" instance=ExtResource( 17 )]
+margin_left = 350.0
+margin_top = 700.0
+margin_right = 350.0
+margin_bottom = 700.0
 
 [node name="Tiles" type="Node2D" parent="."]
 

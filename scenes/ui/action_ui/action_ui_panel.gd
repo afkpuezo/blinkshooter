@@ -3,8 +3,8 @@ class_name ActionUIPanel
 ## This scene manages the UI tiles for one type of action - Actions or Weapons
 
 # these should be set before _ready
-var is_action = true # what type is monitored, as opposed to weapon
-var center_justified = true # as opposed to left justified
+export var is_action = true # what type is monitored, as opposed to weapon
+export var center_justified = true # as opposed to left justified
 
 var tiles := []
 export var tile_spacing := 92 # measured between the CENTER of each tile
@@ -29,7 +29,7 @@ func _ready() -> void:
 ## if there is a new type, the tile placement will be re-calculated
 ## (assumes the relative order of existing actions will be maintained)
 ## msg format: 'actions': array of dictionaries, each dictionary has these fields:
-##		name, cooldown_remaining, can_trigger, was_triggered_this_frame
+##		name, cooldown_remaining, is_ready, was_triggered_this_frame
 func on_tick(msg):
 	var tile_index := 0
 	var actions: Array = msg['actions']
@@ -49,12 +49,12 @@ func on_tick(msg):
 			should_update_placement = true
 
 			tiles.insert(tile_index, tile)
-			tile_index += 1 # account for adding new tile
+			#tile_index += 1 # account for adding new tile
 			add_child(tile)
 
 		# this part happens whether or not the tile is new
 		tile.set_cooldown(action_dict['cooldown_remaining'])
-		tile.set_can_trigger(action_dict['can_trigger'])
+		tile.set_is_ready(action_dict['is_ready'])
 		tile.set_was_triggered(action_dict['was_triggered_this_frame'])
 
 		# clamping index makes sure that insert works
@@ -69,9 +69,16 @@ func on_tick(msg):
 func update_tile_placement():
 	# determine starting position based on justification and number of tiles
 	var are_tiles_even = len(tiles) % 2 == 0
-	var starting_x = (tile_spacing / -2) if are_tiles_even else 0
+	var x_pos = (tile_spacing / -2) if are_tiles_even else 0
 
 	if center_justified:
-		pass # TODO CONTINUE HERE
+		x_pos += (len(tiles) / -2) * tile_spacing
 	else:
-		pass
+		pass # don't change start
+
+	var base_x = rect_position[0]
+	for tile in tiles:
+		tile.rect_position = Vector2(base_x + x_pos, 0)
+		x_pos += tile_spacing
+
+
