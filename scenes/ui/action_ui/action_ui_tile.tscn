@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://scenes/pickups/assets/blink_item.png" type="Texture" id=1]
+[ext_resource path="res://scenes/ui/action_ui/assets/blink_item.png" type="Texture" id=1]
 [ext_resource path="res://scenes/ui/fonts/action_cooldown_font.tres" type="DynamicFont" id=2]
 [ext_resource path="res://scenes/ui/action_ui/action_ui_tile.gd" type="Script" id=3]
 [ext_resource path="res://scenes/ui/fonts/action_hotkey_font.tres" type="DynamicFont" id=4]

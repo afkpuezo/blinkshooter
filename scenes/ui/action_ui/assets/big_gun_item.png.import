@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sawblade_item.png-6cb63dfb689d6d8e9cf19ad61b6d6e2e.stex"
+path="res://.import/big_gun_item.png-7cf104afdb2338bddd30b9a760136418.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/pickups/assets/sawblade_item.png"
-dest_files=[ "res://.import/sawblade_item.png-6cb63dfb689d6d8e9cf19ad61b6d6e2e.stex" ]
+source_file="res://scenes/ui/action_ui/assets/big_gun_item.png"
+dest_files=[ "res://.import/big_gun_item.png-7cf104afdb2338bddd30b9a760136418.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/big_gun_item.png-cecb1bd13e9d231f3fc5184333147165.stex"
+path="res://.import/blink_item.png-d42a60f990879f612f5f72decb5c8a35.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/pickups/assets/big_gun_item.png"
-dest_files=[ "res://.import/big_gun_item.png-cecb1bd13e9d231f3fc5184333147165.stex" ]
+source_file="res://scenes/ui/action_ui/assets/blink_item.png"
+dest_files=[ "res://.import/blink_item.png-d42a60f990879f612f5f72decb5c8a35.stex" ]
 
 [params]
 

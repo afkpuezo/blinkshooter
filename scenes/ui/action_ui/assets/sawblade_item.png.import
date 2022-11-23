@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/blink_item.png-c6be9ddf6c477dd28a20f9dfd02a8556.stex"
+path="res://.import/sawblade_item.png-a7650e65e502675e6e885dd0c18640d2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/pickups/assets/blink_item.png"
-dest_files=[ "res://.import/blink_item.png-c6be9ddf6c477dd28a20f9dfd02a8556.stex" ]
+source_file="res://scenes/ui/action_ui/assets/sawblade_item.png"
+dest_files=[ "res://.import/sawblade_item.png-a7650e65e502675e6e885dd0c18640d2.stex" ]
 
 [params]
 
