@@ -85,4 +85,6 @@ explosion_size = "tiny"
 explosion_speed = "fast"
 sprite_z = "5"
 
+[connection signal="hit_at" from="." to="ExplosionAnimator" method="create_explosion"]
 [connection signal="tree_entered" from="." to="." method="start"]
+[connection signal="dealt_damage" from="AreaOverTimeAttack" to="." method="_on_AreaOverTimeAttack_dealt_damage"]

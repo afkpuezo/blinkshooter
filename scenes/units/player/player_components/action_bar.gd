@@ -95,8 +95,8 @@ func add_action(new_action, is_already_child = false):
 
 ## called by handle_event or other sources
 func trigger_action(slot: int):
-	actions[slot].trigger()
-	actions_triggered_this_frame[slot] = true
+	if actions[slot].trigger():
+		actions_triggered_this_frame[slot] = true
 
 
 ## called periodically to emit a GameEvent signal describing the status of the
