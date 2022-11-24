@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://scenes/actions/saw_blade/saw_blade_action.gd" type="Script" id=1]
+[ext_resource path="res://scenes/actions/saw_blade/saw_blade.gd" type="Script" id=1]
 [ext_resource path="res://scenes/actions/saw_blade/saw_blade_attack.tscn" type="PackedScene" id=2]
 
-[node name="SawBladeAction" type="Node2D"]
+[node name="SawBlade" type="Node2D"]
 script = ExtResource( 1 )
 energy_cost = 40
 cooldown = 2.0

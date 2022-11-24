@@ -1,5 +1,5 @@
 extends Action
-class_name SawBladeAction
+class_name SawBlade
 ## Creates a saw blade in front of the player character for a brief amount of time, to serve
 ## as a melee attack
 

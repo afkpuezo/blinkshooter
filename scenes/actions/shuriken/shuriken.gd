@@ -1,5 +1,5 @@
 extends Action
-class_name ShurikenAction
+class_name Shuriken
 ## launches a shuriken projectile that moves like a boomerang and chases the
 ## player
 

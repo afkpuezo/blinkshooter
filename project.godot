@@ -185,9 +185,9 @@ _global_script_classes=[ {
 "path": "res://scenes/ui/reticle/reticle.gd"
 }, {
 "base": "Action",
-"class": "SawBladeAction",
+"class": "SawBlade",
 "language": "GDScript",
-"path": "res://scenes/actions/saw_blade/saw_blade_action.gd"
+"path": "res://scenes/actions/saw_blade/saw_blade.gd"
 }, {
 "base": "Node2D",
 "class": "SawBladeAttack",
@@ -195,9 +195,9 @@ _global_script_classes=[ {
 "path": "res://scenes/actions/saw_blade/saw_blade_attack.gd"
 }, {
 "base": "Action",
-"class": "ShurikenAction",
+"class": "Shuriken",
 "language": "GDScript",
-"path": "res://scenes/actions/shuriken/shuriken_action.gd"
+"path": "res://scenes/actions/shuriken/shuriken.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "ShurikenAttack",
@@ -275,9 +275,9 @@ _global_script_class_icons={
 "Receiver": "",
 "ResourceBar": "",
 "Reticle": "",
-"SawBladeAction": "",
+"SawBlade": "",
 "SawBladeAttack": "",
-"ShurikenAction": "",
+"Shuriken": "",
 "ShurikenAttack": "",
 "ShurikenMover": "",
 "State": "",
