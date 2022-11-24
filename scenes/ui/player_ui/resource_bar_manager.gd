@@ -1,7 +1,6 @@
-extends CanvasLayer
-class_name PlayerUI
-## a slightly more sophisticated UI for the player's resources than the
-## old MonitorText
+extends Control
+class_name ResourceBarManager
+## manages health and energy bars for the PlayerUI
 
 var bars := {}
 
@@ -14,8 +13,9 @@ func _ready() -> void:
 		"handle_resource_change"
 	)
 	# set up bars vars
-	bars[CombatResource.Type.HEALTH] = $ResourceBars/HealthBar
-	bars[CombatResource.Type.ENERGY] = $ResourceBars/EnergyBar
+	bars[CombatResource.Type.HEALTH] = $HealthBar
+	bars[CombatResource.Type.ENERGY] = $EnergyBar
+
 
 func handle_resource_change(args: Dictionary):
 	var incoming_type = args['type']
