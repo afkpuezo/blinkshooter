@@ -26,6 +26,7 @@ tracks/0/keys = {
 }
 
 [node name="ActionUITile" type="Control"]
+mouse_filter = 2
 script = ExtResource( 2 )
 default_modulate = Color( 1, 1, 1, 1 )
 not_ready_modulate = Color( 1, 0, 0, 1 )

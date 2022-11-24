@@ -4,6 +4,7 @@ class_name ResourceBarManager
 
 var bars := {}
 
+
 func _ready() -> void:
 	# get signals about changes
 	# warning-ignore:return_value_discarded

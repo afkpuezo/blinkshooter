@@ -12,12 +12,12 @@ export var no_cooldown_threshold := 0.1
 # keys are the actual node names of actions
 # NOTE: wasn't sure how/where to have this, exporting a dict is weird
 const types_to_textures = {
-	"Default": "res://scenes/ui/action_ui/assets/blink_item.png",
-	"Blink": "res://scenes/ui/action_ui/assets/blink_item.png",
-	"SawBlade": "res://scenes/ui/action_ui/assets/sawblade_item.png",
-	"Shuriken": "res://scenes/ui/action_ui/assets/shuriken_item.png",
-	"SmallGun": "res://scenes/ui/action_ui/assets/small_gun_item.png",
-	"BigGun": "res://scenes/ui/action_ui/assets/big_gun_item.png",
+	"Default": "res://scenes/ui/player_ui/action_ui/assets/blink_item.png",
+	"Blink": "res://scenes/ui/player_ui/action_ui/assets/blink_item.png",
+	"SawBlade": "res://scenes/ui/player_ui/action_ui/assets/sawblade_item.png",
+	"Shuriken": "res://scenes/ui/player_ui/action_ui/assets/shuriken_item.png",
+	"SmallGun": "res://scenes/ui/player_ui/action_ui/assets/small_gun_item.png",
+	"BigGun": "res://scenes/ui/player_ui/action_ui/assets/big_gun_item.png",
 }
 
 # child nodes
@@ -40,7 +40,7 @@ func _ready() -> void:
 ## type should be the name of the Action node
 ## should be called BEFORE ready
 func set_type(new_type: String):
-	print("set_type called with new_type: %s" % new_type)
+	#print("set_type called with new_type: %s" % new_type)
 	type = new_type
 
 
