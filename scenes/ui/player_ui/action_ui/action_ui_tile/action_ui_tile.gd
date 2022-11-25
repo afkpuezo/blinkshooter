@@ -29,19 +29,19 @@ onready var hotkey_label: Label = $HotkeyLabel
 
 func _ready() -> void:
 	set_is_ready()
+
+
+## type should be the name of the Action node
+## should be called AFTER ready
+func set_type(new_type: String):
+	#print("set_type called with new_type: %s" % new_type)
+	type = new_type
 	var texture
 	if type in types_to_textures:
 		texture = types_to_textures[type]
 	else:
 		texture = types_to_textures['Default']
 	texture_rect.texture = load(texture)
-
-
-## type should be the name of the Action node
-## should be called BEFORE ready
-func set_type(new_type: String):
-	#print("set_type called with new_type: %s" % new_type)
-	type = new_type
 
 
 func set_is_ready(value = true):
@@ -73,4 +73,5 @@ func set_cooldown(amount: float):
 
 
 func set_hotkey(text):
+	print("set_hotkey called with %s" % text)
 	hotkey_label.text = text

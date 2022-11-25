@@ -6,6 +6,7 @@
 [node name="ResourceBar" type="ProgressBar"]
 margin_right = 265.0
 margin_bottom = 92.0
+mouse_filter = 2
 theme = ExtResource( 2 )
 value = 100.0
 percent_visible = false

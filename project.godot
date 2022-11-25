@@ -19,10 +19,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/units/player/player_components/action_bar.gd"
 }, {
-"base": "Control",
-"class": "ActionUIPanel",
+"base": "HBoxContainer",
+"class": "ActionUIContainer",
 "language": "GDScript",
-"path": "res://scenes/ui/player_ui/action_ui/action_ui_panel/action_ui_panel.gd"
+"path": "res://scenes/ui/player_ui/action_ui/action_ui_container/action_ui_container.gd"
 }, {
 "base": "Control",
 "class": "ActionUITile",
@@ -242,7 +242,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Action": "",
 "ActionBar": "",
-"ActionUIPanel": "",
+"ActionUIContainer": "",
 "ActionUITile": "",
 "AreaOverTimeAttack": "",
 "Blink": "",
