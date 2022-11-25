@@ -115,7 +115,7 @@ func emit_update_tick():
 		else:
 			sub['name'] = action.name
 			sub['cooldown_remaining'] = action.get_remaining_cooldown()
-			sub['is_ready'] = action.is_ready() # should I rename can_do_action?
+			sub['is_ready'] = action.is_ready(true) # ignore cooldown for this
 			sub['was_triggered_this_frame'] = actions_triggered_this_frame[x]
 
 		actions_arr.append(sub)

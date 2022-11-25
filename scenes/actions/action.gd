@@ -124,9 +124,9 @@ func can_user_pay() -> bool:
 
 
 ## returns true if ALL conditions for using the action are true
-func is_ready() -> bool:
-	return is_cooldown_ready() and can_user_pay() and can_do_action()
-
+## the ignore_cooldown param is used for ui stuff
+func is_ready(ignore_cooldown = false) -> bool:
+	return (is_cooldown_ready() or ignore_cooldown) and can_user_pay() and can_do_action()
 
 
 # ----------

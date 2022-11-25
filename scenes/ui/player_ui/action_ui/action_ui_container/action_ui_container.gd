@@ -5,8 +5,7 @@ class_name ActionUIContainer
 
 
 # these should be set before _ready
-export var is_action = true # what type is monitored, as opposed to weapon
-export var center_justified = true # as opposed to left justified
+export var is_weapon = false # what type is monitored, as opposed to just actions
 
 var tiles := []
 export var tile_scale_factor := 1.0
@@ -23,7 +22,7 @@ export(PackedScene) var tile_scene
 
 func _ready() -> void:
 	GameEvents.connect(
-		action_event if is_action else weapon_event,
+		weapon_event if is_weapon else action_event,
 		self,
 		"on_tick"
 	)
