@@ -41,6 +41,7 @@ margin_left = 683.0
 margin_top = 55.0
 margin_right = 683.0
 margin_bottom = 55.0
+tile_scale_factor = 1.25
 
 [node name="WeaponUIContainer" parent="ActionUI" instance=ExtResource( 4 )]
 anchor_left = 0.045
@@ -49,4 +50,4 @@ anchor_right = 0.106
 anchor_bottom = 0.144
 grow_horizontal = 1
 alignment = 0
-is_weapon = true
+is_weapon_bar = true

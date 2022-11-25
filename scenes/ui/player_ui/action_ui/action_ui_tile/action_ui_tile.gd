@@ -73,5 +73,11 @@ func set_cooldown(amount: float):
 
 
 func set_hotkey(text):
-	print("set_hotkey called with %s" % text)
-	hotkey_label.text = text
+	hotkey_label.text = String(text)
+
+
+func set_min_size_scale_factor(factor):
+	for n in [self, texture_rect, cooldown_label, hotkey_label]:
+		n.rect_min_size = n.rect_min_size * factor
+		if n == self and factor < 1:
+			print("reverted rect_min_size to %s" % n.rect_min_size)

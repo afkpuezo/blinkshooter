@@ -2,13 +2,7 @@ extends ActionBar
 class_name WeaponBar
 ## Holds a set of weapons for the player
 ## Keeps track of the currently selected weapon, and fires it when the fire button is pressed
-## NOTE: should this be related to the action bar?
-## NOTE: currently doesn't have a way to
-## NOTE: I'm once again noticing a lot of overlap with the action bar
 
-
-# msg args: "old_weapon_slot", "new_weapon_slot"
-signal weapon_changed(msg)
 
 var current_slot := 0
 
@@ -66,6 +60,14 @@ func during_process():
 				trigger_action(current_slot)
 
 
+## Adds an extra field ('is_current_slot') to the message including whether or
+## not the weapon is the currently selected
+func emit_update_tick_help(action_index: int) -> Dictionary:
+	var sub := .emit_update_tick_help(action_index)
+	sub['is_current_slot'] = action_index == current_slot
+	return sub
+
+
 # ----------
 # new to WeaponBar
 # ----------
@@ -73,17 +75,10 @@ func during_process():
 
 ## if the given slot number is valid, change the current slot to it
 ## returns true if actually changed
-## NOTE: placeholder
 func _change_slot(slot_num: int) -> bool:
 	if slot_num < 0 or slot_num > num_slots:
 		return false
 	else:
-		var msg_args = {
-				"old_weapon_slot": current_slot,
-				"new_weapon_slot": slot_num,
-			}
-		emit_signal("weapon_changed", msg_args)
-		GameEvents.emit_signal("player_changed_weapon", msg_args)
 		current_slot = slot_num
 		return true
 

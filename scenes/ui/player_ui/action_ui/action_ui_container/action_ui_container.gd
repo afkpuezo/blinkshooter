@@ -5,12 +5,16 @@ class_name ActionUIContainer
 
 
 # these should be set before _ready
-export var is_weapon = false # what type is monitored, as opposed to just actions
+export var is_weapon_bar = false # what type is monitored, as opposed to just actions
 
 var tiles := []
 export var tile_scale_factor := 1.0
-onready var tile_scale_vector := Vector2(tile_scale_factor, tile_scale_factor)
 var should_update_tile_order := false
+
+# these are only used when covering weapons
+export var current_weapon_scale_factor := 1.10
+onready var revert_current_weapon_scale_factor := 1.0 / current_weapon_scale_factor
+var current_weapon_index := 0
 
 export var action_event := "player_action_bar_tick"
 export var weapon_event := "player_weapon_bar_tick"
@@ -22,7 +26,7 @@ export(PackedScene) var tile_scene
 
 func _ready() -> void:
 	GameEvents.connect(
-		weapon_event if is_weapon else action_event,
+		weapon_event if is_weapon_bar else action_event,
 		self,
 		"on_tick"
 	)
@@ -52,7 +56,12 @@ func on_tick(msg):
 		# this part happens whether or not the tile is new
 		tile.set_cooldown(action_dict['cooldown_remaining'])
 		tile.set_is_ready(action_dict['is_ready'])
-		tile.set_was_triggered(action_dict['was_triggered_this_frame'])
+
+		if not is_weapon_bar:
+			tile.set_was_triggered(action_dict['was_triggered_this_frame'])
+		else:
+			if action_dict['is_current_slot']:
+				manage_weapon_slot(action_index, tile)
 
 		# clamping index makes sure that insert works
 		tile_index += 1
@@ -69,9 +78,13 @@ func make_new_tile(type: String, tile_index: int, action_index: int) -> ActionUI
 	var tile = tile_scene.instance()
 	add_child(tile)
 
-	tile.set_hotkey(hotkeys[action_index])
+	if is_weapon_bar:
+		tile.set_hotkey(action_index + 1)
+	else:
+		tile.set_hotkey(hotkeys[action_index])
+
 	tile.set_type(type)
-	tile.rect_scale = tile_scale_vector
+	tile.set_min_size_scale_factor(tile_scale_factor)
 	tiles.insert(tile_index, tile)
 	return tile
 
@@ -83,3 +96,21 @@ func update_tile_order():
 		remove_child(tile)
 	for tile in tiles:
 		add_child(tile)
+
+
+## marks the new current weapon and reverts the old one
+func manage_weapon_slot(action_index: int, tile: ActionUITile):
+	if action_index == current_weapon_index:
+		return
+	else:
+		# reset the old one
+		var old_tile: ActionUITile = tiles[current_weapon_index]
+		old_tile.set_min_size_scale_factor(revert_current_weapon_scale_factor)
+		# mark the new one
+		current_weapon_index = action_index
+		if tile != null:
+			if current_weapon_index == 0:
+				print("WHY") # TODO fix
+				tile.set_min_size_scale_factor(current_weapon_scale_factor)
+			else:
+				tile.set_min_size_scale_factor(current_weapon_scale_factor)

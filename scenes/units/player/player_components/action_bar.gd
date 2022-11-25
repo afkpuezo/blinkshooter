@@ -94,9 +94,12 @@ func add_action(new_action, is_already_child = false):
 
 
 ## called by handle_event or other sources
+## TODO look at actions_triggered_this_frame
 func trigger_action(slot: int):
-	if actions[slot].trigger():
-		actions_triggered_this_frame[slot] = true
+	#if actions[slot].trigger():
+	#	actions_triggered_this_frame[slot] = true
+	actions[slot].trigger()
+	actions_triggered_this_frame[slot] = true
 
 
 ## called periodically to emit a GameEvent signal describing the status of the
@@ -104,19 +107,9 @@ func trigger_action(slot: int):
 func emit_update_tick():
 	var actions_arr := []
 
-	for x in range(num_slots):
-		var action: Action = actions[x]
-		var sub := {}
-		if action == null:
-			sub['name'] = "empty"
-			sub['cooldown_remaining'] = 0.0
-			sub['is_ready'] = false
-			sub['was_triggered_this_frame'] = false
-		else:
-			sub['name'] = action.name
-			sub['cooldown_remaining'] = action.get_remaining_cooldown()
-			sub['is_ready'] = action.is_ready(true) # ignore cooldown for this
-			sub['was_triggered_this_frame'] = actions_triggered_this_frame[x]
+	for action_index in range(num_slots):
+		var action: Action = actions[action_index]
+		var sub := emit_update_tick_help(action_index)
 
 		actions_arr.append(sub)
 	# end for x
@@ -157,3 +150,22 @@ func handle_event(event: InputEvent):
 ## signalling logic
 func during_process():
 	pass
+
+
+## helper method for the emit_update_tick() method, creates the sub-dictionary
+## representing a single action in the final signal
+## (making this a helper lets WeaponBar override it to include the current slot)
+func emit_update_tick_help(action_index: int) -> Dictionary:
+	var action: Action = actions[action_index]
+	var sub := {}
+	if action == null:
+		sub['name'] = "empty"
+		sub['cooldown_remaining'] = 0.0
+		sub['is_ready'] = false
+		sub['was_triggered_this_frame'] = false
+	else:
+		sub['name'] = action.name
+		sub['cooldown_remaining'] = action.get_remaining_cooldown()
+		sub['is_ready'] = action.is_ready(true) # ignore cooldown for this
+		sub['was_triggered_this_frame'] = actions_triggered_this_frame[action_index]
+	return sub
