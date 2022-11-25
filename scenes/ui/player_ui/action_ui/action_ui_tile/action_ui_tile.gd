@@ -21,7 +21,7 @@ const types_to_textures = {
 }
 
 # child nodes
-onready var sprite: Sprite = $Sprite
+onready var texture_rect: TextureRect = $TextureRect
 onready var anim: AnimationPlayer = $AnimationPlayer
 onready var cooldown_label: Label = $CooldownLabel
 onready var hotkey_label: Label = $HotkeyLabel
@@ -34,7 +34,7 @@ func _ready() -> void:
 		texture = types_to_textures[type]
 	else:
 		texture = types_to_textures['Default']
-	sprite.texture = load(texture)
+	texture_rect.texture = load(texture)
 
 
 ## type should be the name of the Action node
@@ -46,9 +46,9 @@ func set_type(new_type: String):
 
 func set_is_ready(value = true):
 	if value:
-		sprite.modulate = default_modulate
+		texture_rect.modulate = default_modulate
 	else:
-		sprite.modulate = not_ready_modulate
+		texture_rect.modulate = not_ready_modulate
 
 
 func set_was_triggered(value = false):
