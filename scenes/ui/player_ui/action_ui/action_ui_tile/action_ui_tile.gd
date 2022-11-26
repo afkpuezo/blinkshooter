@@ -7,7 +7,10 @@ var type: String = "Default"
 export(Color) var default_modulate
 export(Color) var not_ready_modulate
 
-export var no_cooldown_threshold := 0.1
+export var min_cooldown_threshold := 0.1 # 0 if it ever ticks < this
+export var min_start_cooldown_threshold := 0.5 # ignore cooldown if it goes from 0 to this
+export var no_decimal_threshold := 2.0 # only draw whole number if >= this
+var current_cooldown := 0.0
 
 # is there a better way to copy?
 export var current_slot_scale_factor := 1.5
@@ -65,13 +68,19 @@ func set_was_triggered(value = false):
 func set_cooldown(amount: float):
 	var text: String
 
-	if amount == 0 or amount < no_cooldown_threshold:
-		text = ""
-	elif amount >= 1:
-		text = String(ceil(amount))
+	if current_cooldown == 0 and amount < min_start_cooldown_threshold:
+		current_cooldown = 0
+	elif amount < min_cooldown_threshold:
+		current_cooldown = 0
+	elif amount >= no_decimal_threshold:
+		current_cooldown = ceil(amount)
 	else:
-		text = String(amount)
-		text = text.substr(1, 2) # eg 0.973 -> .9
+		current_cooldown = amount
+
+	if current_cooldown == 0:
+		text = ""
+	else:
+		text = String(current_cooldown).substr(0, 3)
 
 	cooldown_label.text = text
 
