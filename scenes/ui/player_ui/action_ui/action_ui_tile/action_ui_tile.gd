@@ -9,6 +9,10 @@ export(Color) var not_ready_modulate
 
 export var no_cooldown_threshold := 0.1
 
+# is there a better way to copy?
+export var current_slot_scale_factor := 1.5
+onready var original_min_size := Vector2(rect_min_size[0], rect_min_size[1])
+
 # keys are the actual node names of actions
 # NOTE: wasn't sure how/where to have this, exporting a dict is weird
 const types_to_textures = {
@@ -77,7 +81,13 @@ func set_hotkey(text):
 
 
 func set_min_size_scale_factor(factor):
-	for n in [self, texture_rect, cooldown_label, hotkey_label]:
-		n.rect_min_size = n.rect_min_size * factor
-		if n == self and factor < 1:
-			print("reverted rect_min_size to %s" % n.rect_min_size)
+	original_min_size = original_min_size * factor
+	rect_min_size = rect_min_size * factor
+
+
+## used to show which weapon is currently selected
+func set_current_slot(value: bool = true):
+	if value:
+		rect_min_size = original_min_size * current_slot_scale_factor
+	else:
+		rect_min_size = original_min_size

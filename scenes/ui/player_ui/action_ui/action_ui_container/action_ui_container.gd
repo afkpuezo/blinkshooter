@@ -57,11 +57,10 @@ func on_tick(msg):
 		tile.set_cooldown(action_dict['cooldown_remaining'])
 		tile.set_is_ready(action_dict['is_ready'])
 
-		if not is_weapon_bar:
-			tile.set_was_triggered(action_dict['was_triggered_this_frame'])
+		if is_weapon_bar:
+			tile.set_current_slot(action_dict['is_current_slot'])
 		else:
-			if action_dict['is_current_slot']:
-				manage_weapon_slot(action_index, tile)
+			tile.set_was_triggered(action_dict['was_triggered_this_frame'])
 
 		# clamping index makes sure that insert works
 		tile_index += 1
@@ -84,7 +83,7 @@ func make_new_tile(type: String, tile_index: int, action_index: int) -> ActionUI
 		tile.set_hotkey(hotkeys[action_index])
 
 	tile.set_type(type)
-	tile.set_min_size_scale_factor(tile_scale_factor)
+	tile.set_min_size_scale_factor(tile_scale_factor) # TODO
 	tiles.insert(tile_index, tile)
 	return tile
 
@@ -97,20 +96,3 @@ func update_tile_order():
 	for tile in tiles:
 		add_child(tile)
 
-
-## marks the new current weapon and reverts the old one
-func manage_weapon_slot(action_index: int, tile: ActionUITile):
-	if action_index == current_weapon_index:
-		return
-	else:
-		# reset the old one
-		var old_tile: ActionUITile = tiles[current_weapon_index]
-		old_tile.set_min_size_scale_factor(revert_current_weapon_scale_factor)
-		# mark the new one
-		current_weapon_index = action_index
-		if tile != null:
-			if current_weapon_index == 0:
-				print("WHY") # TODO fix
-				tile.set_min_size_scale_factor(current_weapon_scale_factor)
-			else:
-				tile.set_min_size_scale_factor(current_weapon_scale_factor)
