@@ -7,28 +7,38 @@
 
 [node name="PlayerUI" type="CanvasLayer"]
 
-[node name="ResourceBarManager" type="Control" parent="."]
+[node name="ResourceBarManager" type="VBoxContainer" parent="."]
+anchor_left = 0.04
+anchor_top = 0.04
+anchor_right = 0.2
+anchor_bottom = 0.2
 margin_right = 40.0
 margin_bottom = 40.0
 mouse_filter = 2
 script = ExtResource( 1 )
 
 [node name="HealthBar" parent="ResourceBarManager" instance=ExtResource( 2 )]
-margin_right = 200.0
+margin_right = 258.0
 margin_bottom = 20.0
+rect_min_size = Vector2( 120, 20 )
 
 [node name="EnergyBar" parent="ResourceBarManager" instance=ExtResource( 2 )]
-margin_top = 20.0
-margin_right = 200.0
-margin_bottom = 40.0
+margin_top = 24.0
+margin_right = 258.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 120, 20 )
 theme = ExtResource( 3 )
 
-[node name="ActionUI" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
+[node name="WeaponUIContainer" parent="ResourceBarManager" instance=ExtResource( 4 )]
+margin_left = 0.0
+margin_top = 48.0
+margin_right = 258.0
+margin_bottom = 48.0
+grow_horizontal = 1
+alignment = 0
+is_weapon_bar = true
 
-[node name="CenterContainer" type="CenterContainer" parent="ActionUI"]
+[node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_top = 0.856
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -36,18 +46,9 @@ margin_top = -32.0
 margin_bottom = -32.0
 mouse_filter = 2
 
-[node name="ActionUIContainer" parent="ActionUI/CenterContainer" instance=ExtResource( 4 )]
+[node name="ActionUIContainer" parent="CenterContainer" instance=ExtResource( 4 )]
 margin_left = 683.0
 margin_top = 55.0
 margin_right = 683.0
 margin_bottom = 55.0
 tile_scale_factor = 1.25
-
-[node name="WeaponUIContainer" parent="ActionUI" instance=ExtResource( 4 )]
-anchor_left = 0.045
-anchor_top = 0.144
-anchor_right = 0.106
-anchor_bottom = 0.144
-grow_horizontal = 1
-alignment = 0
-is_weapon_bar = true

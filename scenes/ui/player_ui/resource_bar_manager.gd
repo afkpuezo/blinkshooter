@@ -1,4 +1,4 @@
-extends Control
+extends VBoxContainer
 class_name ResourceBarManager
 ## manages health and energy bars for the PlayerUI
 
