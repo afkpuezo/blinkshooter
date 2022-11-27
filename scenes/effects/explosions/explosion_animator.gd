@@ -5,7 +5,7 @@ class_name ExplosionAnimator
 export(PackedScene) var explosion_scene
 
 # these vars configure the explosions created by this scene
-export(String, "white", "green", "red") var explosion_color = "white"
+export(String, "white", "green", "red", "orange") var explosion_color = "white"
 export(String, "tiny", "small", "medium", "normal") var explosion_size = "normal"
 export(String, "normal", "fast") var explosion_speed = "normal"
 

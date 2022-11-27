@@ -10,6 +10,7 @@ class_name Explosion
 export(Texture) var white
 export(Texture) var green
 export(Texture) var red
+export(Texture) var orange
 
 ## set this to another color before adding explosion to tree
 var sprite_color = white
@@ -40,6 +41,8 @@ func set_explosion_mode(
 			sprite_color = green
 		"red":
 			sprite_color = red
+		"orange":
+			sprite_color = orange
 
 	match size:
 		"tiny":
