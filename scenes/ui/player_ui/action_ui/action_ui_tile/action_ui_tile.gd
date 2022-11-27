@@ -23,8 +23,8 @@ const types_to_textures = {
 	"Blink": "res://scenes/ui/player_ui/action_ui/assets/blink_item.png",
 	"SawBlade": "res://scenes/ui/player_ui/action_ui/assets/sawblade_item.png",
 	"Shuriken": "res://scenes/ui/player_ui/action_ui/assets/shuriken_item.png",
-	"SmallGun": "res://scenes/ui/player_ui/action_ui/assets/small_gun_item.png",
-	"BigGun": "res://scenes/ui/player_ui/action_ui/assets/big_gun_item.png",
+	"SmallGun": "res://scenes/ui/player_ui/action_ui/assets/small_gun_item_oj.png",
+	"BigGun": "res://scenes/ui/player_ui/action_ui/assets/big_gun_item_oj.png",
 }
 
 # child nodes

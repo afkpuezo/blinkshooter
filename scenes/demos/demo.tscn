@@ -15,8 +15,8 @@
 [ext_resource path="res://scenes/ui/player_ui/action_ui/assets/blink_item.png" type="Texture" id=13]
 [ext_resource path="res://scenes/ui/player_ui/action_ui/assets/shuriken_item.png" type="Texture" id=14]
 [ext_resource path="res://scenes/actions/shuriken/shuriken.tscn" type="PackedScene" id=15]
-[ext_resource path="res://scenes/ui/player_ui/action_ui/assets/small_gun_item.png" type="Texture" id=16]
-[ext_resource path="res://scenes/ui/player_ui/action_ui/assets/big_gun_item.png" type="Texture" id=18]
+[ext_resource path="res://scenes/ui/player_ui/action_ui/assets/big_gun_item_oj.png" type="Texture" id=16]
+[ext_resource path="res://scenes/ui/player_ui/action_ui/assets/small_gun_item_oj.png" type="Texture" id=17]
 
 [node name="World" type="Node2D"]
 
@@ -51,12 +51,12 @@ sprite_texture = ExtResource( 14 )
 [node name="SmallGunPickup" parent="Pickups" instance=ExtResource( 3 )]
 position = Vector2( 372, 223 )
 item_scene = ExtResource( 8 )
-sprite_texture = ExtResource( 16 )
+sprite_texture = ExtResource( 17 )
 
 [node name="BigGunPickup" parent="Pickups" instance=ExtResource( 3 )]
 position = Vector2( 360, 317 )
 item_scene = ExtResource( 2 )
-sprite_texture = ExtResource( 18 )
+sprite_texture = ExtResource( 16 )
 
 [node name="Units" type="Node2D" parent="."]
 
