@@ -127,4 +127,5 @@ sprite_z = "5"
 [connection signal="died" from="." to="Animators/ExplosionAnimator" method="create_explosion"]
 [connection signal="value_changed" from="CombatResources/Health" to="." method="_check_for_death"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_end"]
-[connection signal="found_item" from="PickupGrabber" to="." method="_on_PickupGrabber_found_item"]
+[connection signal="found_action" from="PickupGrabber" to="ActionBar" method="add_action"]
+[connection signal="found_weapon" from="PickupGrabber" to="WeaponBar" method="add_weapon"]
