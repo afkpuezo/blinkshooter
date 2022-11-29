@@ -64,7 +64,7 @@ is_player = true
 
 [node name="Energy" type="Node" parent="CombatResources"]
 script = ExtResource( 9 )
-REGEN = 1
+REGEN = 10
 type = 1
 is_player = true
 

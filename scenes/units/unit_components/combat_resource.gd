@@ -11,11 +11,10 @@ export var MAX_VALUE := 100
 export var MIN_VALUE := 0 # needed?
 export var REGEN := 0
 export var INITIAL_VALUE: int = 999999 # note - will get clmaped
-export(float, 0.1, 3.0) var REGEN_PERIOD = 0.1
 export(Type) var type = Type.HEALTH
 export var is_player := false ## If set to true, will trigger relevant events
 
-onready var value = clamp(INITIAL_VALUE, MIN_VALUE, MAX_VALUE)
+onready var value: float = clamp(INITIAL_VALUE, MIN_VALUE, MAX_VALUE)
 
 
 # ----------
@@ -91,11 +90,6 @@ static func get_all_types() -> Array:
 ## report max value for set up, create regen timer
 func _ready() -> void:
 	_report_value_change(0)
-	var timer := Timer.new()
-	# warning-ignore:return_value_discarded
-	timer.connect("timeout", self, "_apply_regen")
-	add_child(timer)
-	timer.start(REGEN_PERIOD)
 
 
 # ----------
@@ -106,7 +100,7 @@ func _ready() -> void:
 ## can take a positive or negative value, ignores 0
 ## if there would be no change (eg healing when at max), does nothing
 ## returns true if the value was changed, false otherwise
-func change_value(amount: int) -> bool:
+func change_value(amount: float) -> bool:
 	var was_changed := false
 	if amount > 0:
 		was_changed = _increase_value(amount)
@@ -122,16 +116,21 @@ func change_value(amount: int) -> bool:
 # ----------
 
 
-## triggered by timer
+func _process(_delta: float) -> void:
+	_apply_regen()
+
+
+## triggered by _process, accounts for delta
 func _apply_regen():
+	var init_val = value
 	# warning-ignore:return_value_discarded
-	change_value(REGEN)
+	change_value(REGEN * get_process_delta_time())
 
 
 ## if the value is not already maxed increase current value by the given amount
 ## and return true.
 ## if the value is already maxed, return false.
-func _increase_value(amount: int) -> bool:
+func _increase_value(amount: float) -> bool:
 	if value == MAX_VALUE:
 		return false
 	else:
@@ -142,7 +141,7 @@ func _increase_value(amount: int) -> bool:
 ## if the value is not already at the minimum, decrease current value by the
 ## given amount and return true.
 ## if the value is already at the minimum, return false.
-func _decrease_value(amount: int) -> bool:
+func _decrease_value(amount: float) -> bool:
 	if value == MIN_VALUE:
 		return false
 	else:
@@ -151,7 +150,7 @@ func _decrease_value(amount: int) -> bool:
 
 
 ## change is the amount that the value changed
-func _report_value_change(change: int):
+func _report_value_change(change: float):
 	emit_signal("value_changed", value, MAX_VALUE)
 	if is_player:
 		GameEvents.emit_signal(
