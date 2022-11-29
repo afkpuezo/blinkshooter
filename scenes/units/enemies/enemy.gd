@@ -30,6 +30,7 @@ onready var last_known_player_position: Vector2 = self.position
 ## this is only set to true while the player is in vision, and is false when
 ## the enemy is trying to get to where the player was last seen
 var can_currently_see_player := false
+var did_player_teleport := false
 
 
 ## an instance of this weapon is added to the weapon bar
@@ -49,10 +50,11 @@ func _ready() -> void:
 	if starting_weapon_scene:
 		weapon_bar.add_action(starting_weapon_scene.instance())
 
+	GameEvents.connect("player_teleported", self, "on_player_teleported")
+
 
 func _physics_process(delta: float) -> void:
 	#if name == "Enemy":
-	#	print("DEBUG: %s can currently see player: %s" % [name, can_currently_see_player])
 	think(delta)
 
 
@@ -65,10 +67,8 @@ func _physics_process(delta: float) -> void:
 
 ## if shot by the player from far away, we know where they are
 func take_damage(amount: int, source):
-	#print("DEBUG: enemy take_damage() amount / source: %d / %s" % [amount, source.name])
 	var true_source = Player.get_player_if_source(source)
 	if true_source:
-		#last_known_player_position = source.global_position
 		_update_knowledge_of_player(true, true_source)
 	.take_damage(amount, true_source)
 
@@ -106,18 +106,17 @@ func die():
 func think(delta):
 
 	var check_results = player_detection.check()
-	var is_player_detected: bool = check_results["is_player_detected"]
+	var is_player_detected: bool = false if did_player_teleport else check_results["is_player_detected"]
 	var player = check_results["player"]
 	var is_detected_by_center = check_results["is_detected_by_center"]
 
 	if is_player_detected:
 		_update_knowledge_of_player(true, player)
 	else:
-		_update_knowledge_of_player(false)
+		_update_knowledge_of_player(false, null, did_player_teleport)
 
 	var moved = false
 
-	#var distance_squared = position.distance_squared_to(last_known_player_position)
 	var distance = position.distance_to(last_known_player_position)
 	self.look_at(last_known_player_position)
 
@@ -144,11 +143,19 @@ func think(delta):
 		else:
 			enemy_mover.move_to(self, movement_stats, delta, last_known_player_position)
 
+	did_player_teleport = false
+
 
 ## random equipped action
 func attack():
 	# warning-ignore:return_value_discarded
 	weapon_bar.trigger_random_action()
+
+
+## triggered by the GameEvent, forces the enemy to lose sight of the player
+func on_player_teleported():
+	#_update_knowledge_of_player(false, null, true)
+	did_player_teleport = true
 
 
 # ----------
@@ -164,7 +171,11 @@ func attack():
 ## Has a timer that doesn't allow can_currently_see_player to be set to false
 ## 	when it has recently been updated to true; the player can be between two of
 ## 	the rays and the enemy will think it's lost them for a moment
-func _update_knowledge_of_player(new_value: bool, player = null):
+## ignore_timer only matters when setting to false
+func _update_knowledge_of_player(
+	new_value: bool,
+	player = null,
+	ignore_timer = false):
 	if new_value:
 		player_memory_timer.start()
 		last_known_player_position = player.global_position
@@ -174,13 +185,12 @@ func _update_knowledge_of_player(new_value: bool, player = null):
 			can_currently_see_player = true
 			_report_detected_player(player)
 	else: # if new_value is false
-		if player_memory_timer.is_stopped():
+		if ignore_timer or player_memory_timer.is_stopped():
 			can_currently_see_player = new_value
 
 
 ## A little redundant with the signal, but this method allows for other logic here if needed
 func _report_detected_player(player):
-	#print("DEBUG: Enemy._report_detected_player() called")
 	emit_signal("detected_player", {'player': player})
 
 

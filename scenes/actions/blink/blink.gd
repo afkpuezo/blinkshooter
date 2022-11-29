@@ -76,8 +76,11 @@ func do_action():
 		destination_effect = effect_scene.instance()
 		Spawner.spawn_node(destination_effect, target_position, 0, 0.1)
 	user.do_teleport_animation()
+
 	yield(get_tree().create_timer(teleport_wait_time, false), "timeout")
+	GameEvents.emit_signal("player_teleported")
 	user.set_position(target_position) # should this be global position?
+
 	if destination_effect:
 		yield(get_tree().create_timer(0.05, false), "timeout")
 		destination_effect.position = user.get_position()
