@@ -99,3 +99,4 @@ pickup_scene = ExtResource( 15 )
 [connection signal="died" from="." to="Animators/ExplosionAnimator" method="create_explosion"]
 [connection signal="died" from="." to="LootDropper" method="_on_Enemy_died"]
 [connection signal="value_changed" from="CombatResources/Health" to="." method="_check_for_death"]
+[connection signal="received_message" from="EnemyMessager" to="." method="receive_enemy_message"]

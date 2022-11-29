@@ -76,6 +76,8 @@ func update_ray_cast_tos():
 func add_target(target):
 	if not target.has_method("receive_message"):
 		return
+	if target == receiver: # dont send messages to our own receiver
+		return
 
 	var ray: RayCast2D = null
 
@@ -94,6 +96,9 @@ func add_target(target):
 ## if there was an enemy waiting for that ray, assign it to the waiting enemy
 ## called from signal from Sender area
 func remove_target(target):
+	if target == receiver: # when the enemy dies, the receiver area leaves
+		return
+
 	var ray: RayCast2D = current_targets[target]
 
 	var removed = current_targets.erase(target)
@@ -136,5 +141,5 @@ func send_message(msg):
 
 func receive_message(msg):
 	#print("DEBUG: targetMessager.received_message() called")
-	emit_signal("received_message", msg)
+	emit_signal("received_message", msg) # should go to Enemy.receive_enemy_message()
 
