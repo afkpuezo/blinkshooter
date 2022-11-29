@@ -91,6 +91,7 @@ health_chance = 50
 energy_chance = 50
 basic_ammo_chance = 50
 big_ammo_chance = 50
+max_drop_radius = 48
 pickup_scene = ExtResource( 15 )
 
 [connection signal="detected_player" from="." to="EnemyMessager" method="send_message"]
