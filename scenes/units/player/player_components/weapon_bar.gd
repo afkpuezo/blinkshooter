@@ -60,11 +60,17 @@ func during_process():
 				trigger_action(current_slot)
 
 
-## Adds an extra field ('is_current_slot') to the message including whether or
-## not the weapon is the currently selected
+## Adds extra fields that are relevant for weapons
+## 'is_current_slot', 'ammo_amount'
 func emit_update_tick_help(action_index: int) -> Dictionary:
 	var sub := .emit_update_tick_help(action_index)
 	sub['is_current_slot'] = action_index == current_slot
+
+	var weapon: Weapon = actions[action_index]
+	if weapon:
+		var rsrc: CombatResource = CombatResource.get_resource(user, weapon.main_ammo_type)
+		sub['ammo_amount'] = rsrc.value
+
 	return sub
 
 

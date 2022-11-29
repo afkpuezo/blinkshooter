@@ -32,6 +32,7 @@ onready var texture_rect: TextureRect = $TextureRect
 onready var anim: AnimationPlayer = $AnimationPlayer
 onready var cooldown_label: Label = $CooldownLabel
 onready var hotkey_label: Label = $HotkeyLabel
+onready var ammo_label: Label = $AmmoLabel
 
 
 func _ready() -> void:
@@ -100,3 +101,8 @@ func set_current_slot(value: bool = true):
 		rect_min_size = original_min_size * current_slot_scale_factor
 	else:
 		rect_min_size = original_min_size
+
+
+## no formatting on this one (yet)
+func set_ammo_amount(amount: int):
+	ammo_label.text = String(amount)

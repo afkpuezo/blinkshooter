@@ -9,3 +9,4 @@ basic_ammo_cost = 1
 default_slot = 0
 bullet_scene = ExtResource( 2 )
 damage = 10
+main_ammo_type = 2

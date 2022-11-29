@@ -4,10 +4,12 @@ class_name Weapon
 ## appropriate bullet at the user's BulletSpawnPoint. Also keeps track of its own ammo
 ## NOTE: may be used for enemy weapons at some point as well.
 
+
 export(PackedScene) var bullet_scene
 var spawn_location: Node2D
 var user_movement_stats: MovementStats
 export var damage := 1
+export(CombatResource.Type) var main_ammo_type # for ui purposes
 
 
 # ----------

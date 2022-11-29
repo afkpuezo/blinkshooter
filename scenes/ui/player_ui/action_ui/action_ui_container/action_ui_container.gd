@@ -59,6 +59,7 @@ func on_tick(msg):
 
 		if is_weapon_bar:
 			tile.set_current_slot(action_dict['is_current_slot'])
+			tile.set_ammo_amount(action_dict['ammo_amount'])
 		else:
 			tile.set_was_triggered(action_dict['was_triggered_this_frame'])
 

@@ -10,3 +10,4 @@ cooldown = 1.0
 default_slot = 1
 bullet_scene = ExtResource( 2 )
 damage = 35
+main_ammo_type = 3

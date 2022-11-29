@@ -44,9 +44,6 @@ func setup_events():
 func _process(_delta: float) -> void:
 	during_process()
 	emit_update_tick()
-	# reset actions_triggered_this_frame
-	for x in range(num_slots):
-		actions_triggered_this_frame[x] = false
 
 
 ## Triggers the equipped action corresponding to the button pressed
@@ -121,6 +118,13 @@ func emit_update_tick():
 		get_event_signal_string(),
 		msg
 	)
+
+	# resetting it here makes it easier to move out of process if I want to
+	# change the frequency
+	# reset actions_triggered_this_frame
+	for x in range(num_slots):
+		actions_triggered_this_frame[x] = false
+
 # end emit_update_tick()
 
 
