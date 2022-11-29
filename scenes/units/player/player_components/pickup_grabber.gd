@@ -7,7 +7,7 @@ class_name PickupGrabber
 
 signal found_weapon(item)
 signal found_action(item)
-signal found_resource(item)
+signal found_resource(type, amount)
 
 
 ## TODO think about typing, it's all over the place here
@@ -15,13 +15,19 @@ func on_area_entered(p: Pickup) -> void:
 	var signal_name: String
 	match p.meta_type:
 		Pickup.META_TYPE.ACTION:
-			signal_name = "found_action"
+			emit_signal(
+				"found_action",
+				p.get_item()
+			)
 		Pickup.META_TYPE.WEAPON:
-			signal_name = "found_weapon"
+			emit_signal(
+				"found_weapon",
+				p.get_item()
+			)
 		Pickup.META_TYPE.RESOURCE:
-			signal_name = "found_resource"
-
-	emit_signal(
-		signal_name,
-		p.get_item()
-	)
+			var resource_details := p.get_resource_type_and_amount()
+			emit_signal(
+				"found_resource",
+				resource_details[0],
+				resource_details[1]
+			)

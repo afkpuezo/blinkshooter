@@ -64,9 +64,16 @@ signal game_object_spawned(msg)
 # Enemy related
 # ----------
 
-# msg fields: "enemy"
-# NOTE: should this be under spawner? I think I'm going to have enemies call
-# this themselves as they are created
+
+## msg fields: "enemy"
+## called by enemies when they spawn
 # warning-ignore:unused_signal
 signal enemy_spawned(msg)
+
+
+## msg fields: "global_position"
+## called by enemies when they die
+# (can't refer to the enemy itself because it will be freed, I think)
+# might want to include enemy type or something later
+signal enemy_died(msg)
 

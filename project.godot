@@ -87,12 +87,12 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "EnemyMessager",
 "language": "GDScript",
-"path": "res://scenes/units/enemies/enemy_components/enemy_messager.gd"
+"path": "res://scenes/units/enemies/enemy_components/enemy_messager/enemy_messager.gd"
 }, {
 "base": "Mover",
 "class": "EnemyMover",
 "language": "GDScript",
-"path": "res://scenes/units/enemies/enemy_components/enemy_mover.gd"
+"path": "res://scenes/units/enemies/enemy_components/enemy_mover/enemy_mover.gd"
 }, {
 "base": "Node2D",
 "class": "EnemyWeaponBar",
@@ -124,6 +124,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/hit_boxes/hurt_box.gd"
 }, {
+"base": "Node2D",
+"class": "LootDropper",
+"language": "GDScript",
+"path": "res://scenes/units/enemies/enemy_components/loot_dropper.gd"
+}, {
 "base": "Node",
 "class": "MovementStats",
 "language": "GDScript",
@@ -152,7 +157,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "PlayerDetection",
 "language": "GDScript",
-"path": "res://scenes/units/enemies/enemy_components/player_detection.gd"
+"path": "res://scenes/units/enemies/enemy_components/player_detection/player_detection.gd"
 }, {
 "base": "CanvasLayer",
 "class": "PlayerMonitorText",
@@ -167,7 +172,7 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "Receiver",
 "language": "GDScript",
-"path": "res://scenes/units/enemies/enemy_components/receiver.gd"
+"path": "res://scenes/units/enemies/enemy_components/enemy_messager/receiver.gd"
 }, {
 "base": "ProgressBar",
 "class": "ResourceBar",
@@ -263,6 +268,7 @@ _global_script_class_icons={
 "GibletAnimator": "",
 "HitBox": "",
 "HurtBox": "",
+"LootDropper": "",
 "MovementStats": "",
 "Mover": "",
 "Pickup": "",

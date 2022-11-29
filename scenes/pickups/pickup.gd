@@ -3,7 +3,11 @@ class_name Pickup
 ## holds an item for the player to pick up by walking over it
 
 
-enum TYPE{SMALL_GUN, BIG_GUN, BLINK, SAWBLADE, SHURIKEN, HEALTH, BASIC_AMMO, BIG_AMMO}
+enum TYPE{
+	SMALL_GUN, BIG_GUN,
+	BLINK, SAWBLADE, SHURIKEN,
+	HEALTH, BASIC_AMMO, BIG_AMMO, ENERGY
+}
 enum META_TYPE{WEAPON, ACTION, RESOURCE}
 export(TYPE) var type
 var item_scene: PackedScene
@@ -50,27 +54,35 @@ const TYPE_DETAILS = {
 	},
 	TYPE.HEALTH: {
 		'scene': "",
-		'texture': "",
+		'texture': "res://scenes/pickups/hp_pickups/hp_pickup.png",
 		'radius': 32,
 		'meta_type': META_TYPE.RESOURCE,
 		'resource_type': CombatResource.Type.HEALTH,
-		'resource_amount': 10
+		'resource_amount': 20
+	},
+	TYPE.ENERGY: {
+		'scene': "",
+		'texture': "res://scenes/pickups/hp_pickups/energy_pickup.png",
+		'radius': 32,
+		'meta_type': META_TYPE.RESOURCE,
+		'resource_type': CombatResource.Type.ENERGY,
+		'resource_amount': 50
 	},
 	TYPE.BASIC_AMMO: {
 		'scene': "",
-		'texture': "",
+		'texture': "res://scenes/pickups/hp_pickups/small_ammo_pickup.png",
 		'radius': 32,
 		'meta_type': META_TYPE.RESOURCE,
 		'resource_type': CombatResource.Type.BASIC_AMMO,
-		'resource_amount': 20
+		'resource_amount': 30
 	},
 	TYPE.BIG_AMMO: {
 		'scene': "",
-		'texture': "",
+		'texture': "res://scenes/pickups/hp_pickups/big_ammo_pickup.png",
 		'radius': 32,
 		'meta_type': META_TYPE.RESOURCE,
 		'resource_type': CombatResource.Type.BIG_AMMO,
-		'resource_amount': 20
+		'resource_amount': 1
 	},
 }
 
@@ -94,15 +106,34 @@ static func is_pickup(n):
 func _ready() -> void:
 	var details = TYPE_DETAILS[type]
 
-	item_scene = load(details['scene']) # better to load here or later?
+	if details['scene'] != "":
+		item_scene = load(details['scene']) # better to load here or later?
 	$CollisionShape2D.shape.radius = details['radius']
 	$Sprite.texture = load(details['texture'])
 	meta_type = details['meta_type']
 
+	if meta_type == META_TYPE.RESOURCE:
+		resource_type = details['resource_type']
+		resource_amount = details['resource_amount']
 
+
+## only works if this pickup has an action or weapon. returns null if there is
+## no scene because this is a resource pickup
+## NOTE: that's probably a sign these belong in different classes
 func get_item():
 	done = true # wtb finally
-	return item_scene.instance()
+	if item_scene:
+		return item_scene.instance()
+	else:
+		return null
+
+
+## returns an array with the two vars
+## will be null, null if this is not a resource pickup
+## the node will free itself after this is called
+func get_resource_type_and_amount() -> Array:
+	done = true
+	return [resource_type, resource_amount]
 
 
 func _process(_delta: float) -> void:

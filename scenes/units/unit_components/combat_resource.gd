@@ -155,10 +155,10 @@ func _report_value_change(change: int):
 	emit_signal("value_changed", value, MAX_VALUE)
 	if is_player:
 		GameEvents.emit_signal(
-				"player_combat_resource_value_changed",
-				{
-					"type": type,
-					"value": value,
-					"change": change,
-					"max": MAX_VALUE,
-				})
+			"player_combat_resource_value_changed",
+			{
+				"type": type,
+				"value": value,
+				"change": change,
+				"max": MAX_VALUE,
+			})

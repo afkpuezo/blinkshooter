@@ -73,6 +73,14 @@ func take_damage(amount: int, source):
 	.take_damage(amount, true_source)
 
 
+func die():
+	var msg = {
+		'global_position': global_position
+	}
+	GameEvents.emit_signal("enemy_died", msg)
+	.die()
+
+
 # -
 # ----------
 # new in Enemy

@@ -1,7 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://scenes/units/enemies/enemy_components/enemy_messager.gd" type="Script" id=1]
-[ext_resource path="res://scenes/units/enemies/enemy_components/receiver.gd" type="Script" id=2]
+[ext_resource path="res://scenes/units/enemies/enemy_components/enemy_messager/enemy_messager.gd" type="Script" id=1]
+[ext_resource path="res://scenes/units/enemies/enemy_components/enemy_messager/receiver.gd" type="Script" id=2]
+
 
 [sub_resource type="CircleShape2D" id=1]
 

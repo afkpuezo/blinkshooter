@@ -99,7 +99,7 @@ func can_gain_resource(type: int, _amount: int) -> bool:
 
 ## returns true/false based on if the amount was actually gained
 func gain_resource(type: int, amount: int) -> bool:
-	return can_gain_resource(type, amount) and combat_resources[type].change_amount(amount)
+	return can_gain_resource(type, amount) and combat_resources[type].change_value(amount)
 
 
 ## should be connected to hitbox signals
