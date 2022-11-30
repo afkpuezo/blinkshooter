@@ -95,12 +95,6 @@ func _on_animation_end(_old_anim):
 	anim_player.play("Idle")
 
 
-## the fact that I have to extend this makes me think I'm doing something wrong
-func take_damage(amount, source) -> void:
-	#print("DEBUG: enemy taking damage: %d" % amount)
-	.take_damage(amount, source)
-
-
 ## goes through the player since the item could be an action, weapon, or other
 func _on_PickupGrabber_found_item(item) -> void:
 	if Weapon.is_weapon(item):
