@@ -122,7 +122,6 @@ func _process(_delta: float) -> void:
 
 ## triggered by _process, accounts for delta
 func _apply_regen():
-	var init_val = value
 	# warning-ignore:return_value_discarded
 	change_value(REGEN * get_process_delta_time())
 

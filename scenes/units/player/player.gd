@@ -45,22 +45,7 @@ static func get_player_if_source(n: Node):
 
 
 func _ready() -> void:
-	_setup_starting_actions()
-	_setup_starting_weapons()
-
 	GameEvents.emit_signal("player_spawned", {'player': self})
-
-
-func _setup_starting_actions():
-	for scene in starting_actions:
-		var action = scene.instance()
-		action_bar.add_action(action)
-
-
-func _setup_starting_weapons():
-	for scene in starting_weapons:
-		var weapon = scene.instance()
-		weapon_bar.add_weapon(weapon)
 
 
 # ----------
@@ -72,11 +57,6 @@ func _setup_starting_weapons():
 ## pretty gross
 func _is_player_help() -> bool:
 	return true
-
-
-func setup_mover() -> Mover:
-	var mover = $InputMover
-	return mover
 
 
 ## from Unit
@@ -93,14 +73,3 @@ func do_teleport_animation():
 ## reset animation
 func _on_animation_end(_old_anim):
 	anim_player.play("Idle")
-
-
-## goes through the player since the item could be an action, weapon, or other
-func _on_PickupGrabber_found_item(item) -> void:
-	if Weapon.is_weapon(item):
-		weapon_bar.add_weapon(item)
-	elif Action.is_action(item):
-		action_bar.add_action(item)
-	else:
-		print("DEBUG: added item is neither a weapon or action. currently unhandled")
-		pass

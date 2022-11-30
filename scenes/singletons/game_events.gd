@@ -67,5 +67,6 @@ signal enemy_spawned(msg)
 ## called by enemies when they die
 # (can't refer to the enemy itself because it will be freed, I think)
 # might want to include enemy type or something later
+# warning-ignore:unused_signal
 signal enemy_died(msg)
 

@@ -10,7 +10,7 @@ signal died()
 
 ## will be set on ready if one is present?
 ## can be changed by extending classes
-var mover
+var mover: Mover
 
 ## not sure if this is the best way to do this
 ## will be built based on children of the CombatResources node
@@ -30,12 +30,7 @@ onready var buffs_node: Node2D = $Buffs
 
 # calls setup_mover() and setup_combat_resources()
 func _ready() -> void:
-	# potential problems if there are multiple movers?
-	for c in get_children():
-		if c is Mover:
-			mover = c
-			break
-
+	mover = setup_mover()
 	combat_resources = setup_combat_resources()
 
 
@@ -46,6 +41,15 @@ func setup_combat_resources() -> Dictionary:
 		if rsrc is CombatResource:
 			crs[rsrc.type] = rsrc
 	return crs
+
+
+func setup_mover() -> Mover:
+	# potential problems if there are multiple movers?
+	for c in get_children():
+		if c is Mover:
+			return c
+	print("DEBUG: Unit.setup_mover(): %s couldn't find a mover child node" % name)
+	return null
 
 
 # --
