@@ -1,17 +1,11 @@
-extends Unit
-class_name Player
-## primary player controller
+extends Node2D
+class_name PlayerBrain
+## This once was the Player class, but I decided to revise the structure for Units
+## This component contains some extra functionality to turn a Unit into the Player
+## TODO get a better name for this class
 
 
 onready var anim_player: AnimationPlayer = $AnimationPlayer
-
-export(Array, PackedScene) var starting_actions
-export(Array, PackedScene) var starting_weapons
-
-
-# child nodes
-onready var action_bar: ActionBar = $ActionBar
-onready var weapon_bar: WeaponBar = $WeaponBar
 
 
 # ----------
@@ -19,16 +13,20 @@ onready var weapon_bar: WeaponBar = $WeaponBar
 # ----------
 
 
-## Overkill for now, might be more correct later if code gets more complicated
-static func is_player(n: Node):
-	return n != null and n.has_method("_is_player_help")
+## Checks if the given node is a unit and has a PlayerBrain component
+static func is_player(n: Node) -> bool:
+	if n != null and n is Unit:
+		for c in n.get_children():
+			if c.has_method("is_player"):
+				return true
+	return false
 
 
 ## Currently used by enemies to figure out who an attack came from.
 ## I kludged it so that bullets have the player as a source but the attacks
 ## from actions (such as the shuriken) point to the action node.
 ## This method will handle both cases.
-## Returns the player node if it is the source of this attack, otherwise
+## Returns the player (unit) node if it is the source of this attack, otherwise
 ## null
 static func get_player_if_source(n: Node):
 	if is_player(n):
@@ -46,6 +44,7 @@ static func get_player_if_source(n: Node):
 
 func _ready() -> void:
 	GameEvents.emit_signal("player_spawned", {'player': self})
+	GameEvents.connect("player_teleport_started", self, "do_teleport_animation")
 
 
 # ----------
@@ -53,20 +52,15 @@ func _ready() -> void:
 # ----------
 
 
-## can't use the Player class in this script, looking for this method will do the same thing
-## pretty gross
-func _is_player_help() -> bool:
-	return true
-
-
-## from Unit
-func die():
+## from Unit signal
+func on_unit_death():
 	GameEvents.emit_signal("player_died", {'player': self})
-	.die()
 
 
 ## call the animation on the animation player
+## TODO connect to event
 func do_teleport_animation():
+	print("do_teleport_animation called")
 	anim_player.play("Teleport")
 
 

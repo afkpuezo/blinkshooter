@@ -75,7 +75,7 @@ func do_action():
 		Spawner.spawn_node(effect_scene.instance(), user.get_position())
 		destination_effect = effect_scene.instance()
 		Spawner.spawn_node(destination_effect, target_position, 0, 0.1)
-	user.do_teleport_animation()
+	GameEvents.emit_signal("player_teleport_started")
 
 	yield(get_tree().create_timer(teleport_wait_time, false), "timeout")
 	GameEvents.emit_signal("player_teleported")

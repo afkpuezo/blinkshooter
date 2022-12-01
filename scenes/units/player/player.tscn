@@ -1,22 +1,19 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://scenes/units/player/player_components/action_bar.gd" type="Script" id=1]
-[ext_resource path="res://scenes/hit_boxes/hurt_box.gd" type="Script" id=2]
-[ext_resource path="res://scenes/units/player/player_components/weapon_bar.gd" type="Script" id=3]
+[ext_resource path="res://scenes/units/unit.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/units/player/player_components/player_mover.gd" type="Script" id=2]
+[ext_resource path="res://scenes/units/unit_components/combat_resource.gd" type="Script" id=3]
 [ext_resource path="res://scenes/units/player/player_character.png" type="Texture" id=4]
-[ext_resource path="res://scenes/units/player/player_components/player_mover.gd" type="Script" id=5]
-[ext_resource path="res://scenes/movement/movement_stats.gd" type="Script" id=6]
-[ext_resource path="res://scenes/units/unit_components/bullet_spawn_point.gd" type="Script" id=7]
-[ext_resource path="res://scenes/units/player/player.gd" type="Script" id=8]
-[ext_resource path="res://scenes/units/unit_components/combat_resource.gd" type="Script" id=9]
-[ext_resource path="res://scenes/effects/explosions/explosion_animator.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/effects/giblets_animator.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/units/player/player_components/pickup_grabber.tscn" type="PackedScene" id=12]
-
-[sub_resource type="Animation" id=1]
-resource_name = "Idle"
+[ext_resource path="res://scenes/units/player/player_brain.gd" type="Script" id=5]
+[ext_resource path="res://scenes/units/player/player_components/weapon_bar.gd" type="Script" id=6]
+[ext_resource path="res://scenes/units/player/player_components/action_bar.gd" type="Script" id=7]
+[ext_resource path="res://scenes/units/unit_components/bullet_spawn_point.gd" type="Script" id=9]
+[ext_resource path="res://scenes/units/player/player_components/pickup_grabber.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Animation" id=2]
+resource_name = "Idle"
+
+[sub_resource type="Animation" id=3]
 resource_name = "Teleport"
 length = 0.5
 tracks/0/type = "value"
@@ -44,91 +41,78 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 0.8, 0.8 ), Vector2( 0.8, 0.8 ), Vector2( 1, 1 ) ]
 }
 
-[node name="Player" type="KinematicBody2D"]
-z_index = 1
+[node name="Player" instance=ExtResource( 1 )]
 collision_layer = 2
 collision_mask = 5
-script = ExtResource( 8 )
 
-[node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 4 )
-
-[node name="CombatResources" type="Node" parent="."]
-
-[node name="Health" type="Node" parent="CombatResources"]
-script = ExtResource( 9 )
-__meta__ = {
-"_editor_description_": ""
-}
+[node name="Health" type="Node" parent="CombatResources" index="0"]
+script = ExtResource( 3 )
 is_player = true
 
-[node name="Energy" type="Node" parent="CombatResources"]
-script = ExtResource( 9 )
+[node name="Energy" type="Node" parent="CombatResources" index="1"]
+script = ExtResource( 3 )
 REGEN = 10
 type = 1
 is_player = true
 
-[node name="Ammo" type="Node" parent="CombatResources"]
-script = ExtResource( 9 )
+[node name="BasicAmmo" type="Node" parent="CombatResources" index="2"]
+script = ExtResource( 3 )
+MAX_VALUE = 50
 type = 2
 is_player = true
 
-[node name="BigAmmo" type="Node" parent="CombatResources"]
-script = ExtResource( 9 )
+[node name="BigAmmo" type="Node" parent="CombatResources" index="3"]
+script = ExtResource( 3 )
 MAX_VALUE = 5
 type = 3
 is_player = true
 
-[node name="MovementStats" type="Node" parent="."]
-script = ExtResource( 6 )
+[node name="MovementStats" parent="." index="1"]
 MAX_SPEED = 500
 
-[node name="ActionBar" type="Node2D" parent="."]
-script = ExtResource( 1 )
-
-[node name="BulletSpawnPoint" type="Node2D" parent="."]
-position = Vector2( 48, 0 )
-script = ExtResource( 7 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Idle = SubResource( 1 )
-anims/Teleport = SubResource( 2 )
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( 28, 0, -26, 30, -10, 0, -26, -30 )
-
-[node name="HurtBox" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 0
-script = ExtResource( 2 )
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HurtBox"]
-visible = false
-build_mode = 1
-polygon = PoolVector2Array( -10, 0, -27, -30, 24, 0, -27, 30 )
-
-[node name="PlayerMover" type="Node2D" parent="."]
-script = ExtResource( 5 )
-
-[node name="WeaponBar" type="Node2D" parent="."]
-script = ExtResource( 3 )
-num_slots = 2
-
-[node name="Buffs" type="Node2D" parent="."]
-
-[node name="Animators" type="Node2D" parent="."]
-
-[node name="GibletsAnimator" parent="Animators" instance=ExtResource( 11 )]
-
-[node name="ExplosionAnimator" parent="Animators" instance=ExtResource( 10 )]
+[node name="ExplosionAnimator" parent="Animators" index="1"]
 sprite_z = "5"
 
-[node name="PickupGrabber" parent="." instance=ExtResource( 12 )]
+[node name="PlayerMover" type="Node2D" parent="." index="4"]
+script = ExtResource( 2 )
 
-[connection signal="died" from="." to="Animators/GibletsAnimator" method="on_death"]
-[connection signal="died" from="." to="Animators/ExplosionAnimator" method="create_explosion"]
+[node name="Sprite" type="Sprite" parent="." index="5"]
+texture = ExtResource( 4 )
+
+[node name="PlayerBrain" type="Node2D" parent="." index="6"]
+script = ExtResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerBrain" index="0"]
+root_node = NodePath("../..")
+anims/Idle = SubResource( 2 )
+anims/Teleport = SubResource( 3 )
+
+[node name="ActionBar" type="Node2D" parent="." index="7"]
+script = ExtResource( 7 )
+
+[node name="WeaponBar" type="Node2D" parent="." index="8"]
+script = ExtResource( 6 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="9"]
+visible = false
+polygon = PoolVector2Array( -26, -28, 26, 0, -26, 28 )
+
+[node name="BulletSpawnPoint" type="Node2D" parent="." index="10"]
+position = Vector2( 48, 0 )
+script = ExtResource( 9 )
+
+[node name="HurtBox" parent="." index="11"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HurtBox" index="0"]
+visible = false
+polygon = PoolVector2Array( -26, -28, 26, 0, -26, 28 )
+
+[node name="PickupGrabber" parent="." index="12" instance=ExtResource( 10 )]
+
+[connection signal="died" from="." to="PlayerBrain" method="on_unit_death"]
 [connection signal="value_changed" from="CombatResources/Health" to="." method="_check_for_death"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_end"]
 [connection signal="found_action" from="PickupGrabber" to="ActionBar" method="add_action"]
 [connection signal="found_resource" from="PickupGrabber" to="." method="gain_resource"]
 [connection signal="found_weapon" from="PickupGrabber" to="WeaponBar" method="add_weapon"]

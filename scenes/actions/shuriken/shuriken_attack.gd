@@ -70,7 +70,7 @@ func die(_has_explosion := false):
 func on_collision(col: KinematicCollision2D):
 	var collider = col.collider
 	#print("DEBUG: shuriken colliding with %s" % collider.name)
-	if Player.is_player(collider):
+	if PlayerBrain.is_player(collider):
 		die()
 	else: # assume wall
 		emit_signal("exploded")

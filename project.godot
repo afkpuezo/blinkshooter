@@ -149,10 +149,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/units/player/player_components/pickup_grabber.gd"
 }, {
-"base": "Unit",
-"class": "Player",
+"base": "Node2D",
+"class": "PlayerBrain",
 "language": "GDScript",
-"path": "res://scenes/units/player/player.gd"
+"path": "res://scenes/units/player/player_brain.gd"
 }, {
 "base": "Node2D",
 "class": "PlayerDetection",
@@ -273,7 +273,7 @@ _global_script_class_icons={
 "Mover": "",
 "Pickup": "",
 "PickupGrabber": "",
-"Player": "",
+"PlayerBrain": "",
 "PlayerDetection": "",
 "PlayerMonitorText": "",
 "PlayerMover": "",

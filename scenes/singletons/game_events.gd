@@ -42,7 +42,14 @@ signal player_action_bar_tick(msg)
 # warning-ignore:unused_signal
 signal player_weapon_bar_tick(msg)
 
-## might come back to add args to this
+## called when the teleportation starts
+# (used to trigger animation in new player scene)
+# might come back to add args to this
+# warning-ignore:unused_signal
+signal player_teleport_started()
+
+## called when the player actually moves
+# might come back to add args to this
 # warning-ignore:unused_signal
 signal player_teleported()
 

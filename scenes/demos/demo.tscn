@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=2]
 
+[ext_resource path="res://scenes/units/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/pickups/pickup.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/actions/weapons/enemy_gun/enemy_gun.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/units/player/player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/terrain/floor_tile_map.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/units/enemies/enemy.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/terrain/wall_tile_map.tscn" type="PackedScene" id=11]
@@ -44,9 +44,6 @@ type = 1
 
 [node name="Units" type="Node2D" parent="."]
 
-[node name="Player" parent="Units" instance=ExtResource( 5 )]
-position = Vector2( 200, 200 )
-
 [node name="Enemy" parent="Units" instance=ExtResource( 9 )]
 position = Vector2( 1224, 653 )
 starting_weapon_scene = ExtResource( 4 )
@@ -66,3 +63,6 @@ starting_weapon_scene = ExtResource( 4 )
 [node name="Enemy5" parent="Units" instance=ExtResource( 9 )]
 position = Vector2( 1492, 602 )
 starting_weapon_scene = ExtResource( 4 )
+
+[node name="Player" parent="Units" instance=ExtResource( 1 )]
+position = Vector2( 48, 248 )

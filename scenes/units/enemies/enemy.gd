@@ -67,7 +67,7 @@ func _physics_process(delta: float) -> void:
 
 ## if shot by the player from far away, we know where they are
 func take_damage(amount: int, source):
-	var true_source = Player.get_player_if_source(source)
+	var true_source = PlayerBrain.get_player_if_source(source)
 	if true_source:
 		_update_knowledge_of_player(true, true_source)
 	.take_damage(amount, true_source)

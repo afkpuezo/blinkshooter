@@ -95,9 +95,9 @@ func check() -> Dictionary:
 	if bodies.empty():
 		return return_dict
 
-	var player: Player
+	var player: Unit
 	for body in bodies:
-		if body is Player:
+		if PlayerBrain.is_player(body):
 			player = body
 			break
 
@@ -108,7 +108,7 @@ func check() -> Dictionary:
 	for ray in rays_arr:
 		#print("DEBUG: PlayerDetection._ready(): checking ray")
 		ray.force_raycast_update()
-		if ray.is_colliding() and ray.get_collider() is Player:
+		if ray.is_colliding() and PlayerBrain.is_player(ray.get_collider()):
 			num_hits += 1
 			#if ray == center_ray:
 			if ray.name == CENTER_RAY_NAME:
