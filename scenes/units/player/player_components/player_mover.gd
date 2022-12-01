@@ -26,15 +26,13 @@ func _ready() -> void:
 
 
 ## Called during owner's _physics_process
-func physics_update(unit, movement_stats: MovementStats, delta: float):
+func physics_update(unit, movement_stats: MovementStats):
 	var input := _get_input()
 
 	if input:
-		accelerate_towards(movement_stats, delta, input)
+		accelerate_towards(movement_stats, get_physics_process_delta_time(), input)
 	else: # if no player found
-		apply_friction(movement_stats, delta)
-	#stats.velocity = owner.move_and_slide(stats.velocity)
-	#unit.move_and_collide(movement_stats.velocity * delta)
+		apply_friction(movement_stats, get_physics_process_delta_time())
 	unit.move_and_slide(movement_stats.velocity)
 	unit.look_at(TargetReticle.get_true_global_position())
 

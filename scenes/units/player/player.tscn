@@ -73,13 +73,10 @@ MAX_SPEED = 500
 [node name="ExplosionAnimator" parent="Animators" index="1"]
 sprite_z = "5"
 
-[node name="PlayerMover" type="Node2D" parent="." index="4"]
-script = ExtResource( 2 )
-
-[node name="Sprite" type="Sprite" parent="." index="5"]
+[node name="Sprite" type="Sprite" parent="." index="4"]
 texture = ExtResource( 4 )
 
-[node name="PlayerBrain" type="Node2D" parent="." index="6"]
+[node name="PlayerBrain" type="Node2D" parent="." index="5"]
 script = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerBrain" index="0"]
@@ -87,21 +84,24 @@ root_node = NodePath("../..")
 anims/Idle = SubResource( 2 )
 anims/Teleport = SubResource( 3 )
 
-[node name="ActionBar" type="Node2D" parent="." index="7"]
+[node name="PlayerMover" type="Node2D" parent="PlayerBrain" index="1"]
+script = ExtResource( 2 )
+
+[node name="ActionBar" type="Node2D" parent="." index="6"]
 script = ExtResource( 7 )
 
-[node name="WeaponBar" type="Node2D" parent="." index="8"]
+[node name="WeaponBar" type="Node2D" parent="." index="7"]
 script = ExtResource( 6 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="9"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="8"]
 visible = false
 polygon = PoolVector2Array( -26, -28, 26, 0, -26, 28 )
 
-[node name="BulletSpawnPoint" type="Node2D" parent="." index="10"]
+[node name="BulletSpawnPoint" type="Node2D" parent="." index="9"]
 position = Vector2( 48, 0 )
 script = ExtResource( 9 )
 
-[node name="HurtBox" parent="." index="11"]
+[node name="HurtBox" parent="." index="10"]
 collision_layer = 2
 collision_mask = 0
 
@@ -109,7 +109,7 @@ collision_mask = 0
 visible = false
 polygon = PoolVector2Array( -26, -28, 26, 0, -26, 28 )
 
-[node name="PickupGrabber" parent="." index="12" instance=ExtResource( 10 )]
+[node name="PickupGrabber" parent="." index="11" instance=ExtResource( 10 )]
 
 [connection signal="died" from="." to="PlayerBrain" method="on_unit_death"]
 [connection signal="value_changed" from="CombatResources/Health" to="." method="_check_for_death"]

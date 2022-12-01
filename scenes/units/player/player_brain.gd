@@ -6,6 +6,8 @@ class_name PlayerBrain
 
 
 onready var anim_player: AnimationPlayer = $AnimationPlayer
+onready var player_mover: PlayerMover = $PlayerMover
+onready var player_movement_stats: MovementStats = MovementStats.get_movement_stats(owner)
 
 
 # ----------
@@ -67,3 +69,8 @@ func do_teleport_animation():
 ## reset animation
 func _on_animation_end(_old_anim):
 	anim_player.play("Idle")
+
+
+## takes care of moving the player unit
+func _physics_process(delta: float) -> void:
+	player_mover.physics_update(owner, player_movement_stats)
