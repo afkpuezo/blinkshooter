@@ -72,4 +72,5 @@ sender_radius = 512
 [connection signal="took_damage" from="." to="EnemyBrain" method="on_unit_took_damage"]
 [connection signal="value_changed" from="CombatResources/Health" to="." method="_check_for_death"]
 [connection signal="detected_player" from="EnemyBrain" to="EnemyBrain/EnemyMessager" method="send_message"]
+[connection signal="reached_target" from="EnemyBrain/EnemyMover" to="EnemyBrain" method="on_EnemyMover_reached_target"]
 [connection signal="received_message" from="EnemyBrain/EnemyMessager" to="EnemyBrain" method="receive_enemy_message"]

@@ -4,6 +4,8 @@ class_name EnemyMover
 ## beginning to wonder if this Mover idea won't work for this kind of thing
 
 
+signal reached_target()
+
 export var navigation_target_distance := 32
 
 onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
@@ -40,6 +42,8 @@ func move_to(
 		var direction: Vector2 = unit.position.direction_to(next_location).normalized()
 		accelerate_towards(movement_stats, delta, direction)
 		unit.move_and_slide(movement_stats.velocity)
+	else:
+		emit_signal("reached_target")
 
 
 ## if the reset timer has expired, update the nav agent's target position and restart the timer

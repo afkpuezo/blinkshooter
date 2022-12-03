@@ -7,6 +7,14 @@ class_name EnemyBrain
 ## msg args: "player"
 signal detected_player(msg)
 
+# chasing covers currently seeing the player and having recently seen them
+enum MODE{IDLE, CHASING}
+
+
+# ----------
+# vars
+# ----------
+
 # easier to make changes later than using owner everywhere
 onready var this_unit: Unit = owner
 
@@ -34,7 +42,7 @@ onready var last_known_player_position: Vector2 = this_unit.position
 ## the enemy is trying to get to where the player was last seen
 var can_currently_see_player := false
 var did_player_teleport := false
-
+var current_mode: int = MODE.IDLE
 
 # -
 # ----------
@@ -49,8 +57,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	#if name == "Enemy":
-	think(delta)
+	think()
 
 
 # -
@@ -88,6 +95,34 @@ func die():
 
 
 ## holds behavior logic
+## should be called in _physics_process() (or _process()?)
+func think():
+
+	var check_results = player_detection.check()
+	var is_player_detected: bool = false if did_player_teleport else check_results["is_player_detected"]
+	var player: Unit = check_results["player"]
+	var is_detected_by_center: bool = check_results["is_detected_by_center"]
+
+	if is_player_detected:
+		# could update mode
+		_update_knowledge_of_player(true, player)
+	else:
+		_update_knowledge_of_player(false, null, did_player_teleport)
+
+	# should handle every case
+	match current_mode:
+		MODE.CHASING:
+			_think_chase(
+				is_player_detected,
+				player,
+				is_detected_by_center
+			)
+		MODE.IDLE:
+			pass
+
+	did_player_teleport = false
+
+
 ## if player is detected:
 ##		- look at player
 ##		- try to attack
@@ -95,20 +130,13 @@ func die():
 ##		- if too close, back away
 ##		- if just right, stand still
 ## if player is not detected:
-##		- stand still
-## should be called in _physics_process() (or _process()?)
-func think(delta):
-
-	var check_results = player_detection.check()
-	var is_player_detected: bool = false if did_player_teleport else check_results["is_player_detected"]
-	var player = check_results["player"]
-	var is_detected_by_center = check_results["is_detected_by_center"]
-
-	if is_player_detected:
-		_update_knowledge_of_player(true, player)
-	else:
-		_update_knowledge_of_player(false, null, did_player_teleport)
-
+##		- move to their last known position
+func _think_chase(
+	is_player_detected: bool,
+	player: Unit,
+	is_detected_by_center: bool
+	):
+	var delta = get_process_delta_time()
 	var moved = false
 
 	var distance = position.distance_to(last_known_player_position)
@@ -137,7 +165,9 @@ func think(delta):
 		else:
 			enemy_mover.move_to(this_unit, movement_stats, delta, last_known_player_position)
 
-	did_player_teleport = false
+
+func _think_idle():
+	pass
 
 
 ## random equipped action
@@ -152,11 +182,6 @@ func on_player_teleported():
 	did_player_teleport = true
 
 
-# ----------
-# communication related
-# ----------
-
-
 ## Call this instead of updating the var value directly
 ## If going from false to true, reports the new detection of the player
 ## If setting to true, updates the last known location to the player's location
@@ -166,6 +191,7 @@ func on_player_teleported():
 ## 	when it has recently been updated to true; the player can be between two of
 ## 	the rays and the enemy will think it's lost them for a moment
 ## ignore_timer only matters when setting to false
+## will update current mode to CHASING if going from false -> true
 func _update_knowledge_of_player(
 	new_value: bool,
 	player = null,
@@ -178,9 +204,20 @@ func _update_knowledge_of_player(
 			# a possible infinite loop of messaging back and forth forever
 			can_currently_see_player = true
 			_report_detected_player(player)
+			current_mode = MODE.CHASING
 	else: # if new_value is false
 		if ignore_timer or player_memory_timer.is_stopped():
 			can_currently_see_player = new_value
+
+
+func on_EnemyMover_reached_target() -> void:
+	if not can_currently_see_player:
+		current_mode = MODE.IDLE
+
+
+# ----------
+# communication related
+# ----------
 
 
 ## A little redundant with the signal, but this method allows for other logic here if needed
@@ -192,3 +229,4 @@ func _report_detected_player(player):
 ## expects msg to include: 'player'
 func receive_enemy_message(msg):
 	_update_knowledge_of_player(true, msg['player'])
+
