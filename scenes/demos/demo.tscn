@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/units/player/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/units/new_enemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/pickups/pickup.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/actions/weapons/enemy_gun/enemy_gun.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/terrain/floor_tile_map.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/units/enemies/enemy.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/terrain/wall_tile_map.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/ui/player_ui/player_ui.tscn" type="PackedScene" id=12]
 
@@ -24,22 +23,22 @@ tile_data = PoolIntArray( -327689, 0, 0, -327688, 0, 1, -327687, 0, 1, -327686, 
 [node name="Pickups" type="Node2D" parent="."]
 
 [node name="BlinkPickup" parent="Pickups" instance=ExtResource( 3 )]
-position = Vector2( 271, 317 )
+position = Vector2( 174, 352 )
 type = 2
 
 [node name="SawPickup" parent="Pickups" instance=ExtResource( 3 )]
-position = Vector2( 298, 235 )
+position = Vector2( 201, 270 )
 type = 3
 
 [node name="ShurikenPickup" parent="Pickups" instance=ExtResource( 3 )]
-position = Vector2( 291, 147 )
+position = Vector2( 194, 182 )
 type = 4
 
 [node name="SmallGunPickup" parent="Pickups" instance=ExtResource( 3 )]
-position = Vector2( 372, 223 )
+position = Vector2( 275, 258 )
 
 [node name="BigGunPickup" parent="Pickups" instance=ExtResource( 3 )]
-position = Vector2( 360, 317 )
+position = Vector2( 263, 352 )
 type = 1
 
 [node name="Units" type="Node2D" parent="."]
@@ -47,22 +46,17 @@ type = 1
 [node name="Player" parent="Units" instance=ExtResource( 1 )]
 position = Vector2( 48, 248 )
 
-[node name="Enemy" parent="Units" instance=ExtResource( 9 )]
-position = Vector2( 1224, 653 )
-starting_weapon_scene = ExtResource( 4 )
+[node name="Enemy" parent="Units" instance=ExtResource( 2 )]
+position = Vector2( 438, 964 )
 
-[node name="Enemy2" parent="Units" instance=ExtResource( 9 )]
-position = Vector2( 647, 725 )
-starting_weapon_scene = ExtResource( 4 )
+[node name="Enemy2" parent="Units" instance=ExtResource( 2 )]
+position = Vector2( 452, 697 )
 
-[node name="Enemy3" parent="Units" instance=ExtResource( 9 )]
-position = Vector2( 450, 950 )
-starting_weapon_scene = ExtResource( 4 )
+[node name="Enemy3" parent="Units" instance=ExtResource( 2 )]
+position = Vector2( 1131, 613 )
 
-[node name="Enemy4" parent="Units" instance=ExtResource( 9 )]
-position = Vector2( 1221, 558 )
-starting_weapon_scene = ExtResource( 4 )
+[node name="Enemy4" parent="Units" instance=ExtResource( 2 )]
+position = Vector2( 1141, 499 )
 
-[node name="Enemy5" parent="Units" instance=ExtResource( 9 )]
-position = Vector2( 1492, 602 )
-starting_weapon_scene = ExtResource( 4 )
+[node name="Enemy5" parent="Units" instance=ExtResource( 2 )]
+position = Vector2( 1224, 1077 )

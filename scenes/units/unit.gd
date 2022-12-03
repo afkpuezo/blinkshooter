@@ -3,18 +3,18 @@ class_name Unit
 ## Base class for characters like Players and Enemies.
 ## This script should act as interface between its child nodes and the outside world.
 ## (and between different child nodes?)
+## Components related to player detection, pathfinding, attacking, etc, will
+## be children of this component
 
 
 signal died()
+signal took_damage(amount, source)
 
 
 ## not sure if this is the best way to do this
 ## will be built based on children of the CombatResources node
 var combat_resources: Dictionary
 
-## this one is just onready because I don't think it will have to be extended?
-## might have to change later
-onready var movement_stats: MovementStats = $MovementStats
 
 onready var buffs_node: Node2D = $Buffs
 
@@ -88,7 +88,9 @@ func gain_resource(type: int, amount: int) -> bool:
 
 ## should be connected to hitbox signals
 ## just calls lose_resource method
-func take_damage(amount: int, _source):
+func take_damage(amount: int, source):
+	# NOTE: might need some extra validation on the signal later?
+	emit_signal("took_damage", amount, source)
 	# warning-ignore:return_value_discarded
 	lose_resource(CombatResource.Type.HEALTH, amount)
 
@@ -133,4 +135,3 @@ func remove_buff(buff):
 ## Returns a list of all the buffs on this unit.
 func get_buffs() -> Array:
 	return buffs_node.get_children()
-

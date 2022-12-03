@@ -1,31 +1,226 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/hit_boxes/hit_box.gd" type="Script" id=1]
-[ext_resource path="res://scenes/units/enemies/enemy.gd" type="Script" id=2]
-[ext_resource path="res://scenes/hit_boxes/hurt_box.gd" type="Script" id=3]
-[ext_resource path="res://scenes/units/enemies/enemy.png" type="Texture" id=4]
-[ext_resource path="res://scenes/units/enemies/enemy_components/enemy_weapon_bar.gd" type="Script" id=5]
+[ext_resource path="res://scenes/units/enemies/enemy.png" type="Texture" id=2]
+[ext_resource path="res://scenes/units/unit_components/combat_resource.gd" type="Script" id=3]
+[ext_resource path="res://scenes/units/unit_components/bullet_spawn_point.gd" type="Script" id=4]
+[ext_resource path="res://scenes/units/enemies/enemy_components/enemy_messager/enemy_messager.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/movement/movement_stats.gd" type="Script" id=6]
-[ext_resource path="res://scenes/units/unit_components/bullet_spawn_point.gd" type="Script" id=7]
-[ext_resource path="res://scenes/units/unit_components/combat_resource.gd" type="Script" id=8]
-[ext_resource path="res://scenes/units/enemies/enemy_components/enemy_messager/enemy_messager.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/units/enemies/enemy_components/player_detection/player_detection.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/units/enemies/enemy_components/enemy_mover/enemy_mover.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/pickups/pickup.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/units/enemies/enemy_components/loot_dropper.gd" type="Script" id=8]
+[ext_resource path="res://scenes/units/enemies/enemy_components/enemy_mover/enemy_mover.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/actions/weapons/enemy_gun/enemy_gun.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/units/enemies/enemy_components/enemy_weapon_bar.gd" type="Script" id=11]
 [ext_resource path="res://scenes/effects/explosions/explosion_animator.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/effects/giblets_animator.tscn" type="PackedScene" id=13]
-[ext_resource path="res://scenes/units/enemies/enemy_components/loot_dropper.gd" type="Script" id=14]
-[ext_resource path="res://scenes/pickups/pickup.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/units/enemies/enemy_components/player_detection/player_detection.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/hit_boxes/hurt_box.gd" type="Script" id=15]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Unit
+class_name Enemy
+## VERY placeholder right now
+
+
+## msg args: \"player\"
+signal detected_player(msg)
+
+
+# -- child nodes
+onready var player_detection: PlayerDetection = $PlayerDetection
+## when the enemy sees the player, this timer starts. As long as the timer is
+onready var player_memory_timer: Timer = $PlayerMemoryTimer
+
+onready var enemy_mover: EnemyMover = $EnemyMover # mover var declared in parent class - bad?
+onready var weapon_bar: EnemyWeaponBar = $EnemyWeaponBar
+
+
+## -- behavior control
+# seperate from radius of PlayerDetection, effectively the real threshold is the minimum of the two
+export var minimum_chase_distance := 200
+export var too_close_threshold := 100
+export var minimum_chase_distance_no_player := 10
+
+# NOTE: has to be onready or our position will not be set yet!
+onready var last_known_player_position: Vector2 = self.position
+
+## blegh name, keeping track of this explicitly avoids an infinite loop with
+## messaging
+## this is only set to true while the player is in vision, and is false when
+## the enemy is trying to get to where the player was last seen
+var can_currently_see_player := false
+var did_player_teleport := false
+
+
+# -
+# ----------
+# from Node / basic util methods
+# ----------
+# -
+
+
+func _ready() -> void:
+	GameEvents.emit_signal(\"enemy_spawned\", {'enemy': self})
+	GameEvents.connect(\"player_teleported\", self, \"on_player_teleported\")
+
+
+func _physics_process(delta: float) -> void:
+	#if name == \"Enemy\":
+	think(delta)
+
+
+# -
+# ----------
+# inherited from Unit
+# ----------
+# -
+
+
+## if shot by the player from far away, we know where they are
+func take_damage(amount: int, source):
+	var true_source = PlayerBrain.get_player_if_source(source)
+	if true_source:
+		_update_knowledge_of_player(true, true_source)
+	.take_damage(amount, true_source)
+
+
+func die():
+	var msg = {
+		'global_position': global_position
+	}
+	GameEvents.emit_signal(\"enemy_died\", msg)
+	.die()
+
+
+# -
+# ----------
+# new in Enemy
+# ----------
+# -
+
+
+# ----------
+# behavior related
+# ----------
+
+
+## holds behavior logic
+## if player is detected:
+##		- look at player
+##		- try to attack
+##		- if far away, move closer
+##		- if too close, back away
+##		- if just right, stand still
+## if player is not detected:
+##		- stand still
+## should be called in _physics_process() (or _process()?)
+func think(delta):
+
+	var check_results = player_detection.check()
+	var is_player_detected: bool = false if did_player_teleport else check_results[\"is_player_detected\"]
+	var player = check_results[\"player\"]
+	var is_detected_by_center = check_results[\"is_detected_by_center\"]
+
+	if is_player_detected:
+		_update_knowledge_of_player(true, player)
+	else:
+		_update_knowledge_of_player(false, null, did_player_teleport)
+
+	var moved = false
+
+	var distance = position.distance_to(last_known_player_position)
+	self.look_at(last_known_player_position)
+
+	if is_player_detected:
+		if is_detected_by_center:
+			attack()
+		# only back away from the player, not an empty space where they used to
+		# be
+		#if distance_squared < too_close_squared:
+		if distance < too_close_threshold:
+			enemy_mover.back_away_from(self, movement_stats, delta, last_known_player_position)
+			moved = true
+
+	# don't move to or stand still if we've already backed away from the player
+	if not moved:
+		var too_close = false
+		if is_player_detected and distance < minimum_chase_distance:
+			too_close = true
+		elif (not is_player_detected) and distance < minimum_chase_distance_no_player:
+			too_close = true
+
+		if too_close:
+			enemy_mover.stand_still(self, movement_stats, delta)
+		else:
+			enemy_mover.move_to(self, movement_stats, delta, last_known_player_position)
+
+	did_player_teleport = false
+
+
+## random equipped action
+func attack():
+	# warning-ignore:return_value_discarded
+	weapon_bar.trigger_random_action()
+
+
+## triggered by the GameEvent, forces the enemy to lose sight of the player
+func on_player_teleported():
+	#_update_knowledge_of_player(false, null, true)
+	did_player_teleport = true
+
+
+# ----------
+# communication related
+# ----------
+
+
+## Call this instead of updating the var value directly
+## If going from false to true, reports the new detection of the player
+## If setting to true, updates the last known location to the player's location
+## I didn't use a setget since it can require the player var
+## Player should be included if setting to true, not included if setting to false
+## Has a timer that doesn't allow can_currently_see_player to be set to false
+## 	when it has recently been updated to true; the player can be between two of
+## 	the rays and the enemy will think it's lost them for a moment
+## ignore_timer only matters when setting to false
+func _update_knowledge_of_player(
+	new_value: bool,
+	player = null,
+	ignore_timer = false):
+	if new_value:
+		player_memory_timer.start()
+		last_known_player_position = player.global_position
+		if not can_currently_see_player:
+			# setting it here so that it's true before sending a message, to avoid
+			# a possible infinite loop of messaging back and forth forever
+			can_currently_see_player = true
+			_report_detected_player(player)
+	else: # if new_value is false
+		if ignore_timer or player_memory_timer.is_stopped():
+			can_currently_see_player = new_value
+
+
+## A little redundant with the signal, but this method allows for other logic here if needed
+func _report_detected_player(player):
+	emit_signal(\"detected_player\", {'player': player})
+
+
+## receive a message from another enemy about the player's location
+## expects msg to include: 'player'
+func receive_enemy_message(msg):
+	_update_knowledge_of_player(true, msg['player'])
+"
 
 [node name="Enemy" type="KinematicBody2D"]
 collision_layer = 4
 collision_mask = 7
-script = ExtResource( 2 )
+script = SubResource( 1 )
 minimum_chase_distance = 250
 too_close_threshold = 150
 minimum_chase_distance_no_player = 150
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 4 )
+texture = ExtResource( 2 )
 
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 8
@@ -42,30 +237,32 @@ polygon = PoolVector2Array( 28, 0, -26, 30, -10, 0, -26, -30 )
 [node name="CombatResources" type="Node" parent="."]
 
 [node name="Health" type="Node" parent="CombatResources"]
-script = ExtResource( 8 )
+script = ExtResource( 3 )
 
 [node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 0
-script = ExtResource( 3 )
+script = ExtResource( 15 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HurtBox"]
 build_mode = 1
 polygon = PoolVector2Array( -10, 0, -27, -30, 24, 0, -27, 30 )
 
-[node name="EnemyMover" parent="." instance=ExtResource( 11 )]
+[node name="EnemyMover" parent="." instance=ExtResource( 9 )]
 
 [node name="MovementStats" type="Node" parent="."]
 script = ExtResource( 6 )
 
 [node name="BulletSpawnPoint" type="Node2D" parent="."]
 position = Vector2( 48, 0 )
-script = ExtResource( 7 )
+script = ExtResource( 4 )
 
 [node name="EnemyWeaponBar" type="Node2D" parent="."]
-script = ExtResource( 5 )
+script = ExtResource( 11 )
 
-[node name="PlayerDetection" parent="." instance=ExtResource( 10 )]
+[node name="EnemyGun" parent="EnemyWeaponBar" instance=ExtResource( 10 )]
+
+[node name="PlayerDetection" parent="." instance=ExtResource( 14 )]
 detection_range = 512
 num_rays = 5
 
@@ -75,7 +272,7 @@ num_rays = 5
 wait_time = 0.5
 one_shot = true
 
-[node name="EnemyMessager" parent="." instance=ExtResource( 9 )]
+[node name="EnemyMessager" parent="." instance=ExtResource( 5 )]
 sender_radius = 512
 
 [node name="Animators" type="Node2D" parent="."]
@@ -86,13 +283,13 @@ sender_radius = 512
 sprite_z = "5"
 
 [node name="LootDropper" type="Node2D" parent="."]
-script = ExtResource( 14 )
+script = ExtResource( 8 )
 health_chance = 50
 energy_chance = 50
 basic_ammo_chance = 50
 big_ammo_chance = 50
 max_drop_radius = 48
-pickup_scene = ExtResource( 15 )
+pickup_scene = ExtResource( 7 )
 
 [connection signal="detected_player" from="." to="EnemyMessager" method="send_message"]
 [connection signal="died" from="." to="Animators/GibletsAnimator" method="on_death"]

@@ -62,7 +62,6 @@ func on_unit_death():
 ## call the animation on the animation player
 ## TODO connect to event
 func do_teleport_animation():
-	print("do_teleport_animation called")
 	anim_player.play("Teleport")
 
 

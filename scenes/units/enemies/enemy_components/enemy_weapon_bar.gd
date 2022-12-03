@@ -6,7 +6,7 @@ class_name EnemyWeaponBar
 
 
 # DONT type hint as enemy, cyclical
-onready var user = get_parent()
+onready var user = owner # TODO better way?
 var actions := []
 var rng = RandomNumberGenerator.new()
 
@@ -16,13 +16,11 @@ func _ready() -> void:
 	rng.randomize()
 	for c in get_children():
 		if c is Action:
-			actions.append(c)
-			c.configure_user(user) # this method is probably bad
+			add_action(c)
 
 
-## TODO rework this
-## takes care of childing it
-func add_action(action):
+## takes care of childing and configuring it
+func add_action(action, is_already_child = false):
 	add_child(action)
 	actions.append(action)
 	action.configure_user(user)

@@ -1,11 +1,14 @@
-extends Unit
-class_name Enemy
-## VERY placeholder right now
+extends Node2D
+class_name EnemyBrain
+## This used to be the Enemy script. Now it's just a component of a unit that
+## turns that unit into an enemy.
 
 
 ## msg args: "player"
 signal detected_player(msg)
 
+# easier to make changes later than using owner everywhere
+onready var this_unit: Unit = owner
 
 # -- child nodes
 onready var player_detection: PlayerDetection = $PlayerDetection
@@ -13,8 +16,8 @@ onready var player_detection: PlayerDetection = $PlayerDetection
 onready var player_memory_timer: Timer = $PlayerMemoryTimer
 
 onready var enemy_mover: EnemyMover = $EnemyMover # mover var declared in parent class - bad?
+onready var movement_stats: MovementStats = MovementStats.get_movement_stats(this_unit)
 onready var weapon_bar: EnemyWeaponBar = $EnemyWeaponBar
-
 
 ## -- behavior control
 # seperate from radius of PlayerDetection, effectively the real threshold is the minimum of the two
@@ -23,7 +26,7 @@ export var too_close_threshold := 100
 export var minimum_chase_distance_no_player := 10
 
 # NOTE: has to be onready or our position will not be set yet!
-onready var last_known_player_position: Vector2 = self.position
+onready var last_known_player_position: Vector2 = this_unit.position
 
 ## blegh name, keeping track of this explicitly avoids an infinite loop with
 ## messaging
@@ -31,10 +34,6 @@ onready var last_known_player_position: Vector2 = self.position
 ## the enemy is trying to get to where the player was last seen
 var can_currently_see_player := false
 var did_player_teleport := false
-
-
-## an instance of this weapon is added to the weapon bar
-export(PackedScene) var starting_weapon_scene = load("res://scenes/actions/weapons/enemy_gun/enemy_gun.tscn")
 
 
 # -
@@ -45,11 +44,7 @@ export(PackedScene) var starting_weapon_scene = load("res://scenes/actions/weapo
 
 
 func _ready() -> void:
-	GameEvents.emit_signal("enemy_spawned", {'enemy': self})
-
-	if starting_weapon_scene:
-		weapon_bar.add_action(starting_weapon_scene.instance())
-
+	GameEvents.emit_signal("enemy_spawned", {'enemy': this_unit})
 	GameEvents.connect("player_teleported", self, "on_player_teleported")
 
 
@@ -66,11 +61,10 @@ func _physics_process(delta: float) -> void:
 
 
 ## if shot by the player from far away, we know where they are
-func take_damage(amount: int, source):
+func on_unit_took_damage(amount: int, source):
 	var true_source = PlayerBrain.get_player_if_source(source)
 	if true_source:
 		_update_knowledge_of_player(true, true_source)
-	.take_damage(amount, true_source)
 
 
 func die():
@@ -118,7 +112,7 @@ func think(delta):
 	var moved = false
 
 	var distance = position.distance_to(last_known_player_position)
-	self.look_at(last_known_player_position)
+	this_unit.look_at(last_known_player_position)
 
 	if is_player_detected:
 		if is_detected_by_center:
@@ -127,7 +121,7 @@ func think(delta):
 		# be
 		#if distance_squared < too_close_squared:
 		if distance < too_close_threshold:
-			enemy_mover.back_away_from(self, movement_stats, delta, last_known_player_position)
+			enemy_mover.back_away_from(this_unit, movement_stats, delta, last_known_player_position)
 			moved = true
 
 	# don't move to or stand still if we've already backed away from the player
@@ -139,9 +133,9 @@ func think(delta):
 			too_close = true
 
 		if too_close:
-			enemy_mover.stand_still(self, movement_stats, delta)
+			enemy_mover.stand_still(this_unit, movement_stats, delta)
 		else:
-			enemy_mover.move_to(self, movement_stats, delta, last_known_player_position)
+			enemy_mover.move_to(this_unit, movement_stats, delta, last_known_player_position)
 
 	did_player_teleport = false
 
