@@ -77,12 +77,17 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "EnemyBrain",
 "language": "GDScript",
-"path": "res://scenes/units/enemies/enemy_brain.gd"
+"path": "res://scenes/units/enemies/enemy_components/enemy_brain.gd"
 }, {
 "base": "Node2D",
 "class": "EnemyHealthBar",
 "language": "GDScript",
 "path": "res://scenes/ui/bars/enemy_health_bar.gd"
+}, {
+"base": "Node2D",
+"class": "EnemyIdler",
+"language": "GDScript",
+"path": "res://scenes/units/enemies/enemy_components/enemy_idler/enemy_idler.gd"
 }, {
 "base": "Node2D",
 "class": "EnemyMessager",
@@ -260,6 +265,7 @@ _global_script_class_icons={
 "DemoAction": "",
 "EnemyBrain": "",
 "EnemyHealthBar": "",
+"EnemyIdler": "",
 "EnemyMessager": "",
 "EnemyMover": "",
 "EnemyWeaponBar": "",

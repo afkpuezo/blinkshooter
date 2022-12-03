@@ -26,6 +26,7 @@ onready var player_memory_timer: Timer = $PlayerMemoryTimer
 onready var enemy_mover: EnemyMover = $EnemyMover # mover var declared in parent class - bad?
 onready var movement_stats: MovementStats = MovementStats.get_movement_stats(this_unit)
 onready var weapon_bar: EnemyWeaponBar = $EnemyWeaponBar
+onready var enemy_idler: EnemyIdler = $EnemyIdler
 
 ## -- behavior control
 # seperate from radius of PlayerDetection, effectively the real threshold is the minimum of the two
@@ -118,9 +119,10 @@ func think():
 				is_detected_by_center
 			)
 		MODE.IDLE:
-			pass
+			_think_idle()
 
 	did_player_teleport = false
+# end think()
 
 
 ## if player is detected:
@@ -164,10 +166,11 @@ func _think_chase(
 			enemy_mover.stand_still(this_unit, movement_stats, delta)
 		else:
 			enemy_mover.move_to(this_unit, movement_stats, delta, last_known_player_position)
+# end _think_chase()
 
 
 func _think_idle():
-	pass
+	enemy_idler.idle(this_unit)
 
 
 ## random equipped action
@@ -193,10 +196,12 @@ func on_player_teleported():
 ## ignore_timer only matters when setting to false
 ## will update current mode to CHASING if going from false -> true
 func _update_knowledge_of_player(
-	new_value: bool,
+	incoming_value: bool,
 	player = null,
-	ignore_timer = false):
-	if new_value:
+	ignore_timer = false
+	):
+	if incoming_value == true:
+		current_mode = MODE.CHASING
 		player_memory_timer.start()
 		last_known_player_position = player.global_position
 		if not can_currently_see_player:
@@ -204,10 +209,9 @@ func _update_knowledge_of_player(
 			# a possible infinite loop of messaging back and forth forever
 			can_currently_see_player = true
 			_report_detected_player(player)
-			current_mode = MODE.CHASING
-	else: # if new_value is false
+	else: # if incoming_value is false
 		if ignore_timer or player_memory_timer.is_stopped():
-			can_currently_see_player = new_value
+			can_currently_see_player = false
 
 
 func on_EnemyMover_reached_target() -> void:

@@ -1,8 +1,8 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/units/unit.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/units/unit_components/combat_resource.gd" type="Script" id=2]
-[ext_resource path="res://scenes/units/enemies/enemy_brain.gd" type="Script" id=3]
+[ext_resource path="res://scenes/units/enemies/enemy_components/enemy_brain.gd" type="Script" id=3]
 [ext_resource path="res://scenes/units/enemies/enemy_components/enemy_mover/enemy_mover.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/units/unit_components/bullet_spawn_point.gd" type="Script" id=5]
 [ext_resource path="res://scenes/actions/weapons/enemy_gun/enemy_gun.tscn" type="PackedScene" id=6]
@@ -12,6 +12,7 @@
 [ext_resource path="res://scenes/units/enemies/enemy_components/player_detection/player_detection.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/units/enemies/enemy.png" type="Texture" id=11]
 [ext_resource path="res://scenes/units/enemies/enemy_components/loot_dropper.gd" type="Script" id=12]
+[ext_resource path="res://scenes/units/enemies/enemy_components/enemy_idler/enemy_idler.tscn" type="PackedScene" id=13]
 
 [node name="Enemy" instance=ExtResource( 1 )]
 collision_layer = 4
@@ -50,12 +51,11 @@ pickup_scene = ExtResource( 8 )
 [node name="EnemyBrain" type="Node2D" parent="." index="9"]
 script = ExtResource( 3 )
 
-[node name="EnemyMover" parent="EnemyBrain" index="0" instance=ExtResource( 4 )]
+[node name="EnemyIdler" parent="EnemyBrain" index="0" instance=ExtResource( 13 )]
+max_turn_deg = 40.0
+turn_rate_deg = 80.0
 
-[node name="EnemyWeaponBar" type="Node2D" parent="EnemyBrain" index="1"]
-script = ExtResource( 7 )
-
-[node name="EnemyGun" parent="EnemyBrain/EnemyWeaponBar" index="0" instance=ExtResource( 6 )]
+[node name="EnemyMover" parent="EnemyBrain" index="1" instance=ExtResource( 4 )]
 
 [node name="PlayerDetection" parent="EnemyBrain" index="2" instance=ExtResource( 10 )]
 detection_range = 512
@@ -67,6 +67,11 @@ one_shot = true
 
 [node name="EnemyMessager" parent="EnemyBrain" index="4" instance=ExtResource( 9 )]
 sender_radius = 512
+
+[node name="EnemyWeaponBar" type="Node2D" parent="EnemyBrain" index="5"]
+script = ExtResource( 7 )
+
+[node name="EnemyGun" parent="EnemyBrain/EnemyWeaponBar" index="0" instance=ExtResource( 6 )]
 
 [connection signal="died" from="." to="LootDropper" method="_on_Enemy_died"]
 [connection signal="took_damage" from="." to="EnemyBrain" method="on_unit_took_damage"]

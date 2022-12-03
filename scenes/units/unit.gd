@@ -10,11 +10,9 @@ class_name Unit
 signal died()
 signal took_damage(amount, source)
 
-
 ## not sure if this is the best way to do this
 ## will be built based on children of the CombatResources node
 var combat_resources: Dictionary
-
 
 onready var buffs_node: Node2D = $Buffs
 
