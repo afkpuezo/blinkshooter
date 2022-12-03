@@ -25,6 +25,7 @@ export(PackedScene) var tile_scene
 
 
 func _ready() -> void:
+	# warning-ignore:return_value_discarded
 	GameEvents.connect(
 		weapon_event if is_weapon_bar else action_event,
 		self,
@@ -65,7 +66,7 @@ func on_tick(msg):
 
 		# clamping index makes sure that insert works
 		tile_index += 1
-		tile_index = min(tile_index, len(tiles))
+		tile_index = int(min(tile_index, len(tiles)))
 	# end for action_index
 	if should_update_tile_order:
 		update_tile_order()

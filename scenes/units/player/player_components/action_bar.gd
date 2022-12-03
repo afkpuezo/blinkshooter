@@ -105,7 +105,6 @@ func emit_update_tick():
 	var actions_arr := []
 
 	for action_index in range(num_slots):
-		var action: Action = actions[action_index]
 		var sub := emit_update_tick_help(action_index)
 
 		actions_arr.append(sub)

@@ -15,7 +15,7 @@ onready var _owner_movement_stats: MovementStats = owner.get_node("MovementStats
 
 
 ## check to see if mouse has been moved
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
 	if _is_mouse_moving:
 		emit_signal("state_change_triggered", "Mouse")
 		return

@@ -46,6 +46,7 @@ static func get_player_if_source(n: Node):
 
 func _ready() -> void:
 	GameEvents.emit_signal("player_spawned", {'player': self})
+	# warning-ignore:return_value_discarded
 	GameEvents.connect("player_teleport_started", self, "do_teleport_animation")
 
 
@@ -71,5 +72,5 @@ func _on_animation_end(_old_anim):
 
 
 ## takes care of moving the player unit
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	player_mover.physics_update(owner, player_movement_stats)

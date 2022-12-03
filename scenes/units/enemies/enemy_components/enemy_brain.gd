@@ -54,10 +54,11 @@ var current_mode: int = MODE.IDLE
 
 func _ready() -> void:
 	GameEvents.emit_signal("enemy_spawned", {'enemy': this_unit})
+	# warning-ignore:return_value_discarded
 	GameEvents.connect("player_teleported", self, "on_player_teleported")
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	think()
 
 
@@ -69,7 +70,7 @@ func _physics_process(delta: float) -> void:
 
 
 ## if shot by the player from far away, we know where they are
-func on_unit_took_damage(amount: int, source):
+func on_unit_took_damage(_amount: int, source):
 	var true_source = PlayerBrain.get_player_if_source(source)
 	if true_source:
 		_update_knowledge_of_player(true, true_source)
@@ -115,7 +116,6 @@ func think():
 		MODE.CHASING:
 			_think_chase(
 				is_player_detected,
-				player,
 				is_detected_by_center
 			)
 		MODE.IDLE:
@@ -135,7 +135,6 @@ func think():
 ##		- move to their last known position
 func _think_chase(
 	is_player_detected: bool,
-	player: Unit,
 	is_detected_by_center: bool
 	):
 	var delta = get_process_delta_time()

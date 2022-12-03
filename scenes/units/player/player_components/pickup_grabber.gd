@@ -10,9 +10,7 @@ signal found_action(item)
 signal found_resource(type, amount)
 
 
-## TODO think about typing, it's all over the place here
 func on_area_entered(p: Pickup) -> void:
-	var signal_name: String
 	match p.meta_type:
 		Pickup.META_TYPE.ACTION:
 			emit_signal(

@@ -26,13 +26,11 @@ func _ready() -> void:
 
 
 func _on_Enemy_died() -> void:
-	var count = 0
 	for type in types_to_chances:
 		if roll(types_to_chances[type]):
 			var p: Pickup = pickup_scene.instance()
 			p.type = type
 			Spawner.spawn_node(p, get_random_spawn_position())
-			count += 1
 
 
 func roll(c) -> bool:

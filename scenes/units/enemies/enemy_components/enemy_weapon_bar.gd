@@ -16,12 +16,13 @@ func _ready() -> void:
 	rng.randomize()
 	for c in get_children():
 		if c is Action:
-			add_action(c)
+			add_action(c, true)
 
 
 ## takes care of childing and configuring it
 func add_action(action, is_already_child = false):
-	add_child(action)
+	if not is_already_child:
+		add_child(action)
 	actions.append(action)
 	action.configure_user(user)
 
