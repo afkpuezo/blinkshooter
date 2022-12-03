@@ -4,19 +4,19 @@ class_name EnemyMover
 ## beginning to wonder if this Mover idea won't work for this kind of thing
 
 
+export var navigation_target_distance := 32
+
 onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 onready var nav_update_timer: Timer = $NavUpdateTimer
 
 
 # -----
-# inherited from Mover
+# methods
 # -----
 
 
-## NOTE - trying a new idea where the enemy decided behavior in its own script and calls the
-## appropriate movement method directly.
-func physics_update(_unit, _movement_stats: MovementStats, _delta: float):
-	pass
+func _ready() -> void:
+	nav_agent.target_desired_distance = navigation_target_distance
 
 
 # -----
@@ -33,20 +33,24 @@ func move_to(
 	target_position: Vector2
 	):
 	_update_pathing(target_position)
-	var next_location = nav_agent.get_next_location()
-	#print("DEBUG: EnemyMover.move_to(): next_location is %s" % next_location)
-	var direction: Vector2 = unit.position.direction_to(next_location).normalized()
-	accelerate_towards(movement_stats, delta, direction)
-	unit.move_and_slide(movement_stats.velocity)
+
+	if not nav_agent.is_target_reached():
+		var next_location = nav_agent.get_next_location()
+		#print("DEBUG: EnemyMover.move_to(): next_location is %s" % next_location)
+		var direction: Vector2 = unit.position.direction_to(next_location).normalized()
+		accelerate_towards(movement_stats, delta, direction)
+		unit.move_and_slide(movement_stats.velocity)
 
 
 ## if the reset timer has expired, update the nav agent's target position and restart the timer
 ## this should only be called when the player is detected and being chased
+## Does not update if this is not actually a new target location
 func _update_pathing(new_target_location: Vector2):
 	if nav_update_timer.is_stopped():
 		#print("DEBUG: EnemyMover._update_pathing(): setting new target location")
-		nav_agent.set_target_location(new_target_location)
-		nav_update_timer.start()
+		if new_target_location != nav_agent.get_target_location():
+			nav_agent.set_target_location(new_target_location)
+			nav_update_timer.start()
 
 
 ## moves backwards away from the given point
