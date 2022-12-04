@@ -31,12 +31,14 @@ static func is_player(n: Node) -> bool:
 ## Returns the player (unit) node if it is the source of this attack, otherwise
 ## null
 static func get_player_if_source(n: Node):
-	if is_player(n):
+	if n == null:
+		return null
+	elif is_player(n):
 		return n
 	elif n.has_method("get_user") and is_player(n.get_user()):
 		return n.get_user()
 	else:
-		return false
+		return null
 
 
 # ----------
