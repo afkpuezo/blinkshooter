@@ -1,7 +1,5 @@
 [gd_resource type="TileSet" load_steps=41 format=2]
 
-[ext_resource path="res://scenes/terrain/assets/terrain_wall.png" type="Texture" id=1]
-
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 
@@ -119,9 +117,13 @@ points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 [sub_resource type="ConvexPolygonShape2D" id=39]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 
+[sub_resource type="StreamTexture" id=40]
+flags = 4
+load_path = "res://.import/terrain_wall.png-7558470ae0ca1e4f99dca55f71ea1e80.stex"
+
 [resource]
 0/name = "wall"
-0/texture = ExtResource( 1 )
+0/texture = SubResource( 40 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 832, 192 )
