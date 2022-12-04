@@ -4,13 +4,6 @@ class_name Mover
 ## This base version won't add any movement, but the class can be extended.
 
 
-## The given unit should be the user/owner of this Mover.
-## That unit should call this method during it's _physics_update() method.
-#func physics_update(unit, movement_stats: MovementStats, _delta: float):
-	#print("DEBUG: Mover.physics_update() called")
-	#unit.move_and_collide(movement_stats.velocity)
-
-
 ## Helper method, can be used in physics update, accelerates the unit in the
 ## given (normalized) direction. Updates the unit's velocity, does not actually
 ## call move_and_slide.
@@ -22,7 +15,7 @@ func accelerate_towards(movement_stats: MovementStats, delta: float, direction: 
 ## Helper method, can be used in physics update, decelerates the unit using
 ## friction. Updates the unit's velocity, does not actually
 ## call move_and_slide.
-func apply_friction(movement_stats: MovementStats, _delta: float):
+func apply_friction(movement_stats: MovementStats, _delta: float = 0.0):
 	movement_stats.velocity = \
 			movement_stats.velocity.move_toward(
 					Vector2.ZERO,
@@ -30,3 +23,13 @@ func apply_friction(movement_stats: MovementStats, _delta: float):
 							movement_stats.FRICTION * movement_stats.velocity.length(),
 							1)) # fixes very slow friction at low speeds
 
+
+## helper method called to actually move the subject unit of a specific
+## mover
+## determines the type of the subject in order to apply the correct kind of
+## movement (eg, KinematicBody2Ds move_and_slide)
+func move_subject(subject, velocity: Vector2):
+	if subject is KinematicBody2D:
+		subject.move_and_slide(velocity)
+	else:
+		subject.translate(velocity * get_physics_process_delta_time())

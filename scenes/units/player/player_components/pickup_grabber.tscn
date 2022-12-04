@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/units/player/player_components/pickup_grabber.gd" type="Script" id=1]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 16.0
+
+[sub_resource type="CircleShape2D" id=2]
 
 [node name="PickupGrabber" type="Area2D"]
 collision_layer = 0
@@ -14,4 +16,11 @@ script = ExtResource( 1 )
 visible = false
 shape = SubResource( 1 )
 
-[connection signal="area_entered" from="." to="." method="on_area_entered"]
+[node name="PickupVacuum" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupVacuum"]
+shape = SubResource( 2 )
+
+[connection signal="area_entered" from="." to="." method="grab"]

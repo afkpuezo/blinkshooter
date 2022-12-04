@@ -21,7 +21,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	#_stats.velocity = owner.move_and_slide(_stats.velocity)
+	# uses move_and_collide because we need the collision object
 	var collision: KinematicCollision2D = owner.move_and_collide(_stats.velocity * delta)
 	if collision:
 		emit_signal("collided", collision)

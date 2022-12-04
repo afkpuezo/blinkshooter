@@ -109,6 +109,8 @@ visible = false
 polygon = PoolVector2Array( -23, -26, 26, 0, -23, 26 )
 
 [node name="PickupGrabber" parent="." index="11" instance=ExtResource( 10 )]
+grab_radius = 4
+vacuum_radius = 64
 
 [connection signal="died" from="." to="PlayerBrain" method="on_unit_death"]
 [connection signal="value_changed" from="CombatResources/Health" to="." method="_check_for_death"]

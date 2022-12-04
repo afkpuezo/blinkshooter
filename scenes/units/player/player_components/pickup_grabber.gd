@@ -9,8 +9,19 @@ signal found_weapon(item)
 signal found_action(item)
 signal found_resource(type, amount)
 
+export var grab_radius := 32
+export var vacuum_radius := 128
 
-func on_area_entered(p: Pickup) -> void:
+onready var pickup_vacuum: Area2D = $PickupVacuum # should this have its own script?
+
+
+func _ready() -> void:
+	$CollisionShape2D.shape.radius = grab_radius
+	pickup_vacuum.get_node("CollisionShape2D").shape.radius = vacuum_radius
+
+
+# from our own Area2D Signal
+func grab(p: Pickup):
 	match p.meta_type:
 		Pickup.META_TYPE.ACTION:
 			emit_signal(
@@ -29,3 +40,10 @@ func on_area_entered(p: Pickup) -> void:
 				resource_details[0],
 				resource_details[1]
 			)
+
+
+## vacuum any pickups currently in the vacuum area
+func _physics_process(_delta: float) -> void:
+	for a in pickup_vacuum.get_overlapping_areas():
+		# let's try just assuming it's a pickup
+		a.set_vacuum_position(global_position)

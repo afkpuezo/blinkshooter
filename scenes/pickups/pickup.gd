@@ -86,7 +86,14 @@ const TYPE_DETAILS = {
 	},
 }
 
-var done := false
+var done := false # used for freeing
+
+# movemment vars
+export var can_be_vacuumed := true
+var is_being_vacuumed := false
+var vacuum_position: Vector2
+onready var pickup_mover: PickupMover = $PickupMover
+onready var movement_stats: MovementStats = $MovementStats
 
 
 # ----------
@@ -136,6 +143,22 @@ func get_resource_type_and_amount() -> Array:
 	return [resource_type, resource_amount]
 
 
+## handles freeing
 func _process(_delta: float) -> void:
 	if done:
 		queue_free()
+
+
+## handles movement
+func _physics_process(_delta: float) -> void:
+	if can_be_vacuumed:
+		if is_being_vacuumed:
+				pickup_mover.be_vacuumed(self, movement_stats, vacuum_position)
+		else:
+			pickup_mover.idle(self, movement_stats)
+		is_being_vacuumed = false # reset every frame
+
+
+func set_vacuum_position(pos: Vector2):
+	vacuum_position = pos
+	is_being_vacuumed = true

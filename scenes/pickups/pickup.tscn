@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/pickups/pickup.gd" type="Script" id=1]
 [ext_resource path="res://scenes/ui/player_ui/action_ui/assets/blink_item.png" type="Texture" id=2]
+[ext_resource path="res://scenes/movement/movement_stats.gd" type="Script" id=3]
+[ext_resource path="res://scenes/pickups/pickup_mover.gd" type="Script" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.0
@@ -17,3 +19,13 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
+
+[node name="MovementStats" type="Node" parent="."]
+script = ExtResource( 3 )
+MAX_SPEED = 200
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="PickupMover" type="Node2D" parent="."]
+script = ExtResource( 4 )
