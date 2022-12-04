@@ -1,4 +1,5 @@
 extends Node2D
+tool # for warning icon
 class_name AreaOverTimeAttack
 ## Generic version of a damage source that deals damage to all targets in an
 ## area periodically. Rather than dealing a small amount of damage every frame
@@ -16,6 +17,13 @@ export var damage := 30
 export var damage_cooldown := 0.5
 
 onready var hit_box: HitBox = $HitBox # needs one
+
+
+func _get_configuration_warning():
+	for c in get_children():
+		if c is HitBox:
+			return ""
+	return "Requires HitBox"
 
 
 ## Checking collisions happens here because an enemy could stay in the hit box

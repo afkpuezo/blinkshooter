@@ -59,6 +59,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/units/unit_components/combat_resource.gd"
 }, {
+"base": "AreaOverTimeAttack",
+"class": "ContactAttack",
+"language": "GDScript",
+"path": "res://scenes/actions/contact_attack.gd"
+}, {
 "base": "Node2D",
 "class": "DamageCooldown",
 "language": "GDScript",
@@ -265,6 +270,7 @@ _global_script_class_icons={
 "BulletMover": "",
 "BulletSpawnPoint": "",
 "CombatResource": "",
+"ContactAttack": "",
 "DamageCooldown": "",
 "DeathParticle": "",
 "DemoAction": "",
