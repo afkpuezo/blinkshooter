@@ -19,11 +19,11 @@ onready var original_min_size := Vector2(rect_min_size[0], rect_min_size[1])
 # keys are the actual node names of actions
 # NOTE: wasn't sure how/where to have this, exporting a dict is weird
 const types_to_textures = {
-	"Default": "res://scenes/ui/player_ui/action_ui/assets/blink_item.png",
-	"Blink": "res://scenes/ui/player_ui/action_ui/assets/blink_item.png",
-	"SawBlade": "res://scenes/ui/player_ui/action_ui/assets/sawblade_item.png",
-	"Shuriken": "res://scenes/ui/player_ui/action_ui/assets/shuriken_item.png",
-	"SmallGun": "res://scenes/ui/player_ui/action_ui/assets/small_gun_item_oj.png",
+	"Default": "res://scenes/ui/player_ui/action_ui/assets/blank_tile.png",
+	"Blink": "res://scenes/ui/player_ui/action_ui/assets/blink_tile.png",
+	"SawBlade": "res://scenes/ui/player_ui/action_ui/assets/sawblade_tile.png",
+	"Shuriken": "res://scenes/ui/player_ui/action_ui/assets/shuriken_tile.png",
+	"SmallGun": "res://scenes/ui/player_ui/action_ui/assets/small_gun_tile.png",
 	"BigGun": "res://scenes/ui/player_ui/action_ui/assets/big_gun_item_oj.png",
 }
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/small_gun_item_oj.png-111eb8bbac732b8306f91498579ea5a0.stex"
+path="res://.import/shuriken_tile.png-992de6da64468a05307471ac4bca82eb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/ui/player_ui/action_ui/assets/small_gun_item_oj.png"
-dest_files=[ "res://.import/small_gun_item_oj.png-111eb8bbac732b8306f91498579ea5a0.stex" ]
+source_file="res://scenes/ui/player_ui/action_ui/assets/shuriken_tile.png"
+dest_files=[ "res://.import/shuriken_tile.png-992de6da64468a05307471ac4bca82eb.stex" ]
 
 [params]
 

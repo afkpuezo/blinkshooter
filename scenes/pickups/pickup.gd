@@ -24,7 +24,7 @@ var resource_amount: int
 const TYPE_DETAILS = {
 	TYPE.SMALL_GUN: {
 		'scene': "res://scenes/actions/weapons/small_gun/small_gun.tscn",
-		'texture': "res://scenes/ui/player_ui/action_ui/assets/small_gun_item_oj.png",
+		'texture': "res://scenes/ui/player_ui/action_ui/assets/small_gun_tile.png",
 		'radius': 64,
 		'meta_type': META_TYPE.WEAPON,
 	},
@@ -36,19 +36,19 @@ const TYPE_DETAILS = {
 	},
 	TYPE.BLINK: {
 		'scene': "res://scenes/actions/blink/blink.tscn",
-		'texture': "res://scenes/ui/player_ui/action_ui/assets/blink_item.png",
+		'texture': "res://scenes/ui/player_ui/action_ui/assets/blink_tile.png",
 		'radius': 64,
 		'meta_type': META_TYPE.ACTION,
 	},
 	TYPE.SAWBLADE: {
 		'scene': "res://scenes/actions/saw_blade/saw_blade.tscn",
-		'texture': "res://scenes/ui/player_ui/action_ui/assets/sawblade_item.png",
+		'texture': "res://scenes/ui/player_ui/action_ui/assets/sawblade_tile.png",
 		'radius': 64,
 		'meta_type': META_TYPE.ACTION,
 	},
 	TYPE.SHURIKEN: {
 		'scene': "res://scenes/actions/shuriken/shuriken.tscn",
-		'texture': "res://scenes/ui/player_ui/action_ui/assets/shuriken_item.png",
+		'texture': "res://scenes/ui/player_ui/action_ui/assets/shuriken_tile.png",
 		'radius': 64,
 		'meta_type': META_TYPE.ACTION,
 	},

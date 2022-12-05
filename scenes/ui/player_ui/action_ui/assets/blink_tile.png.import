@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/shuriken_item.png-12ea956ce090b3d6e202e4ef2e5ce0ae.stex"
+path="res://.import/blink_tile.png-0eaefe219a41f759a0904315b92d375d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/ui/player_ui/action_ui/assets/shuriken_item.png"
-dest_files=[ "res://.import/shuriken_item.png-12ea956ce090b3d6e202e4ef2e5ce0ae.stex" ]
+source_file="res://scenes/ui/player_ui/action_ui/assets/blink_tile.png"
+dest_files=[ "res://.import/blink_tile.png-0eaefe219a41f759a0904315b92d375d.stex" ]
 
 [params]
 
