@@ -1,15 +1,17 @@
 extends Area2D
+tool # to update the sprite
 class_name Pickup
 ## holds an item for the player to pick up by walking over it
 
 
 enum TYPE{
+	NONE,
 	SMALL_GUN, BIG_GUN,
 	BLINK, SAWBLADE, SHURIKEN,
 	HEALTH, BASIC_AMMO, BIG_AMMO, ENERGY
 }
 enum META_TYPE{WEAPON, ACTION, RESOURCE}
-export(TYPE) var type
+export(TYPE) var type = TYPE.NONE setget set_type
 var item_scene: PackedScene
 var meta_type: int
 
@@ -22,6 +24,12 @@ var resource_amount: int
 ## resource pickups also have resource_type, resource_amount
 # NOTE: this is probably putting too much stuff in this one script...
 const TYPE_DETAILS = {
+	TYPE.NONE: {
+		'scene': "",
+		'texture': "",
+		'radius': 1,
+		'meta_type': META_TYPE.ACTION,
+	},
 	TYPE.SMALL_GUN: {
 		'scene': "res://scenes/actions/weapons/small_gun/small_gun.tscn",
 		'texture': "res://scenes/ui/player_ui/action_ui/assets/small_gun_tile.png",
@@ -110,7 +118,23 @@ static func is_pickup(n):
 # ----------
 
 
-func _ready() -> void:
+## used to update the sprite in the editor
+func set_type(new_type):
+	type = new_type
+	var details = TYPE_DETAILS[type]
+
+	if details['scene'] != "":
+		item_scene = load(details['scene']) # better to load here or later?
+	$CollisionShape2D.shape.radius = details['radius']
+	$Sprite.texture = load(details['texture'])
+	meta_type = details['meta_type']
+
+	if meta_type == META_TYPE.RESOURCE:
+		resource_type = details['resource_type']
+		resource_amount = details['resource_amount']
+
+
+func not_ready() -> void:
 	var details = TYPE_DETAILS[type]
 
 	if details['scene'] != "":
