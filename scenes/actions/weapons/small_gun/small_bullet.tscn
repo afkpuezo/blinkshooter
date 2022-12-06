@@ -19,8 +19,8 @@ shape = SubResource( 1 )
 [node name="ExplosionAnimator" parent="." index="5"]
 position = Vector2( 8, 0 )
 explosion_color = "green"
-explosion_size = "small"
-explosion_speed = "fast"
+explosion_scale = 0.5
+explosion_speed = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="6"]
 shape = SubResource( 1 )

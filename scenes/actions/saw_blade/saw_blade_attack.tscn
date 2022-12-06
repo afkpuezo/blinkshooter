@@ -84,8 +84,8 @@ shape = SubResource( 3 )
 
 [node name="ExplosionAnimator" parent="." instance=ExtResource( 5 )]
 explosion_color = "green"
-explosion_size = "tiny"
-explosion_speed = "fast"
+explosion_scale = 0.35
+explosion_speed = 2.0
 sprite_z = "5"
 
 [connection signal="hit_at" from="." to="ExplosionAnimator" method="create_explosion"]
