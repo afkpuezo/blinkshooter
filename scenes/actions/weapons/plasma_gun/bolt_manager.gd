@@ -12,7 +12,7 @@ export var max_num_bolts := 3
 export var min_flicker_time := 0.2
 export var max_flicker_time := 0.5
 
-var timers_to_bolts := {}
+var flicker_timers_to_bolts := {}
 
 
 func _ready() -> void:
@@ -27,18 +27,21 @@ func _ready() -> void:
 		bolt.texture = bolt_texture
 		bolt.rotation = ((n + 1) / num_bolts) * 2 * PI # space them evenly
 		add_child(bolt)
-
-		var timer = Timer.new()
-		timers_to_bolts[timer] = bolt
-		timer.one_shot = true
-		add_child(timer)
-
-		timer.connect("timeout", self, "on_timer_timeout", [timer])
-		timer.start(get_random_time())
+		setup_flicker_timer(bolt)
 
 
-func on_timer_timeout(timer: Timer):
-	var bolt: Sprite = timers_to_bolts[timer]
+func setup_flicker_timer(bolt: Sprite):
+	var timer = Timer.new()
+	flicker_timers_to_bolts[timer] = bolt
+	timer.one_shot = true
+	add_child(timer)
+
+	timer.connect("timeout", self, "handle_flicker", [timer])
+	timer.start(get_random_time())
+
+
+func handle_flicker(timer: Timer):
+	var bolt: Sprite = flicker_timers_to_bolts[timer]
 	bolt.visible = not bolt.visible
 	timer.start(get_random_time())
 
