@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/actions/weapons/weapon.gd" type="Script" id=1]
+[ext_resource path="res://scenes/actions/weapons/plasma_gun/plasma_bullet.tscn" type="PackedScene" id=2]
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource( 1 )
+big_ammo_cost = 1
+cooldown = 1.0
+default_slot = 1
+bullet_scene = ExtResource( 2 )
+damage = 50
+main_ammo_type = 3
