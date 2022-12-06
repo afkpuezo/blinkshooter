@@ -26,6 +26,7 @@ shape = SubResource( 1 )
 [node name="BoltManager" type="Node2D" parent="." index="7"]
 script = ExtResource( 3 )
 bolt_texture = ExtResource( 4 )
-min_num_bolts = 3
-min_rotation_speed_deg = 400
-max_rotation_speed_deg = 600
+min_num_bolts = 2
+max_num_bolts = 4
+min_flicker_time = 0.1
+max_flicker_time = 0.3

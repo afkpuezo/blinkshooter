@@ -9,31 +9,39 @@ export(Texture) var bolt_texture
 export var min_num_bolts := 1
 export var max_num_bolts := 3
 
-export var min_rotation_speed_deg := 45
-export var max_rotation_speed_deg := 180
+export var min_flicker_time := 0.2
+export var max_flicker_time := 0.5
 
-var bolts_to_speed := {} # maps bolts to speed
+var timers_to_bolts := {}
 
 
 func _ready() -> void:
 	randomize()
 
+	rotate(rand_range(0, 2 * PI))
+
 	var num_bolts := ceil(rand_range(min_num_bolts - 1, max_num_bolts))
-	print("num_bolts: %d" % num_bolts)
 
 	for n in range(num_bolts):
 		var bolt: Sprite = Sprite.new()
 		bolt.texture = bolt_texture
-
-		var speed := deg2rad(rand_range(min_rotation_speed_deg - 1, max_rotation_speed_deg))
-		var polarity = 1 if randi() % 2 == 0 else -1
-		speed *= polarity
 		bolt.rotation = ((n + 1) / num_bolts) * 2 * PI # space them evenly
-
-		bolts_to_speed[bolt] = speed
 		add_child(bolt)
 
+		var timer = Timer.new()
+		timers_to_bolts[timer] = bolt
+		timer.one_shot = true
+		add_child(timer)
 
-func _process(delta: float) -> void:
-	for bolt in bolts_to_speed:
-		bolt.rotate(bolts_to_speed[bolt] * delta)
+		timer.connect("timeout", self, "on_timer_timeout", [timer])
+		timer.start(get_random_time())
+
+
+func on_timer_timeout(timer: Timer):
+	var bolt: Sprite = timers_to_bolts[timer]
+	bolt.visible = not bolt.visible
+	timer.start(get_random_time())
+
+
+func get_random_time() -> float:
+	return rand_range(min_flicker_time, max_flicker_time)
