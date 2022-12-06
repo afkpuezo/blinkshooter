@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/green_bullet.png-189da0cba01a5de8ee8c88b52c496583.stex"
+path="res://.import/plasma_shot_bolt.png-eccaa0ce14a7d6f8e41a35fe4fcb6868.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/actions/weapons/bullet/green_bullet.png"
-dest_files=[ "res://.import/green_bullet.png-189da0cba01a5de8ee8c88b52c496583.stex" ]
+source_file="res://scenes/actions/weapons/plasma_gun/assets/plasma_shot_bolt.png"
+dest_files=[ "res://.import/plasma_shot_bolt.png-eccaa0ce14a7d6f8e41a35fe4fcb6868.stex" ]
 
 [params]
 
