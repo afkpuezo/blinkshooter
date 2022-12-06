@@ -32,7 +32,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "AreaOverTimeAttack",
 "language": "GDScript",
-"path": "res://scenes/actions/area_over_time_attack.gd"
+"path": "res://scenes/actions/attacks/area_over_time_attack.gd"
 }, {
 "base": "Action",
 "class": "Blink",
@@ -67,7 +67,7 @@ _global_script_classes=[ {
 "base": "AreaOverTimeAttack",
 "class": "ContactAttack",
 "language": "GDScript",
-"path": "res://scenes/actions/contact_attack.gd"
+"path": "res://scenes/actions/attacks/contact_attack.gd"
 }, {
 "base": "Node2D",
 "class": "DamageCooldown",
@@ -168,6 +168,11 @@ _global_script_classes=[ {
 "class": "PickupMover",
 "language": "GDScript",
 "path": "res://scenes/pickups/pickup_mover.gd"
+}, {
+"base": "AreaOverTimeAttack",
+"class": "PlasmaBurst",
+"language": "GDScript",
+"path": "res://scenes/actions/weapons/plasma_gun/plasma_burst.gd"
 }, {
 "base": "Node2D",
 "class": "PlayerBrain",
@@ -297,6 +302,7 @@ _global_script_class_icons={
 "Pickup": "",
 "PickupGrabber": "",
 "PickupMover": "",
+"PlasmaBurst": "",
 "PlayerBrain": "",
 "PlayerDetection": "",
 "PlayerMonitorText": "",

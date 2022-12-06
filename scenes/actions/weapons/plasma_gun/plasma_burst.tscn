@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/actions/weapons/plasma_gun/plasma_burst.gd" type="Script" id=1]
+[ext_resource path="res://scenes/buffs/damage_cooldown.tscn" type="PackedScene" id=2]
+
+[node name="PlasmaBurst" type="Node2D"]
+script = ExtResource( 1 )
+damage_cooldown_scene = ExtResource( 2 )
+damage = 50
+damage_cooldown = 2.0
