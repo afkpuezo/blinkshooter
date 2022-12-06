@@ -23,31 +23,19 @@ func set_initial_velocity(initial_velocity: Vector2):
 	$BulletMover.set_initial_velocity(initial_velocity)
 
 
-func _on_Timer_timeout() -> void:
-	queue_free()
-
-
 ## handles collisions with things that can be hurt, EG units
 func _on_HitBox_area_entered(area) -> void:
 	#print("DEBUG: bullet hitbox area entered by: %s" % area.name)
 	if area.has_method("get_unit"):
 		var victim = area.get_unit()
 		victim.take_damage(damage, source)
-		_handle_hit()
+		end()
 	else:
 		#print("DEBUG: Bullet._on_HitBox_area_entered() passed a non-HurtBox area: %s" % area.name)
 		pass
 
 
-## handles collisions with things that aren't hurt, like walls
-## NOTE: just assumes that anything in the Wall collision layer (1) is a wall
-func _on_BulletMover_collided(_collision: KinematicCollision2D) -> void:
-	_handle_hit() # at some point, explode on the wall or something
-
-
-## EG if there are animations that play on hitting a unit or wall
-func _handle_hit():
-	if has_explosion:
+func end(do_explode := has_explosion):
+	if do_explode:
 		emit_signal("exploded")
-	# end if explosion_mode
 	queue_free()
