@@ -9,7 +9,6 @@
 radius = 16.0
 
 [node name="PlasmaBullet" instance=ExtResource( 1 )]
-position = Vector2( 200, 200 )
 
 [node name="MovementStats" parent="." index="0"]
 MAX_SPEED = 400
