@@ -20,7 +20,7 @@ FRICTION = 0.0
 [node name="BulletMover" type="Node" parent="."]
 script = ExtResource( 2 )
 
-[node name="Timer" type="Timer" parent="."]
+[node name="LifeTimer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
 autostart = true
@@ -35,5 +35,5 @@ script = ExtResource( 1 )
 
 [connection signal="exploded" from="." to="ExplosionAnimator" method="create_explosion"]
 [connection signal="collided" from="BulletMover" to="." method="_on_BulletMover_collided"]
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="LifeTimer" to="." method="_on_Timer_timeout"]
 [connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]

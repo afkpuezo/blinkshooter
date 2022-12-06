@@ -3,7 +3,7 @@
 [ext_resource path="res://scenes/actions/weapons/bullet/bullet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/actions/weapons/plasma_gun/assets/plasma_shot_base.png" type="Texture" id=2]
 [ext_resource path="res://scenes/actions/weapons/plasma_gun/bolt_manager.gd" type="Script" id=3]
-[ext_resource path="res://scenes/actions/weapons/plasma_gun/assets/plasma_shot_bolt.png" type="Texture" id=4]
+[ext_resource path="res://scenes/actions/weapons/plasma_gun/assets/plasma_shot_bolt_2.png" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 16.0
@@ -12,6 +12,9 @@ radius = 16.0
 
 [node name="MovementStats" parent="." index="0"]
 MAX_SPEED = 400
+
+[node name="LifeTimer" parent="." index="2"]
+wait_time = 8.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
 shape = SubResource( 1 )
@@ -29,7 +32,3 @@ min_num_bolts = 2
 max_num_bolts = 4
 min_flicker_time = 0.1
 max_flicker_time = 0.3
-
-[node name="Camera2D" type="Camera2D" parent="." index="8"]
-current = true
-zoom = Vector2( 0.5, 0.5 )
