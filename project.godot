@@ -39,11 +39,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/actions/blink/blink.gd"
 }, {
-"base": "Node2D",
-"class": "BoltManager",
-"language": "GDScript",
-"path": "res://scenes/actions/weapons/plasma_gun/bolt_manager.gd"
-}, {
 "base": "KinematicBody2D",
 "class": "Bullet",
 "language": "GDScript",
@@ -169,10 +164,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/pickups/pickup_mover.gd"
 }, {
+"base": "Bullet",
+"class": "PlasmaBullet",
+"language": "GDScript",
+"path": "res://scenes/actions/weapons/plasma_gun/plasma_bullet.gd"
+}, {
 "base": "AreaOverTimeAttack",
 "class": "PlasmaBurst",
 "language": "GDScript",
 "path": "res://scenes/actions/weapons/plasma_gun/plasma_burst.gd"
+}, {
+"base": "Weapon",
+"class": "PlasmaGun",
+"language": "GDScript",
+"path": "res://scenes/actions/weapons/plasma_gun/plasma_gun.gd"
 }, {
 "base": "Node2D",
 "class": "PlayerBrain",
@@ -268,6 +273,11 @@ _global_script_classes=[ {
 "class": "WeaponBar",
 "language": "GDScript",
 "path": "res://scenes/units/player/player_components/weapon_bar.gd"
+}, {
+"base": "Node2D",
+"class": "ZapEffect",
+"language": "GDScript",
+"path": "res://scenes/actions/weapons/plasma_gun/zap_effect.gd"
 } ]
 _global_script_class_icons={
 "Action": "",
@@ -276,7 +286,6 @@ _global_script_class_icons={
 "ActionUITile": "",
 "AreaOverTimeAttack": "",
 "Blink": "",
-"BoltManager": "",
 "Bullet": "",
 "BulletMover": "",
 "BulletSpawnPoint": "",
@@ -302,7 +311,9 @@ _global_script_class_icons={
 "Pickup": "",
 "PickupGrabber": "",
 "PickupMover": "",
+"PlasmaBullet": "",
 "PlasmaBurst": "",
+"PlasmaGun": "",
 "PlayerBrain": "",
 "PlayerDetection": "",
 "PlayerMonitorText": "",
@@ -321,7 +332,8 @@ _global_script_class_icons={
 "TeleportEffect": "",
 "Unit": "",
 "Weapon": "",
-"WeaponBar": ""
+"WeaponBar": "",
+"ZapEffect": ""
 }
 
 [application]

@@ -93,7 +93,6 @@ polygon = PoolVector2Array( -23, -26, 26, 0, -23, 26 )
 
 [node name="ContactExplosionAnimator" parent="ContactAttack" index="1" instance=ExtResource( 17 )]
 explosion_color = "red"
-explosion_size = "medium"
 sprite_z = "5"
 
 [connection signal="died" from="." to="LootDropper" method="_on_Enemy_died"]

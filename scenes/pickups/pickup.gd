@@ -44,7 +44,7 @@ const TYPE_DETAILS = {
 	},
 	TYPE.PLASMA_GUN: {
 		'scene': "res://scenes/actions/weapons/plasma_gun/plasma_gun.tscn",
-		'texture': "res://scenes/ui/player_ui/action_ui/assets/big_gun_item_oj.png",
+		'texture': "res://scenes/ui/player_ui/action_ui/assets/plasma_gun_tile.png",
 		'radius': 64,
 		'meta_type': META_TYPE.WEAPON,
 	},
@@ -127,20 +127,6 @@ static func is_pickup(n):
 ## used to update the sprite in the editor
 func set_type(new_type):
 	type = new_type
-	var details = TYPE_DETAILS[type]
-
-	if details['scene'] != "":
-		item_scene = load(details['scene']) # better to load here or later?
-	$CollisionShape2D.shape.radius = details['radius']
-	$Sprite.texture = load(details['texture'])
-	meta_type = details['meta_type']
-
-	if meta_type == META_TYPE.RESOURCE:
-		resource_type = details['resource_type']
-		resource_amount = details['resource_amount']
-
-
-func not_ready() -> void:
 	var details = TYPE_DETAILS[type]
 
 	if details['scene'] != "":

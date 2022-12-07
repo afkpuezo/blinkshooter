@@ -1,5 +1,5 @@
 extends Node2D
-class_name BoltManager
+class_name ZapEffect
 ## creates some sprites that look like bolts of energy coming off of the plasma
 ## shot
 
@@ -17,6 +17,9 @@ export var flip_time := 0.12
 var flicker_timers_to_bolts := {}
 var flip_timers_to_bolts := {}
 
+export var duration := 0 ## if 0, no time limit
+onready var life_timer: Timer = $LifeTimer
+
 
 # ----------
 # setup
@@ -24,6 +27,9 @@ var flip_timers_to_bolts := {}
 
 func _ready() -> void:
 	randomize()
+
+	if duration != 0:
+		life_timer.start(duration)
 
 	rotate(rand_range(0, 2 * PI))
 
@@ -65,6 +71,10 @@ func get_random_flicker_time() -> float:
 # ----------
 # running
 # ----------
+
+
+func handle_life_timer():
+	queue_free()
 
 
 func handle_flicker(timer: Timer):

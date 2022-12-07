@@ -32,16 +32,19 @@ func do_action():
 	_ready_spawn_location()
 	_ready_user_movement_stats()
 
-	var new_bullet: Bullet = bullet_scene.instance()
-	new_bullet.damage = damage
-	new_bullet.source = user
-
+	var bullet: Bullet = bullet_scene.instance()
+	configure_bullet(bullet)
 	Spawner.spawn_bullet(
-		new_bullet,
+		bullet,
 		spawn_location.get_global_position(),
 		user.get_global_rotation(),
 		user_movement_stats.velocity)
 
+
+## lets child weapon types override
+func configure_bullet(bullet: Bullet):
+	bullet.damage = damage
+	bullet.source = user
 
 # ----------
 # private / helper methods

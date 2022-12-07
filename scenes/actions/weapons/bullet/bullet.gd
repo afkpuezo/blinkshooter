@@ -9,7 +9,6 @@ signal exploded()
 
 export var has_explosion := true
 
-export(PackedScene) var explosion_scene
 
 ## damage dealt to target when hit, set by weapon
 var damage = 1

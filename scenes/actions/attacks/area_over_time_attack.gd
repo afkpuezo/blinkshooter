@@ -51,17 +51,17 @@ func _get_potential_victims() -> Array:
 
 ## If the victim can take buffs and does not have the DamageCooldown buff for
 ## the sawblade, deal damage and apply the buff.
-func _handle_victim(victim):
-	if victim.has_method("get_buffs"):
-		var buffs: Array = victim.get_buffs()
-		for buff in buffs:
-			if buff.get("source") == self:
-				return
+func _handle_victim(victim: Unit):
+	#if victim.has_method("get_buffs"):
+	var buffs: Array = victim.get_buffs()
+	for buff in buffs:
+		if buff.get("source") == self:
+			return
 
-		# if we got here, we can deal damage
-		var dc: DamageCooldown = damage_cooldown_scene.instance()
-		dc.setup(self, damage_cooldown)
-		victim.add_buff(dc)
-		victim.take_damage(damage, owner)
-		emit_signal("dealt_damage", victim, damage)
+	# if we got here, we can deal damage
+	var dc: DamageCooldown = damage_cooldown_scene.instance()
+	dc.setup(self, damage_cooldown)
+	victim.add_buff(dc)
+	victim.take_damage(damage, owner)
+	emit_signal("dealt_damage", victim, damage)
 
