@@ -8,7 +8,7 @@ enum TYPE{
 	NONE,
 	SMALL_GUN, BIG_GUN, PLASMA_GUN,
 	BLINK, SAWBLADE, SHURIKEN,
-	HEALTH, BASIC_AMMO, BIG_AMMO, ENERGY
+	HEALTH, BASIC_AMMO, PLASMA_AMMO, ENERGY
 }
 enum META_TYPE{WEAPON, ACTION, RESOURCE}
 export(TYPE) var type = TYPE.NONE setget set_type
@@ -62,7 +62,7 @@ const TYPE_DETAILS = {
 	},
 	TYPE.HEALTH: {
 		'scene': "",
-		'texture': "res://scenes/pickups/hp_pickups/hp_pickup.png",
+		'texture': "res://scenes/pickups/resource_pickups/hp_pickup.png",
 		'radius': 32,
 		'meta_type': META_TYPE.RESOURCE,
 		'resource_type': CombatResource.Type.HEALTH,
@@ -70,7 +70,7 @@ const TYPE_DETAILS = {
 	},
 	TYPE.ENERGY: {
 		'scene': "",
-		'texture': "res://scenes/pickups/hp_pickups/energy_pickup.png",
+		'texture': "res://scenes/pickups/resource_pickups/energy_pickup.png",
 		'radius': 32,
 		'meta_type': META_TYPE.RESOURCE,
 		'resource_type': CombatResource.Type.ENERGY,
@@ -78,18 +78,18 @@ const TYPE_DETAILS = {
 	},
 	TYPE.BASIC_AMMO: {
 		'scene': "",
-		'texture': "res://scenes/pickups/hp_pickups/small_ammo_pickup.png",
+		'texture': "res://scenes/pickups/resource_pickups/small_ammo_pickup.png",
 		'radius': 32,
 		'meta_type': META_TYPE.RESOURCE,
 		'resource_type': CombatResource.Type.BASIC_AMMO,
 		'resource_amount': 30
 	},
-	TYPE.BIG_AMMO: {
+	TYPE.PLASMA_AMMO: {
 		'scene': "",
-		'texture': "res://scenes/pickups/hp_pickups/big_ammo_pickup.png",
+		'texture': "res://scenes/pickups/resource_pickups/big_ammo_pickup.png",
 		'radius': 32,
 		'meta_type': META_TYPE.RESOURCE,
-		'resource_type': CombatResource.Type.BIG_AMMO,
+		'resource_type': CombatResource.Type.PLASMA_AMMO,
 		'resource_amount': 1
 	},
 }

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/energy_pickup.png-f330ad9d987e066c0aa981d3cd9a0787.stex"
+path="res://.import/big_ammo_pickup.png-54baf827254f6db2e30019f5498c16e3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/pickups/hp_pickups/energy_pickup.png"
-dest_files=[ "res://.import/energy_pickup.png-f330ad9d987e066c0aa981d3cd9a0787.stex" ]
+source_file="res://scenes/pickups/resource_pickups/big_ammo_pickup.png"
+dest_files=[ "res://.import/big_ammo_pickup.png-54baf827254f6db2e30019f5498c16e3.stex" ]
 
 [params]
 

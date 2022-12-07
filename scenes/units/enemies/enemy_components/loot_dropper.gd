@@ -7,11 +7,11 @@ class_name LootDropper
 export(int, 0, 100) var health_chance = 0
 export(int, 0, 100) var energy_chance = 0
 export(int, 0, 100) var basic_ammo_chance = 0
-export(int, 0, 100) var big_ammo_chance = 0
+export(int, 0, 100) var plasma_ammo_chance = 0
 
 onready var types_to_chances := {
 	Pickup.TYPE.BASIC_AMMO: basic_ammo_chance,
-	Pickup.TYPE.BIG_AMMO: big_ammo_chance,
+	Pickup.TYPE.PLASMA_AMMO: plasma_ammo_chance,
 	Pickup.TYPE.HEALTH: health_chance,
 	Pickup.TYPE.ENERGY: energy_chance,
 }

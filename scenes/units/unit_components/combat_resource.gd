@@ -5,7 +5,7 @@ class_name CombatResource
 signal value_changed(new_value, max_value)
 
 # NOTE: update get_all_types() when creating a new type!
-enum Type {HEALTH, ENERGY, BASIC_AMMO, BIG_AMMO}
+enum Type {HEALTH, ENERGY, BASIC_AMMO, PLASMA_AMMO}
 
 export var MAX_VALUE := 100
 export var MIN_VALUE := 0 # needed?
@@ -29,7 +29,7 @@ onready var value: float = clamp(INITIAL_VALUE, MIN_VALUE, MAX_VALUE)
 static func is_ammo(rsrc) -> bool:
 	if typeof(rsrc) != TYPE_INT:
 		rsrc = rsrc.type
-	return rsrc in [Type.BASIC_AMMO, Type.BIG_AMMO] # potentially slow lookup?
+	return rsrc in [Type.BASIC_AMMO, Type.PLASMA_AMMO] # potentially slow lookup?
 
 
 ## Returns true if the given node has a "CombatResources" child node to group any actual combat
@@ -79,7 +79,7 @@ func get_class() -> String:
 
 ## NOTE: needs to be manually updated when new types are added!!!
 static func get_all_types() -> Array:
-	return [Type.HEALTH, Type.ENERGY, Type.BASIC_AMMO, Type.BIG_AMMO]
+	return [Type.HEALTH, Type.ENERGY, Type.BASIC_AMMO, Type.PLASMA_AMMO]
 
 
 # ----------

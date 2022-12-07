@@ -15,12 +15,12 @@ signal cooldown_finished(msg) # when action is ready again
 export var health_cost := 0
 export var energy_cost := 0
 export var basic_ammo_cost := 0
-export var big_ammo_cost := 0
+export var PLASMA_AMMO_cost := 0
 onready var cost:= {
 	CombatResource.Type.HEALTH: health_cost,
 	CombatResource.Type.ENERGY: energy_cost,
 	CombatResource.Type.BASIC_AMMO: basic_ammo_cost,
-	CombatResource.Type.BIG_AMMO: big_ammo_cost,
+	CombatResource.Type.PLASMA_AMMO: PLASMA_AMMO_cost,
 }
 
 export(float, 0.0, 60.0) var cooldown = 0.1
