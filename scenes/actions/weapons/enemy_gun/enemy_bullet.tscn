@@ -18,8 +18,8 @@ shape = SubResource( 1 )
 [node name="ExplosionAnimator" parent="." index="4"]
 position = Vector2( 8, 0 )
 explosion_color = "red"
-explosion_size = "small"
-explosion_speed = "fast"
+explosion_scale = 0.35
+explosion_speed = 2.0
 
 [node name="Sprite" type="Sprite" parent="." index="5"]
 scale = Vector2( 0.5, 0.5 )
