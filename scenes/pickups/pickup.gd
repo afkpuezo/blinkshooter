@@ -36,12 +36,6 @@ const TYPE_DETAILS = {
 		'radius': 64,
 		'meta_type': META_TYPE.WEAPON,
 	},
-	TYPE.BIG_GUN: {
-		'scene': "res://scenes/actions/weapons/big_gun/big_gun.tscn",
-		'texture': "res://scenes/ui/player_ui/action_ui/assets/big_gun_item_oj.png",
-		'radius': 64,
-		'meta_type': META_TYPE.WEAPON,
-	},
 	TYPE.PLASMA_GUN: {
 		'scene': "res://scenes/actions/weapons/plasma_gun/plasma_gun.tscn",
 		'texture': "res://scenes/ui/player_ui/action_ui/assets/plasma_gun_tile.png",
