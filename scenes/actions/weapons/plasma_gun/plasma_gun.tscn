@@ -5,7 +5,7 @@
 
 [node name="PlasmaGun" type="Node2D"]
 script = ExtResource( 1 )
-big_ammo_cost = 1
+PLASMA_AMMO_cost = 1
 cooldown = 1.0
 default_slot = 1
 bullet_scene = ExtResource( 2 )
