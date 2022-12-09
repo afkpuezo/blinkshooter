@@ -62,7 +62,7 @@ const TYPE_DETAILS = {
 	},
 	TYPE.HEALTH: {
 		'scene': "",
-		'texture': "res://scenes/pickups/resource_pickups/hp_pickup.png",
+		'texture': "res://scenes/pickups/resource_pickups/health_pickup.png",
 		'radius': 32,
 		'meta_type': META_TYPE.RESOURCE,
 		'resource_type': CombatResource.Type.HEALTH,
@@ -78,7 +78,7 @@ const TYPE_DETAILS = {
 	},
 	TYPE.BASIC_AMMO: {
 		'scene': "",
-		'texture': "res://scenes/pickups/resource_pickups/small_ammo_pickup.png",
+		'texture': "res://scenes/pickups/resource_pickups/bullet_pickup.png",
 		'radius': 32,
 		'meta_type': META_TYPE.RESOURCE,
 		'resource_type': CombatResource.Type.BASIC_AMMO,
@@ -86,7 +86,7 @@ const TYPE_DETAILS = {
 	},
 	TYPE.PLASMA_AMMO: {
 		'scene': "",
-		'texture': "res://scenes/pickups/resource_pickups/big_ammo_pickup.png",
+		'texture': "res://scenes/pickups/resource_pickups/plasma_pickup.png",
 		'radius': 32,
 		'meta_type': META_TYPE.RESOURCE,
 		'resource_type': CombatResource.Type.PLASMA_AMMO,
