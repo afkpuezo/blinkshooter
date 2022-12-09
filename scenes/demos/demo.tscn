@@ -24,26 +24,31 @@ tile_data = PoolIntArray( -327689, 0, 0, -327688, 0, 1, -327687, 0, 1, -327686, 
 
 [node name="BlinkPickup" parent="Pickups" instance=ExtResource( 3 )]
 position = Vector2( 174, 352 )
+was_placed_in_editor = true
 type = 4
 can_be_vacuumed = false
 
 [node name="SawPickup" parent="Pickups" instance=ExtResource( 3 )]
 position = Vector2( 201, 270 )
+was_placed_in_editor = true
 type = 5
 can_be_vacuumed = false
 
 [node name="ShurikenPickup" parent="Pickups" instance=ExtResource( 3 )]
 position = Vector2( 194, 182 )
+was_placed_in_editor = true
 type = 6
 can_be_vacuumed = false
 
 [node name="SmallGunPickup" parent="Pickups" instance=ExtResource( 3 )]
 position = Vector2( 321, 262 )
+was_placed_in_editor = true
 type = 1
 can_be_vacuumed = false
 
 [node name="PlasmaGunPickup" parent="Pickups" instance=ExtResource( 3 )]
 position = Vector2( 263, 352 )
+was_placed_in_editor = true
 type = 3
 can_be_vacuumed = false
 

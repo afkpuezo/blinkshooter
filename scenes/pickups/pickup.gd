@@ -10,20 +10,33 @@ enum TYPE{
 	BLINK, SAWBLADE, SHURIKEN,
 	HEALTH, BASIC_AMMO, PLASMA_AMMO, ENERGY
 }
-enum META_TYPE{WEAPON, ACTION, RESOURCE}
-export(TYPE) var type = TYPE.NONE setget set_type
+enum META_TYPE{
+	WEAPON, ACTION, RESOURCE
+}
+enum SIZE{
+	NORMAL, LARGE
+}
+
+export var was_placed_in_editor := false # kluuuuuuudge
+export(TYPE) var type = TYPE.NONE
 var item_scene: PackedScene
 var meta_type: int
 
 # these are only actually used for resource pickups
 var resource_type: int # enum from CombatResource
 var resource_amount: int
+var size # only needed for resource pickups
 
 ## each type maps to a dict with:
 ##		matching scene path, texture path, radius, and meta type
-## resource pickups also have resource_type, resource_amount
+## resource pickups also have resource_type, and a sub dict for each possible
+## size, with resource_amount and scale_factor
 # NOTE: this is probably putting too much stuff in this one script...
+# NOTE: radius is applied BEFORE scaling
 const TYPE_DETAILS = {
+	# ----------
+	# actions start
+	# ----------
 	TYPE.NONE: {
 		'scene': "",
 		'texture': "",
@@ -60,37 +73,68 @@ const TYPE_DETAILS = {
 		'radius': 64,
 		'meta_type': META_TYPE.ACTION,
 	},
+	# ----------
+	# resources start
+	# ----------
 	TYPE.HEALTH: {
 		'scene': "",
 		'texture': "res://scenes/pickups/resource_pickups/health_pickup.png",
-		'radius': 32,
+		'radius': 8,
 		'meta_type': META_TYPE.RESOURCE,
 		'resource_type': CombatResource.Type.HEALTH,
-		'resource_amount': 20
+		'size_normal': {
+			'resource_amount': 20,
+			'scale_factor': 1.0
+		},
+		'size_large': {
+			'resource_amount': 50,
+			'scale_factor': 2.0
+		},
 	},
 	TYPE.ENERGY: {
 		'scene': "",
 		'texture': "res://scenes/pickups/resource_pickups/energy_pickup.png",
-		'radius': 32,
+		'radius': 8,
 		'meta_type': META_TYPE.RESOURCE,
 		'resource_type': CombatResource.Type.ENERGY,
-		'resource_amount': 50
+		'size_normal': {
+			'resource_amount': 20,
+			'scale_factor': 1.0
+		},
+		'size_large': {
+			'resource_amount': 50,
+			'scale_factor': 2.0
+		},
 	},
 	TYPE.BASIC_AMMO: {
 		'scene': "",
 		'texture': "res://scenes/pickups/resource_pickups/bullet_pickup.png",
-		'radius': 32,
+		'radius': 16,
 		'meta_type': META_TYPE.RESOURCE,
 		'resource_type': CombatResource.Type.BASIC_AMMO,
-		'resource_amount': 30
+		'size_normal': {
+			'resource_amount': 30,
+			'scale_factor': 0.75
+		},
+		'size_large': {
+			'resource_amount': 75,
+			'scale_factor': 1.25
+		},
 	},
 	TYPE.PLASMA_AMMO: {
 		'scene': "",
 		'texture': "res://scenes/pickups/resource_pickups/plasma_pickup.png",
-		'radius': 32,
+		'radius': 16,
 		'meta_type': META_TYPE.RESOURCE,
 		'resource_type': CombatResource.Type.PLASMA_AMMO,
-		'resource_amount': 1
+		'size_normal': {
+			'resource_amount': 1,
+			'scale_factor': 0.75
+		},
+		'size_large': {
+			'resource_amount': 2,
+			'scale_factor': 1.25
+		},
 	},
 }
 
@@ -118,9 +162,17 @@ static func is_pickup(n):
 # ----------
 
 
-## used to update the sprite in the editor
-func set_type(new_type):
+## updates sprite in editor
+func _ready() -> void:
+	if was_placed_in_editor:
+		configure(type)
+
+
+## params are both enums
+## size is only used for resource pickups
+func configure(new_type: int, new_size: int = SIZE.NORMAL):
 	type = new_type
+	size = new_size
 	var details = TYPE_DETAILS[type]
 
 	if details['scene'] != "":
@@ -130,8 +182,24 @@ func set_type(new_type):
 	meta_type = details['meta_type']
 
 	if meta_type == META_TYPE.RESOURCE:
-		resource_type = details['resource_type']
-		resource_amount = details['resource_amount']
+		_setup_resource_pickup(details)
+
+
+## helper for set_type()
+func _setup_resource_pickup(details: Dictionary):
+	resource_type = details['resource_type']
+
+	var size_str: String
+
+	match size:
+		SIZE.NORMAL:
+			size_str = "size_normal"
+		SIZE.LARGE:
+			size_str = "size_large"
+
+	var sub_details: Dictionary = details[size_str]
+	resource_amount = sub_details['resource_amount']
+	scale *= sub_details['scale_factor']
 
 
 ## only works if this pickup has an action or weapon. returns null if there is
