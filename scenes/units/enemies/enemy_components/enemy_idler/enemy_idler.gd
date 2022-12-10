@@ -18,25 +18,30 @@ var current_max_angle: float
 onready var memory_timer: Timer = $MemoryTimer
 
 
-## rotate the enemy back and forth
+## stop moving, then rotate the enemy back and forth
 ## assumes called during physics process
-func idle(enemy: Unit):
-	if should_reset():
-		current_base_angle = enemy.rotation
-		current_min_angle = current_base_angle - max_turn
-		current_max_angle = current_base_angle + max_turn
-		is_turning_left = false
+# NOTE: passing these params here feels gross
+func idle(enemy: Unit, mover: Mover, movement_stats: MovementStats):
+	var speed := mover.apply_friction(movement_stats)
+	mover.move_subject(enemy, movement_stats.velocity)
 
-	var delta = get_physics_process_delta_time()
-
-	if is_turning_left:
-		enemy.rotate(-1 * turn_rate * delta)
-		if enemy.rotation <= current_min_angle:
+	if speed == 0:
+		if should_reset():
+			current_base_angle = enemy.rotation
+			current_min_angle = current_base_angle - max_turn
+			current_max_angle = current_base_angle + max_turn
 			is_turning_left = false
-	else: # turning right
-		enemy.rotate(turn_rate * delta)
-		if enemy.rotation >= current_max_angle:
-			is_turning_left = true
+
+		var delta = get_physics_process_delta_time()
+
+		if is_turning_left:
+			enemy.rotate(-1 * turn_rate * delta)
+			if enemy.rotation <= current_min_angle:
+				is_turning_left = false
+		else: # turning right
+			enemy.rotate(turn_rate * delta)
+			if enemy.rotation >= current_max_angle:
+				is_turning_left = true
 
 
 ## updates the memory timer.

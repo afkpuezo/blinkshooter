@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/actions/weapons/plasma_gun/plasma_burst.gd" type="Script" id=1]
 [ext_resource path="res://scenes/buffs/damage_cooldown.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/hit_boxes/hit_box.gd" type="Script" id=3]
 [ext_resource path="res://scenes/actions/weapons/plasma_gun/zap_effect.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/actions/attacks/pusher.gd" type="Script" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -27,5 +28,10 @@ script = ExtResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource( 1 )
 
+[node name="Pusher" type="Node2D" parent="."]
+script = ExtResource( 5 )
+strength = -1000.0
+
 [connection signal="dealt_damage" from="." to="." method="add_zap_effect"]
+[connection signal="dealt_damage" from="." to="Pusher" method="push"]
 [connection signal="timeout" from="Timer" to="." method="queue_free"]

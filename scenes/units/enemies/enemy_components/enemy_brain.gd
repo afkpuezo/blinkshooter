@@ -169,7 +169,7 @@ func _think_chase(
 
 
 func _think_idle():
-	enemy_idler.idle(this_unit)
+	enemy_idler.idle(this_unit, enemy_mover, movement_stats)
 
 
 ## random equipped action

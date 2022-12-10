@@ -7,11 +7,15 @@ class_name MovementStats
 ## TODO: should this have been some kind of simple object rather than a node?
 
 
-export var acceleration := 500
-export var max_speed := 100
+export var acceleration := 500.0
+export var max_speed := 100.0
 export(int, 0, 100) var friction_percent = 10 # only applied when no movement input
 var velocity := Vector2.ZERO
 
+
+# ----------
+# static/util funcs
+# ----------
 
 ## Returns true/false depending on if the given node has a movement stats child node
 static func has_movement_stats(n: Node) -> bool:
@@ -43,6 +47,12 @@ func get_class() -> String:
 	return get_movement_stats_class()
 
 
-func _ready() -> void:
-	#print("DEBUG: acceleration, max_speed: %d, %d" % [acceleration, max_speed])
-	pass
+# ----------
+# instance funcs
+# ----------
+
+
+## I probably won't incorporate mass or anything, but in case I do it will be
+## incorporated here
+func apply_outside_force(force: Vector2):
+	velocity += force

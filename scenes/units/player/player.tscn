@@ -68,8 +68,8 @@ type = 3
 is_player = true
 
 [node name="MovementStats" parent="." index="1"]
-acceleration = 1000
-max_speed = 500
+acceleration = 900.0
+max_speed = 400.0
 friction_percent = 8
 
 [node name="ExplosionAnimator" parent="Animators" index="1"]

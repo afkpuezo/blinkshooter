@@ -20,7 +20,6 @@ shape = SubResource( 1 )
 
 [node name="MovementStats" type="Node" parent="."]
 script = ExtResource( 3 )
-MAX_SPEED = 200
 
 [node name="Node2D" type="Node2D" parent="."]
 script = ExtResource( 4 )

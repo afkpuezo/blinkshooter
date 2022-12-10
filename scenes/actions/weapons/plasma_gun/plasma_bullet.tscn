@@ -13,7 +13,7 @@ radius = 16.0
 script = ExtResource( 5 )
 burst_damage = 50
 burst_radius = 128
-burst_duration = 1.0
+burst_duration = 0.5
 burst_scene = ExtResource( 4 )
 
 [node name="MovementStats" parent="." index="0"]

@@ -18,11 +18,6 @@ func accelerate_towards(movement_stats: MovementStats, delta: float, direction: 
 			movement_stats.velocity.move_toward(direction * effective_max_speed, movement_stats.acceleration * delta)
 
 
-func accelerate_towards_OLD(movement_stats: MovementStats, delta: float, direction: Vector2):
-	movement_stats.velocity = \
-			movement_stats.velocity.move_toward(direction * movement_stats.max_speed, movement_stats.acceleration * delta)
-
-
 ## Helper method, can be used in physics update, decelerates the unit using
 ## friction. Updates the unit's velocity, does not actually
 ## call move_and_slide.
