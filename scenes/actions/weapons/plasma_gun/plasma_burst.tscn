@@ -33,7 +33,7 @@ shape = SubResource( 1 )
 
 [node name="Pusher" type="Node2D" parent="."]
 script = ExtResource( 5 )
-strength = -1000.0
+strength = -500.0
 
 [node name="PickupPushArea" type="Area2D" parent="."]
 collision_layer = 0

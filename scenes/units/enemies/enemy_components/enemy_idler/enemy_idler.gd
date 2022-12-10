@@ -23,7 +23,7 @@ onready var memory_timer: Timer = $MemoryTimer
 # NOTE: passing these params here feels gross
 func idle(enemy: Unit, mover: Mover, movement_stats: MovementStats):
 	var speed := mover.apply_friction(movement_stats)
-	mover.move_subject(enemy, movement_stats.velocity)
+	mover.move_subject(enemy, movement_stats)
 
 	if speed == 0:
 		if should_reset():

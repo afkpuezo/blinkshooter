@@ -41,7 +41,7 @@ func move_to(
 		#print("DEBUG: EnemyMover.move_to(): next_location is %s" % next_location)
 		var direction: Vector2 = unit.position.direction_to(next_location).normalized()
 		accelerate_towards(movement_stats, delta, direction)
-		move_subject(unit, movement_stats.velocity)
+		move_subject(unit, movement_stats)
 	else:
 		emit_signal("reached_target")
 
@@ -68,7 +68,7 @@ func back_away_from(
 	):
 	var direction: Vector2 = (target_position - unit.position).normalized() * -1
 	accelerate_towards(movement_stats, delta, direction)
-	move_subject(unit, movement_stats.velocity)
+	move_subject(unit, movement_stats)
 
 
 ## just a rename of apply_friction, called from the outside
@@ -80,4 +80,4 @@ func stand_still(
 	_target_position = null
 	):
 	apply_friction(movement_stats)
-	move_subject(unit, movement_stats.velocity)
+	move_subject(unit, movement_stats)
