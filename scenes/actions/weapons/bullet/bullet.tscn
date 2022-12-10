@@ -1,21 +1,20 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/hit_boxes/hit_box.gd" type="Script" id=1]
 [ext_resource path="res://scenes/actions/weapons/bullet/bullet_mover.gd" type="Script" id=2]
 [ext_resource path="res://scenes/movement/movement_stats.gd" type="Script" id=3]
 [ext_resource path="res://scenes/actions/weapons/bullet/bullet.gd" type="Script" id=4]
-[ext_resource path="res://scenes/effects/explosions/explosion.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/effects/explosions/explosion_animator.tscn" type="PackedScene" id=6]
 
 [node name="Bullet" type="KinematicBody2D"]
 collision_layer = 0
 script = ExtResource( 4 )
-explosion_scene = ExtResource( 5 )
 
 [node name="MovementStats" type="Node" parent="."]
 script = ExtResource( 3 )
-MAX_SPEED = 1000
-FRICTION = 0.0
+acceleration = 1000
+max_speed = 1000
+friction = 0.0
 
 [node name="BulletMover" type="Node" parent="."]
 script = ExtResource( 2 )

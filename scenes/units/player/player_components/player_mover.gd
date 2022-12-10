@@ -52,4 +52,4 @@ func get_input() -> Vector2:
 # I have a feeling there's an easier, more built-in way to do this kind of math
 func player_acceleration(movement_stats: MovementStats, input: Vector2):
 	var speed = movement_stats.velocity.length()
-	speed += movement_stats.ACCELERATION * get_physics_process_delta_time()
+	speed += movement_stats.acceleration * get_physics_process_delta_time()

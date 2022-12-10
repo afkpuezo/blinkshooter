@@ -10,7 +10,7 @@ var MIN_LAUNCH_SPEED := 0
 
 
 ## launches at a speed calculated to reach the to point at about the
-## duration time. speed is capped at MAX_SPEED
+## duration time. speed is capped at max_speed
 func launch_towards(
 	unit,
 	movement_stats: MovementStats,
@@ -20,8 +20,8 @@ func launch_towards(
 	# calculate the speed based on ditance and duration
 	var distance = unit.position.distance_to(target_position)
 	# account for acceleration in the opposite direction
-	var launch_speed = (distance / duration) + (movement_stats.ACCELERATION * duration * 0.5)
-	launch_speed = clamp(MIN_LAUNCH_SPEED, launch_speed, movement_stats.MAX_SPEED)
+	var launch_speed = (distance / duration) + (movement_stats.acceleration * duration * 0.5)
+	launch_speed = clamp(MIN_LAUNCH_SPEED, launch_speed, movement_stats.max_speed)
 
 	movement_stats.velocity = launch_speed * unit.position.direction_to(target_position)
 	var col = unit.move_and_collide(movement_stats.velocity * get_physics_process_delta_time())

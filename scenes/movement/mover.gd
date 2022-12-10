@@ -9,7 +9,7 @@ class_name Mover
 ## call move_and_slide.
 func accelerate_towards(movement_stats: MovementStats, delta: float, direction: Vector2):
 	movement_stats.velocity = \
-			movement_stats.velocity.move_toward(direction * movement_stats.MAX_SPEED, movement_stats.ACCELERATION * delta)
+			movement_stats.velocity.move_toward(direction * movement_stats.max_speed, movement_stats.acceleration * delta)
 
 
 ## Helper method, can be used in physics update, decelerates the unit using
@@ -20,7 +20,7 @@ func apply_friction(movement_stats: MovementStats, _delta: float = 0.0):
 			movement_stats.velocity.move_toward(
 					Vector2.ZERO,
 					max(
-							movement_stats.FRICTION * movement_stats.velocity.length(),
+							movement_stats.friction * movement_stats.velocity.length(),
 							1)) # fixes very slow friction at low speeds
 
 

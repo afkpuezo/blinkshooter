@@ -7,9 +7,9 @@ class_name MovementStats
 ## TODO: should this have been some kind of simple object rather than a node?
 
 
-export var ACCELERATION := 500
-export var MAX_SPEED := 100
-export(float, 0.0, 1.0) var FRICTION := 0.1 # only applied when no movement input
+export var acceleration := 500
+export var max_speed := 100
+export(float, 0.0, 1.0) var friction := 0.1 # only applied when no movement input
 var velocity := Vector2.ZERO
 
 
@@ -44,5 +44,5 @@ func get_class() -> String:
 
 
 func _ready() -> void:
-	#print("DEBUG: acceleration, max_speed: %d, %d" % [ACCELERATION, MAX_SPEED])
+	#print("DEBUG: acceleration, max_speed: %d, %d" % [acceleration, max_speed])
 	pass

@@ -15,7 +15,7 @@ func set_initial_velocity(i_v: Vector2):
 
 
 func _ready() -> void:
-	var vel = Vector2(_stats.MAX_SPEED, 0).rotated(owner.rotation)
+	var vel = Vector2(_stats.max_speed, 0).rotated(owner.rotation)
 	vel = vel + initial_velocity
 	_stats.velocity = vel
 

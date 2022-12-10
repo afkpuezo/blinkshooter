@@ -31,7 +31,7 @@ func _ready() -> void:
 
 
 ## launches at a speed calculated to reach the to point at about the
-## duration time. speed is capped at MAX_SPEED
+## duration time. speed is capped at max_speed
 func launch(to: Vector2, duration: float):
 	shuriken_mover.launch_towards(self, movement_stats, to, duration)
 
