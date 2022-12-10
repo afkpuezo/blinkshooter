@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/actions/weapons/plasma_gun/plasma_burst.gd" type="Script" id=1]
 [ext_resource path="res://scenes/buffs/damage_cooldown.tscn" type="PackedScene" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://scenes/actions/attacks/pusher.gd" type="Script" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 128.0
 
 [node name="PlasmaBurst" type="Node2D"]
 visible = false
@@ -32,6 +35,14 @@ shape = SubResource( 1 )
 script = ExtResource( 5 )
 strength = -1000.0
 
+[node name="PickupPushArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupPushArea"]
+shape = SubResource( 2 )
+
 [connection signal="dealt_damage" from="." to="." method="add_zap_effect"]
 [connection signal="dealt_damage" from="." to="Pusher" method="push"]
 [connection signal="timeout" from="Timer" to="." method="queue_free"]
+[connection signal="area_entered" from="PickupPushArea" to="Pusher" method="push"]

@@ -9,7 +9,9 @@ class_name Pusher
 export var strength := 100.0
 
 
-func push(target: Node2D, _arg):
+## _arg lets this be called by a signal with 1 or 2 args
+func push(target: Node2D, _arg = null):
+	print("push called")
 	var movement_stats := MovementStats.get_movement_stats(target)
 	var force: Vector2 = global_position.direction_to(target.global_position) * strength
 	movement_stats.apply_outside_force(force)
