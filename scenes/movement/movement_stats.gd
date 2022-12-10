@@ -9,7 +9,7 @@ class_name MovementStats
 
 export var acceleration := 500
 export var max_speed := 100
-export(float, 0.0, 1.0) var friction := 0.1 # only applied when no movement input
+export(int, 0, 100) var friction_percent = 10 # only applied when no movement input
 var velocity := Vector2.ZERO
 
 

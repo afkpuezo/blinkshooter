@@ -15,13 +15,11 @@ func accelerate_towards(movement_stats: MovementStats, delta: float, direction: 
 ## Helper method, can be used in physics update, decelerates the unit using
 ## friction. Updates the unit's velocity, does not actually
 ## call move_and_slide.
-func apply_friction(movement_stats: MovementStats, _delta: float = 0.0):
-	movement_stats.velocity = \
-			movement_stats.velocity.move_toward(
-					Vector2.ZERO,
-					max(
-							movement_stats.friction * movement_stats.velocity.length(),
-							1)) # fixes very slow friction at low speeds
+func apply_friction(movement_stats: MovementStats):
+	var multiplier: float = movement_stats.friction_percent * get_physics_process_delta_time()
+	movement_stats.velocity -= movement_stats.velocity * multiplier
+	if movement_stats.velocity.length() < 10:
+		movement_stats.velocity = Vector2.ZERO
 
 
 ## helper method called to actually move the subject unit of a specific

@@ -34,7 +34,6 @@ script = ExtResource( 2 )
 
 [node name="MovementStats" parent="." index="3"]
 max_speed = 200
-friction = 1.0
 
 [node name="HurtBox" parent="." index="6"]
 collision_layer = 4

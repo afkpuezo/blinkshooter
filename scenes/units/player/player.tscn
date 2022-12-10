@@ -70,7 +70,7 @@ is_player = true
 [node name="MovementStats" parent="." index="1"]
 acceleration = 1000
 max_speed = 500
-friction = 0.075
+friction_percent = 8
 
 [node name="ExplosionAnimator" parent="Animators" index="1"]
 sprite_z = "5"
