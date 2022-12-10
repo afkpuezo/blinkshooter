@@ -32,9 +32,7 @@ export var default_slot := -1 setget ,get_default_slot
 func get_default_slot() -> int: return default_slot
 
 # did I give this a setget for get_method()?
-var user: Unit setget set_user,get_user # set from the outside
-func set_user(new_user): user = new_user
-func get_user() -> Unit: return user # kludge
+var user: Unit setget configure_user # set from the outside
 
 
 # ----------

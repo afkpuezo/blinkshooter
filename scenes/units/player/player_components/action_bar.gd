@@ -85,8 +85,9 @@ func add_action(new_action, is_already_child = false):
 	if not is_already_child:
 		call_deferred("add_child", new_action)
 		#add_child(new_action)
-	if new_action.has_method("configure_user"):
-		new_action.configure_user(user)
+	#if new_action.has_method("configure_user"):
+	#	new_action.configure_user(user)
+	new_action.user = user
 # end add_action()
 
 

@@ -16,5 +16,6 @@ func spawn_burst() -> void:
 	burst.damage = burst_damage
 	burst.radius = burst_radius
 	burst.duration = burst_duration
+	burst.source = source
 
 	Spawner.spawn_node(burst, global_position)

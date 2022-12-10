@@ -1,5 +1,4 @@
 extends Node2D
-tool # for warning icon
 class_name AreaOverTimeAttack
 ## Generic version of a damage source that deals damage to all targets in an
 ## area periodically. Rather than dealing a small amount of damage every frame
@@ -17,6 +16,8 @@ export var damage := 30
 export var damage_cooldown := 0.5
 
 onready var hit_box: HitBox = $HitBox # needs one
+
+var source # should be set by action/weapon source
 
 
 func _get_configuration_warning():
@@ -62,6 +63,6 @@ func _handle_victim(victim: Unit):
 	var dc: DamageCooldown = damage_cooldown_scene.instance()
 	dc.setup(self, damage_cooldown)
 	victim.add_buff(dc)
-	victim.take_damage(damage, owner)
+	victim.take_damage(damage, source)
 	emit_signal("dealt_damage", victim, damage)
 

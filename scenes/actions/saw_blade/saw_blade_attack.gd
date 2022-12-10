@@ -10,7 +10,6 @@ signal hit_at(hit_position)
 
 var was_ready_called := false
 var user
-func get_user(): return user # KLUUUUUUDGE
 
 export var sprite_rotation_speed_deg = 720 # per second?
 
@@ -20,6 +19,7 @@ export var blade_radius := 56 # used to determine hit position
 onready var animation_player: AnimationPlayer = $AnimationPlayer
 onready var spin_anim: Animation = animation_player.get_animation("spin")
 onready var sprite: Sprite = $Sprite
+onready var attack: AreaOverTimeAttack = $AreaOverTimeAttack
 
 
 func _ready() -> void:
@@ -31,6 +31,7 @@ func start() -> void:
 	# if called before ready, onready vars aren't set yet
 	if was_ready_called:
 		# in case the animation is still playing from before
+		attack.source = user
 		animation_player.stop(true)
 		animation_player.play("spin")
 

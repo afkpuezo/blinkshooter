@@ -15,10 +15,6 @@ func _ready() -> void:
 ## inherited from Action
 ##
 
-func set_user(new_user):
-	saw_blade_attack.user = new_user
-	.set_user(new_user)
-
 
 func do_action():
 	enable()
