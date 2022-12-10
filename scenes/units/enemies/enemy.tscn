@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scenes/units/unit.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/units/unit_components/combat_resource.gd" type="Script" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://scenes/hit_boxes/hit_box.gd" type="Script" id=15]
 [ext_resource path="res://scenes/buffs/damage_cooldown.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/effects/explosions/explosion_animator.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scenes/actions/attacks/pusher.gd" type="Script" id=18]
 
 [node name="Enemy" instance=ExtResource( 1 )]
 collision_layer = 4
@@ -74,6 +75,7 @@ wait_time = 0.5
 one_shot = true
 
 [node name="EnemyMessager" parent="EnemyBrain" index="4" instance=ExtResource( 9 )]
+visible = true
 sender_radius = 512
 
 [node name="EnemyWeaponBar" type="Node2D" parent="EnemyBrain" index="5"]
@@ -84,8 +86,7 @@ script = ExtResource( 7 )
 [node name="ContactAttack" type="Node2D" parent="." index="10"]
 script = ExtResource( 14 )
 damage_cooldown_scene = ExtResource( 16 )
-damage = 10
-damage_cooldown = 1.0
+damage = 5
 
 [node name="HitBox" type="Area2D" parent="ContactAttack" index="0"]
 collision_layer = 8
@@ -93,12 +94,15 @@ collision_mask = 2
 script = ExtResource( 15 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ContactAttack/HitBox" index="0"]
-visible = false
 polygon = PoolVector2Array( -23, -26, 26, 0, -23, 26 )
 
 [node name="ContactExplosionAnimator" parent="ContactAttack" index="1" instance=ExtResource( 17 )]
 explosion_color = "red"
 sprite_z = "5"
+
+[node name="Pusher" type="Node2D" parent="ContactAttack" index="2"]
+script = ExtResource( 18 )
+strength = 1000.0
 
 [connection signal="died" from="." to="LootDropper" method="_on_Enemy_died"]
 [connection signal="took_damage" from="." to="EnemyBrain" method="on_unit_took_damage"]
@@ -106,4 +110,5 @@ sprite_z = "5"
 [connection signal="detected_player" from="EnemyBrain" to="EnemyBrain/EnemyMessager" method="send_message"]
 [connection signal="reached_target" from="EnemyBrain/EnemyMover" to="EnemyBrain" method="on_EnemyMover_reached_target"]
 [connection signal="received_message" from="EnemyBrain/EnemyMessager" to="EnemyBrain" method="receive_enemy_message"]
+[connection signal="dealt_damage" from="ContactAttack" to="ContactAttack/Pusher" method="push"]
 [connection signal="hit_at" from="ContactAttack" to="ContactAttack/ContactExplosionAnimator" method="create_explosion"]
