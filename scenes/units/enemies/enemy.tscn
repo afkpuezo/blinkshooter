@@ -32,6 +32,9 @@ texture = ExtResource( 11 )
 [node name="Health" type="Node" parent="CombatResources" index="0"]
 script = ExtResource( 2 )
 
+[node name="MovementStats" parent="." index="3"]
+max_speed = 200
+
 [node name="HurtBox" parent="." index="6"]
 collision_layer = 4
 
