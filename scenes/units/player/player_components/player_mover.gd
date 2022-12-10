@@ -47,9 +47,3 @@ func get_input() -> Vector2:
 	else:
 		return input
 
-
-## I'm trying to make a way for the player to change directions more quickly
-# I have a feeling there's an easier, more built-in way to do this kind of math
-func player_acceleration(movement_stats: MovementStats, input: Vector2):
-	var speed = movement_stats.velocity.length()
-	speed += movement_stats.acceleration * get_physics_process_delta_time()
