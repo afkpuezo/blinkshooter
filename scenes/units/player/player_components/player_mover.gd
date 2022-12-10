@@ -26,7 +26,7 @@ func physics_update(unit, movement_stats: MovementStats):
 	if input:
 		accelerate_towards(movement_stats, get_physics_process_delta_time(), input)
 	else: # if no player found
-		apply_friction(movement_stats, get_physics_process_delta_time())
+		apply_friction(movement_stats)
 	move_subject(unit, movement_stats.velocity)
 	unit.look_at(TargetReticle.get_true_global_position())
 

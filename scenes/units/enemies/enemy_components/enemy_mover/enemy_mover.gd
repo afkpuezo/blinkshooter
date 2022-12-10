@@ -76,8 +76,8 @@ func back_away_from(
 func stand_still(
 	unit,
 	movement_stats: MovementStats,
-	delta: float,
+	_delta: float,
 	_target_position = null
 	):
-	apply_friction(movement_stats, delta)
+	apply_friction(movement_stats)
 	move_subject(unit, movement_stats.velocity)
