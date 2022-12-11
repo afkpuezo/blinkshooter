@@ -4,6 +4,10 @@ class_name EnemyIdler
 ## angles the Enemy as if they were looking around
 
 
+var patrol_path = null # set in ready
+
+# -
+# used without a patrol path
 export var max_turn_deg := 20.0 # left or right
 onready var max_turn := deg2rad(max_turn_deg)
 export var turn_rate_deg := 20.0 # per second
@@ -16,32 +20,49 @@ var current_max_angle: float
 
 # used to control reset of starting angle
 onready var memory_timer: Timer = $MemoryTimer
+# -
 
 
-## stop moving, then rotate the enemy back and forth
+func _ready() -> void:
+	patrol_path = PatrolPath.get_patrol_path(owner)
+
+
+## stop moving, then implement the appropriate idle behavior
 ## assumes called during physics process
 # NOTE: passing these params here feels gross
-func idle(enemy: Unit, mover: Mover, movement_stats: MovementStats):
+func idle(enemy: Unit, mover: EnemyMover, movement_stats: MovementStats):
 	var speed := mover.apply_friction(movement_stats)
 	mover.move_subject(enemy, movement_stats)
 
 	if speed == 0:
-		if should_reset():
-			current_base_angle = enemy.rotation
-			current_min_angle = current_base_angle - max_turn
-			current_max_angle = current_base_angle + max_turn
+		if patrol_path:
+			idle_patrol(enemy, mover, movement_stats)
+		else:
+			idle_turn(enemy, mover, movement_stats)
+
+
+## move until reaching the current patrol point, then update to the next point
+func idle_patrol(enemy: Unit, mover: EnemyMover, movement_stats: MovementStats):
+
+
+## look back and forth in place
+func idle_turn(enemy: Unit, mover: EnemyMover, movement_stats: MovementStats):
+	if should_reset():
+		current_base_angle = enemy.rotation
+		current_min_angle = current_base_angle - max_turn
+		current_max_angle = current_base_angle + max_turn
+		is_turning_left = false
+
+	var delta = get_physics_process_delta_time()
+
+	if is_turning_left:
+		enemy.rotate(-1 * turn_rate * delta)
+		if enemy.rotation <= current_min_angle:
 			is_turning_left = false
-
-		var delta = get_physics_process_delta_time()
-
-		if is_turning_left:
-			enemy.rotate(-1 * turn_rate * delta)
-			if enemy.rotation <= current_min_angle:
-				is_turning_left = false
-		else: # turning right
-			enemy.rotate(turn_rate * delta)
-			if enemy.rotation >= current_max_angle:
-				is_turning_left = true
+	else: # turning right
+		enemy.rotate(turn_rate * delta)
+		if enemy.rotation >= current_max_angle:
+			is_turning_left = true
 
 
 ## updates the memory timer.

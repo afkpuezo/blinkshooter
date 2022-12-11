@@ -164,7 +164,7 @@ func _think_chase(
 		if too_close:
 			enemy_mover.stand_still(this_unit, movement_stats, delta)
 		else:
-			enemy_mover.move_to(this_unit, movement_stats, delta, last_known_player_position)
+			enemy_mover.move_to(this_unit, movement_stats, last_known_player_position)
 # end _think_chase()
 
 

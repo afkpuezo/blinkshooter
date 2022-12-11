@@ -149,6 +149,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/movement/mover.gd"
 }, {
+"base": "Node2D",
+"class": "PatrolPath",
+"language": "GDScript",
+"path": "res://scenes/units/enemies/enemy_components/patrol_path/patrol_path.gd"
+}, {
 "base": "Area2D",
 "class": "Pickup",
 "language": "GDScript",
@@ -313,6 +318,7 @@ _global_script_class_icons={
 "LootDropper": "",
 "MovementStats": "",
 "Mover": "",
+"PatrolPath": "",
 "Pickup": "",
 "PickupGrabber": "",
 "PickupMover": "",

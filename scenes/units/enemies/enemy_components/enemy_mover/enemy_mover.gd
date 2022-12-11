@@ -31,16 +31,20 @@ func _ready() -> void:
 func move_to(
 	unit,
 	movement_stats: MovementStats,
-	delta: float,
 	target_position: Vector2
 	):
 	_update_pathing(target_position)
 
 	if not nav_agent.is_target_reached():
 		var next_location = nav_agent.get_next_location()
-		#print("DEBUG: EnemyMover.move_to(): next_location is %s" % next_location)
 		var direction: Vector2 = unit.position.direction_to(next_location).normalized()
-		accelerate_towards(movement_stats, delta, direction)
+
+		accelerate_towards(
+			movement_stats,
+			get_physics_process_delta_time(),
+			direction
+		)
+
 		move_subject(unit, movement_stats)
 	else:
 		emit_signal("reached_target")
