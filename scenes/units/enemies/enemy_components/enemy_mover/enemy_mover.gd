@@ -4,8 +4,6 @@ class_name EnemyMover
 ## beginning to wonder if this Mover idea won't work for this kind of thing
 
 
-signal reached_target()
-
 export var navigation_target_distance := 32
 
 onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
@@ -28,6 +26,8 @@ func _ready() -> void:
 
 ## uses the pathing system to move towards the given point (probably either the
 ## player's current or last-known location)
+## returns true if the nav agent indicates we have reached the current target
+## location, false otherwise
 func move_to(
 	unit,
 	movement_stats: MovementStats,
@@ -35,7 +35,8 @@ func move_to(
 	):
 	_update_pathing(target_position)
 
-	if not nav_agent.is_target_reached():
+	var was_target_reached := nav_agent.is_target_reached()
+	if not was_target_reached:
 		var next_location = nav_agent.get_next_location()
 		var direction: Vector2 = unit.position.direction_to(next_location).normalized()
 
@@ -46,8 +47,8 @@ func move_to(
 		)
 
 		move_subject(unit, movement_stats)
-	else:
-		emit_signal("reached_target")
+
+	return was_target_reached
 
 
 ## if the reset timer has expired, update the nav agent's target position and restart the timer

@@ -43,6 +43,11 @@ func idle(enemy: Unit, mover: EnemyMover, movement_stats: MovementStats):
 
 ## move until reaching the current patrol point, then update to the next point
 func idle_patrol(enemy: Unit, mover: EnemyMover, movement_stats: MovementStats):
+	mover.move_to(
+		enemy,
+		movement_stats,
+		patrol_path.current_point
+	)
 
 
 ## look back and forth in place

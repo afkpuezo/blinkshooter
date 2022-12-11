@@ -164,7 +164,9 @@ func _think_chase(
 		if too_close:
 			enemy_mover.stand_still(this_unit, movement_stats, delta)
 		else:
-			enemy_mover.move_to(this_unit, movement_stats, last_known_player_position)
+			if enemy_mover.move_to(this_unit, movement_stats, last_known_player_position):
+				if not can_currently_see_player:
+					current_mode = MODE.IDLE
 # end _think_chase()
 
 
@@ -211,11 +213,6 @@ func _update_knowledge_of_player(
 	else: # if incoming_value is false
 		if ignore_timer or player_memory_timer.is_stopped():
 			can_currently_see_player = false
-
-
-func on_EnemyMover_reached_target() -> void:
-	if not can_currently_see_player:
-		current_mode = MODE.IDLE
 
 
 # ----------
