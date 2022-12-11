@@ -43,7 +43,7 @@ func next_point():
 		LOOP_MODE.CYCLE:
 			current_index += 1
 			if current_index >= points.size():
-				current_index == 0
+				current_index = 0
 		# end LOOP_MODE.CYCLE
 
 		LOOP_MODE.REVERSE:
@@ -56,3 +56,5 @@ func next_point():
 				current_index = 0 if points.size() < 2 else 1
 				current_delta = 1
 		# end LOOP_MODE.REVERSE
+	# end match
+	current_point = points[current_index]

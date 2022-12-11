@@ -4,19 +4,8 @@ class_name EnemyMover
 ## beginning to wonder if this Mover idea won't work for this kind of thing
 
 
-export var navigation_target_distance := 32
-
 onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 onready var nav_update_timer: Timer = $NavUpdateTimer
-
-
-# -----
-# methods
-# -----
-
-
-func _ready() -> void:
-	nav_agent.target_desired_distance = navigation_target_distance
 
 
 # -----
@@ -45,7 +34,6 @@ func move_to(
 			get_physics_process_delta_time(),
 			direction
 		)
-
 		move_subject(unit, movement_stats)
 
 	return was_target_reached
