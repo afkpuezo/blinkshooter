@@ -105,6 +105,8 @@ sprite_z = "5"
 [node name="Pusher" type="Node2D" parent="ContactAttack" index="2"]
 script = ExtResource( 18 )
 strength = 1000.0
+start_distance_falloff = 1000.0
+end_distance_falloff = 2000.0
 
 [connection signal="died" from="." to="LootDropper" method="_on_Enemy_died"]
 [connection signal="took_damage" from="." to="EnemyBrain" method="on_unit_took_damage"]
