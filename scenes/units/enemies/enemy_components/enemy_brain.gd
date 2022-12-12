@@ -163,6 +163,8 @@ func _think_chase(
 		if too_close:
 			enemy_mover.stand_still(this_unit, movement_stats, delta)
 		else:
+			# returns true if the nav agent indicates we have reached the last
+			# known position
 			if enemy_mover.move_to(this_unit, movement_stats, last_known_player_position):
 				if not can_currently_see_player:
 					current_mode = MODE.IDLE

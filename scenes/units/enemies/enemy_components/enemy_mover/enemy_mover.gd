@@ -45,9 +45,10 @@ func move_to(
 func _update_pathing(new_target_location: Vector2):
 	if nav_update_timer.is_stopped():
 		#print("DEBUG: EnemyMover._update_pathing(): setting new target location")
-		if new_target_location != nav_agent.get_target_location():
-			nav_agent.set_target_location(new_target_location)
-			nav_update_timer.start()
+		#if new_target_location != nav_agent.get_target_location():
+		#print("updating pathing")
+		nav_agent.set_target_location(new_target_location)
+		nav_update_timer.start()
 
 
 ## moves backwards away from the given point

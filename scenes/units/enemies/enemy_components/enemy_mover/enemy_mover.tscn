@@ -8,9 +8,9 @@ script = ExtResource( 1 )
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 16.0
 target_desired_distance = 32.0
-path_max_distance = 64.0
+path_max_distance = 32.0
 
 [node name="NavUpdateTimer" type="Timer" parent="."]
 process_mode = 0
-wait_time = 0.1
+wait_time = 0.2
 one_shot = true

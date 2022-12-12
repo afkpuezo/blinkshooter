@@ -54,14 +54,11 @@ func idle(enemy: Unit, mover: EnemyMover, movement_stats: MovementStats):
 
 ## move until reaching the current patrol point, then update to the next point
 func idle_patrol(enemy: Unit, mover: EnemyMover, movement_stats: MovementStats):
-	#print("idle_patrol called. velocity, accel, max speed: %f, %f, %f" % [movement_stats.velocity.length(), movement_stats.acceleration, movement_stats.max_speed])
-
 	var was_point_reached = mover.move_to(
 		enemy,
 		movement_stats,
 		patrol_path.current_point
 	)
-	enemy.look_at(patrol_path.current_point)
 	if was_point_reached:
 		if not is_waiting_for_next_point:
 			is_waiting_for_next_point = true
@@ -70,11 +67,14 @@ func idle_patrol(enemy: Unit, mover: EnemyMover, movement_stats: MovementStats):
 		# TODO make movers easier to use?
 		mover.apply_friction(movement_stats)
 		mover.move_subject(enemy, movement_stats)
+	else: # if not was_point_reached
+		enemy.look_at(patrol_path.current_point)
 
 
 func target_next_point():
 	is_waiting_for_next_point = false
 	patrol_path.next_point()
+
 
 # -
 # without patrol path
