@@ -30,9 +30,9 @@ onready var enemy_idler: EnemyIdler = $EnemyIdler
 
 ## -- behavior control
 # seperate from radius of PlayerDetection, effectively the real threshold is the minimum of the two
-export var minimum_chase_distance := 200
-export var too_close_threshold := 100
-export var minimum_chase_distance_no_player := 10
+export var minimum_chase_distance := 200.0
+export var too_close_threshold := 100.0
+export var minimum_chase_distance_no_player := 10.0
 
 # NOTE: has to be onready or our position will not be set yet!
 onready var last_known_player_position: Vector2 = this_unit.position
@@ -140,7 +140,7 @@ func _think_chase(
 	var delta = get_process_delta_time()
 	var moved = false
 
-	var distance = position.distance_to(last_known_player_position)
+	var distance = global_position.distance_to(last_known_player_position)
 	this_unit.look_at(last_known_player_position)
 
 	if is_player_detected:
@@ -148,7 +148,6 @@ func _think_chase(
 			attack()
 		# only back away from the player, not an empty space where they used to
 		# be
-		#if distance_squared < too_close_squared:
 		if distance < too_close_threshold:
 			enemy_mover.back_away_from(this_unit, movement_stats, delta, last_known_player_position)
 			moved = true

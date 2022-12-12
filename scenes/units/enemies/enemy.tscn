@@ -59,6 +59,8 @@ pickup_scene = ExtResource( 8 )
 
 [node name="EnemyBrain" type="Node2D" parent="." index="9"]
 script = ExtResource( 3 )
+minimum_chase_distance = 300.0
+too_close_threshold = 200.0
 
 [node name="EnemyIdler" parent="EnemyBrain" index="0" instance=ExtResource( 13 )]
 max_turn_deg = 40.0
