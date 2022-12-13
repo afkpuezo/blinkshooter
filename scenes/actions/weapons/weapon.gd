@@ -27,7 +27,6 @@ static func is_weapon(w) -> bool:
 
 
 ## shoot da bullet
-## TODO flesh out
 func do_action():
 	_ready_spawn_location()
 	_ready_user_movement_stats()
@@ -45,6 +44,7 @@ func do_action():
 func configure_bullet(bullet: Bullet):
 	bullet.damage = damage
 	bullet.source = user
+
 
 # ----------
 # private / helper methods

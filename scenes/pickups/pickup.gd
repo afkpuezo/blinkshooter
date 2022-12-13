@@ -6,7 +6,7 @@ class_name Pickup
 
 enum TYPE{
 	NONE,
-	SMALL_GUN, BIG_GUN, PLASMA_GUN,
+	SMALL_GUN, BIG_GUN, PLASMA_GUN, SHOTGUN,
 	BLINK, SAWBLADE, SHURIKEN,
 	HEALTH, BASIC_AMMO, PLASMA_AMMO, ENERGY
 }
@@ -51,6 +51,12 @@ const TYPE_DETAILS = {
 	},
 	TYPE.PLASMA_GUN: {
 		'scene': "res://scenes/actions/weapons/plasma_gun/plasma_gun.tscn",
+		'texture': "res://scenes/ui/player_ui/action_ui/assets/plasma_gun_tile.png",
+		'radius': 64,
+		'meta_type': META_TYPE.WEAPON,
+	},
+	TYPE.SHOTGUN: {
+		'scene': "res://scenes/actions/weapons/shotgun/shotgun.tscn",
 		'texture': "res://scenes/ui/player_ui/action_ui/assets/plasma_gun_tile.png",
 		'radius': 64,
 		'meta_type': META_TYPE.WEAPON,

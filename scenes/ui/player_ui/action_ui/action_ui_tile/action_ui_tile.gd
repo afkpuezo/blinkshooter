@@ -24,7 +24,8 @@ const types_to_textures = {
 	"SawBlade": "res://scenes/ui/player_ui/action_ui/assets/sawblade_tile.png",
 	"Shuriken": "res://scenes/ui/player_ui/action_ui/assets/shuriken_tile.png",
 	"SmallGun": "res://scenes/ui/player_ui/action_ui/assets/small_gun_tile.png",
-	"PlasmaGun": "res://scenes/ui/player_ui/action_ui/assets/plasma_gun_tile.png"
+	"PlasmaGun": "res://scenes/ui/player_ui/action_ui/assets/plasma_gun_tile.png",
+	"Shotgun": "res://scenes/ui/player_ui/action_ui/assets/plasma_gun_tile.png",
 }
 
 # child nodes
