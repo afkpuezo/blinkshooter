@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/orange_explosion.png-eec9ac5a3b74320ab8707e2f32798264.stex"
+path="res://.import/shotgun_pellet.png-eb82424717344d7b88695db25122f87e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/actions/weapons/orange_explosion.png"
-dest_files=[ "res://.import/orange_explosion.png-eec9ac5a3b74320ab8707e2f32798264.stex" ]
+source_file="res://scenes/actions/weapons/shotgun/shotgun_pellet.png"
+dest_files=[ "res://.import/shotgun_pellet.png-eb82424717344d7b88695db25122f87e.stex" ]
 
 [params]
 
