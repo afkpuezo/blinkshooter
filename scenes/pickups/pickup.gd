@@ -6,7 +6,7 @@ class_name Pickup
 
 enum TYPE{
 	NONE,
-	SMALL_GUN, BIG_GUN, PLASMA_GUN, SHOTGUN,
+	SMALL_GUN, BIG_GUN, PLASMA_GUN, SHOTGUN, PHASE_RIFLE
 	BLINK, SAWBLADE, SHURIKEN,
 	HEALTH, BASIC_AMMO, PLASMA_AMMO, ENERGY
 }
@@ -34,15 +34,15 @@ var size # only needed for resource pickups
 # NOTE: this is probably putting too much stuff in this one script...
 # NOTE: radius is applied BEFORE scaling
 const TYPE_DETAILS = {
-	# ----------
-	# actions start
-	# ----------
 	TYPE.NONE: {
 		'scene': "",
 		'texture': "",
 		'radius': 1,
 		'meta_type': META_TYPE.ACTION,
 	},
+	# ----------
+	# weapons start
+	# ----------
 	TYPE.SMALL_GUN: {
 		'scene': "res://scenes/actions/weapons/small_gun/small_gun.tscn",
 		'texture': "res://scenes/ui/player_ui/action_ui/assets/small_gun_tile.png",
@@ -61,6 +61,15 @@ const TYPE_DETAILS = {
 		'radius': 64,
 		'meta_type': META_TYPE.WEAPON,
 	},
+	TYPE.PHASE_RIFLE: {
+		'scene': "res://scenes/actions/weapons/phase_rifle/phase_rifle.tscn",
+		'texture': "res://scenes/ui/player_ui/action_ui/assets/shotgun_tile.png",
+		'radius': 64,
+		'meta_type': META_TYPE.WEAPON,
+	},
+	# ----------
+	# actions start
+	# ----------
 	TYPE.BLINK: {
 		'scene': "res://scenes/actions/blink/blink.tscn",
 		'texture': "res://scenes/ui/player_ui/action_ui/assets/blink_tile.png",

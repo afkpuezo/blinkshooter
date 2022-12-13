@@ -61,9 +61,9 @@ MAX_VALUE = 50
 type = 2
 is_player = true
 
-[node name="BigAmmo" type="Node" parent="CombatResources" index="3"]
+[node name="PlasmaAmmo" type="Node" parent="CombatResources" index="3"]
 script = ExtResource( 3 )
-MAX_VALUE = 5
+MAX_VALUE = 10
 type = 3
 is_player = true
 
@@ -94,6 +94,7 @@ script = ExtResource( 7 )
 
 [node name="WeaponBar" type="Node2D" parent="." index="7"]
 script = ExtResource( 6 )
+num_slots = 4
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="8"]
 visible = false
