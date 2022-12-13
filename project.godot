@@ -244,6 +244,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/actions/weapons/shotgun/shotgun.gd"
 }, {
+"base": "Bullet",
+"class": "ShotgunPellet",
+"language": "GDScript",
+"path": "res://scenes/actions/weapons/shotgun/shotgun_pellet.gd"
+}, {
 "base": "Action",
 "class": "Shuriken",
 "language": "GDScript",
@@ -342,6 +347,7 @@ _global_script_class_icons={
 "SawBlade": "",
 "SawBladeAttack": "",
 "Shotgun": "",
+"ShotgunPellet": "",
 "Shuriken": "",
 "ShurikenAttack": "",
 "ShurikenMover": "",

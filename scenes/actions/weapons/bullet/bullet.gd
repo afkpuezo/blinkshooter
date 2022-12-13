@@ -25,12 +25,9 @@ func set_initial_velocity(initial_velocity: Vector2):
 ## handles collisions with things that can be hurt, EG units
 func _on_HitBox_area_entered(area) -> void:
 	if area.has_method("get_unit"):
-		var victim = area.get_unit()
+		var victim: Unit = area.get_unit()
 		victim.take_damage(damage, source)
 		end()
-	else:
-		#print("DEBUG: Bullet._on_HitBox_area_entered() passed a non-HurtBox area: %s" % area.name)
-		pass
 
 
 func end(do_explode := has_explosion):
