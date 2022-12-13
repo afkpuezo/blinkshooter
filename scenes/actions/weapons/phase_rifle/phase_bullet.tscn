@@ -2,15 +2,16 @@
 
 [ext_resource path="res://scenes/actions/weapons/bullet/bullet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/actions/weapons/phase_rifle/phase_bullet.gd" type="Script" id=2]
-[ext_resource path="res://scenes/actions/weapons/small_gun/green_bullet.png" type="Texture" id=3]
+[ext_resource path="res://scenes/actions/weapons/phase_rifle/phase_bullet.png" type="Texture" id=3]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 5 )
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 8.0
+height = 16.0
 
 [node name="PhaseBullet" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 max_scaling_distance = 1000.0
-distance_unit = 100.0
+distance_unit = 200.0
 
 [node name="MovementStats" parent="." index="0"]
 max_speed = 500.0
@@ -19,16 +20,17 @@ max_speed = 500.0
 wait_time = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
+rotation = 1.5708
 scale = Vector2( 1, 0.99688 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="ExplosionAnimator" parent="." index="4"]
 explosion_color = "green"
 
 [node name="Sprite" type="Sprite" parent="." index="5"]
-scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="6"]
+rotation = 1.5708
 scale = Vector2( 1, 0.99688 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
