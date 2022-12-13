@@ -57,7 +57,7 @@ const TYPE_DETAILS = {
 	},
 	TYPE.SHOTGUN: {
 		'scene': "res://scenes/actions/weapons/shotgun/shotgun.tscn",
-		'texture': "res://scenes/ui/player_ui/action_ui/assets/plasma_gun_tile.png",
+		'texture': "res://scenes/ui/player_ui/action_ui/assets/shotgun_tile.png",
 		'radius': 64,
 		'meta_type': META_TYPE.WEAPON,
 	},

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/big_gun_item_oj.png-213e8793d498c29b555704e7aee46d77.stex"
+path="res://.import/shotgun_tile.png-1e37a372116f25ca349d5290e1cfbd2c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/ui/player_ui/action_ui/assets/big_gun_item_oj.png"
-dest_files=[ "res://.import/big_gun_item_oj.png-213e8793d498c29b555704e7aee46d77.stex" ]
+source_file="res://scenes/ui/player_ui/action_ui/assets/shotgun_tile.png"
+dest_files=[ "res://.import/shotgun_tile.png-1e37a372116f25ca349d5290e1cfbd2c.stex" ]
 
 [params]
 
