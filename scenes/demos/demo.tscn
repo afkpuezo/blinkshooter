@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/units/player/player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/units/enemies/enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/units/enemies/small_gun_enemy/small_gun_enemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/pickups/pickup.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/units/enemies/enemy_components/patrol_path/patrol_path.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/units/enemies/enemy_components/patrol_path/patrol_path.gd" type="Script" id=5]
@@ -71,41 +71,41 @@ can_be_vacuumed = false
 [node name="Player" parent="Units" instance=ExtResource( 1 )]
 position = Vector2( 48, 248 )
 
-[node name="Enemy" parent="Units" instance=ExtResource( 2 )]
-position = Vector2( 1146, 605 )
+[node name="SmallGunEnemy" parent="Units" instance=ExtResource( 2 )]
+position = Vector2( 533, 680 )
 
-[node name="PatrolPath" type="Node2D" parent="Units/Enemy"]
-script = ExtResource( 5 )
+[node name="PatrolPath2" parent="Units/SmallGunEnemy" instance=ExtResource( 4 )]
 
-[node name="Node2D" type="Node2D" parent="Units/Enemy/PatrolPath"]
-
-[node name="Enemy2" parent="Units" instance=ExtResource( 2 )]
-position = Vector2( 531, 674 )
-
-[node name="PatrolPath" parent="Units/Enemy2" instance=ExtResource( 4 )]
-
-[node name="Node2D" type="Node2D" parent="Units/Enemy2/PatrolPath"]
+[node name="Node2D" type="Node2D" parent="Units/SmallGunEnemy/PatrolPath2"]
 position = Vector2( 156, 34 )
 
-[node name="Node2D2" type="Node2D" parent="Units/Enemy2/PatrolPath"]
+[node name="Node2D2" type="Node2D" parent="Units/SmallGunEnemy/PatrolPath2"]
 position = Vector2( 181, 534 )
 
-[node name="Node2D3" type="Node2D" parent="Units/Enemy2/PatrolPath"]
+[node name="Node2D3" type="Node2D" parent="Units/SmallGunEnemy/PatrolPath2"]
 position = Vector2( -333, 535 )
 
-[node name="Node2D4" type="Node2D" parent="Units/Enemy2/PatrolPath"]
+[node name="Node2D4" type="Node2D" parent="Units/SmallGunEnemy/PatrolPath2"]
 position = Vector2( -351, 37 )
 
-[node name="Enemy3" parent="Units" instance=ExtResource( 2 )]
-position = Vector2( 1175, 968 )
+[node name="SmallGunEnemy2" parent="Units" instance=ExtResource( 2 )]
+position = Vector2( 1141, 481 )
 
-[node name="Enemy4" parent="Units" instance=ExtResource( 2 )]
-position = Vector2( 1147, 511 )
-
-[node name="PatrolPath" type="Node2D" parent="Units/Enemy4"]
+[node name="PatrolPath" type="Node2D" parent="Units/SmallGunEnemy2"]
 script = ExtResource( 5 )
 
-[node name="Node2D" type="Node2D" parent="Units/Enemy4/PatrolPath"]
+[node name="Node2D" type="Node2D" parent="Units/SmallGunEnemy2/PatrolPath"]
 
-[node name="Enemy5" parent="Units" instance=ExtResource( 2 )]
-position = Vector2( 435, 1001 )
+[node name="SmallGunEnemy3" parent="Units" instance=ExtResource( 2 )]
+position = Vector2( 1146, 592 )
+
+[node name="PatrolPath" type="Node2D" parent="Units/SmallGunEnemy3"]
+script = ExtResource( 5 )
+
+[node name="Node2D" type="Node2D" parent="Units/SmallGunEnemy3/PatrolPath"]
+
+[node name="SmallGunEnemy4" parent="Units" instance=ExtResource( 2 )]
+position = Vector2( 450, 953 )
+
+[node name="SmallGunEnemy5" parent="Units" instance=ExtResource( 2 )]
+position = Vector2( 1100, 923 )

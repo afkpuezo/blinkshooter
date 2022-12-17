@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/enemy.png-5dc2d7ac50168162b95f33eaf0ed4cd4.stex"
+path="res://.import/enemy.png-6327b7bc6cca06fab485086c10966e6a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/units/enemies/enemy.png"
-dest_files=[ "res://.import/enemy.png-5dc2d7ac50168162b95f33eaf0ed4cd4.stex" ]
+source_file="res://scenes/units/enemies/small_gun_enemy/enemy.png"
+dest_files=[ "res://.import/enemy.png-6327b7bc6cca06fab485086c10966e6a.stex" ]
 
 [params]
 
