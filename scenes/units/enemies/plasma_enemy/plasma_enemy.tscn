@@ -5,7 +5,7 @@
 [ext_resource path="res://scenes/actions/weapons/plasma_gun/plasma_gun.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 12, 14 )
+extents = Vector2( 16, 14 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 32, 10 )
@@ -20,7 +20,6 @@ visible = false
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" index="0"]
-position = Vector2( -6, 0 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtBox" index="1"]
@@ -31,8 +30,15 @@ shape = SubResource( 2 )
 position = Vector2( 0, -24 )
 shape = SubResource( 2 )
 
+[node name="BulletSpawnPoint" parent="." index="7"]
+position = Vector2( 16, 0 )
+
 [node name="PlasmaGun" parent="EnemyBrain/EnemyWeaponBar" index="0" instance=ExtResource( 3 )]
 PLASMA_AMMO_cost = 0
+cooldown = 2.0
+damage = 40
+forgiveness_team = 1
+burst_damage = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ContactAttack/HitBox" index="0"]
 visible = false

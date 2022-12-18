@@ -12,6 +12,7 @@ default_slot = 2
 bullet_scene = ExtResource( 2 )
 damage = 20
 main_ammo_type = 2
+forgiveness_duration = 1.0
 max_angle_deg = 15.0
 
 [node name="Pusher" type="Node2D" parent="."]

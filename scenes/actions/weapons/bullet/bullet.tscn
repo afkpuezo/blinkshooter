@@ -32,6 +32,10 @@ script = ExtResource( 1 )
 
 [node name="ExplosionAnimator" parent="." instance=ExtResource( 6 )]
 
+[node name="ForgivenessTimer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
 [connection signal="exploded" from="." to="ExplosionAnimator" method="create_explosion"]
 [connection signal="collided" from="BulletMover" to="." method="end"]
 [connection signal="timeout" from="LifeTimer" to="." method="end"]

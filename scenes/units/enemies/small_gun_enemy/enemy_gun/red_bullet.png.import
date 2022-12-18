@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/red_bullet.png-8afcdb014019fb2259238147d88205bc.stex"
+path="res://.import/red_bullet.png-4f94c546d2b72bc7a61d0960b205eda4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/actions/weapons/enemy_gun/red_bullet.png"
-dest_files=[ "res://.import/red_bullet.png-8afcdb014019fb2259238147d88205bc.stex" ]
+source_file="res://scenes/units/enemies/small_gun_enemy/enemy_gun/red_bullet.png"
+dest_files=[ "res://.import/red_bullet.png-4f94c546d2b72bc7a61d0960b205eda4.stex" ]
 
 [params]
 
