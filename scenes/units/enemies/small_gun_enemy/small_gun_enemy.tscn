@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/units/enemies/small_gun_enemy/enemy.png" type="Texture" id=1]
 [ext_resource path="res://scenes/units/enemies/enemy.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/units/enemies/small_gun_enemy/enemy_gun/enemy_gun.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/actions/weapons/small_gun/small_gun.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/units/enemies/small_gun_enemy/enemy_bullet.tscn" type="PackedScene" id=4]
 
 [node name="SmallGunEnemy" instance=ExtResource( 2 )]
 
@@ -20,7 +21,11 @@ polygon = PoolVector2Array( -23, -26, 26, 0, -23, 26 )
 [node name="BulletSpawnPoint" parent="." index="7"]
 position = Vector2( 16, 0 )
 
-[node name="EnemyGun" parent="EnemyBrain/EnemyWeaponBar" index="0" instance=ExtResource( 3 )]
+[node name="SmallGun" parent="EnemyBrain/EnemyWeaponBar" index="0" instance=ExtResource( 3 )]
+basic_ammo_cost = 0
+cooldown = 1.0
+bullet_scene = ExtResource( 4 )
+forgiveness_team = 1
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ContactAttack/HitBox" index="0"]
 polygon = PoolVector2Array( -23, -26, 26, 0, -23, 26 )
