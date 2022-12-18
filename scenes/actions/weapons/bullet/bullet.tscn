@@ -16,7 +16,7 @@ acceleration = 1000
 max_speed = 1000
 friction = 0.0
 
-[node name="BulletMover" type="Node" parent="."]
+[node name="BulletMover" type="Node2D" parent="."]
 script = ExtResource( 2 )
 
 [node name="LifeTimer" type="Timer" parent="."]

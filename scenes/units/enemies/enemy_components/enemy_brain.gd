@@ -116,7 +116,8 @@ func think():
 		MODE.CHASING:
 			_think_chase(
 				is_player_detected,
-				is_detected_by_center
+				is_detected_by_center,
+				player
 			)
 		MODE.IDLE:
 			_think_idle()
@@ -135,7 +136,8 @@ func think():
 ##		- move to their last known position
 func _think_chase(
 	is_player_detected: bool,
-	is_detected_by_center: bool
+	is_detected_by_center: bool,
+	player: Unit = null
 	):
 	var delta = get_process_delta_time()
 	var moved = false
@@ -145,7 +147,7 @@ func _think_chase(
 
 	if is_player_detected:
 		if is_detected_by_center:
-			attack()
+			attack(player)
 		# only back away from the player, not an empty space where they used to
 		# be
 		if distance < too_close_threshold:
@@ -176,9 +178,9 @@ func _think_idle():
 
 
 ## random equipped action
-func attack():
+func attack(target: Unit = null):
 	# warning-ignore:return_value_discarded
-	weapon_bar.trigger_random_action()
+	weapon_bar.trigger_random_action(target)
 
 
 ## triggered by the GameEvent, forces the enemy to lose sight of the player

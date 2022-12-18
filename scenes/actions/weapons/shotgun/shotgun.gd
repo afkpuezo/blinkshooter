@@ -36,8 +36,8 @@ func create_bullet():
 	for n in range(num_bullets):
 		var bullet: Bullet = bullet_scene.instance()
 		configure_bullet(bullet)
-		Spawner.spawn_bullet(
+		Spawner.spawn_node(
 			bullet,
 			spawn_location.get_global_position(),
-			user.get_global_rotation() + angles[n],
-			user_movement_stats.velocity)
+			user.get_global_rotation() + angles[n]
+		)

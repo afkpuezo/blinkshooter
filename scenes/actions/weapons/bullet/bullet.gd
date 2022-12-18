@@ -14,6 +14,9 @@ var forgiveness_layer :=  0b10
 var forgiveness_duration := 0.25
 onready var forgiveness_timer: Timer = $ForgivenessTimer
 
+var initial_velocity: Vector2
+onready var mover: BulletMover = $BulletMover
+
 
 ## damage dealt to target when hit, set by weapon
 var damage = 1
@@ -21,14 +24,15 @@ var damage = 1
 ## the unit responsible for shooting this bullet
 var source
 
+## only actually used by homing bullets I guess
+var target
+
 
 func _ready() -> void:
+	mover.set_initial_velocity(initial_velocity)
 	forgiveness_timer.start(forgiveness_duration)
-
-
-## maybe overkill, but acts as interface between the outside and inside?
-func set_initial_velocity(initial_velocity: Vector2):
-	$BulletMover.set_initial_velocity(initial_velocity)
+	if target and mover.has_method("set_target"):
+		mover.set_target(target)
 
 
 ## handles collisions with things that can be hurt, EG units

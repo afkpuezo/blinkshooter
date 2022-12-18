@@ -33,6 +33,7 @@ func get_default_slot() -> int: return default_slot
 
 # did I give this a setget for get_method()?
 var user: Unit setget configure_user # set from the outside
+var target: Unit # rarely used
 
 
 # ----------
@@ -91,8 +92,10 @@ func configure_user(new_user) -> void:
 
 ## Called by the ActionBar when the user TRIES to use this ability.
 ## Returns true if the action is executed, false otherwise (eg cooldown or no resources)
-func trigger() -> bool:
-	#print("DEBUG: trigger called")
+func trigger(new_target: Unit = null) -> bool:
+	if new_target:
+		target = new_target
+
 	if is_ready():
 		emit_action_started_signal()
 		_start_cooldown()

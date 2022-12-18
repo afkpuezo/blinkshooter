@@ -54,11 +54,11 @@ func do_action():
 func create_bullet():
 	var bullet: Bullet = bullet_scene.instance()
 	configure_bullet(bullet)
-	Spawner.spawn_bullet(
+
+	Spawner.spawn_node(
 		bullet,
 		spawn_location.get_global_position(),
-		user.get_global_rotation(),
-		user_movement_stats.velocity
+		user.get_global_rotation()
 	)
 
 
@@ -68,6 +68,8 @@ func configure_bullet(bullet: Bullet):
 	bullet.source = user
 	bullet.forgiveness_layer = forgiveness_layer
 	bullet.forgiveness_duration = forgiveness_duration
+	bullet.initial_velocity = user_movement_stats.velocity
+	bullet.target = target
 
 
 # ----------

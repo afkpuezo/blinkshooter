@@ -21,14 +21,3 @@ func spawn_node(
 	node.rotate(spawn_rotation)
 	#add_child(node) # TODO: spawn them somewhere else?
 	call_deferred("add_child", node)
-
-
-## bullets have a specific method to deal with the "initial velocity" parameter
-## that is, including the player's current momentum in the bullet's
-func spawn_bullet(
-		bullet: Bullet,
-		spawn_position: Vector2,
-		spawn_rotation,
-		initial_velocity: Vector2):
-	bullet.set_initial_velocity(initial_velocity)
-	spawn_node(bullet, spawn_position, spawn_rotation)

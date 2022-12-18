@@ -29,7 +29,7 @@ func add_action(action, is_already_child = false):
 
 ## triggers a random (ready) action from the currently equipped actions
 ## returns true/false depending if that actually happened
-func trigger_random_action() -> bool:
+func trigger_random_action(target = null) -> bool:
 	#print("DEBUG: pick_action() called")
 	var ready_actions := []
 	for a in actions:
@@ -42,7 +42,7 @@ func trigger_random_action() -> bool:
 	else:
 		var action: Action = ready_actions[rng.randi_range(0, ready_actions.size() - 1)]
 		# warning-ignore:return_value_discarded
-		action.trigger()
+		action.trigger(target)
 		return true
 
 
