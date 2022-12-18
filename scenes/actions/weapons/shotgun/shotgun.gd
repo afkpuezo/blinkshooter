@@ -10,13 +10,11 @@ onready var max_angle := deg2rad(max_angle_deg)
 
 var angles := []
 
-# don't signal because we have to send the user as arg
-onready var pusher: Pusher = $Pusher
-
 
 # ----------
 # new to Shotgun
 # ----------
+
 
 ## calculate the angles
 ## unlike the enemy vision, no guarantee one ends up in the middle
@@ -33,11 +31,8 @@ func _ready() -> void:
 # ----------
 
 
-## shoot da bullets
-func do_action():
-	_ready_spawn_location()
-	_ready_user_movement_stats()
-
+## extend to make multiple bullets
+func create_bullet():
 	for n in range(num_bullets):
 		var bullet: Bullet = bullet_scene.instance()
 		configure_bullet(bullet)
@@ -46,5 +41,3 @@ func do_action():
 			spawn_location.get_global_position(),
 			user.get_global_rotation() + angles[n],
 			user_movement_stats.velocity)
-
-	pusher.push(user)

@@ -383,7 +383,6 @@ CameraManager="*res://scenes/singletons/camera_manager.gd"
 
 window/size/width=1366
 window/size/height=768
-window/size/fullscreen=true
 
 [global]
 

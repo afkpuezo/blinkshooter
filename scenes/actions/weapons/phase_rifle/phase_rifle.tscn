@@ -11,3 +11,4 @@ default_slot = 3
 bullet_scene = ExtResource( 2 )
 damage = 30
 main_ammo_type = 3
+recoil = 200.0

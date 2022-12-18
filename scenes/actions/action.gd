@@ -5,7 +5,7 @@ class_name Action
 ## Specific action subclasses should mostly only need to overwrite the do_effect() method
 
 
-# TODO these are placeholder
+# arg is 'action': self, 'user': user
 signal action_started(msg)
 # warning-ignore:unused_signal
 signal cooldown_finished(msg) # when action is ready again
@@ -94,7 +94,7 @@ func configure_user(new_user) -> void:
 func trigger() -> bool:
 	#print("DEBUG: trigger called")
 	if is_ready():
-		emit_signal("action_started") # TODO send args?
+		emit_action_started_signal()
 		_start_cooldown()
 		_pay_cost()
 		do_action()
@@ -102,6 +102,16 @@ func trigger() -> bool:
 		return true
 	else:
 		return false
+
+
+func emit_action_started_signal():
+	emit_signal(
+		"action_started",
+		{
+			'action': self,
+			'user': user,
+		}
+	)
 
 
 ## Returns true if the cooldown timer is not currently running

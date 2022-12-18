@@ -1,7 +1,14 @@
 extends Action
 class_name Weapon
-## This is an base class for simple individual player weapons. When triggered, creates the
-## appropriate bullet at the user's BulletSpawnPoint. Also keeps track of its own ammo
+## This is an base class for simple individual player weapons. When triggered,
+## creates the appropriate bullet at the user's BulletSpawnPoint. Also keeps
+## track of its own ammo
+## NOTE: This probably should have been a scene from the start, but it's easier
+## to keep it as a node for now
+
+
+# a little redundant but i'm just not going to worry about it
+signal recoiled(user)
 
 
 export(PackedScene) var bullet_scene
@@ -14,6 +21,9 @@ enum TEAM {PLAYER, ENEMY, BOTH}
 export(TEAM) var forgiveness_team = TEAM.PLAYER
 var forgiveness_layer :=  0b0 # set in ready
 export var forgiveness_duration := 0.25
+
+# will create a Pusher if recoil is not 0
+export var recoil := 0.0
 
 
 # ----------
@@ -35,14 +45,21 @@ func do_action():
 	_ready_spawn_location()
 	_ready_user_movement_stats()
 
+	create_bullet()
+
+	emit_signal("recoiled", user)
+
+
+## extendable helper
+func create_bullet():
 	var bullet: Bullet = bullet_scene.instance()
 	configure_bullet(bullet)
 	Spawner.spawn_bullet(
 		bullet,
 		spawn_location.get_global_position(),
 		user.get_global_rotation(),
-		user_movement_stats.velocity)
-
+		user_movement_stats.velocity
+	)
 
 ## lets child weapon types override
 func configure_bullet(bullet: Bullet):
@@ -66,6 +83,15 @@ func _ready() -> void:
 			forgiveness_layer = 0b100
 		TEAM.BOTH:
 			forgiveness_layer = 0b110
+	# handle recoil
+	if recoil != 0:
+		var pusher: Pusher = Pusher.new() # problems if switch to scene later?
+		add_child(pusher)
+		pusher.strength = recoil
+		pusher.position.x = 10
+		pusher.start_distance_falloff = 100
+		pusher.end_distance_falloff = 200
+		connect("recoiled", pusher, "push")
 
 
 ## spawn_location is set up here since the user var might not be configured at ready time
