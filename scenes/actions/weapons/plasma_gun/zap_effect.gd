@@ -4,7 +4,9 @@ class_name ZapEffect
 ## shot
 
 
-export(Texture) var bolt_texture
+export(Texture) var green_bolt_texture
+export(Texture) var red_bolt_texture
+export var is_green := true
 
 export var min_num_bolts := 1
 export var max_num_bolts := 3
@@ -37,7 +39,7 @@ func _ready() -> void:
 
 	for n in range(num_bolts):
 		var bolt: Sprite = Sprite.new()
-		bolt.texture = bolt_texture
+		bolt.texture = green_bolt_texture if is_green else red_bolt_texture
 		bolt.rotation = ((n + 1) / num_bolts) * 2 * PI # space them evenly
 		add_child(bolt)
 		setup_flicker_timer(bolt)

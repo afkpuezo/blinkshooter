@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/units/enemies/enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/units/enemies/plasma_enemy/plasma_enemy.png" type="Texture" id=2]
 [ext_resource path="res://scenes/actions/weapons/plasma_gun/plasma_gun.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/units/enemies/plasma_enemy/enemy_plasma_bullet.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 14 )
@@ -36,6 +37,7 @@ position = Vector2( 16, 0 )
 [node name="PlasmaGun" parent="EnemyBrain/EnemyWeaponBar" index="0" instance=ExtResource( 3 )]
 PLASMA_AMMO_cost = 0
 cooldown = 2.0
+bullet_scene = ExtResource( 4 )
 damage = 40
 forgiveness_team = 1
 burst_damage = 20

@@ -8,6 +8,7 @@ class_name PlasmaBurst
 
 export(PackedScene) var zap_effect_scene
 export var zap_duration := 3
+export var are_zaps_green := true
 
 export var radius := 128
 export var duration := 1.0
@@ -21,5 +22,6 @@ func _ready() -> void:
 ## trigged by signal from AOTA
 func add_zap_effect(victim, _amount):
 	var zap: ZapEffect = zap_effect_scene.instance()
+	zap.is_green = are_zaps_green
 	zap.duration = zap_duration
 	victim.add_child(zap)

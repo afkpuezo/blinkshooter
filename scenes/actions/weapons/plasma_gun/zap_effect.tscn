@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/actions/weapons/plasma_gun/zap_effect.gd" type="Script" id=1]
 [ext_resource path="res://scenes/actions/weapons/plasma_gun/assets/plasma_shot_bolt_2.png" type="Texture" id=2]
+[ext_resource path="res://scenes/units/enemies/plasma_enemy/enemy_plasma_bolt.png" type="Texture" id=3]
 
 [node name="ZapEffect" type="Node2D"]
 script = ExtResource( 1 )
-bolt_texture = ExtResource( 2 )
+green_bolt_texture = ExtResource( 2 )
+red_bolt_texture = ExtResource( 3 )
 min_num_bolts = 2
 max_num_bolts = 4
 min_flicker_time = 0.1

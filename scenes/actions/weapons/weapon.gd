@@ -61,7 +61,8 @@ func create_bullet():
 		user_movement_stats.velocity
 	)
 
-## lets child weapon types override
+
+## extendable helper
 func configure_bullet(bullet: Bullet):
 	bullet.damage = damage
 	bullet.source = user
