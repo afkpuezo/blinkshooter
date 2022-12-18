@@ -46,7 +46,8 @@ func _physics_process(_delta: float) -> void:
 	shuriken_mover.chase(
 		self,
 		movement_stats,
-		get_chase_position()
+		get_chase_position(),
+		true
 	)
 
 

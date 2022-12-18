@@ -13,10 +13,14 @@ export var are_zaps_green := true
 export var radius := 128
 export var duration := 1.0
 
+var invert_pusher := false
+
 
 func _ready() -> void:
 	hit_box.get_node("CollisionShape2D").shape.radius = radius
 	$Timer.start(duration)
+	if invert_pusher:
+		$Pusher.strength *= -1
 
 
 ## trigged by signal from AOTA

@@ -20,5 +20,7 @@ func spawn_burst() -> void:
 	burst.duration = burst_duration
 	burst.source = source
 	burst.are_zaps_green = is_burst_green
+	if not is_burst_green: # enemies push
+		burst.invert_pusher = true
 
 	Spawner.spawn_node(burst, global_position)

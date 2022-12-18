@@ -8,6 +8,7 @@ signal exploded()
 
 
 export var has_explosion := true
+export var is_homing := false
 
 # these are set by weapon
 var forgiveness_layer :=  0b10
@@ -20,10 +21,8 @@ onready var mover: BulletMover = $BulletMover
 
 ## damage dealt to target when hit, set by weapon
 var damage = 1
-
 ## the unit responsible for shooting this bullet
 var source
-
 ## only actually used by homing bullets I guess
 var target
 
@@ -31,8 +30,8 @@ var target
 func _ready() -> void:
 	mover.set_initial_velocity(initial_velocity)
 	forgiveness_timer.start(forgiveness_duration)
-	if target and mover.has_method("set_target"):
-		mover.set_target(target)
+	if target:
+		target.connect("died", self, "on_target_death")
 
 
 ## handles collisions with things that can be hurt, EG units
@@ -51,3 +50,8 @@ func end(do_explode := has_explosion):
 	if do_explode:
 		emit_signal("exploded")
 	queue_free()
+
+
+## avoids crash after target is freed
+func on_target_death():
+	target = null

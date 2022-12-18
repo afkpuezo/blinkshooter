@@ -4,6 +4,9 @@ class_name Mover
 ## This base version won't add any movement, but the class can be extended.
 
 
+signal collided(col)
+
+
 ## Helper method, can be used in physics update, accelerates the unit in the
 ## given (normalized) direction. Updates the unit's velocity, does not actually
 ## call move_and_slide.
@@ -38,12 +41,36 @@ func apply_friction(movement_stats: MovementStats) -> float:
 ## movement (eg, KinematicBody2Ds move_and_slide)
 ## If the subject is currently over its max speed (eg from being pushed), it
 ## will gradually slow down until reaching the max speed (using friction)
-func move_subject(subject, movement_stats: MovementStats):
+func move_subject(subject, movement_stats: MovementStats, get_collision := false):
 	if movement_stats.velocity.length() > movement_stats.max_speed:
 		var resulting_speed = max(apply_friction(movement_stats), movement_stats.max_speed)
 		movement_stats.velocity = movement_stats.velocity.normalized() * resulting_speed
 
 	if subject is KinematicBody2D:
-		subject.move_and_slide(movement_stats.velocity)
+		var col = subject.move_and_collide(movement_stats.velocity * get_physics_process_delta_time())
+		if col:
+			emit_signal("collided", col)
+		if get_collision:
+			return col
 	else:
 		subject.translate(movement_stats.velocity * get_physics_process_delta_time())
+	return null # unnecessary i guess
+
+
+## used in homing attacks
+## accelerates the unit towards the target
+func chase(
+	subject,
+	movement_stats: MovementStats,
+	target_position,
+	should_accelerate := true,
+	get_collision := false
+	):
+	var delta = get_physics_process_delta_time()
+	if should_accelerate:
+		accelerate_towards(
+			movement_stats,
+			delta,
+			subject.position.direction_to(target_position)
+		)
+	return move_subject(subject, movement_stats, get_collision)
