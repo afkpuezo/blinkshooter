@@ -36,7 +36,7 @@ script = ExtResource( 6 )
 shape = SubResource( 1 )
 
 [node name="LifeTimer" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 20.0
 one_shot = true
 autostart = true
 
@@ -64,6 +64,11 @@ sprite_z = "5"
 explosion_color = "green"
 explosion_scale = 0.35
 explosion_speed = 2.0
+
+[node name="ForgivenessTimer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+autostart = true
 
 [connection signal="exploded" from="." to="DeathExplosionAnimator" method="create_explosion"]
 [connection signal="hit" from="." to="OnHitExplosionAnimator" method="create_explosion"]

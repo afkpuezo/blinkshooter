@@ -11,6 +11,7 @@ signal hit()
 onready var shuriken_mover: ShurikenMover = $ShurikenMover
 onready var movement_stats = $MovementStats
 onready var sprite = $Sprite
+onready var forgiveness_timer: Timer = $ForgivenessTimer
 
 export var sprite_rotation_speed_deg := 360
 
@@ -22,6 +23,7 @@ var user setget ,get_user
 func get_user(): return user
 
 var chase_position # remembers last position of target
+
 
 export(PackedScene) var explosion_scene
 
@@ -51,12 +53,11 @@ func _physics_process(_delta: float) -> void:
 func get_chase_position():
 	if target:
 		chase_position = target.position
-	else:
-		print("get_chase_position: NOT target")
 	return chase_position
 
 
 func time_out():
+	emit_signal("exploded")
 	die(true)
 
 
@@ -69,9 +70,9 @@ func die(_has_explosion := false):
 ## dies either way, but handles player vs wall differently
 func on_collision(col: KinematicCollision2D):
 	var collider = col.collider
-	#print("DEBUG: shuriken colliding with %s" % collider.name)
 	if PlayerBrain.is_player(collider):
-		die()
+		if forgiveness_timer.is_stopped():
+			die()
 	else: # assume wall
 		emit_signal("exploded")
 		die(true)
@@ -85,5 +86,4 @@ func on_dealing_damage(_victim, _amount):
 ## the shuriken retains a reference to the player, which can cause problems after the player has
 ## been freed
 func on_target_death():
-	print("on_target_death called")
 	target = null
