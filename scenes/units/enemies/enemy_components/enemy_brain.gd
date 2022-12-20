@@ -156,7 +156,12 @@ func _think_chase(
 	var moved = false
 
 	var distance = global_position.distance_to(last_known_player_position)
-	this_unit.look_at(last_known_player_position)
+	#this_unit.look_at(last_known_player_position)
+	enemy_mover.look_towards(
+		this_unit,
+		movement_stats,
+		last_known_player_position
+	)
 
 	if is_player_detected:
 		# only back away from the player, not an empty space where they used to

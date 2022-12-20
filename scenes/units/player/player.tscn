@@ -71,7 +71,7 @@ is_player = true
 acceleration = 900.0
 max_speed = 400.0
 friction = 0.8
-rotation_speed_deg = 180.0
+rotation_speed_deg = 980.0
 
 [node name="ExplosionAnimator" parent="Animators" index="1"]
 sprite_z = "5"

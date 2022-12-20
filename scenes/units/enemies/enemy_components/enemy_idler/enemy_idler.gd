@@ -11,7 +11,8 @@ onready var timer: Timer = $Timer
 # -
 # used WITH a patrol path
 var is_waiting_for_next_point := false
-onready var next_point_wait_time := 1.0
+export var next_point_wait_time := 1.0
+export var patrol_point_distance_threshold := 64
 
 # -
 # used without a patrol path
@@ -54,21 +55,27 @@ func idle(enemy: Unit, mover: EnemyMover, movement_stats: MovementStats):
 
 ## move until reaching the current patrol point, then update to the next point
 func idle_patrol(enemy: Unit, mover: EnemyMover, movement_stats: MovementStats):
-	var was_point_reached = mover.move_to(
+	if is_waiting_for_next_point:
+		# TODO make movers easier to use?
+		mover.apply_friction(movement_stats)
+		mover.move_subject(enemy, movement_stats)
+	else:
+		mover.move_to(
+			enemy,
+			movement_stats,
+			patrol_path.current_point
+		)
+		var was_point_reached := enemy.global_position.distance_to(patrol_path.current_point) <= patrol_point_distance_threshold
+		if was_point_reached:
+			if not is_waiting_for_next_point:
+				is_waiting_for_next_point = true
+				timer.start(next_point_wait_time)
+
+	mover.look_towards(
 		enemy,
 		movement_stats,
 		patrol_path.current_point
 	)
-	if was_point_reached:
-		if not is_waiting_for_next_point:
-			is_waiting_for_next_point = true
-			timer.start(next_point_wait_time)
-
-		# TODO make movers easier to use?
-		mover.apply_friction(movement_stats)
-		mover.move_subject(enemy, movement_stats)
-	else: # if not was_point_reached
-		enemy.look_at(patrol_path.current_point)
 
 
 func target_next_point():

@@ -50,6 +50,7 @@ minimum_chase_distance = 300.0
 too_close_threshold = 200.0
 
 [node name="EnemyIdler" parent="EnemyBrain" index="0" instance=ExtResource( 13 )]
+next_point_wait_time = 0.5
 max_turn_deg = 40.0
 turn_rate_deg = 80.0
 

@@ -79,16 +79,16 @@ position = Vector2( 533, 680 )
 [node name="PatrolPath2" parent="Units/SmallGunEnemy" instance=ExtResource( 4 )]
 
 [node name="Node2D" type="Node2D" parent="Units/SmallGunEnemy/PatrolPath2"]
-position = Vector2( 156, 34 )
+position = Vector2( 151, 17 )
 
 [node name="Node2D2" type="Node2D" parent="Units/SmallGunEnemy/PatrolPath2"]
-position = Vector2( 181, 534 )
+position = Vector2( 201, 555 )
 
 [node name="Node2D3" type="Node2D" parent="Units/SmallGunEnemy/PatrolPath2"]
-position = Vector2( -333, 535 )
+position = Vector2( -349, 589 )
 
 [node name="Node2D4" type="Node2D" parent="Units/SmallGunEnemy/PatrolPath2"]
-position = Vector2( -351, 37 )
+position = Vector2( -355, -5 )
 
 [node name="SmallGunEnemy2" parent="Units" instance=ExtResource( 2 )]
 position = Vector2( 1149, 403 )
