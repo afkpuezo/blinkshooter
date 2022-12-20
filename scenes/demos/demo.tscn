@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/units/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/units/enemies/small_gun_enemy/small_gun_enemy.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/units/enemies/enemy_components/patrol_path/patrol_path.gd" type="Script" id=5]
 [ext_resource path="res://scenes/terrain/floor_tile_map.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/units/enemies/plasma_enemy/plasma_enemy.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/units/enemies/shotgun_enemy/shotgun_enemy.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/terrain/wall_tile_map.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/ui/player_ui/player_ui.tscn" type="PackedScene" id=12]
 
@@ -113,3 +114,7 @@ position = Vector2( 1100, 923 )
 
 [node name="PlasmaEnemy" parent="Units" instance=ExtResource( 7 )]
 position = Vector2( 767, -136 )
+
+[node name="ShotgunEnemy" parent="Units" instance=ExtResource( 8 )]
+position = Vector2( -386, -198 )
+rotation = 3.96364

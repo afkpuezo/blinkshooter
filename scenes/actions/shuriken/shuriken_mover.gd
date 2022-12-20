@@ -24,5 +24,6 @@ func launch_towards(
 	movement_stats.velocity = launch_speed * unit.position.direction_to(target_position)
 	move_subject(
 		unit,
-		movement_stats
+		movement_stats,
+		true
 	)

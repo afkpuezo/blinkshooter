@@ -32,4 +32,4 @@ func _physics_process(delta: float) -> void:
 			owner.target.global_position
 		)
 	else:
-		move_subject(owner, stats)
+		move_subject(owner, stats, true)

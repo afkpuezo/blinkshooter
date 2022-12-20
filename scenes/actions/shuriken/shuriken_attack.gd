@@ -47,6 +47,7 @@ func _physics_process(_delta: float) -> void:
 		self,
 		movement_stats,
 		get_chase_position(),
+		true,
 		true
 	)
 
@@ -70,8 +71,7 @@ func die(_has_explosion := false):
 ## signalled from mover
 ## dies either way, but handles player vs wall differently
 func on_collision(col: KinematicCollision2D):
-	var collider = col.collider
-	if PlayerBrain.is_player(collider):
+	if PlayerBrain.is_player(col.collider):
 		if forgiveness_timer.is_stopped():
 			die()
 	else: # assume wall

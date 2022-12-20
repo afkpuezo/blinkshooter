@@ -122,6 +122,12 @@ func think():
 		MODE.IDLE:
 			_think_idle()
 
+	if should_attack(
+		is_player_detected,
+		is_detected_by_center,
+		player
+	):
+		attack()
 	did_player_teleport = false
 # end think()
 
@@ -146,8 +152,6 @@ func _think_chase(
 	this_unit.look_at(last_known_player_position)
 
 	if is_player_detected:
-		if is_detected_by_center:
-			attack(player)
 		# only back away from the player, not an empty space where they used to
 		# be
 		if distance < too_close_threshold:
@@ -171,6 +175,15 @@ func _think_chase(
 				if not can_currently_see_player:
 					current_mode = MODE.IDLE
 # end _think_chase()
+
+
+## extendable helper
+func should_attack(
+	is_player_detected: bool,
+	is_detected_by_center: bool,
+	player: Unit = null
+	) -> bool:
+	return is_detected_by_center
 
 
 func _think_idle():

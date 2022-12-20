@@ -38,7 +38,8 @@ func apply_friction(movement_stats: MovementStats) -> float:
 ## helper method called to actually move the subject unit of a specific
 ## mover
 ## determines the type of the subject in order to apply the correct kind of
-## movement (eg, KinematicBody2Ds move_and_slide)
+## movement
+## get_collision determines if KB2Ds use move_and_collide or move_and_slide
 ## If the subject is currently over its max speed (eg from being pushed), it
 ## will gradually slow down until reaching the max speed (using friction)
 func move_subject(subject, movement_stats: MovementStats, get_collision := false):
@@ -47,11 +48,13 @@ func move_subject(subject, movement_stats: MovementStats, get_collision := false
 		movement_stats.velocity = movement_stats.velocity.normalized() * resulting_speed
 
 	if subject is KinematicBody2D:
-		var col = subject.move_and_collide(movement_stats.velocity * get_physics_process_delta_time())
-		if col:
-			emit_signal("collided", col)
 		if get_collision:
+			var col = subject.move_and_collide(movement_stats.velocity * get_physics_process_delta_time())
+			if col:
+				emit_signal("collided", col)
 			return col
+		else:
+			subject.move_and_slide(movement_stats.velocity)
 	else:
 		subject.translate(movement_stats.velocity * get_physics_process_delta_time())
 	return null # unnecessary i guess

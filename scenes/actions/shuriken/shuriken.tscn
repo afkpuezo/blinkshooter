@@ -6,7 +6,7 @@
 [node name="Shuriken" type="Node2D"]
 script = ExtResource( 1 )
 energy_cost = 50
-cooldown = 2.0
+cooldown = 1.0
 default_slot = 2
 projectile_scene = ExtResource( 2 )
 launch_duration = 1.0
