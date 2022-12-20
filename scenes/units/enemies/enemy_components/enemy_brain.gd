@@ -45,6 +45,13 @@ var can_currently_see_player := false
 var did_player_teleport := false
 var current_mode: int = MODE.IDLE
 
+## I was going to add a whole new component until I realized that I could just
+## make this controlled by vars
+export var has_attack_range_check := false
+export var min_attack_range := 0
+export var max_attack_range := 1000
+
+
 # -
 # ----------
 # from Node / basic util methods
@@ -183,7 +190,16 @@ func should_attack(
 	is_detected_by_center: bool,
 	player: Unit = null
 	) -> bool:
-	return is_detected_by_center
+	if is_detected_by_center:
+		var should_launch := true
+
+		if has_attack_range_check:
+			var distance = this_unit.global_position.distance_to(player.global_position)
+			should_launch = distance >= min_attack_range and distance <= max_attack_range
+
+		return should_launch
+	else:
+		return false
 
 
 func _think_idle():

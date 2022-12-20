@@ -16,14 +16,24 @@ texture = ExtResource( 2 )
 visible = false
 shape = SubResource( 1 )
 
+[node name="Health" parent="CombatResources" index="0"]
+MAX_VALUE = 150
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" index="0"]
 visible = false
 shape = SubResource( 1 )
+
+[node name="EnemyBrain" parent="." index="9"]
+minimum_chase_distance = 80.0
+too_close_threshold = 10.0
+has_attack_range_check = true
+max_attack_range = 120
 
 [node name="Shotgun" parent="EnemyBrain/EnemyWeaponBar" index="0" instance=ExtResource( 3 )]
 basic_ammo_cost = 0
 forgiveness_team = 1
 num_bullets = 3
+max_angle_deg = 25.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ContactAttack/HitBox" index="0"]
 visible = false

@@ -19,6 +19,7 @@ damage = 50
 damage_cooldown = 2.0
 zap_effect_scene = ExtResource( 4 )
 zap_duration = 2
+duration = 0.5
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
