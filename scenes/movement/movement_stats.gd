@@ -12,6 +12,9 @@ export var max_speed := 100.0
 export(float, 0.0, 2.0) var friction = 0.1 # only applied when no movement input
 var velocity := Vector2.ZERO
 
+export var rotation_speed_deg := 360.0
+onready var rotation_speed := deg2rad(rotation_speed_deg)
+
 
 # ----------
 # static/util funcs

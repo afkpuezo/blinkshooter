@@ -9,6 +9,8 @@ class_name PlayerMover
 export var input_axis: String = "ui"
 var _dir_strings: Array ## right, left, down, up
 
+var count := 0
+
 
 func _ready() -> void:
 	# build strings
@@ -28,7 +30,12 @@ func physics_update(unit, movement_stats: MovementStats):
 	else: # if no player found
 		apply_friction(movement_stats)
 	move_subject(unit, movement_stats)
-	unit.look_at(TargetReticle.get_true_global_position())
+	#unit.look_at(TargetReticle.get_true_global_position())
+	look_towards(
+		unit,
+		movement_stats,
+		TargetReticle.get_true_global_position()
+	)
 
 
 # ----------

@@ -7,6 +7,10 @@ class_name Mover
 signal collided(col)
 
 
+# not sure why this is needed but it works so here we go
+const LOOK_AT_POINT := Vector2(1, 0)
+
+
 ## Helper method, can be used in physics update, accelerates the unit in the
 ## given (normalized) direction. Updates the unit's velocity, does not actually
 ## call move_and_slide.
@@ -42,7 +46,11 @@ func apply_friction(movement_stats: MovementStats) -> float:
 ## get_collision determines if KB2Ds use move_and_collide or move_and_slide
 ## If the subject is currently over its max speed (eg from being pushed), it
 ## will gradually slow down until reaching the max speed (using friction)
-func move_subject(subject, movement_stats: MovementStats, get_collision := false):
+func move_subject(
+	subject: Node2D,
+	movement_stats: MovementStats,
+	get_collision := false
+):
 	if movement_stats.velocity.length() > movement_stats.max_speed:
 		var resulting_speed = max(apply_friction(movement_stats), movement_stats.max_speed)
 		movement_stats.velocity = movement_stats.velocity.normalized() * resulting_speed
@@ -63,9 +71,9 @@ func move_subject(subject, movement_stats: MovementStats, get_collision := false
 ## used in homing attacks
 ## accelerates the unit towards the target
 func chase(
-	subject,
+	subject: Node2D,
 	movement_stats: MovementStats,
-	target_position,
+	target_position: Vector2,
 	should_accelerate := true,
 	get_collision := false
 	):
@@ -77,3 +85,28 @@ func chase(
 			subject.position.direction_to(target_position)
 		)
 	return move_subject(subject, movement_stats, get_collision)
+
+
+## like the built in look_to, but capped by the unit's max rotation speed
+func look_towards(
+	subject: Node2D,
+	movement_stats: MovementStats,
+	target_position: Vector2
+):
+	var angle_to_target = LOOK_AT_POINT.angle_to(subject.to_local(target_position))
+	var max_turn := movement_stats.rotation_speed * get_physics_process_delta_time()
+	var final_turn: float
+
+	if angle_to_target < 0:
+		final_turn = max(
+			angle_to_target,
+			max_turn * -1
+		)
+	else:
+		final_turn = min(
+			angle_to_target,
+			max_turn
+		)
+
+	subject.rotate(final_turn)
+
