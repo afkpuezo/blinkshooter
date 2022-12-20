@@ -46,6 +46,7 @@ func handle_hit(victim: Unit):
 	victim.take_damage(damage, source)
 	end()
 
+
 func end(do_explode := has_explosion):
 	if do_explode:
 		emit_signal("exploded")
