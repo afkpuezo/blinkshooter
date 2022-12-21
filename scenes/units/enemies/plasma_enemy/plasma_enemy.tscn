@@ -24,13 +24,16 @@ shape = SubResource( 1 )
 rotation_speed_deg = 180.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" index="0"]
+visible = false
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtBox" index="1"]
+visible = false
 position = Vector2( 0, 24 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="HurtBox" index="2"]
+visible = false
 position = Vector2( 0, -24 )
 shape = SubResource( 2 )
 
