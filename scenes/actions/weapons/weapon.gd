@@ -94,6 +94,7 @@ func _ready() -> void:
 		pusher.position.x = 10
 		pusher.start_distance_falloff = 100
 		pusher.end_distance_falloff = 200
+		# warning-ignore:return_value_discarded
 		connect("recoiled", pusher, "push")
 
 

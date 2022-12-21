@@ -20,6 +20,7 @@ func _get_configuration_warning():
 
 
 func _ready() -> void:
+	# warning-ignore:return_value_discarded
 	connect("dealt_damage", self, "on_dealing_damage")
 
 

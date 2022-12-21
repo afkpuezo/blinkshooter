@@ -44,12 +44,12 @@ func _setup_rays():
 	for _x in range(num_rays):
 		# no need to set enabled or cast_to in here
 		var ray = RayCast2D.new()
+		receiver.add_child(ray)
 		ray.exclude_parent = true
 		ray.collision_mask = 0b1 # walls
 		ray.collide_with_areas = true
 		ray.collide_with_bodies = true
 		rays[ray] = false
-		receiver.add_child(ray)
 
 
 # ----------

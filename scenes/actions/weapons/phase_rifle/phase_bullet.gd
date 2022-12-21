@@ -11,7 +11,7 @@ export var distance_unit := 100.0 # increase size/damage by base every X distanc
 onready var initial_damage = damage
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var distance := min(
 		global_position.distance_to(source.global_position),
 		max_scaling_distance

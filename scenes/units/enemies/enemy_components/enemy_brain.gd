@@ -150,8 +150,8 @@ func think():
 ##		- move to their last known position
 func _think_chase(
 	is_player_detected: bool,
-	is_detected_by_center: bool,
-	player: Unit = null
+	_is_detected_by_center: bool,
+	_player: Unit = null
 	):
 	var delta = get_process_delta_time()
 	var moved = false
@@ -163,12 +163,12 @@ func _think_chase(
 		last_known_player_position
 	)
 
-	if is_player_detected:
-		# only back away from the player, not an empty space where they used to
-		# be
-		if distance < too_close_threshold:
-			enemy_mover.back_away_from(this_unit, movement_stats, delta, last_known_player_position)
-			moved = true
+
+	# only back away from the player, not an empty space where they used to
+	# be
+	if is_player_detected and distance < too_close_threshold:
+		enemy_mover.back_away_from(this_unit, movement_stats, delta, last_known_player_position)
+		moved = true
 
 	# don't move to or stand still if we've already backed away from the player
 	if not moved:

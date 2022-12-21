@@ -14,5 +14,6 @@ func be_vacuumed(pickup, movement_stats: MovementStats, target_global_pos: Vecto
 ## called when the pickup is NOT close enough to the player
 ## updates velocity and does the actual movement
 func idle(pickup, movement_stats: MovementStats):
+	# warning-ignore:return_value_discarded
 	apply_friction(movement_stats)
 	move_subject(pickup, movement_stats)

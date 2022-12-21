@@ -73,5 +73,6 @@ func stand_still(
 	_delta: float,
 	_target_position = null
 	):
+		# warning-ignore:return_value_discarded
 	apply_friction(movement_stats)
 	move_subject(unit, movement_stats)
