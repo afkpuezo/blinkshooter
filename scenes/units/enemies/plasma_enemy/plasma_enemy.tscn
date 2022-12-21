@@ -20,6 +20,9 @@ texture = ExtResource( 2 )
 visible = false
 shape = SubResource( 1 )
 
+[node name="MovementStats" parent="." index="3"]
+rotation_speed_deg = 180.0
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" index="0"]
 shape = SubResource( 1 )
 

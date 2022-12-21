@@ -135,7 +135,7 @@ func think():
 		is_detected_by_center,
 		player
 	):
-		attack()
+		attack(player)
 	did_player_teleport = false
 # end think()
 
@@ -157,7 +157,6 @@ func _think_chase(
 	var moved = false
 
 	var distance = global_position.distance_to(last_known_player_position)
-	#this_unit.look_at(last_known_player_position)
 	enemy_mover.look_towards(
 		this_unit,
 		movement_stats,

@@ -23,7 +23,6 @@ func _physics_process(delta: float) -> void:
 	if is_initial_velocity_set:
 		start_movement()
 		is_initial_velocity_set = false
-	# uses move_and_collide because we need the collision object
 
 	if owner.is_homing and owner.target:
 		chase(
