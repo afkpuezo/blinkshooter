@@ -33,6 +33,7 @@ minimum_chase_distance = 80.0
 too_close_threshold = 10.0
 has_attack_range_check = true
 max_attack_range = 200
+attack_allows_non_center_detection = true
 
 [node name="PlayerDetection" parent="EnemyBrain" index="2"]
 detection_range = 800

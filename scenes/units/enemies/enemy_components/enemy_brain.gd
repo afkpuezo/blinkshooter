@@ -50,6 +50,7 @@ var current_mode: int = MODE.IDLE
 export var has_attack_range_check := false
 export var min_attack_range := 0
 export var max_attack_range := 1000
+export var attack_allows_non_center_detection := false
 
 
 # -
@@ -195,14 +196,14 @@ func should_attack(
 	is_detected_by_center: bool,
 	player: Unit = null
 	) -> bool:
-	if is_detected_by_center:
-		var should_launch := true
+	if is_detected_by_center or (is_player_detected and attack_allows_non_center_detection):
+		var should_fire := true
 
 		if has_attack_range_check:
 			var distance = this_unit.global_position.distance_to(player.global_position)
-			should_launch = distance >= min_attack_range and distance <= max_attack_range
+			should_fire = distance >= min_attack_range and distance <= max_attack_range
 
-		return should_launch
+		return should_fire
 	else:
 		return false
 
