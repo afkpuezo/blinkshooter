@@ -43,7 +43,7 @@ tracks/1/keys = {
 
 [node name="Player" instance=ExtResource( 1 )]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 69
 
 [node name="Health" type="Node" parent="CombatResources" index="0"]
 script = ExtResource( 3 )

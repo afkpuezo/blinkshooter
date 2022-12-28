@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/terrain_floor.png-d88acf78e8299c908630c14490c24616.stex"
+path="res://.import/sniper_enemy.png-3206b3d68a728588d9dc07f161a1d28f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/terrain/assets/terrain_floor.png"
-dest_files=[ "res://.import/terrain_floor.png-d88acf78e8299c908630c14490c24616.stex" ]
+source_file="res://scenes/units/enemies/sniper_enemy/sniper_enemy.png"
+dest_files=[ "res://.import/sniper_enemy.png-3206b3d68a728588d9dc07f161a1d28f.stex" ]
 
 [params]
 

@@ -511,6 +511,7 @@ weapon_select_4={
 2d_physics/layer_4="Attack"
 2d_physics/layer_5="Floor"
 2d_physics/layer_6="EnemyMessaging"
+2d_physics/layer_7="Pit"
 2d_physics/layer_8="Pickup"
 2d_navigation/layer_1="floor"
 
