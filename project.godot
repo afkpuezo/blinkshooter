@@ -120,6 +120,16 @@ _global_script_classes=[ {
 "path": "res://scenes/effects/explosions/explosion_animator.gd"
 }, {
 "base": "Node2D",
+"class": "Gateway",
+"language": "GDScript",
+"path": "res://scenes/terrain/gateways/gateway.gd"
+}, {
+"base": "Node2D",
+"class": "GatewayDestination",
+"language": "GDScript",
+"path": "res://scenes/terrain/gateways/gateway_destination.gd"
+}, {
+"base": "Node2D",
 "class": "GibletAnimator",
 "language": "GDScript",
 "path": "res://scenes/effects/death_animator.gd"
@@ -332,6 +342,8 @@ _global_script_class_icons={
 "EnemyWeaponBar": "",
 "Explosion": "",
 "ExplosionAnimator": "",
+"Gateway": "",
+"GatewayDestination": "",
 "GibletAnimator": "",
 "HitBox": "",
 "HurtBox": "",
