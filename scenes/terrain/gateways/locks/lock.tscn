@@ -1,17 +1,20 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://scenes/terrain/gateways/locks/assets/lock_open.png" type="Texture" id=1]
 [ext_resource path="res://scenes/terrain/gateways/locks/lock.gd" type="Script" id=2]
+[ext_resource path="res://scenes/terrain/gateways/locks/assets/lock_locked.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
 
 [node name="Lock" type="Node2D"]
 script = ExtResource( 2 )
+open_sprite = ExtResource( 1 )
+locked_sprite = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.0941176, 0.929412, 0, 1 )
-texture = ExtResource( 1 )
+texture = ExtResource( 3 )
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false

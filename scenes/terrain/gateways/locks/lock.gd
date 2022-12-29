@@ -8,10 +8,15 @@ class_name Lock
 signal unlocked()
 
 
+onready var sprite: Sprite = $Sprite
+
 enum UNLOCK_MODE{TOUCH, KILL}
 var mode: int = UNLOCK_MODE.TOUCH
 var was_touched := false
 var num_units_left := 0
+
+export var open_sprite: Texture
+export var locked_sprite: Texture
 
 
 func _ready() -> void:
@@ -46,3 +51,6 @@ func update():
 
 	if unlocked:
 		emit_signal("unlocked")
+		sprite.texture = open_sprite
+	else:
+		sprite.texture = locked_sprite
