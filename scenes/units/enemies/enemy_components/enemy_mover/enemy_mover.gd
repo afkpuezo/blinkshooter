@@ -27,7 +27,7 @@ func move_to(
 	var was_target_reached := nav_agent.is_target_reached()
 	if not was_target_reached:
 		var next_location = nav_agent.get_next_location()
-		var direction: Vector2 = unit.position.direction_to(next_location).normalized()
+		var direction: Vector2 = unit.global_position.direction_to(next_location).normalized()
 
 		accelerate_towards(
 			movement_stats,

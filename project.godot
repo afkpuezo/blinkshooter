@@ -145,6 +145,11 @@ _global_script_classes=[ {
 "path": "res://scenes/hit_boxes/hurt_box.gd"
 }, {
 "base": "Node2D",
+"class": "Lock",
+"language": "GDScript",
+"path": "res://scenes/terrain/gateways/locks/lock.gd"
+}, {
+"base": "Node2D",
 "class": "LootDropper",
 "language": "GDScript",
 "path": "res://scenes/units/enemies/enemy_components/loot_dropper.gd"
@@ -347,6 +352,7 @@ _global_script_class_icons={
 "GibletAnimator": "",
 "HitBox": "",
 "HurtBox": "",
+"Lock": "",
 "LootDropper": "",
 "MovementStats": "",
 "Mover": "",
