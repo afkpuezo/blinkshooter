@@ -8,8 +8,9 @@ class_name Lock
 signal unlocked()
 
 
-export var require_touch := true
-onready var was_touched := !require_touch
+enum UNLOCK_MODE{TOUCH, KILL}
+var mode: int = UNLOCK_MODE.TOUCH
+var was_touched := false
 var num_units_left := 0
 
 
@@ -18,6 +19,9 @@ func _ready() -> void:
 		if c is Unit:
 			num_units_left += 1
 			c.connect("died", self, "on_unit_death")
+
+	if num_units_left > 0:
+		mode = UNLOCK_MODE.KILL
 
 	update()
 
@@ -33,5 +37,12 @@ func on_unit_death():
 
 
 func update():
-	if was_touched and num_units_left == 0:
+	var unlocked: bool
+	match mode:
+		UNLOCK_MODE.TOUCH:
+			unlocked = was_touched
+		UNLOCK_MODE.KILL:
+			unlocked = num_units_left == 0
+
+	if unlocked:
 		emit_signal("unlocked")

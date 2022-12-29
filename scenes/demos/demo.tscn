@@ -51,7 +51,6 @@ position = Vector2( -2589, 1000 )
 
 [node name="Lock" parent="Terrain/Gateway2" instance=ExtResource( 15 )]
 position = Vector2( -426, 539 )
-require_touch = false
 
 [node name="ShotgunEnemy3" parent="Terrain/Gateway2/Lock" instance=ExtResource( 8 )]
 position = Vector2( -100, 526 )
