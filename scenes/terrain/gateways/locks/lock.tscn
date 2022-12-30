@@ -7,7 +7,8 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
 
-[node name="Lock" type="Node2D"]
+[node name="Lock" type="StaticBody2D"]
+collision_mask = 0
 script = ExtResource( 2 )
 open_sprite = ExtResource( 1 )
 locked_sprite = ExtResource( 3 )
@@ -23,6 +24,9 @@ collision_mask = 2
 input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [connection signal="body_entered" from="Area2D" to="." method="on_touch"]

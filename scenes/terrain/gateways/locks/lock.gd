@@ -1,4 +1,4 @@
-extends Node2D
+extends StaticBody2D
 class_name Lock
 ## Add this to a gateway to lock it. This will emit a signal when it is unlocked
 ## Can be set to unlock when the player touches it, and/or when a specified
