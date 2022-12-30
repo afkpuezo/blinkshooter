@@ -41,7 +41,10 @@ position = Vector2( -576, 448 )
 position = Vector2( 2129, -126 )
 
 [node name="Lock" parent="Terrain/Gateway" instance=ExtResource( 15 )]
-position = Vector2( 287, -680 )
+position = Vector2( 220, -204 )
+
+[node name="Lock2" parent="Terrain/Gateway" instance=ExtResource( 15 )]
+position = Vector2( 246, 102 )
 
 [node name="Gateway2" parent="Terrain" instance=ExtResource( 13 )]
 position = Vector2( 2220, 144 )

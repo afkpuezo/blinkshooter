@@ -5,6 +5,7 @@ class_name Gateway
 
 
 onready var sprite: Sprite = $Sprite
+onready var label: Label = $CenterContainer/Label
 
 var destination: GatewayDestination
 
@@ -43,8 +44,12 @@ func on_lock_unlock():
 
 ## handles lock state and sprite
 func update():
-	if num_locks_remaining == 0:
+	label.text = String(num_locks_remaining)
+	if num_locks_remaining <= 0:
 		is_unlocked = true
+		label.visible = false
+	else:
+		label.visible = true
 
 	if is_unlocked:
 		sprite.texture = open_sprite

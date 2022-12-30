@@ -12,6 +12,7 @@ onready var sprite: Sprite = $Sprite
 onready var label: Label = $CenterContainer/HBoxContainer/Label
 onready var texture_rect: TextureRect = $CenterContainer/HBoxContainer/TextureRect
 
+var is_unlocked := false
 enum UNLOCK_MODE{TOUCH, KILL}
 var mode: int = UNLOCK_MODE.TOUCH
 var was_touched := false
@@ -44,12 +45,9 @@ func on_unit_death():
 
 
 func update():
-	var unlocked: bool
-	match mode:
-		UNLOCK_MODE.TOUCH:
-			unlocked = was_touched
-		UNLOCK_MODE.KILL:
-			unlocked = num_units_left == 0
+	# don't bother re-emitting unlock signal
+	if is_unlocked:
+		return
 
 	if num_units_left > 0:
 		label.text = String(num_units_left)
@@ -59,7 +57,13 @@ func update():
 		label.visible = false
 		texture_rect.visible = false
 
-	if unlocked:
+	match mode:
+		UNLOCK_MODE.TOUCH:
+			is_unlocked = was_touched
+		UNLOCK_MODE.KILL:
+			is_unlocked = num_units_left == 0
+
+	if is_unlocked:
 		emit_signal("unlocked")
 		sprite.texture = open_sprite
 	else:
