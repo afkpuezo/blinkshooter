@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/terrain/gateways/locks/assets/lock_open.png" type="Texture" id=1]
 [ext_resource path="res://scenes/terrain/gateways/locks/lock.gd" type="Script" id=2]
@@ -6,6 +6,9 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 24, 24 )
 
 [node name="Lock" type="StaticBody2D"]
 collision_mask = 0
@@ -27,6 +30,6 @@ input_pickable = false
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [connection signal="body_entered" from="Area2D" to="." method="on_touch"]
