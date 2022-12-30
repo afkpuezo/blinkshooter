@@ -9,6 +9,8 @@ signal unlocked()
 
 
 onready var sprite: Sprite = $Sprite
+onready var label: Label = $CenterContainer/HBoxContainer/Label
+onready var texture_rect: TextureRect = $CenterContainer/HBoxContainer/TextureRect
 
 enum UNLOCK_MODE{TOUCH, KILL}
 var mode: int = UNLOCK_MODE.TOUCH
@@ -48,6 +50,14 @@ func update():
 			unlocked = was_touched
 		UNLOCK_MODE.KILL:
 			unlocked = num_units_left == 0
+
+	if num_units_left > 0:
+		label.text = String(num_units_left)
+		label.visible = true
+		texture_rect.visible = true
+	else:
+		label.visible = false
+		texture_rect.visible = false
 
 	if unlocked:
 		emit_signal("unlocked")
