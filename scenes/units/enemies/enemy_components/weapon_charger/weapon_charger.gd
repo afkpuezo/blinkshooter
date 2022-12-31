@@ -59,6 +59,7 @@ func handle_charge(target: Unit = null):
 	charge += get_physics_process_delta_time()
 
 	if charge >= max_charge:
+		# warning-ignore:return_value_discarded
 		sub_action.trigger(target)
 		charge = 0
 

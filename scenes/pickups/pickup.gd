@@ -244,7 +244,7 @@ func _process(_delta: float) -> void:
 
 ## handles movement
 func _physics_process(_delta: float) -> void:
-	if can_be_vacuumed:
+	if pickup_mover and can_be_vacuumed:
 		if is_being_vacuumed:
 				pickup_mover.be_vacuumed(self, movement_stats, vacuum_position)
 		else:
