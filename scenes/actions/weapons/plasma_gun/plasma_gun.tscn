@@ -7,7 +7,7 @@
 script = ExtResource( 1 )
 PLASMA_AMMO_cost = 1
 cooldown = 1.0
-default_slot = 1
+default_slot = 2
 bullet_scene = ExtResource( 2 )
 damage = 50
 main_ammo_type = 3

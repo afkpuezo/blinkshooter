@@ -7,7 +7,7 @@
 script = ExtResource( 1 )
 basic_ammo_cost = 5
 cooldown = 0.5
-default_slot = 2
+default_slot = 1
 bullet_scene = ExtResource( 2 )
 damage = 20
 main_ammo_type = 2
