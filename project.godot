@@ -402,6 +402,7 @@ TargetReticle="*res://scenes/ui/reticle/reticle.tscn"
 Spawner="*res://scenes/singletons/spawner.gd"
 EnemyBarManager="*res://scenes/singletons/enemy_bar_manager.gd"
 CameraManager="*res://scenes/singletons/camera_manager.gd"
+PlayerUI="*res://scenes/ui/player_ui/player_ui.tscn"
 
 [display]
 
@@ -412,6 +413,7 @@ window/size/height=768
 
 static=false
 alias=false
+autoload=false
 
 [input]
 
