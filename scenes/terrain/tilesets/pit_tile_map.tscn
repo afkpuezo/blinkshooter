@@ -7,4 +7,5 @@ tile_set = ExtResource( 1 )
 show_collision = true
 collision_layer = 64
 collision_mask = 0
+navigation_layers = 0
 format = 1

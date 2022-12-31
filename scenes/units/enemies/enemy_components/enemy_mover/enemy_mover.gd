@@ -26,8 +26,9 @@ func move_to(
 
 	var was_target_reached := nav_agent.is_target_reached()
 	if not was_target_reached:
-		var next_location = nav_agent.get_next_location()
-		var direction: Vector2 = unit.global_position.direction_to(next_location).normalized()
+		var direction: Vector2 = unit.global_position.direction_to(
+			nav_agent.get_next_location()
+		).normalized()
 
 		accelerate_towards(
 			movement_stats,
@@ -44,9 +45,6 @@ func move_to(
 ## Does not update if this is not actually a new target location
 func _update_pathing(new_target_location: Vector2):
 	if nav_update_timer.is_stopped():
-		#print("DEBUG: EnemyMover._update_pathing(): setting new target location")
-		#if new_target_location != nav_agent.get_target_location():
-		#print("updating pathing")
 		nav_agent.set_target_location(new_target_location)
 		nav_update_timer.start()
 
@@ -60,7 +58,7 @@ func back_away_from(
 	delta: float,
 	target_position: Vector2
 	):
-	var direction: Vector2 = (target_position - unit.position).normalized() * -1
+	var direction: Vector2 = (target_position - unit.global_position).normalized() * -1
 	accelerate_towards(movement_stats, delta, direction)
 	move_subject(unit, movement_stats)
 

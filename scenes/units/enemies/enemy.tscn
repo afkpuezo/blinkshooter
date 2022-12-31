@@ -46,19 +46,17 @@ pickup_scene = ExtResource( 8 )
 
 [node name="EnemyBrain" type="Node2D" parent="." index="7"]
 script = ExtResource( 3 )
-minimum_chase_distance = 300.0
-too_close_threshold = 200.0
+minimum_chase_distance = 256.0
+too_close_threshold = 128.0
 
 [node name="EnemyIdler" parent="EnemyBrain" index="0" instance=ExtResource( 13 )]
 next_point_wait_time = 0.5
-max_turn_deg = 40.0
-turn_rate_deg = 80.0
+max_turn_deg = 45.0
+turn_rate_deg = 45.0
 
 [node name="EnemyMover" parent="EnemyBrain" index="1" instance=ExtResource( 4 )]
 
 [node name="PlayerDetection" parent="EnemyBrain" index="2" instance=ExtResource( 10 )]
-detection_range = 512
-num_rays = 5
 
 [node name="PlayerMemoryTimer" type="Timer" parent="EnemyBrain" index="3"]
 wait_time = 0.5

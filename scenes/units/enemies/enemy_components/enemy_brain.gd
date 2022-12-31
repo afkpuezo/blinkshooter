@@ -35,7 +35,7 @@ export var too_close_threshold := 100.0
 export var minimum_chase_distance_no_player := 10.0
 
 # NOTE: has to be onready or our position will not be set yet!
-onready var last_known_player_position: Vector2 = this_unit.position
+onready var last_known_player_position: Vector2 = this_unit.global_position
 
 ## blegh name, keeping track of this explicitly avoids an infinite loop with
 ## messaging
@@ -156,13 +156,12 @@ func _think_chase(
 	var delta = get_process_delta_time()
 	var moved = false
 
-	var distance = global_position.distance_to(last_known_player_position)
 	enemy_mover.look_towards(
 		this_unit,
 		movement_stats,
 		last_known_player_position
 	)
-
+	var distance = global_position.distance_to(last_known_player_position)
 
 	# only back away from the player, not an empty space where they used to
 	# be
@@ -181,6 +180,7 @@ func _think_chase(
 		if too_close:
 			enemy_mover.stand_still(this_unit, movement_stats, delta)
 		else:
+			# move closer to the player
 			# returns true if the nav agent indicates we have reached the last
 			# known position
 			if enemy_mover.move_to(this_unit, movement_stats, last_known_player_position):
