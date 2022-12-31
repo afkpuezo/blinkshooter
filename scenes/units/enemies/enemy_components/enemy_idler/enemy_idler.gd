@@ -23,8 +23,7 @@ onready var turn_rate := deg2rad(turn_rate_deg)
 
 var is_turning_left: bool
 var current_base_angle: float
-var current_min_angle: float
-var current_max_angle: float
+var current_total_turn: float
 
 export var turn_memory_time := 0.2
 
@@ -95,23 +94,24 @@ func idle_turn(enemy: Unit, mover: EnemyMover, movement_stats: MovementStats):
 	var speed := mover.apply_friction(movement_stats)
 	mover.move_subject(enemy, movement_stats)
 
-	if speed == 0:
-		if should_reset():
-			current_base_angle = enemy.rotation
-			current_min_angle = current_base_angle - max_turn
-			current_max_angle = current_base_angle + max_turn
-			is_turning_left = false
+	if speed != 0:
+		return
 
-		var delta = get_physics_process_delta_time()
+	# resets base angle after stopping movement
+	if should_reset():
+		current_base_angle = enemy.rotation
+		is_turning_left = false
+		current_total_turn = 0.0
 
-		if is_turning_left:
-			enemy.rotate(-1 * turn_rate * delta)
-			if enemy.rotation <= current_min_angle:
-				is_turning_left = false
-		else: # turning right
-			enemy.rotate(turn_rate * delta)
-			if enemy.rotation >= current_max_angle:
-				is_turning_left = true
+	# apply rotation
+	var this_frame_rotation: float = (turn_rate * get_physics_process_delta_time())
+	enemy.rotate(this_frame_rotation * (-1 if is_turning_left else 1))
+
+	# check if we should start turning in the other direction
+	current_total_turn += this_frame_rotation
+	if current_total_turn >= max_turn:
+		is_turning_left = !is_turning_left
+		current_total_turn = 0
 
 
 ## updates the memory timer.

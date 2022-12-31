@@ -150,8 +150,8 @@ script = ExtResource( 5 )
 
 [node name="Node2D" type="Node2D" parent="Units/SmallGunEnemy3/PatrolPath"]
 
-[node name="SmallGunEnemy4" parent="Units" instance=ExtResource( 2 )]
-position = Vector2( 450, 953 )
+[node name="SmallGunEnemy5" parent="Units" instance=ExtResource( 2 )]
+position = Vector2( 453, 961 )
 rotation = 3.14159
 collision_mask = 7
 
