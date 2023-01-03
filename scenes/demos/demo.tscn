@@ -113,7 +113,6 @@ can_be_vacuumed = false
 
 [node name="SmallGunEnemy" parent="Units" instance=ExtResource( 2 )]
 position = Vector2( 533, 680 )
-collision_mask = 7
 
 [node name="PatrolPath2" parent="Units/SmallGunEnemy" instance=ExtResource( 4 )]
 
@@ -132,7 +131,6 @@ position = Vector2( -355, -5 )
 [node name="SmallGunEnemy2" parent="Units" instance=ExtResource( 2 )]
 position = Vector2( 1149, 403 )
 rotation = -0.589921
-collision_mask = 7
 
 [node name="PatrolPath" type="Node2D" parent="Units/SmallGunEnemy2"]
 script = ExtResource( 5 )
@@ -142,7 +140,6 @@ script = ExtResource( 5 )
 [node name="SmallGunEnemy3" parent="Units" instance=ExtResource( 2 )]
 position = Vector2( 1146, 592 )
 rotation = 0.589921
-collision_mask = 7
 
 [node name="PatrolPath" type="Node2D" parent="Units/SmallGunEnemy3"]
 script = ExtResource( 5 )
@@ -152,26 +149,22 @@ script = ExtResource( 5 )
 [node name="SmallGunEnemy5" parent="Units" instance=ExtResource( 2 )]
 position = Vector2( 453, 961 )
 rotation = 3.14159
-collision_mask = 7
 
 [node name="PlasmaEnemy" parent="Units" instance=ExtResource( 7 )]
 position = Vector2( 767, -136 )
-collision_mask = 7
 
 [node name="SniperEnemy" parent="Units" instance=ExtResource( 9 )]
 position = Vector2( 1187, -902 )
 rotation = 3.14159
-collision_mask = 7
 
 [node name="SniperEnemy2" parent="Units" instance=ExtResource( 9 )]
 position = Vector2( 1427, -653 )
 rotation = 3.14159
-collision_mask = 7
 
 [node name="SniperEnemy3" parent="Units" instance=ExtResource( 9 )]
 position = Vector2( 1338, -1121 )
 rotation = 3.14159
-collision_mask = 7
 
 [node name="Player" parent="Units" instance=ExtResource( 1 )]
 position = Vector2( 48, 248 )
+collision_mask = 71

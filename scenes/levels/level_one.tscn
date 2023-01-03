@@ -63,4 +63,4 @@ can_be_vacuumed = false
 [node name="Units" type="Node2D" parent="."]
 
 [node name="Player" parent="Units" instance=ExtResource( 3 )]
-position = Vector2( 1644, 405 )
+position = Vector2( 143, 386 )
