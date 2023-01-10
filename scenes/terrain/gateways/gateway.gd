@@ -4,6 +4,9 @@ class_name Gateway
 ## configure it by adding a destination and optionally a lock
 
 
+signal triggered() # should this have args?
+
+
 onready var sprite: Sprite = $Sprite
 onready var label: Label = $CenterContainer/Label
 
@@ -35,6 +38,7 @@ func _ready() -> void:
 func on_unit_entered(unit: Unit):
 	if is_unlocked:
 		unit.global_position = destination.global_position
+		emit_signal("triggered")
 
 
 func on_lock_unlock():

@@ -182,3 +182,6 @@ rotation = -1.5708
 [node name="SmallGunEnemy6" parent="Units" instance=ExtResource( 8 )]
 position = Vector2( 1024, 1536 )
 rotation = -1.5708
+
+[connection signal="triggered" from="Terrain/Gateways/Gateway" to="Labels/Movement" method="queue_free"]
+[connection signal="died" from="Terrain/Gateways/Gateway4/Lock/SmallGunEnemy" to="Labels/Shooting" method="queue_free"]
