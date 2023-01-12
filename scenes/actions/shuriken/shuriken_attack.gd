@@ -19,8 +19,7 @@ export var sprite_rotation_speed_deg := 360
 var target # tries to return to the player
 var launch_to: Vector2
 var launch_duration: float
-var user setget ,get_user
-func get_user(): return user
+var user
 
 var chase_position # remembers last position of target
 
@@ -29,6 +28,7 @@ export(PackedScene) var explosion_scene
 
 
 func _ready() -> void:
+	$AreaOverTimeAttack.source = user
 	launch(launch_to, launch_duration)
 
 

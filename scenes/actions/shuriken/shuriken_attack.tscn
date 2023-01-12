@@ -43,7 +43,6 @@ autostart = true
 [node name="AreaOverTimeAttack" type="Node2D" parent="."]
 script = ExtResource( 3 )
 damage_cooldown_scene = ExtResource( 9 )
-damage = 20
 damage_cooldown = 0.25
 
 [node name="HitBox" type="Area2D" parent="AreaOverTimeAttack"]
