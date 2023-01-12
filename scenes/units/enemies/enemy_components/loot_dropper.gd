@@ -8,7 +8,7 @@ export(int, 0, 100) var health_chance = 10
 export(int, 0, 100) var energy_chance = 10
 export(int, 0, 100) var basic_ammo_chance = 10
 export(int, 0, 100) var plasma_ammo_chance = 10
-export(int, 0, 100) var large_pickup_chance = 30 # for all types
+export(int, 0, 100) var large_ammo_pickup_chance = 30 # for all types
 
 onready var types_to_chances := {
 	Pickup.TYPE.BASIC_AMMO: basic_ammo_chance,
@@ -30,7 +30,7 @@ func _on_Enemy_died() -> void:
 	for type in types_to_chances:
 		if roll(types_to_chances[type]):
 			var p: Pickup = pickup_scene.instance()
-			var size = Pickup.SIZE.LARGE if roll(large_pickup_chance) else Pickup.SIZE.NORMAL
+			var size = Pickup.SIZE.LARGE if roll(large_ammo_pickup_chance) else Pickup.SIZE.NORMAL
 			p.configure(type, size)
 			Spawner.spawn_node(p, get_random_spawn_position())
 
