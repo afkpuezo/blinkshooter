@@ -162,6 +162,10 @@ var vacuum_position: Vector2
 onready var pickup_mover: PickupMover = $PickupMover
 onready var movement_stats: MovementStats = $MovementStats
 
+# used for resource pickups to avoid bug with Tool
+var needs_scaling = true
+var resouce_scale_temp = 1
+
 
 # ----------
 # static funcs
@@ -214,7 +218,7 @@ func _setup_resource_pickup(details: Dictionary):
 
 	var sub_details: Dictionary = details[size_str]
 	resource_amount = sub_details['resource_amount']
-	scale *= sub_details['scale_factor']
+	resouce_scale_temp = sub_details['scale_factor']
 
 
 ## only works if this pickup has an action or weapon. returns null if there is
@@ -236,8 +240,12 @@ func get_resource_type_and_amount() -> Array:
 	return [resource_type, resource_amount]
 
 
-## handles freeing
+## handles freeing and scaling for resouce pickups
 func _process(_delta: float) -> void:
+	if meta_type == META_TYPE.RESOURCE and needs_scaling:
+		scale *= resouce_scale_temp
+		needs_scaling = false
+
 	if done:
 		queue_free()
 
