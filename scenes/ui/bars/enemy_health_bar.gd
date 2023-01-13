@@ -4,11 +4,20 @@ class_name EnemyHealthBar
 
 var enemy
 onready var bar = $HealthBar
-#onready var vis = $VisibilityNotifier2D
+
+export var extra_boss_offset := 100
+export var extra_boss_height := 10
+export var extra_boss_width := 50
 
 
 ## should be called when this is created
-func assign_enemy(e):
+func assign_enemy(e: Unit, is_boss: bool):
+	if is_boss:
+		bar.margin_left -= extra_boss_width
+		bar.margin_right += extra_boss_width
+		bar.margin_bottom -= extra_boss_offset
+		bar.margin_top -= extra_boss_offset + extra_boss_height
+
 	enemy = e
 	# to follow an enemy
 	enemy.connect("tree_exiting", self, "on_enemy_died")
@@ -19,7 +28,6 @@ func assign_enemy(e):
 	# to control visibility on first frame
 	if not $VisibilityNotifier2D.visible:
 		on_not_visible()
-
 
 ## moves to follow the enemy
 func _process(_delta: float) -> void:

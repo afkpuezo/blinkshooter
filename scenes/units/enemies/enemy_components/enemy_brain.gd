@@ -52,6 +52,7 @@ export var min_attack_range := 0
 export var max_attack_range := 1000
 export var attack_allows_non_center_detection := false
 
+export var is_boss := false
 
 # -
 # ----------
@@ -61,7 +62,13 @@ export var attack_allows_non_center_detection := false
 
 
 func _ready() -> void:
-	GameEvents.emit_signal("enemy_spawned", {'enemy': this_unit})
+	GameEvents.emit_signal(
+		"enemy_spawned",
+		{
+			'enemy': this_unit,
+			'is_boss': is_boss
+		}
+	)
 	# warning-ignore:return_value_discarded
 	GameEvents.connect("player_teleported", self, "on_player_teleported")
 

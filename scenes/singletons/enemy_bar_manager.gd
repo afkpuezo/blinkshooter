@@ -14,5 +14,8 @@ func _ready() -> void:
 func handle_enemy_spawn(args):
 	var ehp: EnemyHealthBar = ehp_scene.instance()
 	add_child(ehp)
-	ehp.assign_enemy(args['enemy'])
+	ehp.assign_enemy(
+		args['enemy'],
+		args['is_boss']
+	)
 

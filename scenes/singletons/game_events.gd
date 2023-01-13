@@ -65,8 +65,8 @@ signal game_object_spawned(msg)
 # Enemy related
 # ----------
 
-## msg fields: "enemy"
-## called by enemies when they spawn
+## msg fields: "enemy", "is_boss"
+## called by enemies (brains) when they spawn
 # warning-ignore:unused_signal
 signal enemy_spawned(msg)
 

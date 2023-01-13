@@ -21,6 +21,9 @@ polygon = PoolVector2Array( -23, -26, 26, 0, -23, 26 )
 [node name="BulletSpawnPoint" parent="." index="7"]
 position = Vector2( 16, 0 )
 
+[node name="LootDropper" parent="." index="8"]
+energy_chance = 0
+
 [node name="Weapon" type="Node2D" parent="EnemyBrain/EnemyWeaponBar" index="0"]
 script = ExtResource( 3 )
 cooldown = 1.0
