@@ -79,10 +79,12 @@ func emit_update_tick_help(action_index: int) -> Dictionary:
 # ----------
 
 
-## if the given slot number is valid, change the current slot to it
+## if the given slot number is valid (exists and has a weapon), change the
+## current slot to it
 ## returns true if actually changed
 func _change_slot(slot_num: int) -> bool:
-	if slot_num < 0 or slot_num > num_slots:
+	print(actions)
+	if slot_num < 0 or slot_num > num_slots or actions[slot_num] == null:
 		return false
 	else:
 		current_slot = slot_num
