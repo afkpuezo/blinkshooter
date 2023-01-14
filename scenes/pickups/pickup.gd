@@ -245,8 +245,9 @@ func get_resource_type_and_amount() -> Array:
 ## handles freeing and scaling for resouce pickups
 func _process(_delta: float) -> void:
 	if meta_type == META_TYPE.RESOURCE and needs_scaling:
-		scale *= resouce_scale_temp
-		needs_scaling = false
+		if not Engine.editor_hint:
+			scale *= resouce_scale_temp
+			needs_scaling = false
 
 	if done:
 		queue_free()

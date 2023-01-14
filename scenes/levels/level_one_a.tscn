@@ -168,7 +168,6 @@ type = 9
 
 [node name="AmmoPickup3" parent="Pickups/Resources" instance=ExtResource( 9 )]
 position = Vector2( 1236, -1497 )
-scale = Vector2( 0.0750848, 0.0750848 )
 was_placed_in_editor = true
 type = 10
 
