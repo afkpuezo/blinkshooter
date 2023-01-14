@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scenes/terrain/tilesets/wall_tile_map.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/terrain/tilesets/floor_tile_map.tscn" type="PackedScene" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://scenes/actions/weapons/shotgun/shotgun.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/actions/shuriken/shuriken.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/units/player/player_components/player_load_helper.gd" type="Script" id=16]
+[ext_resource path="res://scenes/actions/blink/teleport_effect.tscn" type="PackedScene" id=17]
 
 [node name="World" type="Node2D"]
 
@@ -103,3 +104,6 @@ position = Vector2( 2496, 6240 )
 
 [node name="Player" parent="Units/PlayerLoadHelper" instance=ExtResource( 3 )]
 position = Vector2( 2496, 6240 )
+
+[node name="TeleportEffect" parent="Units/PlayerLoadHelper/Player" instance=ExtResource( 17 )]
+scale = Vector2( 2.5, 2.5 )

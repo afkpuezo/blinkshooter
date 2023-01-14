@@ -23,7 +23,7 @@ export var open_sprite: Texture
 export var locked_sprite: Texture
 
 export(PackedScene) var teleport_effect_scene
-export var teleport_effect_scale_factor := 2.0
+export var teleport_effect_scale_factor := 2.5
 export var teleport_wait_time := 0.25
 export var destination_teleport_effect_delay := 0.25
 
