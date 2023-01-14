@@ -252,7 +252,7 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Reticle",
 "language": "GDScript",
-"path": "res://scenes/ui/reticle/reticle.gd"
+"path": "res://scenes/singletons/reticle/reticle.gd"
 }, {
 "base": "Action",
 "class": "SawBlade",
@@ -404,7 +404,7 @@ run/main_scene="res://scenes/levels/level_one_a.tscn"
 [autoload]
 
 GameEvents="*res://scenes/singletons/game_events.gd"
-TargetReticle="*res://scenes/ui/reticle/reticle.tscn"
+TargetReticle="*res://scenes/singletons/reticle/reticle.tscn"
 Spawner="*res://scenes/singletons/spawner.gd"
 EnemyBarManager="*res://scenes/singletons/enemy_bar_manager.gd"
 CameraManager="*res://scenes/singletons/camera_manager.gd"

@@ -19,7 +19,7 @@ func _ready() -> void:
 
 
 ## i guess this is the best place to handle quitting
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 

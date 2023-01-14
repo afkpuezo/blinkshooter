@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/reticle.png-5f51c3ffa9f4d3ceb42222e971f5565e.stex"
+path="res://.import/reticle.png-36a4892d8f337969af934205fa2fc177.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/ui/reticle/reticle.png"
-dest_files=[ "res://.import/reticle.png-5f51c3ffa9f4d3ceb42222e971f5565e.stex" ]
+source_file="res://scenes/singletons/reticle/reticle.png"
+dest_files=[ "res://.import/reticle.png-36a4892d8f337969af934205fa2fc177.stex" ]
 
 [params]
 
