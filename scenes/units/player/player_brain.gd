@@ -70,7 +70,7 @@ static func load_player_state(p: Unit, data: Dictionary):
 	for cr in crs:
 		if cr.type in data:
 			var sub: Dictionary = data[cr.type]
-			cr.set_values(cr['min'], cr['max'], cr['value'])
+			cr.set_values(sub['min'], sub['max'], sub['value'])
 		else:
 			print("PlayeBrain.load_player_state(): type key not in data: %s" % cr.type)
 
