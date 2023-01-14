@@ -249,7 +249,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/ui/player_ui/resource_bar_manager.gd"
 }, {
-"base": "KinematicBody2D",
+"base": "Node2D",
 "class": "Reticle",
 "language": "GDScript",
 "path": "res://scenes/singletons/reticle/reticle.gd"
@@ -416,6 +416,8 @@ LevelLoader="*res://scenes/singletons/level_loader.gd"
 window/size/width=1366
 window/size/height=768
 window/size/fullscreen=true
+mouse_cursor/custom_image="res://scenes/singletons/reticle/reticle.png"
+mouse_cursor/custom_image_hotspot=Vector2( 16, 16 )
 
 [global]
 
