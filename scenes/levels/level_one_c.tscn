@@ -82,6 +82,41 @@ can_be_vacuumed = false
 
 [node name="Resources" type="Node2D" parent="Pickups"]
 
+[node name="HealthPickup6" parent="Pickups/Resources" instance=ExtResource( 9 )]
+position = Vector2( 2887, 6239 )
+was_placed_in_editor = true
+type = 9
+
+[node name="HealthPickup8" parent="Pickups/Resources" instance=ExtResource( 9 )]
+position = Vector2( 2912, 6311 )
+was_placed_in_editor = true
+type = 9
+
+[node name="HealthPickup7" parent="Pickups/Resources" instance=ExtResource( 9 )]
+position = Vector2( 2941, 6259 )
+was_placed_in_editor = true
+type = 9
+
+[node name="HealthPickup9" parent="Pickups/Resources" instance=ExtResource( 9 )]
+position = Vector2( 2849, 6171 )
+was_placed_in_editor = true
+type = 9
+
+[node name="AmmoPickup" parent="Pickups/Resources" instance=ExtResource( 9 )]
+position = Vector2( 2938, 6216 )
+was_placed_in_editor = true
+type = 10
+
+[node name="AmmoPickup3" parent="Pickups/Resources" instance=ExtResource( 9 )]
+position = Vector2( 2870, 6203 )
+was_placed_in_editor = true
+type = 10
+
+[node name="AmmoPickup2" parent="Pickups/Resources" instance=ExtResource( 9 )]
+position = Vector2( 2895, 6280 )
+was_placed_in_editor = true
+type = 10
+
 [node name="Units" type="Node2D" parent="."]
 
 [node name="PlayerLoadHelper" type="Node2D" parent="Units"]
