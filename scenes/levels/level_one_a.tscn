@@ -127,10 +127,6 @@ rotation = 1.5708
 
 [node name="SmallGunEnemy7" parent="Terrain/Gateways/Gateway6/Lock" instance=ExtResource( 8 )]
 position = Vector2( 1056, -416 )
-rotation = 3.14159
-
-[node name="SmallGunEnemy8" parent="Terrain/Gateways/Gateway6/Lock" instance=ExtResource( 8 )]
-position = Vector2( 1056, -416 )
 rotation = 1.5708
 
 [node name="SmallGunEnemy5" parent="Terrain/Gateways/Gateway6/Lock" instance=ExtResource( 8 )]
