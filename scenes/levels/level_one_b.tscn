@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/terrain/tilesets/wall_tile_map.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/terrain/tilesets/floor_tile_map.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://scenes/units/enemies/shotgun_enemy/shotgun_enemy.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/actions/saw_blade/saw_blade.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/actions/weapons/small_gun/small_gun.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/units/player/player_components/player_load_helper.gd" type="Script" id=15]
 
 [node name="World" type="Node2D"]
 
@@ -225,19 +226,14 @@ position = Vector2( 0, 319 )
 position = Vector2( -984, 868 )
 rotation = -0.785398
 
-[node name="Player" parent="Units" instance=ExtResource( 3 )]
+[node name="PlayerLoadHelper" type="Node2D" parent="Units"]
+script = ExtResource( 15 )
+
+[node name="Player" parent="Units/PlayerLoadHelper" instance=ExtResource( 3 )]
 position = Vector2( 64, 2720 )
 
-[node name="BasicAmmo" parent="Units/Player/CombatResources" index="2"]
-MAX_VALUE = 100
+[node name="Blink" parent="Units/PlayerLoadHelper" instance=ExtResource( 10 )]
 
-[node name="PlasmaAmmo" parent="Units/Player/CombatResources" index="3"]
-MAX_VALUE = 100
+[node name="SawBlade" parent="Units/PlayerLoadHelper" instance=ExtResource( 13 )]
 
-[node name="Blink" parent="Units/Player/ActionBar" index="0" instance=ExtResource( 10 )]
-
-[node name="SawBlade" parent="Units/Player/ActionBar" index="1" instance=ExtResource( 13 )]
-
-[node name="SmallGun" parent="Units/Player/WeaponBar" index="0" instance=ExtResource( 14 )]
-
-[editable path="Units/Player"]
+[node name="SmallGun" parent="Units/PlayerLoadHelper" instance=ExtResource( 14 )]

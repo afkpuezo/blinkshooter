@@ -214,6 +214,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/units/enemies/enemy_components/player_detection/player_detection.gd"
 }, {
+"base": "Node2D",
+"class": "PlayerLoadHelper",
+"language": "GDScript",
+"path": "res://scenes/units/player/player_components/player_load_helper.gd"
+}, {
 "base": "CanvasLayer",
 "class": "PlayerMonitorText",
 "language": "GDScript",
@@ -366,6 +371,7 @@ _global_script_class_icons={
 "PlasmaGun": "",
 "PlayerBrain": "",
 "PlayerDetection": "",
+"PlayerLoadHelper": "",
 "PlayerMonitorText": "",
 "PlayerMover": "",
 "Pusher": "",

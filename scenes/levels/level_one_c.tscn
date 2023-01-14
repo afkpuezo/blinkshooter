@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/terrain/tilesets/wall_tile_map.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/terrain/tilesets/floor_tile_map.tscn" type="PackedScene" id=2]
@@ -15,37 +15,7 @@
 [ext_resource path="res://scenes/units/enemies/plasma_enemy/plasma_boss/plasma_boss.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/actions/weapons/shotgun/shotgun.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/actions/shuriken/shuriken.tscn" type="PackedScene" id=15]
-
-[sub_resource type="Animation" id=1]
-resource_name = "Idle"
-
-[sub_resource type="Animation" id=2]
-resource_name = "Teleport"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.4, 0.5 ),
-"transitions": PoolRealArray( 0.5, 1, 1, 2 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 0.8, 0.8 ), Vector2( 0.8, 0.8 ), Vector2( 1, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:scale")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.4, 0.5 ),
-"transitions": PoolRealArray( 0.5, 1, 1, 2 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 0.8, 0.8 ), Vector2( 0.8, 0.8 ), Vector2( 1, 1 ) ]
-}
+[ext_resource path="res://scenes/units/player/player_components/player_load_helper.gd" type="Script" id=16]
 
 [node name="World" type="Node2D"]
 
@@ -113,27 +83,23 @@ can_be_vacuumed = false
 
 [node name="Units" type="Node2D" parent="."]
 
-[node name="Player" parent="Units" instance=ExtResource( 3 )]
+[node name="PlayerLoadHelper" type="Node2D" parent="Units"]
+script = ExtResource( 16 )
+
+[node name="Blink" parent="Units/PlayerLoadHelper" instance=ExtResource( 11 )]
 position = Vector2( 2496, 6240 )
 
-[node name="BasicAmmo" parent="Units/Player/CombatResources" index="2"]
-MAX_VALUE = 100
+[node name="SawBlade" parent="Units/PlayerLoadHelper" instance=ExtResource( 12 )]
+position = Vector2( 2496, 6240 )
 
-[node name="PlasmaAmmo" parent="Units/Player/CombatResources" index="3"]
-MAX_VALUE = 100
+[node name="Shuriken" parent="Units/PlayerLoadHelper" instance=ExtResource( 15 )]
+position = Vector2( 2496, 6240 )
 
-[node name="AnimationPlayer" parent="Units/Player/PlayerBrain" index="0"]
-anims/Idle = SubResource( 1 )
-anims/Teleport = SubResource( 2 )
+[node name="SmallGun" parent="Units/PlayerLoadHelper" instance=ExtResource( 8 )]
+position = Vector2( 2496, 6240 )
 
-[node name="Blink" parent="Units/Player/ActionBar" index="0" instance=ExtResource( 11 )]
+[node name="Shotgun" parent="Units/PlayerLoadHelper" instance=ExtResource( 14 )]
+position = Vector2( 2496, 6240 )
 
-[node name="SawBlade" parent="Units/Player/ActionBar" index="1" instance=ExtResource( 12 )]
-
-[node name="Shuriken" parent="Units/Player/ActionBar" index="2" instance=ExtResource( 15 )]
-
-[node name="SmallGun" parent="Units/Player/WeaponBar" index="0" instance=ExtResource( 8 )]
-
-[node name="Shotgun" parent="Units/Player/WeaponBar" index="1" instance=ExtResource( 14 )]
-
-[editable path="Units/Player"]
+[node name="Player" parent="Units/PlayerLoadHelper" instance=ExtResource( 3 )]
+position = Vector2( 2496, 6240 )
