@@ -32,7 +32,7 @@ func _ready() -> void:
 			num_locks_remaining += 1
 			c.connect("unlocked", self, "on_lock_unlock")
 	# end for children
-	if not destination:
+	if not destination and not load_level:
 		print("%s couldn't find a destination!" % name)
 
 	update()

@@ -59,6 +59,7 @@ func _ready() -> void:
 
 ## from Unit signal
 func on_unit_death():
+	print("PlayerBrain.on_unit_death() called")
 	GameEvents.emit_signal("player_died", {'player': self})
 
 

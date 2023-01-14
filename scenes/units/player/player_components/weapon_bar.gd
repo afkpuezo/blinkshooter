@@ -83,7 +83,6 @@ func emit_update_tick_help(action_index: int) -> Dictionary:
 ## current slot to it
 ## returns true if actually changed
 func _change_slot(slot_num: int) -> bool:
-	print(actions)
 	if slot_num < 0 or slot_num > num_slots or actions[slot_num] == null:
 		return false
 	else:
