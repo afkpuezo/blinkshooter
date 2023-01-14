@@ -21,7 +21,8 @@ func on_player_spawn(msg):
 	var player = msg['player']
 	# setting it here rather than in the scene sets any other cameras to false
 	player_camera = player_camera_scene.instance()
-	player.add_child(player_camera)
+	# call deferred avoids an error here
+	player.call_deferred("add_child", player_camera)
 	player_camera.current = true
 
 

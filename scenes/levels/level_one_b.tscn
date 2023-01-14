@@ -228,6 +228,12 @@ rotation = -0.785398
 [node name="Player" parent="Units" instance=ExtResource( 3 )]
 position = Vector2( 64, 2720 )
 
+[node name="BasicAmmo" parent="Units/Player/CombatResources" index="2"]
+MAX_VALUE = 100
+
+[node name="PlasmaAmmo" parent="Units/Player/CombatResources" index="3"]
+MAX_VALUE = 100
+
 [node name="Blink" parent="Units/Player/ActionBar" index="0" instance=ExtResource( 10 )]
 
 [node name="SawBlade" parent="Units/Player/ActionBar" index="1" instance=ExtResource( 13 )]

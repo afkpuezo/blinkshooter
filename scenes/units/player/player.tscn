@@ -51,7 +51,7 @@ is_player = true
 
 [node name="Energy" type="Node" parent="CombatResources" index="1"]
 script = ExtResource( 3 )
-REGEN = 15
+REGEN = 20.0
 type = 1
 is_player = true
 
@@ -63,7 +63,7 @@ is_player = true
 
 [node name="PlasmaAmmo" type="Node" parent="CombatResources" index="3"]
 script = ExtResource( 3 )
-MAX_VALUE = 10
+MAX_VALUE = 5
 type = 3
 is_player = true
 

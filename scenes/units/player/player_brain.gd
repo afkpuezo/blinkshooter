@@ -41,13 +41,47 @@ static func get_player_if_source(n: Node):
 		return null
 
 
+## used by the LevelLoader, returns a dictionary of the information needed to
+## restore the player after loading a checkpoint or moving to a new level zone
+## currently just tracks value of combat resources
+static func save_player_state(p: Unit) -> Dictionary:
+	assert (is_player(p))
+	var crs := CombatResource.get_combat_resources(p)
+	var data := {}
+
+	for cr in crs:
+		var sub := {
+			'min': cr.MIN_VALUE,
+			'max': cr.MAX_VALUE,
+			'value': cr.value
+		}
+		data[cr.type] = sub
+
+	print("save_player_state() about to return data: %s" % data)
+	return data
+
+
+## used by the LevelLoader, restores the state of the player
+static func load_player_state(p: Unit, data: Dictionary):
+	print("load_player_state() called, data: %s" % data)
+	assert (is_player(p))
+	var crs := CombatResource.get_combat_resources(p)
+
+	for cr in crs:
+		if cr.type in data:
+			var sub: Dictionary = data[cr.type]
+			cr.set_values(cr['min'], cr['max'], cr['value'])
+		else:
+			print("PlayeBrain.load_player_state(): type key not in data: %s" % cr.type)
+
+
 # ----------
 # ready and setup methods
 # ----------
 
 
 func _ready() -> void:
-	GameEvents.emit_signal("player_spawned", {'player': self})
+	GameEvents.emit_signal("player_spawned", {'player': owner})
 	# warning-ignore:return_value_discarded
 	GameEvents.connect("player_teleport_started", self, "do_teleport_animation")
 
@@ -59,8 +93,7 @@ func _ready() -> void:
 
 ## from Unit signal
 func on_unit_death():
-	print("PlayerBrain.on_unit_death() called")
-	GameEvents.emit_signal("player_died", {'player': self})
+	GameEvents.emit_signal("player_died", {'player': owner})
 
 
 ## call the animation on the animation player

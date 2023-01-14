@@ -9,7 +9,7 @@ enum Type {HEALTH, ENERGY, BASIC_AMMO, PLASMA_AMMO}
 
 export var MAX_VALUE := 100
 export var MIN_VALUE := 0 # needed?
-export var REGEN := 0
+export var REGEN := 0.0
 export var INITIAL_VALUE: int = 999999 # note - will get clmaped
 export(Type) var type = Type.HEALTH
 export var is_player := false ## If set to true, will trigger relevant events
@@ -109,6 +109,14 @@ func change_value(amount: float) -> bool:
 	if was_changed:
 		_report_value_change(amount)
 	return was_changed
+
+
+## used when loading player stats at a checkpoint
+func set_values(min_val: int, max_val: int, val: float):
+	MIN_VALUE = min_val
+	MAX_VALUE = max_val
+	value = val
+	_report_value_change(0)
 
 
 # ----------
