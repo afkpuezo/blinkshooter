@@ -335,19 +335,19 @@ type = 9
 
 [node name="AmmoPickup" parent="Pickups/Resources" instance=ExtResource( 9 )]
 position = Vector2( 54, 2835 )
-scale = Vector2( 0.133484, 0.133484 )
+scale = Vector2( 0.100113, 0.100113 )
 was_placed_in_editor = true
 type = 10
 
 [node name="AmmoPickup2" parent="Pickups/Resources" instance=ExtResource( 9 )]
 position = Vector2( 134, 2830 )
-scale = Vector2( 0.133484, 0.133484 )
+scale = Vector2( 0.100113, 0.100113 )
 was_placed_in_editor = true
 type = 10
 
 [node name="AmmoPickup3" parent="Pickups/Resources" instance=ExtResource( 9 )]
 position = Vector2( 1236, -1497 )
-scale = Vector2( 0.133484, 0.133484 )
+scale = Vector2( 0.100113, 0.100113 )
 was_placed_in_editor = true
 type = 10
 
@@ -368,7 +368,7 @@ type = 9
 
 [node name="AmmoPickup4" parent="Pickups/Resources" instance=ExtResource( 9 )]
 position = Vector2( 2882, 6175 )
-scale = Vector2( 0.133484, 0.133484 )
+scale = Vector2( 0.100113, 0.100113 )
 was_placed_in_editor = true
 type = 10
 
@@ -379,13 +379,13 @@ type = 9
 
 [node name="AmmoPickup6" parent="Pickups/Resources" instance=ExtResource( 9 )]
 position = Vector2( 2814, 6232 )
-scale = Vector2( 0.133484, 0.133484 )
+scale = Vector2( 0.100113, 0.100113 )
 was_placed_in_editor = true
 type = 10
 
 [node name="AmmoPickup5" parent="Pickups/Resources" instance=ExtResource( 9 )]
 position = Vector2( 2900, 6306 )
-scale = Vector2( 0.133484, 0.133484 )
+scale = Vector2( 0.100113, 0.100113 )
 was_placed_in_editor = true
 type = 10
 

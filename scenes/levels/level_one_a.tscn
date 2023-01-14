@@ -103,6 +103,8 @@ position = Vector2( -300, 121 )
 
 [node name="Gateway6" parent="Terrain/Gateways" instance=ExtResource( 4 )]
 position = Vector2( 96, 1248 )
+load_level = true
+level_name = "res://scenes/levels/level_one_b.tscn"
 
 [node name="Lock" parent="Terrain/Gateways/Gateway6" instance=ExtResource( 7 )]
 position = Vector2( 128, 128 )
@@ -166,7 +168,7 @@ type = 9
 
 [node name="AmmoPickup3" parent="Pickups/Resources" instance=ExtResource( 9 )]
 position = Vector2( 1236, -1497 )
-scale = Vector2( 0.100113, 0.100113 )
+scale = Vector2( 0.0750848, 0.0750848 )
 was_placed_in_editor = true
 type = 10
 

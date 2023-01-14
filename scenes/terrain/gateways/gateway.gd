@@ -19,6 +19,9 @@ var is_unlocked := false
 export var open_sprite: Texture
 export var locked_sprite: Texture
 
+export var load_level := false
+export var level_name: String
+
 
 func _ready() -> void:
 	for c in get_children():
@@ -37,8 +40,11 @@ func _ready() -> void:
 
 func on_unit_entered(unit: Unit):
 	if is_unlocked:
-		unit.global_position = destination.global_position
-		emit_signal("triggered")
+		if load_level:
+			LevelLoader.load_level(level_name)
+		else:
+			unit.global_position = destination.global_position
+			emit_signal("triggered")
 
 
 func on_lock_unlock():
