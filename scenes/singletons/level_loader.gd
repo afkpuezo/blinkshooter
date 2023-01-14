@@ -15,6 +15,7 @@ func _ready() -> void:
 
 func load_level(level_name):
 	current_level_name = level_name
+	# warning-ignore:return_value_discarded
 	get_tree().change_scene(level_name)
 
 

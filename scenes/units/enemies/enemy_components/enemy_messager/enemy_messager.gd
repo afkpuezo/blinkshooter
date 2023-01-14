@@ -122,7 +122,9 @@ func remove_target(target):
 
 ## handles null ray
 func _assign_ray_to_target(ray: RayCast2D, target):
-	if ray:
+	# checking if the ray is inside the tree avoids some error messages upon
+	# loading a level
+	if ray and ray.is_inside_tree():
 		rays[ray] = true
 		ray.enabled = true
 		ray.cast_to = ray.to_local(target.position)
