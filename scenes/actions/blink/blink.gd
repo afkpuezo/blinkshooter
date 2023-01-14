@@ -11,6 +11,7 @@ onready var raycast: RayCast2D = $RayCast2D
 export var max_range := 500
 export var min_range := 100
 export var teleport_wait_time := 0.25
+export var destination_teleport_effect_delay := 0.1
 export(PackedScene) var effect_scene
 
 # faster calcs for distance squared
@@ -74,7 +75,7 @@ func do_action():
 	if effect_scene:
 		Spawner.spawn_node(effect_scene.instance(), user.get_position())
 		destination_effect = effect_scene.instance()
-		Spawner.spawn_node(destination_effect, target_position, 0, 0.1)
+		Spawner.spawn_node(destination_effect, target_position, 0, destination_teleport_effect_delay)
 	GameEvents.emit_signal("player_teleport_started")
 
 	yield(get_tree().create_timer(teleport_wait_time, false), "timeout")
@@ -82,6 +83,8 @@ func do_action():
 	user.set_position(target_position) # should this be global position?
 
 	if destination_effect:
+		# moving the effect position looks better if the player gets pushed away
+		# by a wall after blinking
 		yield(get_tree().create_timer(0.05, false), "timeout")
 		destination_effect.position = user.get_position()
 

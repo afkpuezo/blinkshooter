@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/terrain/gateways/assets/gateway_open.png" type="Texture" id=1]
 [ext_resource path="res://scenes/terrain/gateways/gateway.gd" type="Script" id=2]
 [ext_resource path="res://scenes/terrain/gateways/assets/gateway_locked_red.png" type="Texture" id=3]
 [ext_resource path="res://scenes/ui/fonts/lock_font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://scenes/actions/blink/teleport_effect.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 48.0
@@ -13,6 +14,7 @@ z_index = -5
 script = ExtResource( 2 )
 open_sprite = ExtResource( 1 )
 locked_sprite = ExtResource( 3 )
+teleport_effect_scene = ExtResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

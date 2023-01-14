@@ -16,11 +16,16 @@ var destination: GatewayDestination
 var num_locks_remaining := 0
 var is_unlocked := false
 
+export var load_level := false
+export var level_name: String
+
 export var open_sprite: Texture
 export var locked_sprite: Texture
 
-export var load_level := false
-export var level_name: String
+export(PackedScene) var teleport_effect_scene
+export var teleport_effect_scale_factor := 2.0
+export var teleport_wait_time := 0.25
+export var destination_teleport_effect_delay := 0.25
 
 
 func _ready() -> void:
@@ -43,8 +48,26 @@ func on_unit_entered(unit: Unit):
 		if load_level:
 			LevelLoader.load_level(level_name)
 		else:
-			unit.global_position = destination.global_position
-			emit_signal("triggered")
+			teleport_unit(unit)
+
+
+func teleport_unit(unit: Unit):
+	var is_player := PlayerBrain.is_player(unit)
+	emit_signal("triggered")
+
+	if teleport_effect_scene:
+		var effect = teleport_effect_scene.instance()
+		Spawner.spawn_node(effect, destination.global_position, 0, destination_teleport_effect_delay)
+		effect.scale *= teleport_effect_scale_factor
+	if is_player:
+		GameEvents.emit_signal("player_teleport_started")
+
+	yield(get_tree().create_timer(teleport_wait_time, false), "timeout")
+
+	unit.global_position = destination.global_position
+
+	if is_player:
+		GameEvents.emit_signal("player_teleported")
 
 
 func on_lock_unlock():
