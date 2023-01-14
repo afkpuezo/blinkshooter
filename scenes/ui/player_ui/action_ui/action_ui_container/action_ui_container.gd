@@ -31,6 +31,16 @@ func _ready() -> void:
 		self,
 		"on_tick"
 	)
+	GameEvents.connect("player_spawned", self, "reset_tiles")
+
+
+## when the player (re) spawns, reset the ui so that any actions/weapons lost by
+## restoring to checkpoint are properly removed from the ui
+func reset_tiles(_args = null):
+	for tile in tiles:
+		remove_child(tile)
+		tile.queue_free()
+	tiles = []
 
 
 ## updates tiles based on message from the ActionBar

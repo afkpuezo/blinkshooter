@@ -167,9 +167,11 @@ func emit_update_tick_help(action_index: int) -> Dictionary:
 		sub['cooldown_remaining'] = 0.0
 		sub['is_ready'] = false
 		sub['was_triggered_this_frame'] = false
+		#sub['index'] = action_index
 	else:
 		sub['name'] = action.name
 		sub['cooldown_remaining'] = action.get_remaining_cooldown()
 		sub['is_ready'] = action.is_ready(true) # ignore cooldown for this
 		sub['was_triggered_this_frame'] = actions_triggered_this_frame[action_index]
+		#sub['index'] = action_index
 	return sub
