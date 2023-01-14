@@ -46,7 +46,7 @@ func _ready() -> void:
 func on_unit_entered(unit: Unit):
 	if is_unlocked:
 		if load_level:
-			LevelLoader.load_level(level_name)
+			move_to_next_level()
 		else:
 			teleport_unit(unit)
 
@@ -68,6 +68,12 @@ func teleport_unit(unit: Unit):
 
 	if is_player:
 		GameEvents.emit_signal("player_teleported")
+
+
+func move_to_next_level():
+	GameEvents.emit_signal("player_teleport_started")
+	yield(get_tree().create_timer(teleport_wait_time, false), "timeout")
+	LevelLoader.load_level(level_name)
 
 
 func on_lock_unlock():
