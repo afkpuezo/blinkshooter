@@ -6,7 +6,7 @@ extends Node2D
 
 var player_camera_scene = load("res://scenes/ui/player_camera.tscn")
 
-var player_camera: Camera2D = player_camera_scene.instance()
+var player_camera: Camera2D = null
 
 
 func _ready() -> void:
@@ -19,8 +19,9 @@ func _ready() -> void:
 ## have the camera follow the player when they spawn
 func on_player_spawn(msg):
 	var player = msg['player']
-	player.add_child(player_camera)
 	# setting it here rather than in the scene sets any other cameras to false
+	player_camera = player_camera_scene.instance()
+	player.add_child(player_camera)
 	player_camera.current = true
 
 
