@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/terrain/tilesets/wall_tile_map.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/terrain/tilesets/floor_tile_map.tscn" type="PackedScene" id=2]
@@ -14,7 +14,6 @@
 [ext_resource path="res://scenes/units/enemies/shotgun_enemy/shotgun_enemy.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/actions/saw_blade/saw_blade.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/actions/weapons/small_gun/small_gun.tscn" type="PackedScene" id=14]
-[ext_resource path="res://scenes/actions/weapons/shotgun/shotgun.tscn" type="PackedScene" id=15]
 
 [node name="World" type="Node2D"]
 
@@ -85,6 +84,8 @@ position = Vector2( -2560, 5120 )
 
 [node name="Gateway9" parent="Terrain/Gateways" instance=ExtResource( 4 )]
 position = Vector2( 704, 3968 )
+load_level = true
+level_name = "res://scenes/levels/level_one_c.tscn"
 
 [node name="Lock" parent="Terrain/Gateways/Gateway9" instance=ExtResource( 7 )]
 position = Vector2( 192, -64 )
@@ -232,7 +233,5 @@ position = Vector2( 64, 2720 )
 [node name="SawBlade" parent="Units/Player/ActionBar" index="1" instance=ExtResource( 13 )]
 
 [node name="SmallGun" parent="Units/Player/WeaponBar" index="0" instance=ExtResource( 14 )]
-
-[node name="Shotgun" parent="Units/Player/WeaponBar" index="1" instance=ExtResource( 15 )]
 
 [editable path="Units/Player"]
