@@ -68,9 +68,9 @@ type = 3
 is_player = true
 
 [node name="MovementStats" parent="." index="1"]
-acceleration = 900.0
+acceleration = 1400.0
 max_speed = 400.0
-friction = 0.8
+friction = 0.95
 rotation_speed_deg = 980.0
 
 [node name="ExplosionAnimator" parent="Animators" index="1"]
