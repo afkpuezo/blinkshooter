@@ -24,6 +24,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=2]
 resource_name = "spin"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:sprite_rotation_speed_deg")
 tracks/0/interp = 1
@@ -31,7 +32,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 2 ),
 "transitions": PoolRealArray( 1, 2 ),
 "update": 0,
 "values": [ 720, 0 ]
@@ -72,6 +73,8 @@ anims/spin = SubResource( 2 )
 [node name="AreaOverTimeAttack" type="Node2D" parent="."]
 script = ExtResource( 2 )
 damage_cooldown_scene = ExtResource( 6 )
+damage = 15
+damage_cooldown = 0.25
 
 [node name="HitBox" type="Area2D" parent="AreaOverTimeAttack"]
 collision_layer = 8
