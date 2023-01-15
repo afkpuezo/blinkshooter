@@ -6,6 +6,17 @@ extends Node2D
 # TODO: make this a component of a world node, rather than a singleton?
 
 
+func _ready() -> void:
+	# warning-ignore:return_value_discarded
+	GameEvents.connect("level_loaded", self, "cleanup")
+
+
+func cleanup(_args = null):
+	for c in get_children():
+		remove_child(c)
+		c.queue_free()
+
+
 ## places the given Node2D at the given spawn_position and adds it to the scene tree
 ## if spawn_rotation is specified, the spawned node will be rotated
 func spawn_node(
@@ -19,5 +30,4 @@ func spawn_node(
 
 	node.translate(spawn_position)
 	node.rotate(spawn_rotation)
-	#add_child(node) # TODO: spawn them somewhere else?
 	call_deferred("add_child", node)

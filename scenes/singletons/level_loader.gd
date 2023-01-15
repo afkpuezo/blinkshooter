@@ -3,7 +3,7 @@ extends Node
 
 
 # TODO find a better way to set initial level
-var current_level_name = "res://scenes/levels/level_one_a.tscn"
+var current_level_name := "res://scenes/levels/level_one_a.tscn"
 var player: Unit
 var player_data: Dictionary
 var is_waiting_for_player_spawn := false
@@ -47,6 +47,7 @@ func load_level(level_name: String, is_from_player_death: bool = false):
 	current_level_name = level_name
 	is_waiting_for_player_spawn = true
 	# warning-ignore:return_value_discarded
+	GameEvents.emit_signal("level_loaded", {'level_name': current_level_name})
 	get_tree().change_scene(current_level_name)
 
 

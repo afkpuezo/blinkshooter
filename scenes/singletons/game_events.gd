@@ -77,4 +77,12 @@ signal enemy_spawned(msg)
 # warning-ignore:unused_signal
 signal enemy_died(msg)
 
+# ----------
+# Loading/Level related
+# ----------
+
+## msg fields: "level_name"
+## called by level loader
+# warning-ignore:unused_signal
+signal level_loaded(msg)
 

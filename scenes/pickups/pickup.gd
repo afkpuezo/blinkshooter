@@ -1,5 +1,5 @@
 extends Area2D
-tool # to update the sprite
+#tool # this caused way too many headaches to be worth it
 class_name Pickup
 ## holds an item for the player to pick up by walking over it
 
