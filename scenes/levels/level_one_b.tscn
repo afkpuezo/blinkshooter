@@ -56,11 +56,11 @@ position = Vector2( 1312, 2720 )
 position = Vector2( -128, 128 )
 
 [node name="ShotgunEnemy" parent="Terrain/Gateways/Gateway7/Lock" instance=ExtResource( 12 )]
-position = Vector2( -425, 169 )
+position = Vector2( -525, 169 )
 rotation = -2.51327
 
 [node name="ShotgunEnemy2" parent="Terrain/Gateways/Gateway7/Lock" instance=ExtResource( 12 )]
-position = Vector2( -425, -425 )
+position = Vector2( -525, -425 )
 rotation = 2.51327
 
 [node name="GatewayDestination" parent="Terrain/Gateways/Gateway7" instance=ExtResource( 6 )]
