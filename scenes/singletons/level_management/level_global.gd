@@ -6,3 +6,7 @@ extends Node
 
 var level_scene_path : String
 var enabled_loot_types: Dictionary
+
+
+func is_loot_type_enabled(type: int) -> bool:
+	return type in enabled_loot_types and enabled_loot_types[type] == true

@@ -28,9 +28,6 @@ max_speed = 600.0
 visible = false
 shape = SubResource( 1 )
 
-[node name="LootDropper" parent="." index="8"]
-energy_chance = 0
-
 [node name="EnemyBrain" parent="." index="9"]
 minimum_chase_distance = 80.0
 too_close_threshold = 10.0

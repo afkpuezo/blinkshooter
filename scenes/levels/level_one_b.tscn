@@ -21,6 +21,12 @@
 [node name="LevelLocal" type="Node2D"]
 script = ExtResource( 17 )
 level_scene_path = "res://scenes/levels/level_one_b.tscn"
+enabled_loot_types = {
+9: true,
+10: true,
+11: false,
+12: false
+}
 
 [node name="Terrain" type="Node2D" parent="."]
 
