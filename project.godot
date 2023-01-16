@@ -144,6 +144,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/hit_boxes/hurt_box.gd"
 }, {
+"base": "Node",
+"class": "LevelLocal",
+"language": "GDScript",
+"path": "res://scenes/singletons/level_management/level_local.gd"
+}, {
 "base": "StaticBody2D",
 "class": "Lock",
 "language": "GDScript",
@@ -357,6 +362,7 @@ _global_script_class_icons={
 "GibletAnimator": "",
 "HitBox": "",
 "HurtBox": "",
+"LevelLocal": "",
 "Lock": "",
 "LootDropper": "",
 "MovementStats": "",
@@ -409,8 +415,9 @@ Spawner="*res://scenes/singletons/spawner.gd"
 EnemyBarManager="*res://scenes/singletons/enemy_bar_manager.gd"
 CameraManager="*res://scenes/singletons/camera_manager.gd"
 PlayerUI="*res://scenes/ui/player_ui/player_ui.tscn"
-LevelLoader="*res://scenes/singletons/level_loader.gd"
+LevelLoader="*res://scenes/singletons/level_management/level_loader.gd"
 PauseManager="*res://scenes/singletons/pause_manager.tscn"
+LevelGlobal="*res://scenes/singletons/level_management/level_global.gd"
 
 [display]
 

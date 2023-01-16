@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://scenes/terrain/tilesets/wall_tile_map.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/terrain/tilesets/floor_tile_map.tscn" type="PackedScene" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://scenes/units/player/player_components/player_load_helper.gd" type="Script" id=16]
 [ext_resource path="res://scenes/actions/blink/teleport_effect.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scenes/terrain/tilesets/assets/terrain_wall.png" type="Texture" id=18]
+[ext_resource path="res://scenes/singletons/level_management/level_local.gd" type="Script" id=19]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -420,7 +421,9 @@ resource_local_to_scene = true
 1/shapes = [  ]
 1/z_index = 0
 
-[node name="World" type="Node2D"]
+[node name="LevelLocal" type="Node2D"]
+script = ExtResource( 19 )
+level_scene_path = "res://scenes/levels/level_one_c.tscn"
 
 [node name="Labels" type="Node2D" parent="."]
 
@@ -433,7 +436,7 @@ custom_fonts/font = ExtResource( 10 )
 text = "you win,
 lol
 
-esc to quit"
+esc for menu to quit"
 align = 1
 
 [node name="Terrain" type="Node2D" parent="."]

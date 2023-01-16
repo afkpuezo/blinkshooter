@@ -31,6 +31,7 @@ func _ready() -> void:
 		self,
 		"on_tick"
 	)
+	# warning-ignore:return_value_discarded
 	GameEvents.connect("player_spawned", self, "reset_tiles")
 
 
