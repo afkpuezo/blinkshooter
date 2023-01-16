@@ -44,30 +44,11 @@ explosion_scale = 1.5
 [node name="LootDropper" type="Node2D" parent="ExtraLoot" index="0"]
 script = ExtResource( 3 )
 health_chance = 100
-energy_chance = 0
+energy_chance = 100
 basic_ammo_chance = 100
-plasma_ammo_chance = 0
-max_drop_radius = 256
-pickup_scene = ExtResource( 4 )
-
-[node name="LootDropper2" type="Node2D" parent="ExtraLoot" index="1"]
-script = ExtResource( 3 )
-health_chance = 100
-energy_chance = 0
-basic_ammo_chance = 100
-plasma_ammo_chance = 0
-max_drop_radius = 256
-pickup_scene = ExtResource( 4 )
-
-[node name="LootDropper3" type="Node2D" parent="ExtraLoot" index="2"]
-script = ExtResource( 3 )
-health_chance = 100
-energy_chance = 0
-basic_ammo_chance = 100
-plasma_ammo_chance = 0
+plasma_ammo_chance = 100
+num_rolls = 3
 max_drop_radius = 256
 pickup_scene = ExtResource( 4 )
 
 [connection signal="died" from="." to="ExtraLoot/LootDropper" method="_on_Enemy_died"]
-[connection signal="died" from="." to="ExtraLoot/LootDropper2" method="_on_Enemy_died"]
-[connection signal="died" from="." to="ExtraLoot/LootDropper3" method="_on_Enemy_died"]
