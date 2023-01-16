@@ -18,12 +18,6 @@ func _ready() -> void:
 	GameEvents.connect("player_spawned", self, "on_player_spawn")
 
 
-## i guess this is the best place to handle quitting
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("quit"):
-		get_tree().quit()
-
-
 func on_player_spawn(msg):
 	player = msg['player']
 	if is_waiting_for_player_spawn:

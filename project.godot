@@ -410,6 +410,7 @@ EnemyBarManager="*res://scenes/singletons/enemy_bar_manager.gd"
 CameraManager="*res://scenes/singletons/camera_manager.gd"
 PlayerUI="*res://scenes/ui/player_ui/player_ui.tscn"
 LevelLoader="*res://scenes/singletons/level_loader.gd"
+PauseManager="*res://scenes/singletons/pause_manager.tscn"
 
 [display]
 
@@ -557,6 +558,11 @@ load_level_1={
 "events": [  ]
 }
 quit={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":true,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":81,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+pause={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777217,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
