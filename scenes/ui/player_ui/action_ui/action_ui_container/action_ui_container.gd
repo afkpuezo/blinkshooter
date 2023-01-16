@@ -19,7 +19,7 @@ var current_weapon_index := 0
 export var action_event := "player_action_bar_tick"
 export var weapon_event := "player_weapon_bar_tick"
 
-export(Array) var hotkeys = ["z", "x", "c", "v", "b"] # better way to get this?
+export(Array) var hotkeys = ["q", "e", "r", "f"] # better way to get this?
 
 export(PackedScene) var tile_scene
 

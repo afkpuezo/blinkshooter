@@ -62,6 +62,12 @@ was_placed_in_editor = true
 type = 6
 can_be_vacuumed = false
 
+[node name="BlinkPickup2" parent="Pickups" instance=ExtResource( 3 )]
+position = Vector2( 86, 349 )
+was_placed_in_editor = true
+type = 6
+can_be_vacuumed = false
+
 [node name="SawPickup" parent="Pickups" instance=ExtResource( 3 )]
 position = Vector2( 201, 270 )
 was_placed_in_editor = true
