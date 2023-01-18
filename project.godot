@@ -424,7 +424,7 @@ LevelGlobal="*res://scenes/singletons/level_management/level_global.gd"
 window/size/width=1366
 window/size/height=768
 window/size/fullscreen=true
-mouse_cursor/custom_image="res://scenes/singletons/reticle/reticle.png"
+mouse_cursor/custom_image="res://scenes/singletons/reticle/crosshair.png"
 mouse_cursor/custom_image_hotspot=Vector2( 16, 16 )
 
 [global]
