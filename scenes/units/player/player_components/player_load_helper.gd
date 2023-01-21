@@ -7,14 +7,12 @@ class_name PlayerLoadHelper
 
 
 func _ready() -> void:
-	var player: Unit
+	var player: Unit = get_parent()
 	var actions := []
 	var weapons := []
 
 	for c in get_children():
-		if PlayerBrain.is_player(c):
-			player = c
-		elif Weapon.is_weapon(c):
+		if Weapon.is_weapon(c):
 			weapons.append(c)
 		elif Action.is_action(c):
 			actions.append(c)
@@ -30,4 +28,6 @@ func _ready() -> void:
 	for weapon in weapons:
 		remove_child(weapon)
 		weapon_bar.add_weapon(weapon)
+
+	queue_free()
 

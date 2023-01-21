@@ -532,26 +532,27 @@ type = 10
 
 [node name="Units" type="Node2D" parent="."]
 
-[node name="PlayerLoadHelper" type="Node2D" parent="Units"]
+[node name="Player" parent="Units" instance=ExtResource( 16 )]
+position = Vector2( 2496, 6240 )
+
+[node name="TeleportEffect" parent="Units/Player" instance=ExtResource( 14 )]
+scale = Vector2( 2.5, 2.5 )
+
+[node name="PlayerLoadHelper" type="Node2D" parent="Units/Player"]
+position = Vector2( -2496, -6240 )
 script = ExtResource( 17 )
 
-[node name="Blink" parent="Units/PlayerLoadHelper" instance=ExtResource( 4 )]
+[node name="Blink" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 4 )]
 position = Vector2( 2496, 6240 )
 
-[node name="SawBlade" parent="Units/PlayerLoadHelper" instance=ExtResource( 15 )]
+[node name="SawBlade" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 15 )]
 position = Vector2( 2496, 6240 )
 
-[node name="Shuriken" parent="Units/PlayerLoadHelper" instance=ExtResource( 5 )]
+[node name="Shuriken" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 5 )]
 position = Vector2( 2496, 6240 )
 
-[node name="SmallGun" parent="Units/PlayerLoadHelper" instance=ExtResource( 10 )]
+[node name="SmallGun" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 10 )]
 position = Vector2( 2496, 6240 )
 
-[node name="Shotgun" parent="Units/PlayerLoadHelper" instance=ExtResource( 12 )]
+[node name="Shotgun" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 12 )]
 position = Vector2( 2496, 6240 )
-
-[node name="Player" parent="Units/PlayerLoadHelper" instance=ExtResource( 16 )]
-position = Vector2( 2496, 6240 )
-
-[node name="TeleportEffect" parent="Units/PlayerLoadHelper/Player" instance=ExtResource( 14 )]
-scale = Vector2( 2.5, 2.5 )

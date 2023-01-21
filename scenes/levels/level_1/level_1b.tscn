@@ -244,17 +244,18 @@ position = Vector2( 0, 319 )
 position = Vector2( -984, 868 )
 rotation = -0.785398
 
-[node name="PlayerLoadHelper" type="Node2D" parent="Units"]
-script = ExtResource( 16 )
-
-[node name="Player" parent="Units/PlayerLoadHelper" instance=ExtResource( 14 )]
+[node name="Player" parent="Units" instance=ExtResource( 14 )]
 position = Vector2( 64, 2720 )
 
-[node name="TeleportEffect" parent="Units/PlayerLoadHelper/Player" instance=ExtResource( 10 )]
+[node name="TeleportEffect" parent="Units/Player" instance=ExtResource( 10 )]
 scale = Vector2( 2.5, 2.5 )
 
-[node name="Blink" parent="Units/PlayerLoadHelper" instance=ExtResource( 6 )]
+[node name="PlayerLoadHelper" type="Node2D" parent="Units/Player"]
+position = Vector2( -64, -2720 )
+script = ExtResource( 16 )
 
-[node name="SawBlade" parent="Units/PlayerLoadHelper" instance=ExtResource( 9 )]
+[node name="Blink" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 6 )]
 
-[node name="SmallGun" parent="Units/PlayerLoadHelper" instance=ExtResource( 15 )]
+[node name="SawBlade" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 9 )]
+
+[node name="SmallGun" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 15 )]

@@ -144,7 +144,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/hit_boxes/hurt_box.gd"
 }, {
-"base": "Node",
+"base": "Node2D",
 "class": "LevelLocal",
 "language": "GDScript",
 "path": "res://scenes/singletons/level_management/level_local.gd"

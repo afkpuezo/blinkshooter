@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 class_name LevelLocal
 ## The root node in each level should be one of these, and will update the
 ## LevelGlobal singleton with data about this level
