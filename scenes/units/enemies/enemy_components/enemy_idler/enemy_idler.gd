@@ -101,7 +101,7 @@ func idle_turn(enemy: Unit, mover: EnemyMover, movement_stats: MovementStats):
 	if should_reset():
 		current_base_angle = enemy.rotation
 		is_turning_left = false
-		current_total_turn = 0.0
+		current_total_turn = max_turn / 2 # the base angle is the MIDDLE of the turn
 
 	# apply rotation
 	var this_frame_rotation: float = (turn_rate * get_physics_process_delta_time())
