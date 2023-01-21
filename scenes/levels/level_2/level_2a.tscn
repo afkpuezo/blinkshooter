@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/singletons/level_management/level_local.gd" type="Script" id=1]
 [ext_resource path="res://scenes/terrain/tilesets/pit_tile_map.tscn" type="PackedScene" id=2]
@@ -12,7 +12,9 @@
 [ext_resource path="res://scenes/actions/blink/blink.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/units/player/player_components/player_load_helper.gd" type="Script" id=11]
 [ext_resource path="res://scenes/actions/weapons/plasma_gun/plasma_gun.tscn" type="PackedScene" id=12]
-[ext_resource path="res://scenes/units/enemies/small_gun_enemy/small_gun_enemy.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/units/enemies/shotgun_enemy/shotgun_enemy.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/units/enemies/plasma_enemy/plasma_enemy.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/units/enemies/small_gun_enemy/small_gun_enemy.tscn" type="PackedScene" id=15]
 
 [node name="LevelLocal" type="Node2D"]
 script = ExtResource( 1 )
@@ -61,8 +63,24 @@ position = Vector2( 2496, 6240 )
 
 [node name="IntroArea" type="Node2D" parent="Units"]
 
-[node name="SmallGunEnemy" parent="Units/IntroArea" instance=ExtResource( 13 )]
-position = Vector2( 640, 48 )
+[node name="ShotgunEnemy" parent="Units/IntroArea" instance=ExtResource( 13 )]
+position = Vector2( 640, 32 )
 
-[node name="SmallGunEnemy2" parent="Units/IntroArea" instance=ExtResource( 13 )]
-position = Vector2( 640, -48 )
+[node name="ShotgunEnemy2" parent="Units/IntroArea" instance=ExtResource( 13 )]
+position = Vector2( 640, -32 )
+
+[node name="PlasmaEnemy" parent="Units/IntroArea" instance=ExtResource( 14 )]
+position = Vector2( 1920, 704 )
+rotation = 3.14159
+
+[node name="SmallGunEnemy" parent="Units/IntroArea" instance=ExtResource( 15 )]
+position = Vector2( 3200, 0 )
+rotation = 3.14159
+
+[node name="SmallGunEnemy2" parent="Units/IntroArea" instance=ExtResource( 15 )]
+position = Vector2( 3200, 96 )
+rotation = 3.14159
+
+[node name="SmallGunEnemy3" parent="Units/IntroArea" instance=ExtResource( 15 )]
+position = Vector2( 3200, -96 )
+rotation = 3.14159
