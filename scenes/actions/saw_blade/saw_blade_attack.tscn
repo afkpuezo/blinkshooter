@@ -57,8 +57,9 @@ tracks/0/keys = {
 radius = 32.0
 
 [node name="SawBladeAttack" type="Node2D"]
-scale = Vector2( 2, 2 )
+scale = Vector2( 2.5, 2.5 )
 script = ExtResource( 3 )
+blade_radius = 100
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 24, 0 )
@@ -87,7 +88,7 @@ shape = SubResource( 3 )
 
 [node name="ExplosionAnimator" parent="." instance=ExtResource( 5 )]
 explosion_color = "green"
-explosion_scale = 0.35
+explosion_scale = 0.5
 explosion_speed = 2.0
 sprite_z = "5"
 
