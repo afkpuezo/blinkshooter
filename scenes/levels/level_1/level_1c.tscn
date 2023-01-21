@@ -545,9 +545,6 @@ script = ExtResource( 17 )
 [node name="Blink" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 4 )]
 position = Vector2( 2496, 6240 )
 
-[node name="SawBlade" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 15 )]
-position = Vector2( 2496, 6240 )
-
 [node name="Shuriken" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 5 )]
 position = Vector2( 2496, 6240 )
 
@@ -556,3 +553,5 @@ position = Vector2( 2496, 6240 )
 
 [node name="Shotgun" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 12 )]
 position = Vector2( 2496, 6240 )
+
+[node name="SawBlade" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 15 )]
