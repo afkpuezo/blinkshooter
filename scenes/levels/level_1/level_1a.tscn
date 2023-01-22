@@ -117,7 +117,7 @@ position = Vector2( -300, 121 )
 [node name="Gateway6" parent="Terrain/Gateways" instance=ExtResource( 2 )]
 position = Vector2( 96, 1248 )
 load_level = true
-level_name = "res://scenes/levels/level_1/level_1b.tscn"
+level_scene_path = "res://scenes/levels/level_1/level_1b.tscn"
 
 [node name="Lock" parent="Terrain/Gateways/Gateway6" instance=ExtResource( 5 )]
 position = Vector2( 128, 128 )

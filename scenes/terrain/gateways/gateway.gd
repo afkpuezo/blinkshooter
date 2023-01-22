@@ -17,7 +17,7 @@ var num_locks_remaining := 0
 var is_unlocked := false
 
 export var load_level := false
-export var level_name: String
+export var level_scene_path: String
 
 export var open_sprite: Texture
 export var locked_sprite: Texture
@@ -73,7 +73,7 @@ func teleport_unit(unit: Unit):
 func move_to_next_level():
 	GameEvents.emit_signal("player_teleport_started")
 	yield(get_tree().create_timer(teleport_wait_time, false), "timeout")
-	LevelLoader.load_level(level_name)
+	LevelLoader.load_level(level_scene_path)
 
 
 func on_lock_unlock():

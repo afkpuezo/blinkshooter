@@ -473,7 +473,7 @@ position = Vector2( 1088, -357 )
 [node name="Gateway" parent="Terrain/Gateways" instance=ExtResource( 13 )]
 position = Vector2( 6208, 8512 )
 load_level = true
-level_name = "res://scenes/levels/level_2/level_2a.tscn"
+level_scene_path = "res://scenes/levels/level_2/level_2a.tscn"
 
 [node name="Pickups" type="Node2D" parent="."]
 
