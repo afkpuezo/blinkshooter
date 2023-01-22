@@ -4,7 +4,7 @@ extends Node
 
 var player: Unit
 var player_data: Dictionary
-var is_waiting_for_player_spawn := false
+var is_waiting_for_player_spawn := true
 
 const PLAYER_DEATH_LOAD_DELAY := 2.0
 
@@ -19,7 +19,8 @@ func _ready() -> void:
 func on_player_spawn(msg):
 	player = msg['player']
 	if is_waiting_for_player_spawn:
-		load_player_data()
+		if player_data:
+			load_player_data()
 		is_waiting_for_player_spawn = false
 
 

@@ -47,32 +47,34 @@ static func get_player_if_source(n: Node):
 static func save_player_state(p: Unit) -> Dictionary:
 	assert (is_player(p))
 	var crs := CombatResource.get_combat_resources(p)
-	var data := {}
+	var data := {
+		'current_weapon_slot': p.get_node("WeaponBar").current_slot,
+	}
 
 	for cr in crs:
 		var sub := {
 			'min': cr.MIN_VALUE,
 			'max': cr.MAX_VALUE,
-			'value': cr.value
+			'value': cr.value,
 		}
 		data[cr.type] = sub
 
-	print("save_player_state() about to return data: %s" % data)
 	return data
 
 
 ## used by the LevelLoader, restores the state of the player
 static func load_player_state(p: Unit, data: Dictionary):
-	print("load_player_state() called, data: %s" % data)
 	assert (is_player(p))
-	var crs := CombatResource.get_combat_resources(p)
 
+	p.get_node("WeaponBar").current_slot = data['current_weapon_slot']
+
+	var crs := CombatResource.get_combat_resources(p)
 	for cr in crs:
 		if cr.type in data:
 			var sub: Dictionary = data[cr.type]
 			cr.set_values(sub['min'], sub['max'], sub['value'])
 		else:
-			print("PlayeBrain.load_player_state(): type key not in data: %s" % cr.type)
+			print("PlayerBrain.load_player_state(): type key not in data: %s" % cr.type)
 
 
 # ----------
