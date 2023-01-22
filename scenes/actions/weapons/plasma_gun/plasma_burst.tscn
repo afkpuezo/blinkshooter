@@ -15,10 +15,10 @@ radius = 128.0
 visible = false
 script = ExtResource( 1 )
 damage_cooldown_scene = ExtResource( 2 )
-damage = 50
 damage_cooldown = 2.0
 zap_effect_scene = ExtResource( 4 )
 zap_duration = 2
+radius = 448
 duration = 0.5
 
 [node name="Timer" type="Timer" parent="."]
@@ -35,7 +35,7 @@ shape = SubResource( 1 )
 [node name="Pusher" type="Node2D" parent="."]
 script = ExtResource( 5 )
 strength = -500.0
-end_distance_falloff = 256.0
+end_distance_falloff = 448.0
 
 [node name="PickupPushArea" type="Area2D" parent="."]
 collision_layer = 0

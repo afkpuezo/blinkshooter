@@ -32,6 +32,8 @@ func _ready() -> void:
 	forgiveness_timer.start(forgiveness_duration)
 	if target:
 		target.connect("died", self, "on_target_death")
+	if source:
+		source.connect("died", self, "on_source_death")
 
 
 ## handles collisions with things that can be hurt, EG units
@@ -56,3 +58,8 @@ func end(do_explode := has_explosion):
 ## avoids crash after target is freed
 func on_target_death():
 	target = null
+
+
+## avoids crash after source is freed
+func on_source_death():
+	source = null

@@ -12,11 +12,12 @@ onready var initial_damage = damage
 
 
 func _physics_process(_delta: float) -> void:
-	var distance := min(
-		global_position.distance_to(source.global_position),
-		max_scaling_distance
-	)
-	var multiplier := distance / distance_unit
+	if source:
+		var distance := min(
+			global_position.distance_to(source.global_position),
+			max_scaling_distance
+		)
+		var multiplier := distance / distance_unit
 
-	scale = Vector2(multiplier, multiplier)
-	damage = initial_damage * multiplier
+		scale = Vector2(multiplier, multiplier)
+		damage = initial_damage * multiplier
