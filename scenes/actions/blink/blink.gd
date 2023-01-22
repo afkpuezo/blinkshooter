@@ -18,24 +18,7 @@ export(PackedScene) var effect_scene
 onready var max_range_squared := pow(max_range, 2)
 onready var min_squared = pow(min_range, 2)
 
-# these are used to tell if the teleport location is clear (and floor)
-#export(Shape2D) var teleport_buffer
-#var wall_buffer_params := Physics2DShapeQueryParameters.new()
-#var floor_buffer_params := Physics2DShapeQueryParameters.new()
-#onready var physics_state := get_viewport().get_world_2d().direct_space_state
-
 var cached_target_position = null
-
-func _ready() -> void:
-	# set up buffer params for physics stuff
-	#wall_buffer_params.set_shape(teleport_buffer)
-	#wall_buffer_params.collision_layer = 0b1 # Wall, Enemy
-	#floor_buffer_params.set_shape(teleport_buffer)
-	#floor_buffer_params.collision_layer = 0b10000 # floor layer
-	# configure raycast
-	raycast.cast_to = Vector2(max_range, 0)
-	raycast.force_raycast_update()
-	._ready()
 
 
 # ----------
@@ -43,26 +26,34 @@ func _ready() -> void:
 # ----------
 
 
+func _ready() -> void:
+	# configure raycast
+	# NOTE: i'm not sure why it's better to cast_to Y rather than X, but it works
+	#raycast.cast_to = Vector2(max_range, 0)
+	raycast.cast_to = Vector2(0, max_range)
+	raycast.force_raycast_update()
+	._ready()
+
+
 ## returns true/false if the target destination position is valid
-## - starts at the cursor position
-## - if that is too far away, clamp it to max range
+## - starts at the ray position
+## - if that is too close, return false
 ## - cast back towards the user's position until floor is found
 ## - if there is a found location and it is not too close to the user's current
 ##		position, return true. otherwise, return false
 func can_do_action() -> bool:
-	var target_position = TargetReticle.get_true_global_position()
-
-	target_position = _cap_target_at_max_range(target_position)
-	target_position = _find_nearest_floor(target_position)
+	var target_position = raycast.global_position
 
 	if not _is_target_beyond_minimum_range(target_position):
 		return false
 
-	if target_position:
-		cached_target_position = target_position
-		return true
-	else:
+	target_position = _find_nearest_floor()
+
+	if not _is_target_beyond_minimum_range(target_position):
 		return false
+
+	cached_target_position = target_position
+	return true
 
 
 ## Teleport at most max_range towards the target
@@ -80,7 +71,7 @@ func do_action():
 
 	yield(get_tree().create_timer(teleport_wait_time, false), "timeout")
 	GameEvents.emit_signal("player_teleported")
-	user.set_position(target_position) # should this be global position?
+	user.global_position = target_position
 
 	if destination_effect:
 		# moving the effect position looks better if the player gets pushed away
@@ -94,43 +85,33 @@ func do_action():
 # ----------
 
 
+## regularly update the position of the raycast, starting at the mouse position
+## and clamping it to the maximum range
+func _physics_process(_delta: float) -> void:
+	var raypos = TargetReticle.get_true_global_position()
+	raypos = _cap_target_at_max_range(raypos)
+	raycast.global_position = raypos
+	raycast.look_at(global_position)
+	cached_target_position = raypos
+
+
 ## does what it says
 func _is_target_beyond_minimum_range(target_position: Vector2) -> bool:
 	return global_position.distance_squared_to(target_position) >= min_squared
 
 
-## does what it says
-#func _is_target_area_floor(target_position: Vector2) -> bool:
-#	floor_buffer_params.transform = Transform2D(0, target_position)
-#	var intersected = physics_state.intersect_shape(floor_buffer_params)
-#	return not intersected.empty()
-
-
-## does what it says
-#func _is_target_area_clear(target_position: Vector2) -> bool:
-#	wall_buffer_params.transform = Transform2D(0, target_position)
-#	var intersected = physics_state.intersect_shape(wall_buffer_params)
-#	return intersected.empty()
-
-
-## starting from the given point and casting towards the current location of the
-## user, find the closest floor space we can blink to.
-## if no space is found, return null
-func _find_nearest_floor(target_position: Vector2):
-	# place and angle ray
-	raycast.global_position = target_position
-	raycast.look_at(global_position)
-	raycast.force_raycast_update()
-
+## cast from the (recent) ray position towards the user, find the nearest
+## floor tile
+func _find_nearest_floor():
 	return raycast.get_collision_point()
 
 
 ## if the given pos is outside of range, return a new position which is on the
 ## same line, but at max range. otherwise return the given target pos
 func _cap_target_at_max_range(target_position: Vector2) -> Vector2:
-	if user.position.distance_squared_to(target_position) > max_range_squared:
+	if user.global_position.distance_squared_to(target_position) > max_range_squared:
 		var direction: Vector2 = \
-			user.position.direction_to(target_position).normalized()
-		return user.position + (direction * max_range)
+			user.global_position.direction_to(target_position).normalized()
+		return user.global_position + (direction * max_range)
 	else:
 		return target_position
