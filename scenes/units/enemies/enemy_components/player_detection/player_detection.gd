@@ -31,13 +31,14 @@ func _ready() -> void:
 	var rays_dict = _make_rays(num_rays, max_ray_deg)
 	rays_arr =  rays_dict["all_rays"]
 	center_ray = rays_dict["center_ray"]
-	#print("DEBUG: PlayerDetection._ready(): how many rays?: %d" % rays_arr.size())
 	for ray in rays_arr:
 		rays_node.add_child(ray)
 	num_ray_hits_required = int(min(num_ray_hits_required, num_rays))
-	print("DEBUG: before updating, shape.radius is %d" % area.get_node("CollisionShape2D").shape.radius)
-	area.get_node("CollisionShape2D").shape.radius = detection_range
-	print("DEBUG: detection_range is %d, shape.radius is %d" % [detection_range, area.get_node("CollisionShape2D").shape.radius])
+
+	# have to make a unique shape for each instance
+	var shape := CircleShape2D.new()
+	shape.radius = detection_range # TODO include scale here?
+	area.get_node("CollisionShape2D").shape = shape
 
 
 ## creates the configured number of rays spready evenly within the configured

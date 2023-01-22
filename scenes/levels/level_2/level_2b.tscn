@@ -105,26 +105,47 @@ position = Vector2( 0, 2816 )
 [node name="SniperEnemy" parent="GauntletArea/Gateway2/Lock" instance=ExtResource( 7 )]
 position = Vector2( -773, -1794 )
 
-[node name="SniperEnemy7" parent="GauntletArea/Gateway2/Lock" instance=ExtResource( 7 )]
-position = Vector2( -770, -1547 )
+[node name="PatrolPath" parent="GauntletArea/Gateway2/Lock/SniperEnemy" instance=ExtResource( 21 )]
+
+[node name="Node2D" type="Node2D" parent="GauntletArea/Gateway2/Lock/SniperEnemy/PatrolPath"]
 
 [node name="SniperEnemy2" parent="GauntletArea/Gateway2/Lock" instance=ExtResource( 7 )]
 position = Vector2( -773, -1294 )
 
+[node name="PatrolPath" parent="GauntletArea/Gateway2/Lock/SniperEnemy2" instance=ExtResource( 21 )]
+
+[node name="Node2D" type="Node2D" parent="GauntletArea/Gateway2/Lock/SniperEnemy2/PatrolPath"]
+
 [node name="SniperEnemy3" parent="GauntletArea/Gateway2/Lock" instance=ExtResource( 7 )]
 position = Vector2( -773, -794 )
+
+[node name="PatrolPath" parent="GauntletArea/Gateway2/Lock/SniperEnemy3" instance=ExtResource( 21 )]
+
+[node name="Node2D" type="Node2D" parent="GauntletArea/Gateway2/Lock/SniperEnemy3/PatrolPath"]
 
 [node name="SniperEnemy4" parent="GauntletArea/Gateway2/Lock" instance=ExtResource( 7 )]
 position = Vector2( 773, -1544 )
 rotation = 3.14159
 
+[node name="PatrolPath" parent="GauntletArea/Gateway2/Lock/SniperEnemy4" instance=ExtResource( 21 )]
+
+[node name="Node2D" type="Node2D" parent="GauntletArea/Gateway2/Lock/SniperEnemy4/PatrolPath"]
+
 [node name="SniperEnemy5" parent="GauntletArea/Gateway2/Lock" instance=ExtResource( 7 )]
 position = Vector2( 773, -1044 )
 rotation = 3.14159
 
+[node name="PatrolPath" parent="GauntletArea/Gateway2/Lock/SniperEnemy5" instance=ExtResource( 21 )]
+
+[node name="Node2D" type="Node2D" parent="GauntletArea/Gateway2/Lock/SniperEnemy5/PatrolPath"]
+
 [node name="SniperEnemy6" parent="GauntletArea/Gateway2/Lock" instance=ExtResource( 7 )]
 position = Vector2( 773, -544 )
 rotation = 3.14159
+
+[node name="PatrolPath" parent="GauntletArea/Gateway2/Lock/SniperEnemy6" instance=ExtResource( 21 )]
+
+[node name="Node2D" type="Node2D" parent="GauntletArea/Gateway2/Lock/SniperEnemy6/PatrolPath"]
 
 [node name="SmallGunEnemy" parent="GauntletArea/Gateway2/Lock" instance=ExtResource( 19 )]
 position = Vector2( 773, -72 )
