@@ -39,7 +39,11 @@ minimum_chase_distance = 600.0
 too_close_threshold = 400.0
 
 [node name="PlayerDetection" parent="EnemyBrain" index="2"]
-detection_range = 1000
+detection_range = 2000
+num_rays = 9
+
+[node name="EnemyMessager" parent="EnemyBrain" index="4"]
+sender_radius = 4000
 
 [node name="WeaponCharger" parent="EnemyBrain/EnemyWeaponBar" index="0" instance=ExtResource( 5 )]
 cooldown = 0.0

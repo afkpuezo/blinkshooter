@@ -35,7 +35,9 @@ func _ready() -> void:
 	for ray in rays_arr:
 		rays_node.add_child(ray)
 	num_ray_hits_required = int(min(num_ray_hits_required, num_rays))
+	print("DEBUG: before updating, shape.radius is %d" % area.get_node("CollisionShape2D").shape.radius)
 	area.get_node("CollisionShape2D").shape.radius = detection_range
+	print("DEBUG: detection_range is %d, shape.radius is %d" % [detection_range, area.get_node("CollisionShape2D").shape.radius])
 
 
 ## creates the configured number of rays spready evenly within the configured
