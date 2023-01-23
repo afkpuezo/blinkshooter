@@ -15,6 +15,7 @@ signal took_damage(amount, source)
 var combat_resources: Dictionary
 
 onready var buffs_node: Node2D = $Buffs
+onready var initial_rotation := rotation # used in enemy idler
 
 
 # ----------

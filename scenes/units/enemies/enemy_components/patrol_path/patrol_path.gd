@@ -16,7 +16,7 @@ var points: Array = []
 var current_point: Vector2
 var current_index := 0
 var current_delta := 1 # going left or right in reverse mode
-
+var has_single_point: bool
 
 ## returns null if the given node doesn't have a patrol path attached
 static func get_patrol_path(n: Node):
@@ -35,6 +35,7 @@ func _ready() -> void:
 		remove_child(c)
 		c.queue_free()
 	current_point = points[current_index]
+	has_single_point = points.size() == 1
 
 
 ## updates the current point to the next one, according to the loop mode

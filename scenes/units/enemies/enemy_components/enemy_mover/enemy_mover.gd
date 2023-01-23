@@ -21,7 +21,7 @@ func move_to(
 	unit,
 	movement_stats: MovementStats,
 	target_position: Vector2
-	):
+	) -> bool:
 	_update_pathing(target_position)
 
 	var was_target_reached := nav_agent.is_target_reached()

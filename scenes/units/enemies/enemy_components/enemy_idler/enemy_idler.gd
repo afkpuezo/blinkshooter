@@ -34,7 +34,6 @@ export var turn_memory_time := 0.2
 func _ready() -> void:
 	patrol_path = PatrolPath.get_patrol_path(owner)
 	if patrol_path:
-		print("DEBUG: enemy named %s has a patrol path" % owner.name)
 		# warning-ignore:return_value_discarded
 		timer.connect("timeout", self, "target_next_point")
 
@@ -55,28 +54,43 @@ func idle(enemy: Unit, mover: EnemyMover, movement_stats: MovementStats):
 
 
 ## move until reaching the current patrol point, then update to the next point
+## oh god this method is a huge mess now
 func idle_patrol(enemy: Unit, mover: EnemyMover, movement_stats: MovementStats):
-	if is_waiting_for_next_point:
-		# TODO make movers easier to use?
+	var was_point_reached := false
+	var was_moved := false
+
+	if not is_waiting_for_next_point:
+		was_point_reached = enemy.global_position.distance_to(patrol_path.current_point) <= patrol_point_distance_threshold
+
+		if not was_point_reached:
+			was_point_reached = mover.move_to(
+				enemy,
+				movement_stats,
+				patrol_path.current_point
+			)
+			was_moved = true
+
+		if was_point_reached and (not is_waiting_for_next_point) and (not patrol_path.has_single_point):
+				is_waiting_for_next_point = true
+				timer.start(next_point_wait_time)
+
+	if not was_moved:
 		# warning-ignore:return_value_discarded
 		mover.apply_friction(movement_stats)
 		mover.move_subject(enemy, movement_stats)
+
+	var look_towards_point: Vector2
+
+	if was_point_reached and patrol_path.has_single_point:
+		# not sure why the x val has to be this big but it works
+		look_towards_point = Vector2(900000, 0).rotated(enemy.initial_rotation)
 	else:
-		mover.move_to(
-			enemy,
-			movement_stats,
-			patrol_path.current_point
-		)
-		var was_point_reached := enemy.global_position.distance_to(patrol_path.current_point) <= patrol_point_distance_threshold
-		if was_point_reached:
-			if not is_waiting_for_next_point:
-				is_waiting_for_next_point = true
-				timer.start(next_point_wait_time)
+		look_towards_point = patrol_path.current_point
 
 	mover.look_towards(
 		enemy,
 		movement_stats,
-		patrol_path.current_point
+		look_towards_point
 	)
 
 
