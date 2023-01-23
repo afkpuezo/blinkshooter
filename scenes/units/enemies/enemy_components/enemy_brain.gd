@@ -190,8 +190,9 @@ func _think_chase(
 			# move closer to the player
 			# returns true if the nav agent indicates we have reached the last
 			# known position
-			if enemy_mover.move_to(this_unit, movement_stats, last_known_player_position):
+			if enemy_mover.move_to(this_unit, movement_stats, last_known_player_position) or enemy_mover.is_target_reachable():
 				if not can_currently_see_player:
+					print("DEBUG: enemy %s going to IDLE" % this_unit.name)
 					current_mode = MODE.IDLE
 # end _think_chase()
 

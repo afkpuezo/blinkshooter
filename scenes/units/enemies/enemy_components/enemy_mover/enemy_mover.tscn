@@ -9,6 +9,8 @@ script = ExtResource( 1 )
 path_desired_distance = 16.0
 target_desired_distance = 16.0
 path_max_distance = 32.0
+avoidance_enabled = true
+radius = 32.0
 
 [node name="NavUpdateTimer" type="Timer" parent="."]
 process_mode = 0

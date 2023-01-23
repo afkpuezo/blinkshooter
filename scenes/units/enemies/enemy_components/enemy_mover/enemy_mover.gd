@@ -74,3 +74,8 @@ func stand_still(
 		# warning-ignore:return_value_discarded
 	apply_friction(movement_stats)
 	move_subject(unit, movement_stats)
+
+
+## used to idle if we can't chase the player across a pit
+func is_target_reachable() -> bool:
+	return nav_agent.is_target_reachable()

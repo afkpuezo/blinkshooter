@@ -34,6 +34,7 @@ export var turn_memory_time := 0.2
 func _ready() -> void:
 	patrol_path = PatrolPath.get_patrol_path(owner)
 	if patrol_path:
+		print("DEBUG: enemy named %s has a patrol path" % owner.name)
 		# warning-ignore:return_value_discarded
 		timer.connect("timeout", self, "target_next_point")
 
