@@ -198,7 +198,10 @@ func configure(new_type: int, new_size: int = SIZE.NORMAL):
 
 	if details['scene'] != "":
 		item_scene = load(details['scene']) # better to load here or later?
-	$CollisionShape2D.shape.radius = details['radius']
+
+	var shape := CircleShape2D.new()
+	shape.radius = details['radius']
+	$CollisionShape2D.shape = shape
 	$Sprite.texture = load(details['texture'])
 	meta_type = details['meta_type']
 

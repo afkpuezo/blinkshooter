@@ -32,8 +32,13 @@ onready var receiver: Area2D = $Receiver
 
 func _ready() -> void:
 	# set size of areas
-	sender.get_node("CollisionShape2D").shape.radius = sender_radius
-	receiver.get_node("CollisionShape2D").shape.radius = receiver_radius
+	var send_shape := CircleShape2D.new()
+	send_shape.radius = sender_radius
+	sender.get_node("CollisionShape2D").shape = send_shape
+
+	var rec_shape := CircleShape2D.new()
+	rec_shape.radius = receiver_radius
+	receiver.get_node("CollisionShape2D").shape = rec_shape
 	# rays
 	_setup_rays()
 

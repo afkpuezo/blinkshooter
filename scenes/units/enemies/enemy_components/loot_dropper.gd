@@ -29,7 +29,7 @@ func _ready() -> void:
 
 
 func _on_Enemy_died() -> void:
-	for n in range(num_rolls):
+	for _n in range(num_rolls):
 		for type in types_to_chances:
 			if LevelGlobal.is_loot_type_enabled(type) and roll(types_to_chances[type]):
 				var p: Pickup = pickup_scene.instance()

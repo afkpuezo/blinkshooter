@@ -64,8 +64,6 @@ position = Vector2( -426, 539 )
 [node name="PlasmaBoss" parent="Terrain/Gateway2/Lock" instance=ExtResource( 8 )]
 position = Vector2( -61, 666 )
 
-[node name="Pickups" type="Node2D" parent="."]
-
 [node name="Units" type="Node2D" parent="."]
 
 [node name="SmallGunEnemy" parent="Units" instance=ExtResource( 2 )]
@@ -87,21 +85,25 @@ position = Vector2( -355, -5 )
 
 [node name="SmallGunEnemy2" parent="Units" instance=ExtResource( 2 )]
 position = Vector2( 1149, 403 )
-rotation = -0.589921
+rotation = 3.14159
 
 [node name="PatrolPath" type="Node2D" parent="Units/SmallGunEnemy2"]
+rotation = 3.14159
 script = ExtResource( 5 )
 
 [node name="Node2D" type="Node2D" parent="Units/SmallGunEnemy2/PatrolPath"]
+rotation = 3.14159
 
 [node name="SmallGunEnemy3" parent="Units" instance=ExtResource( 2 )]
 position = Vector2( 1146, 592 )
-rotation = 0.589921
+rotation = 3.14159
 
 [node name="PatrolPath" type="Node2D" parent="Units/SmallGunEnemy3"]
+rotation = 3.14159
 script = ExtResource( 5 )
 
 [node name="Node2D" type="Node2D" parent="Units/SmallGunEnemy3/PatrolPath"]
+rotation = 3.14159
 
 [node name="SmallGunEnemy5" parent="Units" instance=ExtResource( 2 )]
 position = Vector2( 453, 961 )

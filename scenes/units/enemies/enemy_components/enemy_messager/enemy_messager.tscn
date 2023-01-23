@@ -1,12 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/units/enemies/enemy_components/enemy_messager/enemy_messager.gd" type="Script" id=1]
 [ext_resource path="res://scenes/units/enemies/enemy_components/enemy_messager/receiver.gd" type="Script" id=2]
-
-[sub_resource type="CircleShape2D" id=1]
-
-[sub_resource type="CircleShape2D" id=2]
-radius = 32.0
 
 [node name="EnemyMessager" type="Node2D"]
 visible = false
@@ -20,7 +15,6 @@ collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sender"]
 visible = false
-shape = SubResource( 1 )
 
 [node name="Receiver" type="Area2D" parent="."]
 collision_layer = 32
@@ -29,7 +23,6 @@ script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Receiver"]
 visible = false
-shape = SubResource( 2 )
 
 [connection signal="area_entered" from="Sender" to="." method="add_target"]
 [connection signal="area_exited" from="Sender" to="." method="remove_target"]

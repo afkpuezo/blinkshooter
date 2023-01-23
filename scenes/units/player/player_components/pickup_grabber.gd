@@ -16,8 +16,13 @@ onready var pickup_vacuum: Area2D = $PickupVacuum # should this have its own scr
 
 
 func _ready() -> void:
-	$CollisionShape2D.shape.radius = grab_radius
-	pickup_vacuum.get_node("CollisionShape2D").shape.radius = vacuum_radius
+	var grab_shape := CircleShape2D.new()
+	grab_shape.radius = grab_radius
+	$CollisionShape2D.shape = grab_shape
+
+	var vac_shape := CircleShape2D.new()
+	vac_shape.radius = vacuum_radius
+	pickup_vacuum.get_node("CollisionShape2D").shape = vac_shape
 
 
 # from our own Area2D Signal

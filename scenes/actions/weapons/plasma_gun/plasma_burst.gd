@@ -17,7 +17,9 @@ var invert_pusher := false
 
 
 func _ready() -> void:
-	hit_box.get_node("CollisionShape2D").shape.radius = radius
+	var shape := CircleShape2D.new()
+	shape.radius = radius
+	hit_box.get_node("CollisionShape2D").shape = shape
 	$Timer.start(duration)
 	if invert_pusher:
 		$Pusher.strength *= -1
