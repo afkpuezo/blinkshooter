@@ -30,12 +30,10 @@ func add_action(action, is_already_child = false):
 ## triggers a random (ready) action from the currently equipped actions
 ## returns true/false depending if that actually happened
 func trigger_random_action(target = null) -> bool:
-	#print("DEBUG: pick_action() called")
 	var ready_actions := []
 	for a in actions:
 		if a.is_ready():
 			ready_actions.append(a)
-			#print("DEBUG: pick_action() found ready action: %s" % a.name)
 
 	if not ready_actions:
 		return false

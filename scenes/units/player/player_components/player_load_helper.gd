@@ -16,7 +16,10 @@ func _ready() -> void:
 			weapons.append(c)
 		elif Action.is_action(c):
 			actions.append(c)
-		c.position = Vector2(0, 0) # fix any dumb placement issues
+		# fix any dumb placement issues
+		if c.position != Vector2.ZERO:
+			print("%s finds child Action/Weapon node %s position to not be zeroed, fixing" % [name, c.name])
+			c.position = Vector2(0, 0)
 
 	# NOTE: hardcoded child path might be a problem
 	var action_bar: ActionBar = player.get_node("ActionBar")

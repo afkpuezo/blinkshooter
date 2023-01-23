@@ -62,7 +62,6 @@ func _make_rays(nr: int, mrd: float) -> Dictionary:
 		var ray: RayCast2D = RayCast2D.new()
 		ray.cast_to = Vector2(detection_range, 0)
 		var ray_rads = start_angle + (step_per_ray * n)
-		#print("DEBUG: PlayerDetection._ready(): creating ray #%d with rotation %f" % [n, rad2deg(ray_rads)])
 		ray.rotate(ray_rads)
 		if ray_rads == 0:
 			c_r = ray
@@ -109,13 +108,10 @@ func check() -> Dictionary:
 
 	var num_hits = 0
 	for ray in rays_arr:
-		#print("DEBUG: PlayerDetection._ready(): checking ray")
 		ray.force_raycast_update()
 		if ray.is_colliding() and PlayerBrain.is_player(ray.get_collider()):
 			num_hits += 1
-			#if ray == center_ray:
 			if ray.name == CENTER_RAY_NAME:
-				#print("DEBUG: ray.name is CenterRay")
 				return_dict["is_detected_by_center"] = true
 
 	if num_hits >= num_ray_hits_required:

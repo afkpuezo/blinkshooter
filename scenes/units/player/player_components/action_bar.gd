@@ -61,7 +61,7 @@ func add_action(new_action, is_already_child = false):
 			if first_empty_slot == -1:
 				first_empty_slot = x
 		elif existing_action.name == new_action.name:
-			print("DEBUG: action already owned")
+			print("%s finds action already owned: %s" % [name, existing_action.name])
 			return # maybe handle this differently?
 
 	var added := false

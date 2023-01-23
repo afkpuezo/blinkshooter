@@ -11,7 +11,6 @@ static func has_bullet_spawn_point(n: Node) -> bool:
 ## Returns null if no child found.
 static func get_bullet_spawn_point(n: Node) -> BulletSpawnPoint:
 	for child in n.get_children():
-		#print("DEBUG: child.get_class(): %s" % child.get_class())
 		if child.get_class() == "BulletSpawnPoint":
 			return child
 	return null

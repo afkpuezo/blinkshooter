@@ -34,7 +34,6 @@ static func get_movement_stats(n: Node) -> MovementStats:
 		var mvs: MovementStats = n.get_node(get_movement_stats_class())
 		return mvs
 	for child in n.get_children():
-		#print("DEBUG: child.get_class(): %s" % child.get_class())
 		if child.get_class() == get_movement_stats_class():
 			return child
 	return null

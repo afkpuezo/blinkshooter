@@ -147,6 +147,5 @@ func send_message(msg):
 
 
 func receive_message(msg):
-	#print("DEBUG: targetMessager.received_message() called")
 	emit_signal("received_message", msg) # should go to Enemy.receive_enemy_message()
 

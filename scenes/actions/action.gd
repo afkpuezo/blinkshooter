@@ -76,7 +76,6 @@ func can_do_action() -> bool:
 
 ## Executes the actual effects of the action. You don't need to handle cooldown or costs here
 func do_action() -> void:
-	#print("DEBUG: Action.do_action() empty method called")
 	pass
 
 
