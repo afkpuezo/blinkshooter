@@ -28,6 +28,7 @@ func _ready() -> void:
 		print("WeaponCharger doesn't have an Action child!")
 		queue_free()
 	sprite.texture = charge_texture
+	_scale_sprite()
 
 
 ## stuff that can't be done in ready
@@ -63,6 +64,10 @@ func handle_charge(target: Unit = null):
 		sub_action.trigger(target)
 		charge = 0
 
+	_scale_sprite()
+
+
+func _scale_sprite():
 	var scale_val = min_sprite_scale + (sprite_scale_diff * charge / max_charge)
 
 	sprite.scale = Vector2(
