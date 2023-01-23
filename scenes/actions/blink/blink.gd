@@ -10,6 +10,7 @@ onready var raycast: RayCast2D = $RayCast2D
 
 export var max_range := 500
 export var min_range := 100
+export var raycast_offset := 16
 export var teleport_wait_time := 0.25
 export var destination_teleport_effect_delay := 0.1
 export(PackedScene) var effect_scene
@@ -24,15 +25,6 @@ var cached_target_position = null
 # ----------
 # virtual method(s) from Action
 # ----------
-
-
-func _ready() -> void:
-	# configure raycast
-	# NOTE: i'm not sure why it's better to cast_to Y rather than X, but it works
-	#raycast.cast_to = Vector2(max_range, 0)
-	raycast.cast_to = Vector2(0, max_range)
-	raycast.force_raycast_update()
-	._ready()
 
 
 ## returns true/false if the target destination position is valid
@@ -58,8 +50,6 @@ func can_do_action() -> bool:
 
 ## Teleport at most max_range towards the target
 func do_action():
-	# NOTE: this cache idea might be unnecessary or even potentially bad, but
-	# i'm leaving it for now
 	var target_position = cached_target_position
 
 	var destination_effect
@@ -91,8 +81,7 @@ func _physics_process(_delta: float) -> void:
 	var raypos = TargetReticle.get_true_global_position()
 	raypos = _cap_target_at_max_range(raypos)
 	raycast.global_position = raypos
-	raycast.look_at(global_position)
-	cached_target_position = raypos
+	raycast.cast_to = raycast.to_local(global_position)
 
 
 ## does what it says
@@ -102,7 +91,7 @@ func _is_target_beyond_minimum_range(target_position: Vector2) -> bool:
 
 ## cast from the (recent) ray position towards the user, find the nearest
 ## floor tile
-func _find_nearest_floor():
+func _find_nearest_floor() -> Vector2:
 	return raycast.get_collision_point()
 
 

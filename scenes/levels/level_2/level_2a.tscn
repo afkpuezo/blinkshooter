@@ -115,16 +115,12 @@ position = Vector2( -2496, -6240 )
 script = ExtResource( 11 )
 
 [node name="Blink" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 10 )]
-position = Vector2( 2496, 6240 )
 
 [node name="Shuriken" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 6 )]
-position = Vector2( 2496, 6240 )
 
 [node name="SmallGun" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 5 )]
-position = Vector2( 2496, 6240 )
 
 [node name="Shotgun" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 7 )]
-position = Vector2( 2496, 6240 )
 
 [node name="SawBlade" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 9 )]
 
