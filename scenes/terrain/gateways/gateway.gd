@@ -27,6 +27,9 @@ export var teleport_effect_scale_factor := 2.5
 export var teleport_wait_time := 0.25
 export var destination_teleport_effect_delay := 0.25
 
+# avoids triggering multiple times while the player is hovering over the gateway
+var is_working := false
+
 
 func _ready() -> void:
 	for c in get_children():
@@ -45,10 +48,15 @@ func _ready() -> void:
 
 func on_unit_entered(unit: Unit):
 	if is_unlocked:
-		if load_level:
-			move_to_next_level()
+		if is_working:
+			print("DEBUG: %s already started working!" % name)
 		else:
-			teleport_unit(unit)
+			is_working = true
+			if load_level:
+				move_to_next_level()
+			else:
+				teleport_unit(unit)
+			is_working = false
 
 
 func teleport_unit(unit: Unit):

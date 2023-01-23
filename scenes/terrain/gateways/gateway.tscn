@@ -41,4 +41,6 @@ custom_fonts/font = ExtResource( 4 )
 text = "0
 "
 
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="Area2D" to="." method="on_unit_entered"]
