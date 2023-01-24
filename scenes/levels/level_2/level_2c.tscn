@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scenes/singletons/level_management/level_local.gd" type="Script" id=1]
 [ext_resource path="res://scenes/terrain/tilesets/floor_tile_map.tscn" type="PackedScene" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://scenes/actions/weapons/plasma_gun/plasma_gun.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/actions/weapons/phase_rifle/phase_rifle.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scenes/units/enemies/small_gun_enemy/small_gun_enemy.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/units/enemies/plasma_enemy/plasma_enemy.tscn" type="PackedScene" id=19]
 [ext_resource path="res://scenes/units/enemies/sniper_enemy/sniper_enemy.tscn" type="PackedScene" id=20]
 
 [node name="LevelLocal" type="Node2D"]
@@ -264,19 +265,6 @@ tile_data = PoolIntArray( -393241, 0, 0, -393240, 0, 1, -393239, 0, 1, -393238, 
 
 [node name="Units" type="Node2D" parent="LeftArea"]
 
-[node name="SniperEnemy" parent="LeftArea/Units" instance=ExtResource( 20 )]
-position = Vector2( -1463, -333 )
-
-[node name="PatrolPath" parent="LeftArea/Units/SniperEnemy" instance=ExtResource( 9 )]
-
-[node name="Node2D" type="Node2D" parent="LeftArea/Units/SniperEnemy/PatrolPath"]
-
-[node name="Node2D2" type="Node2D" parent="LeftArea/Units/SniperEnemy/PatrolPath"]
-position = Vector2( 24, 393 )
-
-[node name="Node2D3" type="Node2D" parent="LeftArea/Units/SniperEnemy/PatrolPath"]
-position = Vector2( 124, 709 )
-
 [node name="SniperEnemy2" parent="LeftArea/Units" instance=ExtResource( 20 )]
 position = Vector2( -1773, -260 )
 
@@ -287,15 +275,28 @@ position = Vector2( -1773, -260 )
 [node name="Node2D2" type="Node2D" parent="LeftArea/Units/SniperEnemy2/PatrolPath"]
 position = Vector2( 0, 580 )
 
-[node name="SniperEnemy3" parent="LeftArea/Units" instance=ExtResource( 20 )]
-position = Vector2( -2089, -231 )
-
-[node name="PatrolPath" parent="LeftArea/Units/SniperEnemy3" instance=ExtResource( 9 )]
-
-[node name="Node2D" type="Node2D" parent="LeftArea/Units/SniperEnemy3/PatrolPath"]
-
-[node name="Node2D2" type="Node2D" parent="LeftArea/Units/SniperEnemy3/PatrolPath"]
-position = Vector2( 0, 500 )
-
 [node name="SniperEnemy4" parent="LeftArea/Units" instance=ExtResource( 20 )]
 position = Vector2( -2433, -20 )
+
+[node name="PlasmaEnemy" parent="LeftArea/Units" instance=ExtResource( 19 )]
+position = Vector2( -1463, -333 )
+
+[node name="PatrolPath" parent="LeftArea/Units/PlasmaEnemy" instance=ExtResource( 9 )]
+
+[node name="Node2D" type="Node2D" parent="LeftArea/Units/PlasmaEnemy/PatrolPath"]
+
+[node name="Node2D2" type="Node2D" parent="LeftArea/Units/PlasmaEnemy/PatrolPath"]
+position = Vector2( 24, 393 )
+
+[node name="Node2D3" type="Node2D" parent="LeftArea/Units/PlasmaEnemy/PatrolPath"]
+position = Vector2( 124, 709 )
+
+[node name="PlasmaEnemy2" parent="LeftArea/Units" instance=ExtResource( 19 )]
+position = Vector2( -2089, -231 )
+
+[node name="PatrolPath" parent="LeftArea/Units/PlasmaEnemy2" instance=ExtResource( 9 )]
+
+[node name="Node2D" type="Node2D" parent="LeftArea/Units/PlasmaEnemy2/PatrolPath"]
+
+[node name="Node2D2" type="Node2D" parent="LeftArea/Units/PlasmaEnemy2/PatrolPath"]
+position = Vector2( 0, 500 )
