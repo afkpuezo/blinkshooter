@@ -34,6 +34,8 @@ func _ready() -> void:
 		points.append(c.global_position)
 		remove_child(c)
 		c.queue_free()
+	if points.empty():
+		points.append(self.global_position)
 	current_point = points[current_index]
 	has_single_point = points.size() == 1
 
