@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scenes/singletons/level_management/level_local.gd" type="Script" id=1]
 [ext_resource path="res://scenes/terrain/tilesets/floor_tile_map.tscn" type="PackedScene" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://scenes/actions/weapons/plasma_gun/plasma_gun.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/actions/weapons/phase_rifle/phase_rifle.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scenes/units/enemies/small_gun_enemy/small_gun_enemy.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/units/enemies/sniper_enemy/sniper_enemy.tscn" type="PackedScene" id=20]
 
 [node name="LevelLocal" type="Node2D"]
 script = ExtResource( 1 )
@@ -244,3 +245,57 @@ rotation = 0.785398
 [node name="ShotgunEnemy4" parent="CentralArea/Gateway/CentralUpperLock" instance=ExtResource( 8 )]
 position = Vector2( -138, 197 )
 rotation = 2.35619
+
+[node name="LeftLock" parent="CentralArea/Gateway" instance=ExtResource( 7 )]
+position = Vector2( -2368, -32 )
+
+[node name="LeftArea" type="Node2D" parent="."]
+
+[node name="Tilesets" type="Node2D" parent="LeftArea"]
+
+[node name="WallTileMap" parent="LeftArea/Tilesets" instance=ExtResource( 5 )]
+tile_data = PoolIntArray( -393245, 0, 11, -393244, 0, 65539, -393243, 0, 131076, -393237, 0, 131075, -327710, 0, 131078, -327709, 0, 9, -327701, 0, 65540, -262165, 0, 65540, -196650, 0, 131075, -196629, 0, 65540, -131114, 0, 65540, -131093, 0, 65540, -65578, 0, 10, -65577, 0, 65545, -65557, 0, 65540, -41, 0, 65540, -21, 0, 65540, 65495, 0, 65540, 65515, 0, 10, 65516, 0, 65545, 131031, 0, 65540, 131052, 0, 10, 131053, 0, 65545, 196567, 0, 10, 196568, 0, 65545, 196589, 0, 65540, 262104, 0, 131077, 262125, 0, 65540, 327646, 0, 131078, 327647, 0, 65545, 327661, 0, 65540, 393183, 0, 10, 393184, 0, 65539, 393185, 0, 131076, 393197, 0, 65540, 458733, 0, 131077 )
+
+[node name="PitTileMap" parent="LeftArea/Tilesets" instance=ExtResource( 4 )]
+tile_data = PoolIntArray( -458778, 0, 0, -458777, 0, 0, -458776, 0, 0, -458775, 0, 0, -458774, 0, 0, -458773, 0, 0, -393242, 0, 0, -327716, 0, 0, -327715, 0, 0, -327714, 0, 0, -327713, 0, 0, -327712, 0, 0, -327711, 0, 0, -327706, 0, 0, -262185, 0, 0, -262184, 0, 0, -262183, 0, 0, -262182, 0, 0, -262181, 0, 0, -262180, 0, 0, -262175, 0, 0, -262170, 0, 0, -196644, 0, 0, -196639, 0, 0, -196634, 0, 0, -131108, 0, 0, -131103, 0, 0, -131098, 0, 0, -65572, 0, 0, -65567, 0, 0, -65562, 0, 0, -36, 0, 0, -31, 0, 0, -26, 0, 0, 65500, 0, 0, 65505, 0, 0, 65510, 0, 0, 131036, 0, 0, 131037, 0, 0, 131041, 0, 0, 131042, 0, 0, 131046, 0, 0, 131047, 0, 0, 196573, 0, 0, 196578, 0, 0, 196583, 0, 0, 196584, 0, 0, 262109, 0, 0, 262114, 0, 0, 262120, 0, 0, 327640, 0, 0, 327641, 0, 0, 327642, 0, 0, 327643, 0, 0, 327644, 0, 0, 327645, 0, 0, 327650, 0, 0, 327656, 0, 0, 393186, 0, 0, 393192, 0, 0, 458722, 0, 0, 458723, 0, 0, 458724, 0, 0, 458725, 0, 0, 458726, 0, 0, 458727, 0, 0, 458728, 0, 0, 524264, 0, 0, 524265, 0, 0, 524266, 0, 0, 524267, 0, 0, 524268, 0, 0, 524269, 0, 0 )
+
+[node name="FloorTileMap" parent="LeftArea/Tilesets" instance=ExtResource( 2 )]
+tile_data = PoolIntArray( -393241, 0, 0, -393240, 0, 1, -393239, 0, 1, -393238, 0, 2, -327708, 0, 0, -327707, 0, 2, -327705, 0, 65536, -327704, 0, 65537, -327703, 0, 65537, -327702, 0, 65538, -262179, 0, 0, -262178, 0, 1, -262177, 0, 1, -262176, 0, 2, -262174, 0, 0, -262173, 0, 1, -262172, 0, 5, -262171, 0, 65538, -262169, 0, 65536, -262168, 0, 65537, -262167, 0, 65537, -262166, 0, 65538, -196649, 0, 0, -196648, 0, 1, -196647, 0, 1, -196646, 0, 1, -196645, 0, 2, -196643, 0, 65536, -196642, 0, 65537, -196641, 0, 65537, -196640, 0, 65538, -196638, 0, 65536, -196637, 0, 65537, -196636, 0, 65537, -196635, 0, 65538, -196633, 0, 65536, -196632, 0, 65537, -196631, 0, 65537, -196630, 0, 65538, -131113, 0, 131072, -131112, 0, 6, -131111, 0, 65537, -131110, 0, 65537, -131109, 0, 65538, -131107, 0, 65536, -131106, 0, 65537, -131105, 0, 65537, -131104, 0, 65538, -131102, 0, 65536, -131101, 0, 65537, -131100, 0, 65537, -131099, 0, 65538, -131097, 0, 65536, -131096, 0, 65537, -131095, 0, 65537, -131094, 0, 65538, -65576, 0, 65536, -65575, 0, 65537, -65574, 0, 65537, -65573, 0, 65538, -65571, 0, 65536, -65570, 0, 65537, -65569, 0, 65537, -65568, 0, 65538, -65566, 0, 65536, -65565, 0, 65537, -65564, 0, 65537, -65563, 0, 65538, -65561, 0, 65536, -65560, 0, 65537, -65559, 0, 65537, -65558, 0, 65538, -40, 0, 65536, -39, 0, 65537, -38, 0, 65537, -37, 0, 65538, -35, 0, 65536, -34, 0, 65537, -33, 0, 65537, -32, 0, 65538, -30, 0, 65536, -29, 0, 65537, -28, 0, 65537, -27, 0, 65538, -25, 0, 65536, -24, 0, 65537, -23, 0, 65537, -22, 0, 65538, 65496, 0, 65536, 65497, 0, 65537, 65498, 0, 65537, 65499, 0, 65538, 65501, 0, 131072, 65502, 0, 6, 65503, 0, 65537, 65504, 0, 65538, 65506, 0, 131072, 65507, 0, 6, 65508, 0, 65537, 65509, 0, 65538, 65511, 0, 131072, 65512, 0, 6, 65513, 0, 65537, 65514, 0, 65538, 131032, 0, 131072, 131033, 0, 6, 131034, 0, 65537, 131035, 0, 65538, 131038, 0, 65536, 131039, 0, 65537, 131040, 0, 65538, 131043, 0, 65536, 131044, 0, 65537, 131045, 0, 65538, 131048, 0, 131072, 131049, 0, 6, 131050, 0, 3, 131051, 0, 2, 196569, 0, 65536, 196570, 0, 65537, 196571, 0, 3, 196572, 0, 2, 196574, 0, 65536, 196575, 0, 65537, 196576, 0, 3, 196577, 0, 2, 196579, 0, 65536, 196580, 0, 65537, 196581, 0, 3, 196582, 0, 2, 196585, 0, 65536, 196586, 0, 65537, 196587, 0, 3, 196588, 0, 2, 262105, 0, 131072, 262106, 0, 131073, 262107, 0, 131073, 262108, 0, 131074, 262110, 0, 131072, 262111, 0, 131073, 262112, 0, 6, 262113, 0, 65538, 262115, 0, 65536, 262116, 0, 65537, 262117, 0, 65537, 262118, 0, 3, 262119, 0, 2, 262121, 0, 65536, 262122, 0, 65537, 262123, 0, 65537, 262124, 0, 65538, 327648, 0, 131072, 327649, 0, 131074, 327651, 0, 65536, 327652, 0, 65537, 327653, 0, 65537, 327654, 0, 65537, 327655, 0, 65538, 327657, 0, 65536, 327658, 0, 65537, 327659, 0, 65537, 327660, 0, 65538, 393187, 0, 131072, 393188, 0, 131073, 393189, 0, 131073, 393190, 0, 131073, 393191, 0, 131074, 393193, 0, 65536, 393194, 0, 65537, 393195, 0, 65537, 393196, 0, 65538, 458729, 0, 131072, 458730, 0, 131073, 458731, 0, 131073, 458732, 0, 131074 )
+
+[node name="Units" type="Node2D" parent="LeftArea"]
+
+[node name="SniperEnemy" parent="LeftArea/Units" instance=ExtResource( 20 )]
+position = Vector2( -1463, -333 )
+
+[node name="PatrolPath" parent="LeftArea/Units/SniperEnemy" instance=ExtResource( 9 )]
+
+[node name="Node2D" type="Node2D" parent="LeftArea/Units/SniperEnemy/PatrolPath"]
+
+[node name="Node2D2" type="Node2D" parent="LeftArea/Units/SniperEnemy/PatrolPath"]
+position = Vector2( 24, 393 )
+
+[node name="Node2D3" type="Node2D" parent="LeftArea/Units/SniperEnemy/PatrolPath"]
+position = Vector2( 124, 709 )
+
+[node name="SniperEnemy2" parent="LeftArea/Units" instance=ExtResource( 20 )]
+position = Vector2( -1773, -260 )
+
+[node name="PatrolPath" parent="LeftArea/Units/SniperEnemy2" instance=ExtResource( 9 )]
+
+[node name="Node2D" type="Node2D" parent="LeftArea/Units/SniperEnemy2/PatrolPath"]
+
+[node name="Node2D2" type="Node2D" parent="LeftArea/Units/SniperEnemy2/PatrolPath"]
+position = Vector2( 0, 580 )
+
+[node name="SniperEnemy3" parent="LeftArea/Units" instance=ExtResource( 20 )]
+position = Vector2( -2089, -231 )
+
+[node name="PatrolPath" parent="LeftArea/Units/SniperEnemy3" instance=ExtResource( 9 )]
+
+[node name="Node2D" type="Node2D" parent="LeftArea/Units/SniperEnemy3/PatrolPath"]
+
+[node name="Node2D2" type="Node2D" parent="LeftArea/Units/SniperEnemy3/PatrolPath"]
+position = Vector2( 0, 500 )
+
+[node name="SniperEnemy4" parent="LeftArea/Units" instance=ExtResource( 20 )]
+position = Vector2( -2433, -20 )
