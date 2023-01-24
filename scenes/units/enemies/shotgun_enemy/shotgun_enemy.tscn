@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/units/enemies/enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/units/enemies/shotgun_enemy/shotgun_enemy.png" type="Texture" id=2]
 [ext_resource path="res://scenes/actions/weapons/shotgun/shotgun.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/units/enemies/shotgun_enemy/enemy_shotgun_pellet.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/movement/movement_stats.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 18, 18 )
@@ -34,6 +35,11 @@ too_close_threshold = 10.0
 has_attack_range_check = true
 max_attack_range = 200
 attack_allows_non_center_detection = true
+
+[node name="MovementStats" type="Node" parent="EnemyBrain/EnemyIdler" index="1"]
+script = ExtResource( 5 )
+max_speed = 200.0
+friction = 1.0
 
 [node name="PlayerDetection" parent="EnemyBrain" index="2"]
 detection_range = 800

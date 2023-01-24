@@ -27,8 +27,10 @@ var current_total_turn: float
 
 export var turn_memory_time := 0.2
 
-# used to control reset of starting angle
-# -
+## allows enemies to override movement stats values while an enemy is idle
+## (eg moving slower when the player isn't visible)
+## if none given, will use enemy's regular stats
+onready var patrol_movement_stats := MovementStats.get_movement_stats(self)
 
 
 func _ready() -> void:
@@ -42,6 +44,8 @@ func _ready() -> void:
 ## assumes called during physics process
 # NOTE: passing these params here feels gross
 func idle(enemy: Unit, mover: EnemyMover, movement_stats: MovementStats):
+	if patrol_movement_stats:
+		movement_stats = patrol_movement_stats
 	if patrol_path:
 		idle_patrol(enemy, mover, movement_stats)
 	else:
