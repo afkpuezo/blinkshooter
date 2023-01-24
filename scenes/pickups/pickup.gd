@@ -27,8 +27,6 @@ var resource_type: int # enum from CombatResource
 var resource_amount: int
 var size # only needed for resource pickups
 
-var has_been_vacuumed := false # more kludge to deal with being a tool
-
 ## each type maps to a dict with:
 ##		matching scene path, texture path, radius, and meta type
 ## resource pickups also have resource_type, and a sub dict for each possible
@@ -261,8 +259,7 @@ func _physics_process(_delta: float) -> void:
 	if pickup_mover and can_be_vacuumed:
 		if is_being_vacuumed:
 				pickup_mover.be_vacuumed(self, movement_stats, vacuum_position)
-				has_been_vacuumed = true
-		elif has_been_vacuumed:
+		else:
 			pickup_mover.idle(self, movement_stats)
 		is_being_vacuumed = false # reset every frame
 

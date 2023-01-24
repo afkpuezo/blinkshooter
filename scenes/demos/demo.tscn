@@ -112,6 +112,10 @@ rotation = 3.14159
 [node name="PlasmaEnemy" parent="Units" instance=ExtResource( 7 )]
 position = Vector2( 767, -136 )
 
+[node name="PatrolPath" parent="Units/PlasmaEnemy" instance=ExtResource( 4 )]
+
+[node name="Node2D" type="Node2D" parent="Units/PlasmaEnemy/PatrolPath"]
+
 [node name="SniperEnemy" parent="Units" instance=ExtResource( 9 )]
 position = Vector2( 1187, -902 )
 rotation = 3.14159
