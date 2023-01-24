@@ -17,7 +17,6 @@ enum SIZE{
 	NORMAL, LARGE
 }
 
-export var was_placed_in_editor := false # kluuuuuuudge
 export(TYPE) var type = TYPE.NONE
 var item_scene: PackedScene
 var meta_type: int
@@ -179,12 +178,6 @@ static func is_pickup(n):
 # ----------
 # instance funcs
 # ----------
-
-
-## updates sprite in editor
-func _ready() -> void:
-	if was_placed_in_editor:
-		configure(type)
 
 
 ## params are both enums

@@ -92,7 +92,6 @@ tile_data = PoolIntArray( 2555941, 0, 0, 2555947, 0, 0, 2621477, 0, 0, 2621483, 
 
 [node name="PhasePickup" parent="GauntletArea" instance=ExtResource( 18 )]
 position = Vector2( 2592, 4448 )
-was_placed_in_editor = true
 type = 5
 can_be_vacuumed = false
 
