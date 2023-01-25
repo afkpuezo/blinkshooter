@@ -58,7 +58,7 @@ turn_rate_deg = 45.0
 
 [node name="PlayerDetection" parent="EnemyBrain" index="2" instance=ExtResource( 10 )]
 
-[node name="PlayerMemoryTimer" type="Timer" parent="EnemyBrain" index="3"]
+[node name="PlayerVisionMemoryTimer" type="Timer" parent="EnemyBrain" index="3"]
 wait_time = 0.5
 one_shot = true
 
@@ -68,6 +68,9 @@ sender_radius = 512
 
 [node name="EnemyWeaponBar" type="Node2D" parent="EnemyBrain" index="5"]
 script = ExtResource( 7 )
+
+[node name="PlayerChaseTimer" type="Timer" parent="EnemyBrain" index="6"]
+wait_time = 3.0
 
 [node name="ContactAttack" type="Node2D" parent="." index="8"]
 script = ExtResource( 14 )
@@ -94,5 +97,6 @@ end_distance_falloff = 2000.0
 [connection signal="value_changed" from="CombatResources/Health" to="." method="_check_for_death"]
 [connection signal="detected_player" from="EnemyBrain" to="EnemyBrain/EnemyMessager" method="send_message"]
 [connection signal="received_message" from="EnemyBrain/EnemyMessager" to="EnemyBrain" method="receive_enemy_message"]
+[connection signal="timeout" from="EnemyBrain/PlayerChaseTimer" to="EnemyBrain" method="_on_PlayerChaseTimer_timeout"]
 [connection signal="dealt_damage" from="ContactAttack" to="ContactAttack/Pusher" method="push"]
 [connection signal="hit_at" from="ContactAttack" to="ContactAttack/ContactExplosionAnimator" method="create_explosion"]

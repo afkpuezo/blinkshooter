@@ -47,7 +47,6 @@ attack_allows_non_center_detection = true
 PLASMA_AMMO_cost = 0
 cooldown = 2.0
 bullet_scene = ExtResource( 4 )
-damage = 40
 forgiveness_team = 1
 burst_damage = 20
 

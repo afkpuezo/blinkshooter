@@ -21,7 +21,11 @@ onready var this_unit: Unit = owner
 # -- child nodes
 onready var player_detection: PlayerDetection = $PlayerDetection
 ## when the enemy sees the player, this timer starts. As long as the timer is
-onready var player_memory_timer: Timer = $PlayerMemoryTimer
+## running, the enemy is still considered to see the player
+onready var player_vision_memory_timer: Timer = $PlayerVisionMemoryTimer
+## after an enemy loses sight of the player, this timer will start to tick down.
+## when it runs out, the enemy will go to idle mode
+onready var player_chase_timer: Timer = $PlayerChaseTimer
 
 onready var enemy_mover: EnemyMover = $EnemyMover # mover var declared in parent class - bad?
 onready var movement_stats: MovementStats = MovementStats.get_movement_stats(this_unit)
@@ -123,6 +127,9 @@ func think():
 	if is_player_detected:
 		# could update mode
 		_update_knowledge_of_player(true, player)
+		# this timer is constantly reset as long as the player is detected, so
+		# that it only runs while the player is not seen
+		player_chase_timer.start()
 	else:
 		_update_knowledge_of_player(false, null, did_player_teleport)
 
@@ -247,7 +254,7 @@ func _update_knowledge_of_player(
 	):
 	if incoming_value == true:
 		current_mode = MODE.CHASING
-		player_memory_timer.start()
+		player_vision_memory_timer.start()
 		last_known_player_position = player.global_position
 		if not can_currently_see_player:
 			# setting it here so that it's true before sending a message, to avoid
@@ -255,8 +262,14 @@ func _update_knowledge_of_player(
 			can_currently_see_player = true
 			_report_detected_player(player)
 	else: # if incoming_value is false
-		if ignore_timer or player_memory_timer.is_stopped():
+		if ignore_timer or player_vision_memory_timer.is_stopped():
 			can_currently_see_player = false
+
+
+## this should only be called when the enemy is trying to chase a player that
+## they have lost sight of
+func _on_PlayerChaseTimer_timeout() -> void:
+	current_mode = MODE.IDLE
 
 
 # ----------
@@ -273,4 +286,5 @@ func _report_detected_player(player):
 ## expects msg to include: 'player'
 func receive_enemy_message(msg):
 	_update_knowledge_of_player(true, msg['player'])
+
 

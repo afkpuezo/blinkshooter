@@ -117,7 +117,7 @@ func idle_turn(enemy: Unit, mover: EnemyMover, movement_stats: MovementStats):
 		return
 
 	# resets base angle after stopping movement
-	if should_reset():
+	if turn_should_reset():
 		current_base_angle = enemy.rotation
 		is_turning_left = false
 		current_total_turn = max_turn / 2 # the base angle is the MIDDLE of the turn
@@ -135,7 +135,7 @@ func idle_turn(enemy: Unit, mover: EnemyMover, movement_stats: MovementStats):
 
 ## updates the memory timer.
 ## if the timer was stopped before updating, return true, else false
-func should_reset() -> bool:
+func turn_should_reset() -> bool:
 	var was_stopped = timer.is_stopped()
 	timer.start(turn_memory_time)
 	return was_stopped

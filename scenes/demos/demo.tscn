@@ -170,3 +170,6 @@ cooldown = 0.4
 [node name="PlasmaGun" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 17 )]
 
 [node name="PhaseRifle" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 18 )]
+
+[connection signal="died" from="Terrain/Gateway2/Lock/PlasmaBoss" to="Terrain/Gateway2/Lock/PlasmaBoss/LootDropper" method="_on_Enemy_died"]
+[connection signal="took_damage" from="Terrain/Gateway2/Lock/PlasmaBoss" to="Terrain/Gateway2/Lock/PlasmaBoss/EnemyBrain" method="on_unit_took_damage"]
