@@ -7,7 +7,7 @@ class_name LevelLocal
 export var level_scene_path: String
 export var enabled_loot_types := {
 	Pickup.TYPE.HEALTH: true,
-	Pickup.TYPE.ENERGY: false,
+	Pickup.TYPE.ENERGY: true,
 	Pickup.TYPE.BASIC_AMMO: true,
 	Pickup.TYPE.PLASMA_AMMO: true,
 }

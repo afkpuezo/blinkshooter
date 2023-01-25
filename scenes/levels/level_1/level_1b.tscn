@@ -25,7 +25,7 @@ enabled_loot_types = {
 9: true,
 10: true,
 11: false,
-12: false
+12: true
 }
 
 [node name="Terrain" type="Node2D" parent="."]
@@ -115,13 +115,11 @@ rotation = -1.20428
 
 [node name="ShotgunPickup" parent="Pickups/Actions" instance=ExtResource( 17 )]
 position = Vector2( 3232, 3104 )
-was_placed_in_editor = true
 type = 4
 can_be_vacuumed = false
 
 [node name="ShurikenPickup" parent="Pickups/Actions" instance=ExtResource( 17 )]
 position = Vector2( 672, 6560 )
-was_placed_in_editor = true
 type = 8
 can_be_vacuumed = false
 
@@ -129,42 +127,34 @@ can_be_vacuumed = false
 
 [node name="HealthPickup10" parent="Pickups/Resources" instance=ExtResource( 17 )]
 position = Vector2( 3227, 2890 )
-was_placed_in_editor = true
 type = 9
 
 [node name="HealthPickup11" parent="Pickups/Resources" instance=ExtResource( 17 )]
 position = Vector2( 3237, 2986 )
-was_placed_in_editor = true
 type = 9
 
 [node name="HealthPickup4" parent="Pickups/Resources" instance=ExtResource( 17 )]
 position = Vector2( 663, 5716 )
-was_placed_in_editor = true
 type = 9
 
 [node name="HealthPickup5" parent="Pickups/Resources" instance=ExtResource( 17 )]
 position = Vector2( 683, 5730 )
-was_placed_in_editor = true
 type = 9
 
 [node name="HealthPickup6" parent="Pickups/Resources" instance=ExtResource( 17 )]
 position = Vector2( 29, 2590 )
-was_placed_in_editor = true
 type = 9
 
 [node name="HealthPickup7" parent="Pickups/Resources" instance=ExtResource( 17 )]
 position = Vector2( 49, 2604 )
-was_placed_in_editor = true
 type = 9
 
 [node name="AmmoPickup" parent="Pickups/Resources" instance=ExtResource( 17 )]
 position = Vector2( 54, 2835 )
-was_placed_in_editor = true
 type = 10
 
 [node name="AmmoPickup2" parent="Pickups/Resources" instance=ExtResource( 17 )]
 position = Vector2( 36, 2806 )
-was_placed_in_editor = true
 type = 10
 
 [node name="Units" type="Node2D" parent="."]

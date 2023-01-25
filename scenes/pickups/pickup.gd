@@ -101,7 +101,7 @@ const TYPE_DETAILS = {
 			'scale_factor': 1.0
 		},
 		'size_large': {
-			'resource_amount': 50,
+			'resource_amount': 40,
 			'scale_factor': 2.0
 		},
 	},
@@ -116,7 +116,7 @@ const TYPE_DETAILS = {
 			'scale_factor': 1.0
 		},
 		'size_large': {
-			'resource_amount': 50,
+			'resource_amount': 40,
 			'scale_factor': 2.0
 		},
 	},
@@ -127,11 +127,11 @@ const TYPE_DETAILS = {
 		'meta_type': META_TYPE.RESOURCE,
 		'resource_type': CombatResource.Type.BASIC_AMMO,
 		'size_normal': {
-			'resource_amount': 30,
+			'resource_amount': 15,
 			'scale_factor': 0.75
 		},
 		'size_large': {
-			'resource_amount': 75,
+			'resource_amount': 30,
 			'scale_factor': 1.25
 		},
 	},
