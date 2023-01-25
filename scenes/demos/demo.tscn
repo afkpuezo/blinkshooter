@@ -163,6 +163,7 @@ script = ExtResource( 3 )
 [node name="SmallGun" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 20 )]
 
 [node name="Shotgun" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 16 )]
+cooldown = 0.4
 
 [node name="SawBlade" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 19 )]
 

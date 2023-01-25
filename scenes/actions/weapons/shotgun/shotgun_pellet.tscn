@@ -15,7 +15,7 @@ acceleration = 500.0
 max_speed = 700.0
 
 [node name="LifeTimer" parent="." index="2"]
-wait_time = 0.75
+wait_time = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
 shape = SubResource( 1 )
