@@ -180,6 +180,12 @@ static func is_pickup(n):
 # ----------
 
 
+func _ready() -> void:
+	# these types are placed in the editor
+	if meta_type in [META_TYPE.ACTION, META_TYPE.WEAPON]:
+		configure(type)
+
+
 ## params are both enums
 ## size is only used for resource pickups
 func configure(new_type: int, new_size: int = SIZE.NORMAL):

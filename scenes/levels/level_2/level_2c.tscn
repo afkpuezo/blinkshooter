@@ -181,12 +181,10 @@ rotation = -2.35619
 [node name="SmallGunEnemy3" parent="CentralArea/Gateway/CentralLowerLock" instance=ExtResource( 18 )]
 position = Vector2( -800, -900 )
 rotation = 0.785398
-scale = Vector2( 1, 1 )
 
 [node name="SmallGunEnemy4" parent="CentralArea/Gateway/CentralLowerLock" instance=ExtResource( 18 )]
 position = Vector2( 800, -900 )
 rotation = 2.35619
-scale = Vector2( 1, 1 )
 
 [node name="CentralUpperLock" parent="CentralArea/Gateway" instance=ExtResource( 7 )]
 position = Vector2( 0, -1280 )
