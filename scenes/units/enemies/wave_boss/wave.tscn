@@ -8,3 +8,5 @@ script = ExtResource( 1 )
 [node name="BlockTimer" type="Timer" parent="."]
 
 [node name="DelayTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="BlockTimer" to="." method="_on_block_timer_timeout"]
