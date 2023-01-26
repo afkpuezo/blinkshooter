@@ -314,6 +314,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/units/unit.gd"
 }, {
+"base": "Node2D",
+"class": "Wave",
+"language": "GDScript",
+"path": "res://scenes/units/enemies/wave_boss/wave.gd"
+}, {
+"base": "Node2D",
+"class": "WaveEnemy",
+"language": "GDScript",
+"path": "res://scenes/units/enemies/wave_boss/wave_enemy.gd"
+}, {
 "base": "Action",
 "class": "Weapon",
 "language": "GDScript",
@@ -396,6 +406,8 @@ _global_script_class_icons={
 "StateMachine": "",
 "TeleportEffect": "",
 "Unit": "",
+"Wave": "",
+"WaveEnemy": "",
 "Weapon": "",
 "WeaponBar": "",
 "WeaponCharger": "",
