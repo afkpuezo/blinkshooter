@@ -317,12 +317,12 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Wave",
 "language": "GDScript",
-"path": "res://scenes/units/enemies/wave_boss/wave.gd"
+"path": "res://scenes/units/enemies/wave_boss/wave/wave.gd"
 }, {
 "base": "Node2D",
 "class": "WaveEnemy",
 "language": "GDScript",
-"path": "res://scenes/units/enemies/wave_boss/wave_enemy.gd"
+"path": "res://scenes/units/enemies/wave_boss/wave_enemy/wave_enemy.gd"
 }, {
 "base": "Node2D",
 "class": "WaveManager",

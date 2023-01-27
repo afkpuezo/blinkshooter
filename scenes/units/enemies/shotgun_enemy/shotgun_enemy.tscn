@@ -11,17 +11,14 @@ extents = Vector2( 18, 18 )
 
 [node name="ShotgunEnemy" instance=ExtResource( 1 )]
 
-[node name="Sprite" type="Sprite" parent="." index="0"]
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 visible = false
 shape = SubResource( 1 )
 
 [node name="Health" parent="CombatResources" index="0"]
 MAX_VALUE = 75
 
-[node name="MovementStats" parent="." index="3"]
+[node name="MovementStats" parent="." index="2"]
 acceleration = 800.0
 max_speed = 600.0
 
@@ -29,7 +26,7 @@ max_speed = 600.0
 visible = false
 shape = SubResource( 1 )
 
-[node name="EnemyBrain" parent="." index="9"]
+[node name="EnemyBrain" parent="." index="8"]
 minimum_chase_distance = 80.0
 too_close_threshold = 10.0
 has_attack_range_check = true
@@ -53,8 +50,10 @@ forgiveness_team = 1
 forgiveness_duration = 0.5
 recoil = 1000.0
 num_bullets = 3
-max_angle_deg = 30.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ContactAttack/HitBox" index="0"]
 visible = false
 shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Sprites" index="0"]
+texture = ExtResource( 2 )

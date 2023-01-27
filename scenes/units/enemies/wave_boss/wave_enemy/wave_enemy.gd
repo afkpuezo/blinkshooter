@@ -68,12 +68,17 @@ func trigger(player: Unit, extra_delay := 0.0):
 	# warning-ignore:return_value_discarded
 	enemy.connect("died", self, "_on_enemy_death")
 
-	if player:
-		# spawning is call_deferred so we need a delay
-		unit_delay_timer.start(player_awareness_delay)
-		yield(unit_delay_timer, "timeout")
-		# probably shouldn't hard-code this but who cares at this point
-		enemy.get_node("EnemyBrain").receive_enemy_message({'player': player})
+	var enemy_brain: EnemyBrain = enemy.get_node("EnemyBrain")
+	enemy_brain.call_deferred("do_teleport_animation")
+	enemy_brain.call_deferred("receive_enemy_message", {'player': player})
+#	if player:
+#		# spawning is call_deferred so we need a delay
+#		unit_delay_timer.start(player_awareness_delay)
+#		yield(unit_delay_timer, "timeout")
+#		# probably shouldn't hard-code this but who cares at this point
+#		var enemy_brain: EnemyBrain = enemy.get_node("EnemyBrain")
+#		enemy_brain.do_teleport_animation()
+#		enemy_brain.receive_enemy_message({'player': player})
 
 
 func _on_enemy_death():

@@ -22,13 +22,13 @@ explosion_scale = 4.0
 explosion_speed = 0.3
 sprite_z = "5"
 
-[node name="LootDropper" parent="." index="8"]
+[node name="LootDropper" parent="." index="7"]
 health_chance = 100
 energy_chance = 0
 basic_ammo_chance = 100
 max_drop_radius = 256
 
-[node name="EnemyBrain" parent="." index="9"]
+[node name="EnemyBrain" parent="." index="8"]
 is_boss = true
 
 [node name="PlasmaGun" parent="EnemyBrain/EnemyWeaponBar" index="0"]

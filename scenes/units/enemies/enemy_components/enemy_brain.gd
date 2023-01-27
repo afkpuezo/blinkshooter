@@ -32,6 +32,9 @@ onready var movement_stats: MovementStats = MovementStats.get_movement_stats(thi
 onready var weapon_bar: EnemyWeaponBar = $EnemyWeaponBar
 onready var enemy_idler: EnemyIdler = $EnemyIdler
 
+onready var anim_player: AnimationPlayer = $AnimationPlayer
+
+
 ## -- behavior control
 # seperate from radius of PlayerDetection, effectively the real threshold is the minimum of the two
 export var minimum_chase_distance := 200.0
@@ -289,3 +292,12 @@ func receive_enemy_message(msg):
 	_update_knowledge_of_player(true, msg['player'])
 
 
+## call the animation on the animation player
+func do_teleport_animation():
+	# this hardcoding is gross but I don't care
+	this_unit.get_node("Sprites").scale = scale * 0.5
+	anim_player.play("Teleport")
+
+
+func _on_AnimationPlayer_animation_finished(_anim_name: String) -> void:
+	anim_player.play("Idle")
