@@ -24,7 +24,7 @@ var meta_type: int
 # these are only actually used for resource pickups
 var resource_type: int # enum from CombatResource
 var resource_amount: int
-var size # only needed for resource pickups
+export(SIZE) var size # only needed for resource pickups
 
 ## each type maps to a dict with:
 ##		matching scene path, texture path, radius, and meta type
@@ -188,7 +188,7 @@ func _ready() -> void:
 
 ## params are both enums
 ## size is only used for resource pickups
-func configure(new_type: int, new_size: int = SIZE.NORMAL):
+func configure(new_type: int, new_size: int = size):
 	type = new_type
 	size = new_size
 	var details = TYPE_DETAILS[type]
