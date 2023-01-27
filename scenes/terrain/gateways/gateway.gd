@@ -5,6 +5,7 @@ class_name Gateway
 
 
 signal triggered() # should this have args?
+signal fakeout_triggered() # used in the wave boss
 
 
 onready var sprite: Sprite = $Sprite
@@ -30,6 +31,10 @@ export var destination_teleport_effect_delay := 0.25
 # avoids triggering multiple times while the player is hovering over the gateway
 var is_working := false
 
+# used in the wave boss
+export var is_fakeout := false
+var has_fakeout_started := false
+
 
 func _ready() -> void:
 	for c in get_children():
@@ -47,9 +52,16 @@ func _ready() -> void:
 
 
 func on_unit_entered(unit: Unit):
+	if is_fakeout and not has_fakeout_started:
+		has_fakeout_started = true
+		num_locks_remaining += 1
+		emit_signal("fakeout_triggered")
+		is_unlocked = false
+		update()
+
 	if is_unlocked:
 		if is_working:
-			print("DEBUG: %s already started working!" % name)
+			pass
 		else:
 			is_working = true
 			if load_level:

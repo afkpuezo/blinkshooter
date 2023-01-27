@@ -31,8 +31,12 @@ level_scene_path = "res://scenes/demos/demo.tscn"
 
 [node name="WaveTest" type="Node2D" parent="."]
 
-[node name="SmallGunEnemy" parent="WaveTest" instance=ExtResource( 2 )]
-position = Vector2( 1674, 1303 )
+[node name="FakeoutGateway" parent="WaveTest" instance=ExtResource( 13 )]
+position = Vector2( 1646, 1276 )
+is_fakeout = true
+
+[node name="GatewayDestination" parent="WaveTest/FakeoutGateway" instance=ExtResource( 14 )]
+position = Vector2( -408, 366 )
 
 [node name="WaveManager" parent="WaveTest" instance=ExtResource( 8 )]
 position = Vector2( 1693, 1172 )
@@ -223,4 +227,5 @@ cooldown = 0.4
 
 [node name="PhaseRifle" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 18 )]
 
-[connection signal="died" from="WaveTest/SmallGunEnemy" to="WaveTest/WaveManager" method="trigger"]
+[connection signal="fakeout_triggered" from="WaveTest/FakeoutGateway" to="WaveTest/WaveManager" method="trigger"]
+[connection signal="defeated" from="WaveTest/WaveManager" to="WaveTest/FakeoutGateway" method="on_lock_unlock"]
