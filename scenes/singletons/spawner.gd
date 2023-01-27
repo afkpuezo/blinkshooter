@@ -28,6 +28,8 @@ func spawn_node(
 	if spawn_delay > 0.0:
 		yield(get_tree().create_timer(spawn_delay), "timeout")
 
-	node.translate(spawn_position)
-	node.rotate(spawn_rotation)
+	#node.translate(spawn_position)
+	#node.rotate(spawn_rotation)
+	node.global_position = spawn_position
+	node.global_rotation = spawn_rotation
 	call_deferred("add_child", node)

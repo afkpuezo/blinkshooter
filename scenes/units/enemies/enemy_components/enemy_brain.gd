@@ -58,6 +58,7 @@ export var attack_allows_non_center_detection := false
 
 export var is_boss := false
 
+
 # -
 # ----------
 # from Node / basic util methods

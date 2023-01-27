@@ -29,7 +29,9 @@ func _ready() -> void:
 
 
 ## called from outside
-func trigger():
+## the player param (can be null) is passed to the enemy so that they can spawn
+## with knowledge of the player
+func trigger(player: Unit):
 	# should this be called AFTER all of the enemies are spawned?
 	if use_block_timer and block_time > 0.0:
 		block_timer.start(block_time)
@@ -37,7 +39,7 @@ func trigger():
 	# idk if it's better to yield to a timer each loop or keep a cumulative_delay
 	var delay_each := delay_between_each_enemy > 0.0
 	for w in wave_enemies:
-		w.trigger()
+		w.trigger(player)
 		if delay_each:
 			delay_timer.start(delay_between_each_enemy)
 			yield(delay_timer, "timeout")

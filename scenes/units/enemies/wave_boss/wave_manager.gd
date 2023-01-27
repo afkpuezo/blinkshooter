@@ -12,6 +12,9 @@ export var delay_between_each_wave := 0.0
 var waves := []
 var num_remaining_undefeated_waves := 0
 
+export var always_detect_player := true
+var player: Unit
+
 
 func _ready() -> void:
 	for c in get_children():
@@ -20,12 +23,18 @@ func _ready() -> void:
 			c.connect("defeated", self, "_on_wave_defeated")
 			num_remaining_undefeated_waves += 1
 
+	if always_detect_player:
+		# warning-ignore:return_value_discarded
+		GameEvents.connect("player_spawned", self, "_on_player_spawn")
+		# warning-ignore:return_value_discarded
+		GameEvents.connect("player_died", self, "_on_player_death")
+
 
 ## called from outside
 func trigger():
 	var has_delay_between_each := delay_between_each_wave > 0.0
 	for w in waves:
-		w.trigger()
+		w.trigger(player)
 		yield(w, "unblocked")
 
 		if has_delay_between_each:
@@ -38,3 +47,13 @@ func _on_wave_defeated():
 	if num_remaining_undefeated_waves <= 0:
 		emit_signal("defeated")
 		queue_free()
+
+
+func _on_player_spawn(msg: Dictionary):
+	print("WaveManager._on_player_spawn()")
+	player = msg['player']
+
+
+func _on_player_death(_msg: Dictionary):
+	print("WaveManager._on_player_death()")
+	player = null

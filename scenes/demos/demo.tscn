@@ -29,6 +29,59 @@
 script = ExtResource( 12 )
 level_scene_path = "res://scenes/demos/demo.tscn"
 
+[node name="WaveTest" type="Node2D" parent="."]
+
+[node name="SmallGunEnemy" parent="WaveTest" instance=ExtResource( 2 )]
+position = Vector2( 1674, 1303 )
+
+[node name="WaveManager" parent="WaveTest" instance=ExtResource( 8 )]
+position = Vector2( 1693, 1172 )
+
+[node name="Wave" parent="WaveTest/WaveManager" instance=ExtResource( 23 )]
+use_block_timer = true
+block_time = 3.0
+delay_between_each_enemy = 0.5
+
+[node name="WaveEnemy" parent="WaveTest/WaveManager/Wave" instance=ExtResource( 24 )]
+position = Vector2( 226, -136 )
+
+[node name="WaveEnemy2" parent="WaveTest/WaveManager/Wave" instance=ExtResource( 24 )]
+position = Vector2( 234, 23 )
+
+[node name="Wave2" parent="WaveTest/WaveManager" instance=ExtResource( 23 )]
+delay_between_each_enemy = 1.0
+
+[node name="WaveEnemy2" parent="WaveTest/WaveManager/Wave2" instance=ExtResource( 24 )]
+position = Vector2( 251, 299 )
+enemy_type = 1
+
+[node name="WaveEnemy3" parent="WaveTest/WaveManager/Wave2" instance=ExtResource( 24 )]
+position = Vector2( 89, 329 )
+enemy_type = 1
+
+[node name="Wave3" parent="WaveTest/WaveManager" instance=ExtResource( 23 )]
+block_time = 0.25
+
+[node name="WaveEnemy3" parent="WaveTest/WaveManager/Wave3" instance=ExtResource( 24 )]
+position = Vector2( -344, 306 )
+enemy_type = 2
+
+[node name="WaveEnemy4" parent="WaveTest/WaveManager/Wave3" instance=ExtResource( 24 )]
+position = Vector2( -249, 379 )
+enemy_type = 2
+
+[node name="Wave4" parent="WaveTest/WaveManager" instance=ExtResource( 23 )]
+
+[node name="WaveEnemy4" parent="WaveTest/WaveManager/Wave4" instance=ExtResource( 24 )]
+position = Vector2( -328, -93 )
+base_overall_delay = 1.0
+enemy_type = 3
+
+[node name="WaveEnemy5" parent="WaveTest/WaveManager/Wave4" instance=ExtResource( 24 )]
+position = Vector2( -190, -160 )
+base_overall_delay = 1.0
+enemy_type = 3
+
 [node name="Terrain" type="Node2D" parent="."]
 
 [node name="Tiles" type="Node2D" parent="Terrain"]
@@ -169,58 +222,5 @@ cooldown = 0.4
 [node name="PlasmaGun" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 17 )]
 
 [node name="PhaseRifle" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 18 )]
-
-[node name="WaveTest" type="Node2D" parent="."]
-
-[node name="SmallGunEnemy" parent="WaveTest" instance=ExtResource( 2 )]
-position = Vector2( 1674, 1303 )
-
-[node name="WaveManager" parent="WaveTest" instance=ExtResource( 8 )]
-position = Vector2( 1693, 1172 )
-
-[node name="Wave" parent="WaveTest/WaveManager" instance=ExtResource( 23 )]
-use_block_timer = true
-block_time = 3.0
-delay_between_each_enemy = 0.5
-
-[node name="WaveEnemy" parent="WaveTest/WaveManager/Wave" instance=ExtResource( 24 )]
-position = Vector2( 226, -136 )
-
-[node name="WaveEnemy2" parent="WaveTest/WaveManager/Wave" instance=ExtResource( 24 )]
-position = Vector2( 234, 23 )
-
-[node name="Wave2" parent="WaveTest/WaveManager" instance=ExtResource( 23 )]
-delay_between_each_enemy = 1.0
-
-[node name="WaveEnemy2" parent="WaveTest/WaveManager/Wave2" instance=ExtResource( 24 )]
-position = Vector2( 251, 299 )
-enemy_type = 1
-
-[node name="WaveEnemy3" parent="WaveTest/WaveManager/Wave2" instance=ExtResource( 24 )]
-position = Vector2( 89, 329 )
-enemy_type = 1
-
-[node name="Wave3" parent="WaveTest/WaveManager" instance=ExtResource( 23 )]
-block_time = 0.25
-
-[node name="WaveEnemy3" parent="WaveTest/WaveManager/Wave3" instance=ExtResource( 24 )]
-position = Vector2( -344, 306 )
-enemy_type = 2
-
-[node name="WaveEnemy4" parent="WaveTest/WaveManager/Wave3" instance=ExtResource( 24 )]
-position = Vector2( -249, 379 )
-enemy_type = 2
-
-[node name="Wave4" parent="WaveTest/WaveManager" instance=ExtResource( 23 )]
-
-[node name="WaveEnemy4" parent="WaveTest/WaveManager/Wave4" instance=ExtResource( 24 )]
-position = Vector2( -328, -93 )
-base_overall_delay = 1.0
-enemy_type = 3
-
-[node name="WaveEnemy5" parent="WaveTest/WaveManager/Wave4" instance=ExtResource( 24 )]
-position = Vector2( -190, -160 )
-base_overall_delay = 1.0
-enemy_type = 3
 
 [connection signal="died" from="WaveTest/SmallGunEnemy" to="WaveTest/WaveManager" method="trigger"]
