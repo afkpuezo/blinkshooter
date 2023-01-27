@@ -54,7 +54,7 @@ func _physics_process(_delta: float) -> void:
 
 func get_chase_position():
 	if target:
-		chase_position = target.position
+		chase_position = target.global_position
 	return chase_position
 
 
