@@ -59,6 +59,7 @@ position = Vector2( -193, 178 )
 position = Vector2( -195, -181 )
 
 [node name="Wave2" parent="BossArea/WaveManager" instance=ExtResource( 18 )]
+delay_between_each_enemy = 0.1
 
 [node name="WaveEnemy" parent="BossArea/WaveManager/Wave2" instance=ExtResource( 19 )]
 position = Vector2( -380, -388 )
@@ -71,6 +72,7 @@ enemy_type = 2
 [node name="Wave3" parent="BossArea/WaveManager" instance=ExtResource( 18 )]
 use_block_timer = true
 block_time = 2.0
+delay_between_each_enemy = 0.1
 
 [node name="WaveEnemy" parent="BossArea/WaveManager/Wave3" instance=ExtResource( 19 )]
 position = Vector2( 417, -451 )
@@ -81,9 +83,7 @@ position = Vector2( -454, 492 )
 enemy_type = 3
 
 [node name="Wave4" parent="BossArea/WaveManager" instance=ExtResource( 18 )]
-use_block_timer = true
-block_time = 2.0
-delay_between_each_enemy = 0.25
+delay_between_each_enemy = 0.1
 
 [node name="WaveEnemy" parent="BossArea/WaveManager/Wave4" instance=ExtResource( 19 )]
 position = Vector2( -5, -137 )
@@ -92,6 +92,18 @@ enemy_type = 1
 [node name="WaveEnemy2" parent="BossArea/WaveManager/Wave4" instance=ExtResource( 19 )]
 position = Vector2( -17, 148 )
 enemy_type = 1
+
+[node name="Wave5" parent="BossArea/WaveManager" instance=ExtResource( 18 )]
+delay_between_each_enemy = 0.1
+
+[node name="WaveEnemy" parent="BossArea/WaveManager/Wave5" instance=ExtResource( 19 )]
+enemy_type = 2
+
+[node name="WaveEnemy2" parent="BossArea/WaveManager/Wave5" instance=ExtResource( 19 )]
+position = Vector2( 256, 0 )
+
+[node name="WaveEnemy3" parent="BossArea/WaveManager/Wave5" instance=ExtResource( 19 )]
+position = Vector2( -256, 0 )
 
 [node name="IntroArea" type="Node2D" parent="."]
 position = Vector2( -512, -1280 )
