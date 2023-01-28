@@ -15,28 +15,18 @@ export var player_awareness_delay := 0.1 # spawning is call_deferred so we need 
 enum ENEMY_TYPE{SMALL_GUN, SHOTGUN, PLASMA, SNIPER}
 export(ENEMY_TYPE) var enemy_type := ENEMY_TYPE.SMALL_GUN
 
+# NOTE: i'm not sure if these should be constants or exports or what
 export(PackedScene) var teleport_effect_scene
 export(PackedScene) var small_gun_enemy_scene
 export(PackedScene) var shotgun_enemy_scene
 export(PackedScene) var plasma_enemy_scene
 export(PackedScene) var sniper_enemy_scene
 
-
-## very silly optimization
-func get_scene() -> PackedScene:
-	var scene: PackedScene
-
-	match enemy_type:
-		ENEMY_TYPE.SMALL_GUN:
-			scene = small_gun_enemy_scene
-		ENEMY_TYPE.SHOTGUN:
-			scene = shotgun_enemy_scene
-		ENEMY_TYPE.PLASMA:
-			scene = plasma_enemy_scene
-		ENEMY_TYPE.SNIPER:
-			scene = sniper_enemy_scene
-
-	return scene
+# NOTE: i'm not sure if these should be constants or exports or what
+const SMALL_GUN_EFFECT_SCALE := 1.0
+const SHOTGUN_EFFECT_SCALE := 1.0
+const PLASMA_EFFECT_SCALE := 1.25
+const SNIPER_EFFECT_SCALE := 2.0
 
 
 ## called from outside
@@ -49,7 +39,27 @@ func trigger(player: Unit, extra_delay := 0.0):
 		overall_delay_timer.start(base_overall_delay)
 		yield(overall_delay_timer, "timeout")
 
-	Spawner.spawn_node(teleport_effect_scene.instance(), global_position)
+	var enemy_scene: PackedScene
+	var effect_scale: float
+
+	match enemy_type:
+		ENEMY_TYPE.SMALL_GUN:
+			enemy_scene = small_gun_enemy_scene
+			effect_scale = SMALL_GUN_EFFECT_SCALE
+		ENEMY_TYPE.SHOTGUN:
+			enemy_scene = shotgun_enemy_scene
+			effect_scale = SHOTGUN_EFFECT_SCALE
+		ENEMY_TYPE.PLASMA:
+			enemy_scene = plasma_enemy_scene
+			effect_scale = PLASMA_EFFECT_SCALE
+		ENEMY_TYPE.SNIPER:
+			enemy_scene = sniper_enemy_scene
+			effect_scale = SNIPER_EFFECT_SCALE
+
+	var effect: Node2D = teleport_effect_scene.instance()
+	effect.scale *= effect_scale
+
+	Spawner.spawn_node(effect, global_position)
 
 	if unit_delay > 0.0:
 		unit_delay_timer.start(unit_delay)
@@ -62,7 +72,6 @@ func trigger(player: Unit, extra_delay := 0.0):
 	else:
 		enemy_rotation = global_rotation
 
-	var enemy_scene: PackedScene = get_scene()
 	var enemy: Unit = enemy_scene.instance()
 	Spawner.spawn_node(enemy, global_position, enemy_rotation)
 	# warning-ignore:return_value_discarded
@@ -71,14 +80,6 @@ func trigger(player: Unit, extra_delay := 0.0):
 	var enemy_brain: EnemyBrain = enemy.get_node("EnemyBrain")
 	enemy_brain.call_deferred("do_teleport_animation")
 	enemy_brain.call_deferred("receive_enemy_message", {'player': player})
-#	if player:
-#		# spawning is call_deferred so we need a delay
-#		unit_delay_timer.start(player_awareness_delay)
-#		yield(unit_delay_timer, "timeout")
-#		# probably shouldn't hard-code this but who cares at this point
-#		var enemy_brain: EnemyBrain = enemy.get_node("EnemyBrain")
-#		enemy_brain.do_teleport_animation()
-#		enemy_brain.receive_enemy_message({'player': player})
 
 
 func _on_enemy_death():

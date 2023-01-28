@@ -44,7 +44,7 @@ is_fakeout = true
 [node name="WaveManager" parent="BossArea" instance=ExtResource( 17 )]
 
 [node name="Wave" parent="BossArea/WaveManager" instance=ExtResource( 18 )]
-delay_between_each_enemy = 0.5
+delay_between_each_enemy = 0.1
 
 [node name="WaveEnemy" parent="BossArea/WaveManager/Wave" instance=ExtResource( 19 )]
 position = Vector2( 190, -189 )
