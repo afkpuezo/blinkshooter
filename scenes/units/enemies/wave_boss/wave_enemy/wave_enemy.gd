@@ -12,7 +12,7 @@ onready var unit_delay_timer: Timer = $UnitDelayTimer
 export var unit_delay := 0.25 # time between teleport effect and enemy spawn
 export var player_awareness_delay := 0.1 # spawning is call_deferred so we need a delay
 
-enum ENEMY_TYPE{SMALL_GUN, SHOTGUN, PLASMA, SNIPER}
+enum ENEMY_TYPE{SMALL_GUN, SHOTGUN, PLASMA, SNIPER, PLASMA_BOSS}
 export(ENEMY_TYPE) var enemy_type := ENEMY_TYPE.SMALL_GUN
 
 # NOTE: i'm not sure if these should be constants or exports or what
@@ -21,12 +21,14 @@ export(PackedScene) var small_gun_enemy_scene
 export(PackedScene) var shotgun_enemy_scene
 export(PackedScene) var plasma_enemy_scene
 export(PackedScene) var sniper_enemy_scene
+export(PackedScene) var plasma_boss_scene
 
 # NOTE: i'm not sure if these should be constants or exports or what
 const SMALL_GUN_EFFECT_SCALE := 1.0
 const SHOTGUN_EFFECT_SCALE := 1.0
 const PLASMA_EFFECT_SCALE := 1.25
 const SNIPER_EFFECT_SCALE := 2.0
+const PLASMA_BOSS_EFFECT_SCALE := 5.00
 
 
 ## called from outside
@@ -58,6 +60,9 @@ func trigger(wave_manager, extra_delay := 0.0):
 		ENEMY_TYPE.SNIPER:
 			enemy_scene = sniper_enemy_scene
 			effect_scale = SNIPER_EFFECT_SCALE
+		ENEMY_TYPE.PLASMA_BOSS:
+			enemy_scene = plasma_boss_scene
+			effect_scale = PLASMA_BOSS_EFFECT_SCALE
 
 	var effect: Node2D = teleport_effect_scene.instance()
 	effect.scale *= effect_scale
