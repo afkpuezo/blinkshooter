@@ -11,8 +11,10 @@ export var enabled_loot_types := {
 	Pickup.TYPE.BASIC_AMMO: true,
 	Pickup.TYPE.PLASMA_AMMO: true,
 }
+export var drop_chance_multiplier := 1.0
 
 
 func _ready() -> void:
 	LevelGlobal.level_scene_path = level_scene_path
 	LevelGlobal.enabled_loot_types = enabled_loot_types
+	LevelGlobal.drop_chance_multiplier = drop_chance_multiplier

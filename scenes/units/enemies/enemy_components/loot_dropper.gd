@@ -31,16 +31,16 @@ func _ready() -> void:
 func _on_Enemy_died() -> void:
 	for _n in range(num_rolls):
 		for type in types_to_chances:
-			if LevelGlobal.is_loot_type_enabled(type) and roll(types_to_chances[type]):
+			if LevelGlobal.is_loot_type_enabled(type) and roll(types_to_chances[type] * LevelGlobal.drop_chance_multiplier):
 				var p: Pickup = pickup_scene.instance()
 				var size = Pickup.SIZE.LARGE if roll(large_ammo_pickup_chance) else Pickup.SIZE.NORMAL
 				p.configure(type, size)
 				Spawner.spawn_node(p, get_random_spawn_position())
 
 
-func roll(c) -> bool:
+func roll(chance) -> bool:
 	var r = randi() % 100
-	return r < c
+	return r < chance
 
 
 ## returns a random position within the drop radius
