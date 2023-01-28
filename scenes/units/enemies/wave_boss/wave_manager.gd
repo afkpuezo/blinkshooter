@@ -34,7 +34,9 @@ func _ready() -> void:
 func trigger():
 	var has_delay_between_each := delay_between_each_wave > 0.0
 	for w in waves:
-		w.trigger(player)
+		# janky to pass reference to self, but passing a reference to the player
+		# can cause a crash if the player is freed
+		w.trigger(self)
 		yield(w, "unblocked")
 
 		if has_delay_between_each:
@@ -50,10 +52,8 @@ func _on_wave_defeated():
 
 
 func _on_player_spawn(msg: Dictionary):
-	print("WaveManager._on_player_spawn()")
 	player = msg['player']
 
 
 func _on_player_death(_msg: Dictionary):
-	print("WaveManager._on_player_death()")
 	player = null

@@ -32,7 +32,10 @@ const SNIPER_EFFECT_SCALE := 2.0
 ## called from outside
 ## the player param (can be null) is passed to the enemy so that they can spawn
 ## with knowledge of the player
-func trigger(player: Unit, extra_delay := 0.0):
+# janky to pass reference to the wave manager, but passing a reference to the
+# player can cause a crash if the player is freed
+# can't refer to the WaveManager class directly cuz dumb
+func trigger(wave_manager, extra_delay := 0.0):
 	var total_overall_delay := base_overall_delay + extra_delay
 
 	if total_overall_delay > 0.0:
@@ -67,8 +70,8 @@ func trigger(player: Unit, extra_delay := 0.0):
 
 	# if we know about the player, point the enemy at them
 	var enemy_rotation: float
-	if player:
-		enemy_rotation = global_position.angle_to_point(player.global_position) - PI
+	if wave_manager.player:
+		enemy_rotation = global_position.angle_to_point(wave_manager.player.global_position) - PI
 	else:
 		enemy_rotation = global_rotation
 
@@ -79,7 +82,11 @@ func trigger(player: Unit, extra_delay := 0.0):
 
 	var enemy_brain: EnemyBrain = enemy.get_node("EnemyBrain")
 	enemy_brain.call_deferred("do_teleport_animation")
-	enemy_brain.call_deferred("receive_enemy_message", {'player': player})
+	if wave_manager.player:
+		enemy_brain.call_deferred(
+			"receive_enemy_message",
+			{'player': wave_manager.player}
+		)
 
 
 func _on_enemy_death():
