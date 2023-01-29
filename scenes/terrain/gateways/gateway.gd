@@ -66,10 +66,11 @@ func on_unit_entered(unit: Unit):
 				pass
 			else:
 				is_working = true
-				if type == TYPE.LEVEL:
+				if type in [TYPE.LEVEL, TYPE.FAKEOUT]:
 					move_to_next_level()
 				else:
 					teleport_unit(unit)
+				# there will be a delay, so it makes sense to have this here
 				is_working = false
 
 

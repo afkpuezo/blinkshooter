@@ -60,7 +60,6 @@ tile_data = PoolIntArray( 4325386, 0, 0, 4325387, 0, 0, 4390922, 0, 0, 4390923, 
 
 [node name="Gateway7" parent="Terrain/Gateways" instance=ExtResource( 12 )]
 position = Vector2( 1312, 2720 )
-type = 1
 
 [node name="Lock" parent="Terrain/Gateways/Gateway7" instance=ExtResource( 2 )]
 position = Vector2( -128, 128 )
@@ -96,6 +95,7 @@ position = Vector2( -2560, 5120 )
 
 [node name="Gateway9" parent="Terrain/Gateways" instance=ExtResource( 12 )]
 position = Vector2( 704, 3968 )
+type = 1
 level_scene_path = "res://scenes/levels/level_1/level_1c.tscn"
 
 [node name="Lock" parent="Terrain/Gateways/Gateway9" instance=ExtResource( 2 )]
