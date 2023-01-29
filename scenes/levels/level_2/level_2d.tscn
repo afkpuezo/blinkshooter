@@ -49,15 +49,19 @@ delay_between_each_enemy = 0.1
 
 [node name="WaveEnemy" parent="BossArea/WaveManager/Wave" instance=ExtResource( 19 )]
 position = Vector2( 190, -189 )
+base_overall_delay = 1.0
 
 [node name="WaveEnemy2" parent="BossArea/WaveManager/Wave" instance=ExtResource( 19 )]
 position = Vector2( 185, 186 )
+base_overall_delay = 1.0
 
 [node name="WaveEnemy3" parent="BossArea/WaveManager/Wave" instance=ExtResource( 19 )]
 position = Vector2( -193, 178 )
+base_overall_delay = 1.0
 
 [node name="WaveEnemy4" parent="BossArea/WaveManager/Wave" instance=ExtResource( 19 )]
 position = Vector2( -195, -181 )
+base_overall_delay = 1.0
 
 [node name="Wave2" parent="BossArea/WaveManager" instance=ExtResource( 18 )]
 delay_between_each_enemy = 0.1
@@ -233,7 +237,7 @@ type = 11
 position = Vector2( 160, -480 )
 
 [node name="GatewayDestination" parent="IntroArea/Gateway" instance=ExtResource( 16 )]
-position = Vector2( -128, 1760 )
+position = Vector2( -384, 1760 )
 
 [connection signal="fakeout_triggered" from="BossArea/Gateway" to="BossArea/WaveManager" method="trigger"]
 [connection signal="defeated" from="BossArea/WaveManager" to="BossArea/Gateway" method="on_lock_unlock"]
