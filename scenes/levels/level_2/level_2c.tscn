@@ -62,7 +62,7 @@ script = ExtResource( 10 )
 
 [node name="Gateway" parent="CentralArea" instance=ExtResource( 6 )]
 position = Vector2( 0, 256 )
-load_level = true
+type = 1
 level_scene_path = "res://scenes/levels/level_2/level_2d.tscn"
 
 [node name="CentralLowerLock" parent="CentralArea/Gateway" instance=ExtResource( 7 )]

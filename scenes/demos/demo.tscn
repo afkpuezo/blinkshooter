@@ -33,7 +33,6 @@ level_scene_path = "res://scenes/demos/demo.tscn"
 
 [node name="FakeoutGateway" parent="WaveTest" instance=ExtResource( 13 )]
 position = Vector2( 1646, 1276 )
-is_fakeout = true
 
 [node name="GatewayDestination" parent="WaveTest/FakeoutGateway" instance=ExtResource( 14 )]
 position = Vector2( -408, 366 )

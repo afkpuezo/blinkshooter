@@ -1,0 +1,51 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://scenes/singletons/level_management/level_local.gd" type="Script" id=1]
+[ext_resource path="res://scenes/actions/blink/blink.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/terrain/tilesets/wall_tile_map.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/units/player/player_components/player_load_helper.gd" type="Script" id=4]
+[ext_resource path="res://scenes/actions/weapons/small_gun/small_gun.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/actions/weapons/phase_rifle/phase_rifle.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/terrain/tilesets/floor_tile_map.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/actions/shuriken/shuriken.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/units/player/player.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/actions/weapons/shotgun/shotgun.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/actions/saw_blade/saw_blade.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/actions/weapons/plasma_gun/plasma_gun.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/terrain/gateways/gateway.tscn" type="PackedScene" id=13]
+
+[node name="LevelLocal" type="Node2D"]
+script = ExtResource( 1 )
+level_scene_path = "res://scenes/levels/level_2/level_2e.tscn"
+
+[node name="Tilesets" type="Node2D" parent="."]
+
+[node name="FloorTileMap" parent="Tilesets" instance=ExtResource( 7 )]
+tile_data = PoolIntArray( -1, 0, 0, -65536, 0, 1, -65535, 0, 1, -65534, 0, 1, -65533, 0, 2, -65527, 0, 0, -65526, 0, 1, -65525, 0, 1, -65524, 0, 1, -65523, 0, 2, -65517, 0, 0, -65516, 0, 1, -65515, 0, 1, -65514, 0, 1, -65513, 0, 2, 65535, 0, 65536, 0, 0, 65537, 1, 0, 65537, 2, 0, 65537, 3, 0, 65538, 9, 0, 65536, 10, 0, 65537, 11, 0, 65537, 12, 0, 65537, 13, 0, 65538, 19, 0, 65536, 20, 0, 65537, 21, 0, 65537, 22, 0, 65537, 23, 0, 65538, 131071, 0, 65536, 65536, 0, 65537, 65537, 0, 65537, 65538, 0, 65537, 65539, 0, 65538, 65545, 0, 65536, 65546, 0, 65537, 65547, 0, 65537, 65548, 0, 65537, 65549, 0, 65538, 65555, 0, 65536, 65556, 0, 65537, 65557, 0, 65537, 65558, 0, 65537, 65559, 0, 65538, 196607, 0, 65536, 131072, 0, 65537, 131073, 0, 65537, 131074, 0, 65537, 131075, 0, 65538, 131081, 0, 65536, 131082, 0, 65537, 131083, 0, 65537, 131084, 0, 65537, 131085, 0, 65538, 131091, 0, 65536, 131092, 0, 65537, 131093, 0, 65537, 131094, 0, 65537, 131095, 0, 65538, 262143, 0, 131072, 196608, 0, 131073, 196609, 0, 131073, 196610, 0, 131073, 196611, 0, 131074, 196617, 0, 131072, 196618, 0, 131073, 196619, 0, 131073, 196620, 0, 131073, 196621, 0, 131074, 196627, 0, 131072, 196628, 0, 131073, 196629, 0, 131073, 196630, 0, 131073, 196631, 0, 131074 )
+
+[node name="WallTileMap" parent="Tilesets" instance=ExtResource( 3 )]
+tile_data = PoolIntArray( -196608, 0, 131075, -196606, 0, 131075, -196599, 0, 131075, -196597, 0, 131075, -196595, 0, 131075, -196588, 0, 131075, -196586, 0, 131075, -65538, 0, 11, -65537, 0, 65539, -131072, 0, 131081, -131071, 0, 65539, -131070, 0, 131081, -131069, 0, 65539, -131068, 0, 65545, -131064, 0, 11, -131063, 0, 131081, -131062, 0, 65539, -131061, 0, 131081, -131060, 0, 65539, -131059, 0, 131081, -131058, 0, 65545, -131054, 0, 11, -131053, 0, 65539, -131052, 0, 131081, -131051, 0, 65539, -131050, 0, 131081, -131049, 0, 65539, -131048, 0, 65545, -2, 0, 65540, -65532, 0, 65540, -65529, 0, 131078, -65528, 0, 65547, -65522, 0, 131082, -65521, 0, 131076, -65518, 0, 65540, -65512, 0, 65540, 65533, 0, 131078, 65534, 0, 65547, 4, 0, 131082, 5, 0, 131076, 8, 0, 65540, 14, 0, 65540, 17, 0, 131078, 18, 0, 65547, 24, 0, 131082, 25, 0, 131076, 131070, 0, 65540, 65540, 0, 65540, 65543, 0, 131078, 65544, 0, 65547, 65550, 0, 131082, 65551, 0, 131076, 65554, 0, 65540, 65560, 0, 65540, 196605, 0, 131078, 196606, 0, 65547, 131076, 0, 131082, 131077, 0, 131076, 131080, 0, 65540, 131086, 0, 65540, 131089, 0, 131078, 131090, 0, 65547, 131096, 0, 131082, 131097, 0, 131076, 262142, 0, 65540, 196612, 0, 65540, 196615, 0, 131078, 196616, 0, 65547, 196622, 0, 131082, 196623, 0, 131076, 196626, 0, 65540, 196632, 0, 65540, 327678, 0, 10, 327679, 0, 65539, 262144, 0, 65546, 262145, 0, 65539, 262146, 0, 65546, 262147, 0, 65539, 262148, 0, 9, 262152, 0, 10, 262153, 0, 65546, 262154, 0, 65539, 262155, 0, 65546, 262156, 0, 65539, 262157, 0, 65546, 262158, 0, 9, 262162, 0, 10, 262163, 0, 65539, 262164, 0, 65546, 262165, 0, 65539, 262166, 0, 65546, 262167, 0, 65539, 262168, 0, 9, 327680, 0, 131077, 327682, 0, 131077, 327689, 0, 131077, 327691, 0, 131077, 327693, 0, 131077, 327700, 0, 131077, 327702, 0, 131077 )
+
+[node name="Player" parent="." instance=ExtResource( 9 )]
+position = Vector2( 96, 96 )
+
+[node name="PlayerLoadHelper" type="Node2D" parent="Player"]
+script = ExtResource( 4 )
+
+[node name="Blink" parent="Player/PlayerLoadHelper" instance=ExtResource( 2 )]
+
+[node name="Shuriken" parent="Player/PlayerLoadHelper" instance=ExtResource( 8 )]
+
+[node name="SmallGun" parent="Player/PlayerLoadHelper" instance=ExtResource( 5 )]
+
+[node name="Shotgun" parent="Player/PlayerLoadHelper" instance=ExtResource( 10 )]
+
+[node name="SawBlade" parent="Player/PlayerLoadHelper" instance=ExtResource( 11 )]
+
+[node name="PlasmaGun" parent="Player/PlayerLoadHelper" instance=ExtResource( 12 )]
+
+[node name="PhaseRifle" parent="Player/PlayerLoadHelper" instance=ExtResource( 6 )]
+
+[node name="Gateway" parent="." instance=ExtResource( 13 )]
+position = Vector2( 1376, 96 )
+type = 3

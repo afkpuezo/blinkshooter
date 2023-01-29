@@ -39,8 +39,8 @@ tile_data = PoolIntArray( -851974, 0, 11, -851973, 0, 65539, -851972, 0, 65539, 
 tile_data = PoolIntArray( -262149, 0, 0, -262148, 0, 0, -327677, 0, 0, -327676, 0, 0, -196613, 0, 0, -262140, 0, 0, 262139, 0, 0, 196612, 0, 0, 327675, 0, 0, 327676, 0, 0, 262147, 0, 0, 262148, 0, 0 )
 
 [node name="Gateway" parent="BossArea" instance=ExtResource( 15 )]
-load_level = true
-is_fakeout = true
+type = 2
+level_scene_path = "res://scenes/levels/level_2/level_2e.tscn"
 
 [node name="WaveManager" parent="BossArea" instance=ExtResource( 17 )]
 
@@ -49,19 +49,19 @@ delay_between_each_enemy = 0.1
 
 [node name="WaveEnemy" parent="BossArea/WaveManager/Wave" instance=ExtResource( 19 )]
 position = Vector2( 190, -189 )
-base_overall_delay = 1.0
+base_overall_delay = 0.5
 
 [node name="WaveEnemy2" parent="BossArea/WaveManager/Wave" instance=ExtResource( 19 )]
 position = Vector2( 185, 186 )
-base_overall_delay = 1.0
+base_overall_delay = 0.5
 
 [node name="WaveEnemy3" parent="BossArea/WaveManager/Wave" instance=ExtResource( 19 )]
 position = Vector2( -193, 178 )
-base_overall_delay = 1.0
+base_overall_delay = 0.5
 
 [node name="WaveEnemy4" parent="BossArea/WaveManager/Wave" instance=ExtResource( 19 )]
 position = Vector2( -195, -181 )
-base_overall_delay = 1.0
+base_overall_delay = 0.5
 
 [node name="Wave2" parent="BossArea/WaveManager" instance=ExtResource( 18 )]
 delay_between_each_enemy = 0.1

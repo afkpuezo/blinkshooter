@@ -180,7 +180,7 @@ position = Vector2( 0, 480 )
 
 [node name="Gateway" parent="ExitArea" instance=ExtResource( 5 )]
 position = Vector2( 4288, 0 )
-load_level = true
+type = 1
 level_scene_path = "res://scenes/levels/level_2/level_2c.tscn"
 
 [node name="PlasmaEnemy" parent="ExitArea" instance=ExtResource( 22 )]

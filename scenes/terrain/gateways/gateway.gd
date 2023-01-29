@@ -8,6 +8,10 @@ signal triggered() # should this have args?
 signal fakeout_triggered() # used in the wave boss
 
 
+# jank
+enum TYPE {TELEPORT, LEVEL, FAKEOUT, GAME_END}
+export(TYPE) var type = TYPE.TELEPORT
+
 onready var sprite: Sprite = $Sprite
 onready var label: Label = $CenterContainer/Label
 
@@ -17,7 +21,7 @@ var destination: GatewayDestination
 var num_locks_remaining := 0
 var is_unlocked := false
 
-export var load_level := false
+# used when loading a level
 export var level_scene_path: String
 
 export var open_sprite: Texture
@@ -32,7 +36,6 @@ export var destination_teleport_effect_delay := 0.25
 var is_working := false
 
 # used in the wave boss
-export var is_fakeout := false
 var has_fakeout_started := false
 
 
@@ -45,14 +48,17 @@ func _ready() -> void:
 			num_locks_remaining += 1
 			c.connect("unlocked", self, "on_lock_unlock")
 	# end for children
-	if not destination and not load_level:
+	if not destination and type == TYPE.TELEPORT:
 		print("%s couldn't find a destination!" % name)
 
 	update()
 
 
 func on_unit_entered(unit: Unit):
-	if is_fakeout and not has_fakeout_started:
+	if type == TYPE.GAME_END:
+		pass # TODO continue dividing this method and teleport_unit
+
+	if type == TYPE.FAKEOUT and not has_fakeout_started:
 		has_fakeout_started = true
 		num_locks_remaining += 1
 		emit_signal("fakeout_triggered")
@@ -64,7 +70,7 @@ func on_unit_entered(unit: Unit):
 			pass
 		else:
 			is_working = true
-			if load_level:
+			if type == TYPE.LEVEL:
 				move_to_next_level()
 			else:
 				teleport_unit(unit)
