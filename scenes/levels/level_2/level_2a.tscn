@@ -62,20 +62,24 @@ position = Vector2( 256, 224 )
 [node name="PlasmaEnemy" parent="Terrain/Gateways/Gateway/Lock" instance=ExtResource( 14 )]
 position = Vector2( -256, 1168 )
 rotation = -1.5708
+z_index = 20
 
 [node name="ShotgunEnemy" parent="Terrain/Gateways/Gateway/Lock" instance=ExtResource( 13 )]
 position = Vector2( -720, 381 )
 rotation = 0.785398
+z_index = 20
 
 [node name="ShotgunEnemy2" parent="Terrain/Gateways/Gateway/Lock" instance=ExtResource( 13 )]
 position = Vector2( 210, 381 )
 rotation = 2.35619
+z_index = 20
 
 [node name="Lock2" parent="Terrain/Gateways/Gateway" instance=ExtResource( 16 )]
 position = Vector2( 256, -224 )
 
 [node name="SmallGunEnemy" parent="Terrain/Gateways/Gateway/Lock2" instance=ExtResource( 15 )]
 position = Vector2( -571, -451 )
+z_index = 20
 
 [node name="PatrolPath" parent="Terrain/Gateways/Gateway/Lock2/SmallGunEnemy" instance=ExtResource( 18 )]
 
@@ -87,6 +91,7 @@ position = Vector2( 640, 0 )
 [node name="SmallGunEnemy2" parent="Terrain/Gateways/Gateway/Lock2" instance=ExtResource( 15 )]
 position = Vector2( 194, -581 )
 rotation = 3.14159
+z_index = 20
 
 [node name="PatrolPath" parent="Terrain/Gateways/Gateway/Lock2/SmallGunEnemy2" instance=ExtResource( 18 )]
 
@@ -98,10 +103,12 @@ position = Vector2( 896, 0 )
 [node name="PlasmaEnemy" parent="Terrain/Gateways/Gateway/Lock2" instance=ExtResource( 14 )]
 position = Vector2( -570, -1280 )
 rotation = 0.785398
+z_index = 20
 
 [node name="PlasmaEnemy2" parent="Terrain/Gateways/Gateway/Lock2" instance=ExtResource( 14 )]
 position = Vector2( 19, -1280 )
 rotation = 2.35619
+z_index = 20
 
 [node name="Pickups" type="Node2D" parent="."]
 
