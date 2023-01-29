@@ -7,6 +7,7 @@ class_name Blink
 
 # child node vars
 onready var raycast: RayCast2D = $RayCast2D
+onready var timer: Timer = $Timer
 
 export var max_range := 500
 export var min_range := 100
@@ -59,14 +60,16 @@ func do_action():
 		Spawner.spawn_node(destination_effect, target_position, 0, destination_teleport_effect_delay)
 	GameEvents.emit_signal("player_teleport_started")
 
-	yield(get_tree().create_timer(teleport_wait_time, false), "timeout")
+	timer.start(teleport_wait_time)
+	yield(timer, "timeout")
 	GameEvents.emit_signal("player_teleported")
 	user.global_position = target_position
 
 	if destination_effect:
 		# moving the effect position looks better if the player gets pushed away
 		# by a wall after blinking
-		yield(get_tree().create_timer(0.05, false), "timeout")
+		timer.start(0.05)
+		yield(timer, "timeout")
 		destination_effect.position = user.get_position()
 
 
