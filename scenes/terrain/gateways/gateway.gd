@@ -56,25 +56,21 @@ func _ready() -> void:
 
 func on_unit_entered(unit: Unit):
 	if type == TYPE.GAME_END:
-		pass # TODO continue dividing this method and teleport_unit
+		do_game_end(unit)
+	else:
+		if type == TYPE.FAKEOUT and not has_fakeout_started:
+			do_fakeout()
 
-	if type == TYPE.FAKEOUT and not has_fakeout_started:
-		has_fakeout_started = true
-		num_locks_remaining += 1
-		emit_signal("fakeout_triggered")
-		is_unlocked = false
-		update()
-
-	if is_unlocked:
-		if is_working:
-			pass
-		else:
-			is_working = true
-			if type == TYPE.LEVEL:
-				move_to_next_level()
+		if is_unlocked:
+			if is_working:
+				pass
 			else:
-				teleport_unit(unit)
-			is_working = false
+				is_working = true
+				if type == TYPE.LEVEL:
+					move_to_next_level()
+				else:
+					teleport_unit(unit)
+				is_working = false
 
 
 func teleport_unit(unit: Unit):
@@ -120,3 +116,21 @@ func update():
 		sprite.texture = open_sprite
 	else:
 		sprite.texture = locked_sprite
+
+
+func do_fakeout():
+	has_fakeout_started = true
+	num_locks_remaining += 1
+	emit_signal("fakeout_triggered")
+	is_unlocked = false
+	update()
+
+
+func do_game_end(player: Unit):
+	# just assume it's the player
+	GameEvents.emit_signal("player_teleport_started")
+	yield(get_tree().create_timer(teleport_wait_time, false), "timeout")
+	emit_signal("triggered")
+	GameEvents.emit_signal("game_won", {'player': player})
+	player.queue_free()
+

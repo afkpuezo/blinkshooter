@@ -86,3 +86,7 @@ signal enemy_died(msg)
 # warning-ignore:unused_signal
 signal level_loaded(msg)
 
+## msg fields: "player"
+# player is passed to help the camera manager
+# warning-ignore:unused_signal
+signal game_won(msg)

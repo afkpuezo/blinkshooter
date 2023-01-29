@@ -14,6 +14,8 @@ func _ready() -> void:
 	GameEvents.connect("player_spawned", self, "on_player_spawn")
 	# warning-ignore:return_value_discarded
 	GameEvents.connect("player_died", self, "on_player_died")
+	# warning-ignore:return_value_discarded
+	GameEvents.connect("game_won", self, "on_player_died")
 
 
 ## have the camera follow the player when they spawn

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/singletons/level_management/level_local.gd" type="Script" id=1]
 [ext_resource path="res://scenes/actions/blink/blink.tscn" type="PackedScene" id=2]
@@ -13,6 +13,9 @@
 [ext_resource path="res://scenes/actions/saw_blade/saw_blade.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/actions/weapons/plasma_gun/plasma_gun.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/terrain/gateways/gateway.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/ui/triggered_canvas.gd" type="Script" id=14]
+[ext_resource path="res://scenes/ui/fonts/win_screen_font.tres" type="DynamicFont" id=15]
+[ext_resource path="res://scenes/pickups/trophy.tscn" type="PackedScene" id=16]
 
 [node name="LevelLocal" type="Node2D"]
 script = ExtResource( 1 )
@@ -49,3 +52,32 @@ script = ExtResource( 4 )
 [node name="Gateway" parent="." instance=ExtResource( 13 )]
 position = Vector2( 1376, 96 )
 type = 3
+
+[node name="TriggeredCanvas" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource( 14 )
+enable_delay_time = 2.0
+
+[node name="Label" type="Label" parent="TriggeredCanvas"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 15 )
+text = "CONGRATULATION
+
+
+
+
+
+
+
+
+YOU'RE WINNER"
+align = 1
+valign = 1
+
+[node name="Trophy" parent="." instance=ExtResource( 16 )]
+position = Vector2( 736, 96 )
+
+[connection signal="triggered" from="Gateway" to="TriggeredCanvas" method="enable"]
