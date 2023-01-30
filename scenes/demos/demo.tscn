@@ -116,6 +116,8 @@ script = ExtResource( 5 )
 [node name="Node2D" type="Node2D" parent="Units/SmallGunEnemy2/PatrolPath"]
 rotation = 3.14159
 
+[node name="LootBlocker" type="Node2D" parent="Units/SmallGunEnemy2"]
+
 [node name="SmallGunEnemy3" parent="Units" instance=ExtResource( 2 )]
 position = Vector2( 1146, 592 )
 rotation = 3.14159

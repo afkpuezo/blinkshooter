@@ -30,6 +30,9 @@ func _ready() -> void:
 
 
 func _on_Enemy_died() -> void:
+	if is_enemy_blocked():
+		return
+
 	var dropped_pickups := []
 	var num_pickups := 0
 
@@ -83,3 +86,7 @@ func get_angles(num_angles: int) -> Array:
 func push_pickup(p: Pickup, push_force: Vector2):
 	var stats := MovementStats.get_movement_stats(p)
 	stats.apply_outside_force(push_force)
+
+
+func is_enemy_blocked() -> bool:
+	return owner.has_node("LootBlocker")

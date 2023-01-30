@@ -163,9 +163,13 @@ rotation = 3.14159
 [node name="SmallGunEnemy3" parent="GauntletArea/Gateway2/Lock" instance=ExtResource( 19 )]
 position = Vector2( 1471, -64 )
 
+[node name="LootBlocker" type="Node2D" parent="GauntletArea/Gateway2/Lock/SmallGunEnemy3"]
+
 [node name="SmallGunEnemy4" parent="GauntletArea/Gateway2/Lock" instance=ExtResource( 19 )]
 position = Vector2( -1471, -64 )
 rotation = 3.14159
+
+[node name="LootBlocker" type="Node2D" parent="GauntletArea/Gateway2/Lock/SmallGunEnemy4"]
 
 [node name="GatewayDestination" parent="GauntletArea/Gateway2" instance=ExtResource( 17 )]
 position = Vector2( 672, -544 )
