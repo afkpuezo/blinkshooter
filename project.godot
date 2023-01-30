@@ -462,6 +462,7 @@ mouse_cursor/custom_image_hotspot=Vector2( 16, 16 )
 static=false
 alias=false
 autoload=false
+main=false
 
 [input]
 
