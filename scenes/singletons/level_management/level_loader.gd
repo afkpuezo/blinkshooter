@@ -36,8 +36,9 @@ func load_level(level_scene_path: String, is_from_player_death: bool = false):
 	# if the player died, don't store their new resource values
 	if not is_from_player_death:
 		save_player_data()
+		# putting this here means you heal to full after death
+		is_waiting_for_player_spawn = true
 
-	is_waiting_for_player_spawn = true
 	# warning-ignore:return_value_discarded
 	GameEvents.emit_signal("level_loaded", {'level_scene_path': level_scene_path})
 	get_tree().change_scene(level_scene_path)
