@@ -18,10 +18,10 @@ onready var types_to_chances := {
 	Pickup.TYPE.HEALTH: health_chance,
 	Pickup.TYPE.ENERGY: energy_chance,
 }
-
-export var max_drop_radius := 96
-
 export(PackedScene) var pickup_scene
+
+onready var pusher: Pusher = $Pusher
+export var max_push_strength := 300
 
 
 func _ready() -> void:
@@ -36,6 +36,7 @@ func _on_Enemy_died() -> void:
 				var size = Pickup.SIZE.LARGE if roll(large_ammo_pickup_chance) else Pickup.SIZE.NORMAL
 				p.configure(type, size)
 				Spawner.spawn_node(p, get_random_spawn_position())
+				pusher.call_deferred("push", p, randi() % max_push_strength)
 
 
 func roll(chance) -> bool:
@@ -45,9 +46,7 @@ func roll(chance) -> bool:
 
 ## returns a random position within the drop radius
 func get_random_spawn_position() -> Vector2:
-	var distance = randi() % max_drop_radius
-	var spawn_pos = Vector2(distance, 0)
 	var deg = randi() % 360
-	spawn_pos = spawn_pos.rotated(deg2rad(deg))
-	spawn_pos = spawn_pos + global_position
+	var spawn_pos = Vector2(1, 0).rotated(deg2rad(deg))
+	spawn_pos += global_position
 	return spawn_pos

@@ -5,11 +5,11 @@
 [ext_resource path="res://scenes/units/enemies/enemy_components/enemy_brain.gd" type="Script" id=3]
 [ext_resource path="res://scenes/units/enemies/enemy_components/enemy_mover/enemy_mover.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/units/unit_components/bullet_spawn_point.gd" type="Script" id=5]
+[ext_resource path="res://scenes/units/enemies/enemy_components/loot_dropper.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/units/enemies/enemy_components/enemy_weapon_bar.gd" type="Script" id=7]
 [ext_resource path="res://scenes/pickups/pickup.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/units/enemies/enemy_components/enemy_messager/enemy_messager.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/units/enemies/enemy_components/player_detection/player_detection.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/units/enemies/enemy_components/loot_dropper.gd" type="Script" id=12]
 [ext_resource path="res://scenes/units/enemies/enemy_components/enemy_idler/enemy_idler.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/actions/attacks/contact_attack.gd" type="Script" id=14]
 [ext_resource path="res://scenes/hit_boxes/hit_box.gd" type="Script" id=15]
@@ -54,16 +54,7 @@ collision_layer = 4
 position = Vector2( 48, 0 )
 script = ExtResource( 5 )
 
-[node name="LootDropper" type="Node2D" parent="." index="6"]
-script = ExtResource( 12 )
-health_chance = 50
-energy_chance = 50
-basic_ammo_chance = 50
-plasma_ammo_chance = 50
-max_drop_radius = 48
-pickup_scene = ExtResource( 8 )
-
-[node name="EnemyBrain" type="Node2D" parent="." index="7"]
+[node name="EnemyBrain" type="Node2D" parent="." index="6"]
 script = ExtResource( 3 )
 minimum_chase_distance = 256.0
 too_close_threshold = 128.0
@@ -95,7 +86,7 @@ wait_time = 3.0
 anims/Idle = SubResource( 1 )
 anims/Teleport = SubResource( 2 )
 
-[node name="ContactAttack" type="Node2D" parent="." index="8"]
+[node name="ContactAttack" type="Node2D" parent="." index="7"]
 script = ExtResource( 14 )
 damage_cooldown_scene = ExtResource( 16 )
 damage = 5
@@ -115,9 +106,16 @@ strength = 1000.0
 start_distance_falloff = 1000.0
 end_distance_falloff = 2000.0
 
-[node name="Sprites" type="Node2D" parent="." index="9"]
+[node name="Sprites" type="Node2D" parent="." index="8"]
 
-[connection signal="died" from="." to="LootDropper" method="_on_Enemy_died"]
+[node name="LootDropper" parent="." index="9" instance=ExtResource( 6 )]
+health_chance = 50
+energy_chance = 50
+basic_ammo_chance = 50
+plasma_ammo_chance = 50
+pickup_scene = ExtResource( 8 )
+max_push_strength = 600
+
 [connection signal="took_damage" from="." to="EnemyBrain" method="on_unit_took_damage"]
 [connection signal="value_changed" from="CombatResources/Health" to="." method="_check_for_death"]
 [connection signal="detected_player" from="EnemyBrain" to="EnemyBrain/EnemyMessager" method="send_message"]

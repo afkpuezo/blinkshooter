@@ -12,11 +12,10 @@ export var end_distance_falloff := 100.0
 onready var falloff_distance_difference = end_distance_falloff - start_distance_falloff
 
 
-## _arg lets this be called by a signal with 1 or 2 args
-func push(target: Node2D, _arg = null):
+func push(target: Node2D, custom_strength := strength):
 	var movement_stats := MovementStats.get_movement_stats(target)
 
-	var force: Vector2 = global_position.direction_to(target.global_position) * strength
+	var force: Vector2 = global_position.direction_to(target.global_position) * custom_strength
 	var distance_modifier = calculate_distance_modifier(target.global_position)
 	# doing it this way works for push and pull
 	force -= force * distance_modifier

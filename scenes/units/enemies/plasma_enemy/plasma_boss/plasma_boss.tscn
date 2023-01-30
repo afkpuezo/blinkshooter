@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/units/enemies/plasma_enemy/plasma_enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/units/enemies/plasma_enemy/plasma_boss/boss_plasma_bullet.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/units/enemies/enemy_components/loot_dropper.gd" type="Script" id=3]
-[ext_resource path="res://scenes/pickups/pickup.tscn" type="PackedScene" id=4]
 
 [node name="PlasmaBoss" instance=ExtResource( 1 )]
 scale = Vector2( 3, 3 )
@@ -22,13 +20,7 @@ explosion_scale = 4.0
 explosion_speed = 0.3
 sprite_z = "5"
 
-[node name="LootDropper" parent="." index="7"]
-health_chance = 100
-energy_chance = 0
-basic_ammo_chance = 100
-max_drop_radius = 256
-
-[node name="EnemyBrain" parent="." index="8"]
+[node name="EnemyBrain" parent="." index="7"]
 is_boss = true
 
 [node name="PlasmaGun" parent="EnemyBrain/EnemyWeaponBar" index="0"]
@@ -39,16 +31,12 @@ forgiveness_duration = 1.0
 [node name="ContactExplosionAnimator" parent="ContactAttack" index="1"]
 explosion_scale = 1.5
 
-[node name="ExtraLoot" type="Node2D" parent="." index="11"]
-
-[node name="LootDropper" type="Node2D" parent="ExtraLoot" index="0"]
-script = ExtResource( 3 )
+[node name="LootDropper" parent="." index="10"]
 health_chance = 100
-energy_chance = 100
+energy_chance = 0
 basic_ammo_chance = 100
-plasma_ammo_chance = 100
-num_rolls = 3
-max_drop_radius = 256
-pickup_scene = ExtResource( 4 )
+plasma_ammo_chance = 0
+num_rolls = 6
+max_push_strength = 1200
 
-[connection signal="died" from="." to="ExtraLoot/LootDropper" method="_on_Enemy_died"]
+[connection signal="died" from="." to="LootDropper" method="_on_Enemy_died"]
