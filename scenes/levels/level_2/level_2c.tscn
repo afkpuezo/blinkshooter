@@ -241,8 +241,18 @@ position = Vector2( -252, 119 )
 type = 9
 size = 1
 
+[node name="Pickup3" parent="CentralArea/Pickups" instance=ExtResource( 21 )]
+position = Vector2( -249, 68 )
+type = 9
+size = 1
+
 [node name="Pickup2" parent="CentralArea/Pickups" instance=ExtResource( 21 )]
 position = Vector2( 242, 128 )
+type = 10
+size = 1
+
+[node name="Pickup4" parent="CentralArea/Pickups" instance=ExtResource( 21 )]
+position = Vector2( 236, 83 )
 type = 10
 size = 1
 

@@ -16,11 +16,11 @@ visible = false
 shape = SubResource( 1 )
 
 [node name="Health" parent="CombatResources" index="0"]
-MAX_VALUE = 75
+MAX_VALUE = 65
 
 [node name="MovementStats" parent="." index="2"]
-acceleration = 800.0
-max_speed = 600.0
+acceleration = 700.0
+max_speed = 500.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" index="0"]
 visible = false
