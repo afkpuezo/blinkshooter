@@ -1,10 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://scenes/actions/attacks/pusher.gd" type="Script" id=1]
 [ext_resource path="res://scenes/units/enemies/enemy_components/loot_dropper.gd" type="Script" id=2]
 
 [node name="LootDropper" type="Node2D"]
 script = ExtResource( 2 )
-
-[node name="Pusher" type="Node2D" parent="."]
-script = ExtResource( 1 )

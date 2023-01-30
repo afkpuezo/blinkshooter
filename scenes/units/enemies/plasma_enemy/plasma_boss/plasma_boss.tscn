@@ -38,5 +38,6 @@ basic_ammo_chance = 100
 plasma_ammo_chance = 0
 num_rolls = 6
 max_push_strength = 1200
+min_push_strength = 100
 
 [connection signal="died" from="." to="LootDropper" method="_on_Enemy_died"]

@@ -12,10 +12,8 @@ func _ready() -> void:
 
 
 func activate(_msg = null):
-	for c in get_children():
-		c.visible = true
+	visible = true
 
 
 func deactivate(_msg = null):
-	for c in get_children():
-		c.visible = false
+	visible = false

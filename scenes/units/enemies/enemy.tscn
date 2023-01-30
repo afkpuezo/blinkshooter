@@ -114,7 +114,8 @@ energy_chance = 50
 basic_ammo_chance = 50
 plasma_ammo_chance = 50
 pickup_scene = ExtResource( 8 )
-max_push_strength = 600
+max_push_strength = 500
+min_push_strength = 200
 
 [connection signal="took_damage" from="." to="EnemyBrain" method="on_unit_took_damage"]
 [connection signal="value_changed" from="CombatResources/Health" to="." method="_check_for_death"]
