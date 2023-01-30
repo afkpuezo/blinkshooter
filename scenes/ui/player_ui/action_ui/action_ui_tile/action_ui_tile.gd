@@ -36,9 +36,24 @@ onready var cooldown_label: Label = $CooldownLabel
 onready var hotkey_label: Label = $HotkeyLabel
 onready var ammo_label: Label = $AmmoLabel
 
+export var is_weapon := false
+export var action_hotkey_offset := 0
+export var weapon_hotkey_offset := 0
+
 
 func _ready() -> void:
 	set_is_ready()
+
+
+func set_is_weapon(new_is_weapon: bool):
+	is_weapon = new_is_weapon
+	var offset: int
+	if is_weapon:
+		offset = weapon_hotkey_offset
+	else:
+		offset = action_hotkey_offset
+
+	hotkey_label.rect_position = Vector2(0, offset)
 
 
 ## type should be the name of the Action node
@@ -54,6 +69,8 @@ func set_type(new_type: String):
 	texture_rect.texture = load(texture)
 
 
+## this is ready as in, the action is ready to be used, not _ready as in added to
+## the scene tree
 func set_is_ready(value = true):
 	if value:
 		texture_rect.modulate = default_modulate

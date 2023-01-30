@@ -19,7 +19,7 @@ var current_weapon_index := 0
 export var action_event := "player_action_bar_tick"
 export var weapon_event := "player_weapon_bar_tick"
 
-export(Array) var hotkeys = ["q", "e", "r", "f"] # better way to get this?
+export(Array) var hotkeys = ["spc", "rmb", "r", "f"] # better way to get this?
 
 export(PackedScene) var tile_scene
 
@@ -87,9 +87,10 @@ func on_tick(msg):
 ## takes care of adding the tile as a child and in the array var
 ## action_index controls the hotkey label
 func make_new_tile(type: String, tile_index: int, action_index: int) -> ActionUITile:
-	var tile = tile_scene.instance()
+	var tile: ActionUITile = tile_scene.instance()
 	add_child(tile)
 
+	tile.set_is_weapon(is_weapon_bar)
 	if is_weapon_bar:
 		tile.set_hotkey(action_index + 1)
 	else:
