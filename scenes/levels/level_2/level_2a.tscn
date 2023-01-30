@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scenes/singletons/level_management/level_local.gd" type="Script" id=1]
 [ext_resource path="res://scenes/terrain/tilesets/pit_tile_map.tscn" type="PackedScene" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://scenes/terrain/gateways/gateway.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scenes/units/enemies/enemy_components/patrol_path/patrol_path.tscn" type="PackedScene" id=18]
 [ext_resource path="res://scenes/actions/blink/teleport_effect.tscn" type="PackedScene" id=19]
+[ext_resource path="res://scenes/pickups/pickup.tscn" type="PackedScene" id=20]
 
 [node name="LevelLocal" type="Node2D"]
 script = ExtResource( 1 )
@@ -111,6 +112,16 @@ rotation = 2.35619
 z_index = 20
 
 [node name="Pickups" type="Node2D" parent="."]
+
+[node name="Pickup" parent="Pickups" instance=ExtResource( 20 )]
+position = Vector2( 3900, -132 )
+type = 9
+size = 1
+
+[node name="Pickup2" parent="Pickups" instance=ExtResource( 20 )]
+position = Vector2( 3893, 133 )
+type = 10
+size = 1
 
 [node name="Units" type="Node2D" parent="."]
 

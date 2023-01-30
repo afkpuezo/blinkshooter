@@ -14,6 +14,9 @@ export var vacuum_radius := 128
 
 onready var pickup_vacuum: Area2D = $PickupVacuum # should this have its own script?
 
+# fuck it, this is easier
+onready var owner_resources := CombatResource.get_combat_resources(owner)
+
 
 func _ready() -> void:
 	var grab_shape := CircleShape2D.new()
@@ -39,12 +42,20 @@ func grab(p: Pickup):
 				p.get_item()
 			)
 		Pickup.META_TYPE.RESOURCE:
-			var resource_details := p.get_resource_type_and_amount()
-			emit_signal(
-				"found_resource",
-				resource_details[0],
-				resource_details[1]
-			)
+			var is_needed := false
+
+			for cr in owner_resources:
+				if cr.type == p.resource_type:
+					is_needed = cr.value < cr.MAX_VALUE
+					break
+
+			if is_needed:
+				emit_signal(
+					"found_resource",
+					p.resource_type,
+					p.resource_amount
+				)
+				p.consume()
 
 
 ## vacuum any pickups currently in the vacuum area

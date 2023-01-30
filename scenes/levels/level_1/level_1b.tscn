@@ -157,6 +157,14 @@ type = 10
 position = Vector2( -47, 2897 )
 type = 10
 
+[node name="AmmoPickup3" parent="Pickups/Resources" instance=ExtResource( 17 )]
+position = Vector2( 3361, 3232 )
+type = 10
+
+[node name="AmmoPickup4" parent="Pickups/Resources" instance=ExtResource( 17 )]
+position = Vector2( 3106, 3228 )
+type = 10
+
 [node name="Units" type="Node2D" parent="."]
 
 [node name="ShotgunArea" type="Node2D" parent="Units"]

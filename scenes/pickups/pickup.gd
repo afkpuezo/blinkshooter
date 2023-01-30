@@ -234,13 +234,9 @@ func get_item():
 		return null
 
 
-## returns an array with the two vars
-## will be null, null if this is not a resource pickup
-## the node will free itself after this is called
-func get_resource_type_and_amount() -> Array:
+## called when using up a resource pickup
+func consume():
 	done = true
-	return [resource_type, resource_amount]
-
 
 ## handles freeing and scaling for resouce pickups
 func _process(_delta: float) -> void:
