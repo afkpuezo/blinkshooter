@@ -111,3 +111,8 @@ func _on_animation_end(_old_anim):
 ## takes care of moving the player unit
 func _physics_process(_delta: float) -> void:
 	player_mover.physics_update(owner, player_movement_stats)
+
+
+func _on_Health_decreased() -> void:
+	anim_player.stop()
+	anim_player.play("Damaged")

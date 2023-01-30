@@ -3,6 +3,7 @@ class_name CombatResource
 ## Represents a single Resource/bar for a character, eg health or energy
 
 signal value_changed(new_value, max_value)
+signal decreased() # jank
 
 # NOTE: update get_all_types() when creating a new type!
 enum Type {HEALTH, ENERGY, BASIC_AMMO, PLASMA_AMMO}
@@ -153,6 +154,7 @@ func _decrease_value(amount: float) -> bool:
 		return false
 	else:
 		value = max(MIN_VALUE, value + amount)
+		emit_signal("decreased")
 		return true
 
 

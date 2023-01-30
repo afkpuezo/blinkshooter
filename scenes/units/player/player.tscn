@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/units/unit.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/units/player/player_components/player_mover.gd" type="Script" id=2]
@@ -7,8 +7,24 @@
 [ext_resource path="res://scenes/units/player/player_brain.gd" type="Script" id=5]
 [ext_resource path="res://scenes/units/player/player_components/weapon_bar.gd" type="Script" id=6]
 [ext_resource path="res://scenes/units/player/player_components/action_bar.gd" type="Script" id=7]
+[ext_resource path="res://scenes/units/player/player_damaged.png" type="Texture" id=8]
 [ext_resource path="res://scenes/units/unit_components/bullet_spawn_point.gd" type="Script" id=9]
 [ext_resource path="res://scenes/units/player/player_components/pickup_grabber.tscn" type="PackedScene" id=10]
+
+[sub_resource type="Animation" id=4]
+resource_name = "Damaged"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/DamagedSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "Idle"
@@ -29,7 +45,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 0.8, 0.8 ), Vector2( 0.8, 0.8 ), Vector2( 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:scale")
+tracks/1/path = NodePath("Sprites/BaseSprite:scale")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -76,46 +92,54 @@ rotation_speed_deg = 980.0
 [node name="ExplosionAnimator" parent="Animators" index="1"]
 sprite_z = "5"
 
-[node name="Sprite" type="Sprite" parent="." index="4"]
-texture = ExtResource( 4 )
-
-[node name="PlayerBrain" type="Node2D" parent="." index="5"]
+[node name="PlayerBrain" type="Node2D" parent="." index="4"]
 script = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerBrain" index="0"]
 root_node = NodePath("../..")
+anims/Damaged = SubResource( 4 )
 anims/Idle = SubResource( 2 )
 anims/Teleport = SubResource( 3 )
 
 [node name="PlayerMover" type="Node2D" parent="PlayerBrain" index="1"]
 script = ExtResource( 2 )
 
-[node name="ActionBar" type="Node2D" parent="." index="6"]
+[node name="ActionBar" type="Node2D" parent="." index="5"]
 script = ExtResource( 7 )
 
-[node name="WeaponBar" type="Node2D" parent="." index="7"]
+[node name="WeaponBar" type="Node2D" parent="." index="6"]
 script = ExtResource( 6 )
 num_slots = 4
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="8"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="7"]
 visible = false
 polygon = PoolVector2Array( -23, -26, 26, 0, -23, 26 )
 
-[node name="BulletSpawnPoint" type="Node2D" parent="." index="9"]
+[node name="BulletSpawnPoint" type="Node2D" parent="." index="8"]
 position = Vector2( 16, 0 )
 script = ExtResource( 9 )
 
-[node name="HurtBox" parent="." index="10"]
+[node name="HurtBox" parent="." index="9"]
 collision_layer = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HurtBox" index="0"]
 visible = false
 polygon = PoolVector2Array( -23, -26, 26, 0, -23, 26 )
 
-[node name="PickupGrabber" parent="." index="11" instance=ExtResource( 10 )]
+[node name="PickupGrabber" parent="." index="10" instance=ExtResource( 10 )]
 grab_radius = 24
 
+[node name="Sprites" type="Node2D" parent="." index="11"]
+
+[node name="BaseSprite" type="Sprite" parent="Sprites" index="0"]
+texture = ExtResource( 4 )
+
+[node name="DamagedSprite" type="Sprite" parent="Sprites" index="1"]
+visible = false
+texture = ExtResource( 8 )
+
 [connection signal="died" from="." to="PlayerBrain" method="on_unit_death"]
+[connection signal="decreased" from="CombatResources/Health" to="PlayerBrain" method="_on_Health_decreased"]
 [connection signal="value_changed" from="CombatResources/Health" to="." method="_check_for_death"]
 [connection signal="found_action" from="PickupGrabber" to="ActionBar" method="add_action"]
 [connection signal="found_resource" from="PickupGrabber" to="." method="gain_resource"]
