@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scenes/singletons/level_management/level_local.gd" type="Script" id=1]
 [ext_resource path="res://scenes/terrain/tilesets/floor_tile_map.tscn" type="PackedScene" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://scenes/units/enemies/small_gun_enemy/small_gun_enemy.tscn" type="PackedScene" id=18]
 [ext_resource path="res://scenes/units/enemies/plasma_enemy/plasma_enemy.tscn" type="PackedScene" id=19]
 [ext_resource path="res://scenes/units/enemies/sniper_enemy/sniper_enemy.tscn" type="PackedScene" id=20]
+[ext_resource path="res://scenes/pickups/pickup.tscn" type="PackedScene" id=21]
 
 [node name="LevelLocal" type="Node2D"]
 script = ExtResource( 1 )
@@ -171,14 +172,6 @@ position = Vector2( 444, 136 )
 [node name="Node2D5" type="Node2D" parent="CentralArea/Gateway/CentralLowerLock/ShotgunEnemy4/PatrolPath"]
 position = Vector2( 608, 0 )
 
-[node name="SmallGunEnemy" parent="CentralArea/Gateway/CentralLowerLock" instance=ExtResource( 18 )]
-position = Vector2( -800, -219 )
-rotation = -0.785398
-
-[node name="SmallGunEnemy2" parent="CentralArea/Gateway/CentralLowerLock" instance=ExtResource( 18 )]
-position = Vector2( 800, -219 )
-rotation = -2.35619
-
 [node name="SmallGunEnemy3" parent="CentralArea/Gateway/CentralLowerLock" instance=ExtResource( 18 )]
 position = Vector2( -800, -900 )
 rotation = 0.785398
@@ -230,14 +223,6 @@ position = Vector2( -608, 476 )
 [node name="Node2D2" type="Node2D" parent="CentralArea/Gateway/CentralUpperLock/SmallGunEnemy3/PatrolPath"]
 position = Vector2( 0, 448 )
 
-[node name="ShotgunEnemy" parent="CentralArea/Gateway/CentralUpperLock" instance=ExtResource( 8 )]
-position = Vector2( -1051, 703 )
-rotation = -0.785398
-
-[node name="ShotgunEnemy2" parent="CentralArea/Gateway/CentralUpperLock" instance=ExtResource( 8 )]
-position = Vector2( 1051, 703 )
-rotation = -2.35619
-
 [node name="ShotgunEnemy3" parent="CentralArea/Gateway/CentralUpperLock" instance=ExtResource( 8 )]
 position = Vector2( 138, 197 )
 rotation = 0.785398
@@ -248,6 +233,18 @@ rotation = 2.35619
 
 [node name="LeftLock" parent="CentralArea/Gateway" instance=ExtResource( 7 )]
 position = Vector2( -2368, -32 )
+
+[node name="Pickups" type="Node2D" parent="CentralArea"]
+
+[node name="Pickup" parent="CentralArea/Pickups" instance=ExtResource( 21 )]
+position = Vector2( -252, 119 )
+type = 9
+size = 1
+
+[node name="Pickup2" parent="CentralArea/Pickups" instance=ExtResource( 21 )]
+position = Vector2( 242, 128 )
+type = 10
+size = 1
 
 [node name="LeftArea" type="Node2D" parent="."]
 
@@ -264,31 +261,8 @@ tile_data = PoolIntArray( -393241, 0, 0, -393240, 0, 1, -393239, 0, 1, -393238, 
 
 [node name="Units" type="Node2D" parent="LeftArea"]
 
-[node name="SniperEnemy2" parent="LeftArea/Units" instance=ExtResource( 20 )]
-position = Vector2( -1773, -260 )
-
-[node name="PatrolPath" parent="LeftArea/Units/SniperEnemy2" instance=ExtResource( 9 )]
-
-[node name="Node2D" type="Node2D" parent="LeftArea/Units/SniperEnemy2/PatrolPath"]
-
-[node name="Node2D2" type="Node2D" parent="LeftArea/Units/SniperEnemy2/PatrolPath"]
-position = Vector2( 0, 580 )
-
 [node name="SniperEnemy4" parent="LeftArea/Units" instance=ExtResource( 20 )]
 position = Vector2( -2433, -20 )
-
-[node name="PlasmaEnemy" parent="LeftArea/Units" instance=ExtResource( 19 )]
-position = Vector2( -1463, -333 )
-
-[node name="PatrolPath" parent="LeftArea/Units/PlasmaEnemy" instance=ExtResource( 9 )]
-
-[node name="Node2D" type="Node2D" parent="LeftArea/Units/PlasmaEnemy/PatrolPath"]
-
-[node name="Node2D2" type="Node2D" parent="LeftArea/Units/PlasmaEnemy/PatrolPath"]
-position = Vector2( 24, 393 )
-
-[node name="Node2D3" type="Node2D" parent="LeftArea/Units/PlasmaEnemy/PatrolPath"]
-position = Vector2( 124, 709 )
 
 [node name="PlasmaEnemy2" parent="LeftArea/Units" instance=ExtResource( 19 )]
 position = Vector2( -2089, -231 )
@@ -299,3 +273,26 @@ position = Vector2( -2089, -231 )
 
 [node name="Node2D2" type="Node2D" parent="LeftArea/Units/PlasmaEnemy2/PatrolPath"]
 position = Vector2( 0, 500 )
+
+[node name="SmallGunEnemy" parent="LeftArea/Units" instance=ExtResource( 18 )]
+position = Vector2( -1773, -260 )
+
+[node name="PatrolPath" parent="LeftArea/Units/SmallGunEnemy" instance=ExtResource( 9 )]
+
+[node name="Node2D" type="Node2D" parent="LeftArea/Units/SmallGunEnemy/PatrolPath"]
+
+[node name="Node2D2" type="Node2D" parent="LeftArea/Units/SmallGunEnemy/PatrolPath"]
+position = Vector2( 0, 580 )
+
+[node name="SmallGunEnemy2" parent="LeftArea/Units" instance=ExtResource( 18 )]
+position = Vector2( -1463, -333 )
+
+[node name="PatrolPath" parent="LeftArea/Units/SmallGunEnemy2" instance=ExtResource( 9 )]
+
+[node name="Node2D" type="Node2D" parent="LeftArea/Units/SmallGunEnemy2/PatrolPath"]
+
+[node name="Node2D2" type="Node2D" parent="LeftArea/Units/SmallGunEnemy2/PatrolPath"]
+position = Vector2( 24, 393 )
+
+[node name="Node2D3" type="Node2D" parent="LeftArea/Units/SmallGunEnemy2/PatrolPath"]
+position = Vector2( 124, 709 )
