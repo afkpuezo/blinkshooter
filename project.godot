@@ -448,7 +448,7 @@ PlayerUI="*res://scenes/ui/player_ui/player_ui.tscn"
 LevelLoader="*res://scenes/singletons/level_management/level_loader.gd"
 PauseManager="*res://scenes/singletons/pause_manager.tscn"
 LevelGlobal="*res://scenes/singletons/level_management/level_global.gd"
-SaveLoad="*res://scenes/singletons/saveload.gd"
+SaveLoad="*res://scenes/singletons/level_management/saveload.gd"
 
 [display]
 
