@@ -11,6 +11,8 @@ var is_working := false
 
 func _ready() -> void:
 	PauseManager.is_pausable = false
+	$AnimationPlayer.play("Intro")
+	PlayerUI.visible = false
 
 
 func start_new_game():
