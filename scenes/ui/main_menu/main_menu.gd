@@ -20,7 +20,7 @@ func start_new_game():
 		is_working = true
 		timer.start()
 		yield(timer, "timeout")
-		LevelLoader.load_level(first_level_scene_path)
+		LevelLoader.load_level(first_level_scene_path, true) # skip player data
 
 
 func quit_game():

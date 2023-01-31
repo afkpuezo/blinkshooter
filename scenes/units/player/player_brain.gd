@@ -45,7 +45,7 @@ static func get_player_if_source(n: Node):
 ## restore the player after loading a checkpoint or moving to a new level zone
 ## currently just tracks value of combat resources
 static func save_player_state(p: Unit) -> Dictionary:
-	assert (is_player(p))
+	assert(is_player(p))
 	var crs := CombatResource.get_combat_resources(p)
 	var data := {
 		'current_weapon_slot': p.get_node("WeaponBar").current_slot,

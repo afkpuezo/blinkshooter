@@ -33,9 +33,9 @@ func load_player_data():
 	PlayerBrain.load_player_state(player, player_data)
 
 
-func load_level(level_scene_path: String, is_from_player_death: bool = false):
+func load_level(level_scene_path: String, skip_data: bool = false):
 	# if the player died, don't store their new resource values
-	if not is_from_player_death:
+	if not skip_data:
 		save_player_data()
 		# putting this here means you heal to full after death
 		is_waiting_for_player_spawn = true

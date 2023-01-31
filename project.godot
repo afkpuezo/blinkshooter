@@ -441,7 +441,7 @@ _global_script_class_icons={
 [application]
 
 config/name="blinkshooter"
-run/main_scene="res://scenes/levels/level_1/level_1a.tscn"
+run/main_scene="res://scenes/ui/main_menu/main_menu.tscn"
 
 [autoload]
 
