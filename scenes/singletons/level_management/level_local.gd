@@ -18,3 +18,4 @@ func _ready() -> void:
 	LevelGlobal.level_scene_path = level_scene_path
 	LevelGlobal.enabled_loot_types = enabled_loot_types
 	LevelGlobal.drop_chance_multiplier = drop_chance_multiplier
+	PauseManager.is_pausable = true

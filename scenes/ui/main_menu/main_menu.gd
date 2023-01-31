@@ -9,6 +9,10 @@ onready var timer: Timer = $Timer
 var is_working := false
 
 
+func _ready() -> void:
+	PauseManager.is_pausable = false
+
+
 func start_new_game():
 	if is_working:
 		return
