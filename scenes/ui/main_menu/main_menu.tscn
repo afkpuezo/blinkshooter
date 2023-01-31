@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/ui/fonts/title_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scenes/ui/main_menu/main_menu.gd" type="Script" id=2]
+[ext_resource path="res://scenes/ui/main_menu/menu_theme.tres" type="Theme" id=3]
+
+[node name="MainMenu" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="MainMenuContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 40.0
+margin_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="MainMenuContainer"]
+margin_top = 183.0
+margin_right = 1406.0
+margin_bottom = 420.0
+custom_fonts/font = ExtResource( 1 )
+text = "BLINKSHOOTER
+"
+align = 1
+
+[node name="StartButton" type="Button" parent="MainMenuContainer"]
+margin_left = 598.0
+margin_top = 424.0
+margin_right = 807.0
+margin_bottom = 488.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 0, 64 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource( 3 )
+text = "START"
+icon_align = 1
+
+[node name="LevelSelectButton" type="Button" parent="MainMenuContainer"]
+margin_left = 470.0
+margin_top = 492.0
+margin_right = 935.0
+margin_bottom = 556.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 0, 64 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource( 3 )
+text = "LEVEL SELECT"
+icon_align = 1
+
+[node name="QuitButton" type="Button" parent="MainMenuContainer"]
+margin_left = 628.0
+margin_top = 560.0
+margin_right = 778.0
+margin_bottom = 624.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 0, 64 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource( 3 )
+text = "QUIT"
+icon_align = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
+[connection signal="pressed" from="MainMenuContainer/StartButton" to="." method="start_new_game"]
+[connection signal="pressed" from="MainMenuContainer/QuitButton" to="." method="quit_game"]

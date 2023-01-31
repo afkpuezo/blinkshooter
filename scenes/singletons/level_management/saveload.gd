@@ -8,7 +8,7 @@ const FILE_PATH = "save_data.dat"
 
 
 func _ready() -> void:
-	print("SaveLoad ready()")
+	GameEvents.connect("level_loaded", self, "on_level_loaded")
 
 
 ## this method is likely only for debugging

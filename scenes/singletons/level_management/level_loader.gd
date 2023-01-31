@@ -25,7 +25,8 @@ func on_player_spawn(msg):
 
 
 func save_player_data():
-	player_data = PlayerBrain.save_player_state(player)
+	if player:
+		player_data = PlayerBrain.save_player_state(player)
 
 
 func load_player_data():

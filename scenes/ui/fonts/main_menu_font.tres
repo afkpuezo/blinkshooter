@@ -3,7 +3,7 @@
 [ext_resource path="res://scenes/ui/fonts/conthrax-sb.ttf" type="DynamicFontData" id=1]
 
 [resource]
-size = 64
-outline_size = 8
-outline_color = Color( 0, 0, 0.498039, 1 )
+size = 48
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )

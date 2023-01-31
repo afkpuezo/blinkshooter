@@ -1,0 +1,15 @@
+[gd_resource type="Theme" load_steps=3 format=2]
+
+[ext_resource path="res://scenes/ui/fonts/main_menu_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scenes/ui/main_menu/menu_button_style.tres" type="StyleBox" id=2]
+
+[resource]
+Button/colors/font_color = Color( 0.784314, 0.784314, 0.784314, 1 )
+Button/colors/font_color_hover = Color( 1, 1, 1, 1 )
+Button/colors/font_color_pressed = Color( 0, 0, 0.498039, 1 )
+Button/fonts/font = ExtResource( 1 )
+Button/styles/disabled = ExtResource( 2 )
+Button/styles/focus = ExtResource( 2 )
+Button/styles/hover = ExtResource( 2 )
+Button/styles/normal = ExtResource( 2 )
+Button/styles/pressed = ExtResource( 2 )
