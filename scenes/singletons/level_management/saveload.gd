@@ -6,6 +6,17 @@ extends Node
 
 const FILE_PATH = "save_data.dat"
 
+# NOTE: some overlap with main menu, maybe centralize
+var level_codes := {
+	'res://scenes/levels/level_1/level_1a.tscn': '1a',
+	'res://scenes/levels/level_1/level_1b.tscn': '1b',
+	'res://scenes/levels/level_1/level_1c.tscn': '1c',
+	'res://scenes/levels/level_2/level_2a.tscn': '2a',
+	'res://scenes/levels/level_2/level_2b.tscn': '2b',
+	'res://scenes/levels/level_2/level_2c.tscn': '2c',
+	'res://scenes/levels/level_2/level_2d.tscn': '2d',
+}
+
 
 func _ready() -> void:
 	GameEvents.connect("level_loaded", self, "on_level_loaded")
@@ -18,23 +29,20 @@ func _process(_delta: float) -> void:
 
 
 func on_level_loaded(msg):
-	var level_name: String = msg['level_scene_path']
+	var level_scene_path: String = msg['level_scene_path']
+	var level_name = level_codes[level_scene_path]
 	var data := load_data()
 
-	var level_list := []
-	if ['level_list'] in data:
-		level_list = data['level_list']
-	else:
-		data['level_list'] = level_list
+	if not 'level_list' in data:
+		data['level_list'] = []
 
-	# just assumes the order will be preserved i guess
-	if not level_name in level_list:
-		level_list.append(level_name)
+	if not level_name in data['level_list']:
+		data['level_list'].append(level_name)
 		save_data(data)
 
 
 func save_data(data: Dictionary):
-	print("DEBUG: save_data(), data is %s" % data)
+	#print("DEBUG: save_data(), data is %s" % data)
 	var file := File.new()
 	file.open(FILE_PATH, File.WRITE)
 
@@ -55,5 +63,5 @@ func load_data() -> Dictionary:
 		data = parse_json(raw)
 		file.close()
 
-	print("DEBUG: load_data(), data is %s" % data)
+	#print("DEBUG: load_data(), data is %s" % data)
 	return data

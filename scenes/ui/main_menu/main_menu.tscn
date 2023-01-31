@@ -158,7 +158,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Level" type="Button" parent="LevelSelectContainer/LevelButtonsContainer"]
+[node name="1a" type="Button" parent="LevelSelectContainer/LevelButtonsContainer"]
 margin_left = 611.0
 margin_right = 795.0
 margin_bottom = 64.0
@@ -171,7 +171,7 @@ theme = ExtResource( 3 )
 text = "BLINK"
 icon_align = 1
 
-[node name="Level2" type="Button" parent="LevelSelectContainer/LevelButtonsContainer"]
+[node name="1b" type="Button" parent="LevelSelectContainer/LevelButtonsContainer"]
 margin_left = 547.0
 margin_top = 68.0
 margin_right = 858.0
@@ -185,7 +185,7 @@ theme = ExtResource( 3 )
 text = "SHOTGUN"
 icon_align = 1
 
-[node name="Level3" type="Button" parent="LevelSelectContainer/LevelButtonsContainer"]
+[node name="1c" type="Button" parent="LevelSelectContainer/LevelButtonsContainer"]
 margin_left = 567.0
 margin_top = 136.0
 margin_right = 839.0
@@ -199,7 +199,7 @@ theme = ExtResource( 3 )
 text = "PLASMA"
 icon_align = 1
 
-[node name="Level4" type="Button" parent="LevelSelectContainer/LevelButtonsContainer"]
+[node name="2a" type="Button" parent="LevelSelectContainer/LevelButtonsContainer"]
 margin_left = 617.0
 margin_top = 204.0
 margin_right = 788.0
@@ -213,7 +213,7 @@ theme = ExtResource( 3 )
 text = "FORK"
 icon_align = 1
 
-[node name="Level5" type="Button" parent="LevelSelectContainer/LevelButtonsContainer"]
+[node name="2b" type="Button" parent="LevelSelectContainer/LevelButtonsContainer"]
 margin_left = 589.0
 margin_top = 272.0
 margin_right = 817.0
@@ -227,7 +227,7 @@ theme = ExtResource( 3 )
 text = "SNIPER"
 icon_align = 1
 
-[node name="Level6" type="Button" parent="LevelSelectContainer/LevelButtonsContainer"]
+[node name="2c" type="Button" parent="LevelSelectContainer/LevelButtonsContainer"]
 margin_left = 610.0
 margin_top = 340.0
 margin_right = 796.0
@@ -241,7 +241,7 @@ theme = ExtResource( 3 )
 text = "MAZE"
 icon_align = 1
 
-[node name="Level7" type="Button" parent="LevelSelectContainer/LevelButtonsContainer"]
+[node name="2d" type="Button" parent="LevelSelectContainer/LevelButtonsContainer"]
 margin_left = 563.0
 margin_top = 408.0
 margin_right = 842.0
@@ -272,11 +272,4 @@ icon_align = 1
 [connection signal="pressed" from="MainMenuContainer/StartButton" to="." method="start_new_game"]
 [connection signal="pressed" from="MainMenuContainer/LevelSelectButton" to="." method="go_to_level_select"]
 [connection signal="pressed" from="MainMenuContainer/QuitButton" to="." method="quit_game"]
-[connection signal="pressed" from="LevelSelectContainer/LevelButtonsContainer/Level" to="." method="go_to_main_menu"]
-[connection signal="pressed" from="LevelSelectContainer/LevelButtonsContainer/Level2" to="." method="go_to_main_menu"]
-[connection signal="pressed" from="LevelSelectContainer/LevelButtonsContainer/Level3" to="." method="go_to_main_menu"]
-[connection signal="pressed" from="LevelSelectContainer/LevelButtonsContainer/Level4" to="." method="go_to_main_menu"]
-[connection signal="pressed" from="LevelSelectContainer/LevelButtonsContainer/Level5" to="." method="go_to_main_menu"]
-[connection signal="pressed" from="LevelSelectContainer/LevelButtonsContainer/Level6" to="." method="go_to_main_menu"]
-[connection signal="pressed" from="LevelSelectContainer/LevelButtonsContainer/Level7" to="." method="go_to_main_menu"]
 [connection signal="pressed" from="LevelSelectContainer/BackButton" to="." method="go_to_main_menu"]
