@@ -197,12 +197,3 @@ cooldown = 0.4
 
 [connection signal="fakeout_triggered" from="WaveTest/FakeoutGateway" to="WaveTest/WaveManager" method="trigger"]
 [connection signal="defeated" from="WaveTest/WaveManager" to="WaveTest/FakeoutGateway" method="on_lock_unlock"]
-[connection signal="died" from="Units/SmallGunEnemy" to="Units/SmallGunEnemy/LootDropper" method="_on_Enemy_died"]
-[connection signal="died" from="Units/SmallGunEnemy2" to="Units/SmallGunEnemy2/LootDropper" method="_on_Enemy_died"]
-[connection signal="died" from="Units/SmallGunEnemy3" to="Units/SmallGunEnemy3/LootDropper" method="_on_Enemy_died"]
-[connection signal="died" from="Units/SmallGunEnemy5" to="Units/SmallGunEnemy5/LootDropper" method="_on_Enemy_died"]
-[connection signal="died" from="Units/PlasmaEnemy" to="Units/PlasmaEnemy/LootDropper" method="_on_Enemy_died"]
-[connection signal="died" from="Units/SniperEnemy" to="Units/SniperEnemy/LootDropper" method="_on_Enemy_died"]
-[connection signal="died" from="Units/SniperEnemy2" to="Units/SniperEnemy2/LootDropper" method="_on_Enemy_died"]
-[connection signal="died" from="Units/SniperEnemy4" to="Units/SniperEnemy4/LootDropper" method="_on_Enemy_died"]
-[connection signal="died" from="Units/SniperEnemy3" to="Units/SniperEnemy3/LootDropper" method="_on_Enemy_died"]

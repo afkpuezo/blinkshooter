@@ -152,9 +152,6 @@ position = Vector2( 0, 420 )
 [node name="WaveEnemy6" parent="BossArea/WaveManager/Wave8" instance=ExtResource( 19 )]
 position = Vector2( -420, 420 )
 
-[node name="WaveEnemy7" parent="BossArea/WaveManager/Wave8" instance=ExtResource( 19 )]
-position = Vector2( -420, 0 )
-
 [node name="WaveEnemy8" parent="BossArea/WaveManager/Wave8" instance=ExtResource( 19 )]
 position = Vector2( -420, -420 )
 

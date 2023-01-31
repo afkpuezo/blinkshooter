@@ -93,7 +93,6 @@ position = Vector2( 2496, 384 )
 
 [node name="Lock" parent="Terrain/Gateways/Gateway4" instance=ExtResource( 5 )]
 position = Vector2( 0, 192 )
-z_index = 0
 
 [node name="SmallGunEnemy" parent="Terrain/Gateways/Gateway4/Lock" instance=ExtResource( 6 )]
 position = Vector2( -320, -192 )
@@ -221,13 +220,3 @@ position = Vector2( 0, -240 )
 
 [connection signal="triggered" from="Terrain/Gateways/Gateway" to="Labels/Movement" method="queue_free"]
 [connection signal="died" from="Terrain/Gateways/Gateway4/Lock/SmallGunEnemy" to="Labels/Shooting" method="queue_free"]
-[connection signal="died" from="Terrain/Gateways/Gateway4/Lock/SmallGunEnemy" to="Terrain/Gateways/Gateway4/Lock/SmallGunEnemy/LootDropper" method="_on_Enemy_died"]
-[connection signal="died" from="Terrain/Gateways/Gateway6/Lock/SmallGunEnemy2" to="Terrain/Gateways/Gateway6/Lock/SmallGunEnemy2/LootDropper" method="_on_Enemy_died"]
-[connection signal="died" from="Terrain/Gateways/Gateway6/Lock/SmallGunEnemy3" to="Terrain/Gateways/Gateway6/Lock/SmallGunEnemy3/LootDropper" method="_on_Enemy_died"]
-[connection signal="died" from="Terrain/Gateways/Gateway6/Lock/SmallGunEnemy4" to="Terrain/Gateways/Gateway6/Lock/SmallGunEnemy4/LootDropper" method="_on_Enemy_died"]
-[connection signal="died" from="Terrain/Gateways/Gateway6/Lock/SmallGunEnemy7" to="Terrain/Gateways/Gateway6/Lock/SmallGunEnemy7/LootDropper" method="_on_Enemy_died"]
-[connection signal="died" from="Terrain/Gateways/Gateway6/Lock/SmallGunEnemy5" to="Terrain/Gateways/Gateway6/Lock/SmallGunEnemy5/LootDropper" method="_on_Enemy_died"]
-[connection signal="died" from="Terrain/Gateways/Gateway6/Lock/SmallGunEnemy6" to="Terrain/Gateways/Gateway6/Lock/SmallGunEnemy6/LootDropper" method="_on_Enemy_died"]
-[connection signal="died" from="Units/BlinkArea/SmallGunEnemy" to="Units/BlinkArea/SmallGunEnemy/LootDropper" method="_on_Enemy_died"]
-[connection signal="died" from="Units/BlinkArea/SmallGunEnemy2" to="Units/BlinkArea/SmallGunEnemy2/LootDropper" method="_on_Enemy_died"]
-[connection signal="died" from="Units/BlinkArea/SmallGunEnemy3" to="Units/BlinkArea/SmallGunEnemy3/LootDropper" method="_on_Enemy_died"]

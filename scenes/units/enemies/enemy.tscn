@@ -117,6 +117,7 @@ pickup_scene = ExtResource( 8 )
 max_push_strength = 500
 min_push_strength = 200
 
+[connection signal="died" from="." to="LootDropper" method="_on_Enemy_died"]
 [connection signal="took_damage" from="." to="EnemyBrain" method="on_unit_took_damage"]
 [connection signal="value_changed" from="CombatResources/Health" to="." method="_check_for_death"]
 [connection signal="detected_player" from="EnemyBrain" to="EnemyBrain/EnemyMessager" method="send_message"]

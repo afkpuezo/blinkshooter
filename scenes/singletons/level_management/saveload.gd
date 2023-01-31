@@ -23,13 +23,6 @@ func _ready() -> void:
 	GameEvents.connect("level_loaded", self, "on_level_loaded")
 
 
-## this method is likely only for debugging
-func _process(_delta: float) -> void:
-	# warning-ignore:return_value_discarded
-	if Input.is_action_just_pressed("load_data"):
-		load_data()
-
-
 func on_level_loaded(msg):
 	var level_scene_path: String = msg['level_scene_path']
 	var level_name = level_codes[level_scene_path]
