@@ -19,11 +19,13 @@ var level_codes := {
 
 
 func _ready() -> void:
+	# warning-ignore:return_value_discarded
 	GameEvents.connect("level_loaded", self, "on_level_loaded")
 
 
 ## this method is likely only for debugging
 func _process(_delta: float) -> void:
+	# warning-ignore:return_value_discarded
 	if Input.is_action_just_pressed("load_data"):
 		load_data()
 
@@ -42,8 +44,8 @@ func on_level_loaded(msg):
 
 
 func save_data(data: Dictionary):
-	#print("DEBUG: save_data(), data is %s" % data)
 	var file := File.new()
+	# warning-ignore:return_value_discarded
 	file.open(FILE_PATH, File.WRITE)
 
 	var data_string := to_json(data)
@@ -57,11 +59,11 @@ func load_data() -> Dictionary:
 
 	var file := File.new()
 	if file.file_exists(FILE_PATH):
+		# warning-ignore:return_value_discarded
 		file.open(FILE_PATH, File.READ)
 
 		var raw := file.get_line()
 		data = parse_json(raw)
 		file.close()
 
-	#print("DEBUG: load_data(), data is %s" % data)
 	return data

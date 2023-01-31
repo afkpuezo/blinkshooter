@@ -37,6 +37,7 @@ func resume():
 
 
 func go_to_start_screen():
+	# warning-ignore:return_value_discarded
 	get_tree().change_scene(main_menu_scene_path)
 
 

@@ -159,6 +159,7 @@ grow_vertical = 2
 alignment = 1
 
 [node name="1a" type="Button" parent="LevelSelectContainer/LevelButtonsContainer"]
+visible = false
 margin_left = 611.0
 margin_right = 795.0
 margin_bottom = 64.0
@@ -168,10 +169,11 @@ rect_min_size = Vector2( 0, 64 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource( 3 )
-text = "BLINK"
+text = "Blink"
 icon_align = 1
 
 [node name="1b" type="Button" parent="LevelSelectContainer/LevelButtonsContainer"]
+visible = false
 margin_left = 547.0
 margin_top = 68.0
 margin_right = 858.0
@@ -182,10 +184,11 @@ rect_min_size = Vector2( 0, 64 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource( 3 )
-text = "SHOTGUN"
+text = "Shotgun"
 icon_align = 1
 
 [node name="1c" type="Button" parent="LevelSelectContainer/LevelButtonsContainer"]
+visible = false
 margin_left = 567.0
 margin_top = 136.0
 margin_right = 839.0
@@ -196,10 +199,11 @@ rect_min_size = Vector2( 0, 64 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource( 3 )
-text = "PLASMA"
+text = "Plasma"
 icon_align = 1
 
 [node name="2a" type="Button" parent="LevelSelectContainer/LevelButtonsContainer"]
+visible = false
 margin_left = 617.0
 margin_top = 204.0
 margin_right = 788.0
@@ -210,10 +214,11 @@ rect_min_size = Vector2( 0, 64 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource( 3 )
-text = "FORK"
+text = "Fork"
 icon_align = 1
 
 [node name="2b" type="Button" parent="LevelSelectContainer/LevelButtonsContainer"]
+visible = false
 margin_left = 589.0
 margin_top = 272.0
 margin_right = 817.0
@@ -224,10 +229,11 @@ rect_min_size = Vector2( 0, 64 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource( 3 )
-text = "SNIPER"
+text = "Sniper"
 icon_align = 1
 
 [node name="2c" type="Button" parent="LevelSelectContainer/LevelButtonsContainer"]
+visible = false
 margin_left = 610.0
 margin_top = 340.0
 margin_right = 796.0
@@ -238,10 +244,11 @@ rect_min_size = Vector2( 0, 64 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource( 3 )
-text = "MAZE"
+text = "Maze"
 icon_align = 1
 
 [node name="2d" type="Button" parent="LevelSelectContainer/LevelButtonsContainer"]
+visible = false
 margin_left = 563.0
 margin_top = 408.0
 margin_right = 842.0
@@ -252,7 +259,7 @@ rect_min_size = Vector2( 0, 64 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource( 3 )
-text = "AMBUSH"
+text = "Ambush"
 icon_align = 1
 
 [node name="BackButton" type="Button" parent="LevelSelectContainer"]
