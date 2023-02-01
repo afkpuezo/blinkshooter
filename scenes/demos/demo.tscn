@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://scenes/units/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/units/enemies/small_gun_enemy/small_gun_enemy.tscn" type="PackedScene" id=2]
@@ -25,8 +25,9 @@
 [ext_resource path="res://scenes/units/enemies/wave_boss/wave/wave.tscn" type="PackedScene" id=23]
 [ext_resource path="res://scenes/units/enemies/wave_boss/wave_enemy/wave_enemy.tscn" type="PackedScene" id=24]
 [ext_resource path="res://scenes/units/enemies/shotgun_enemy/shotgun_enemy.tscn" type="PackedScene" id=25]
+[ext_resource path="res://scenes/actions/weapons/weapon.gd" type="Script" id=26]
 
-[node name="LevelLocal" type="Node2D"]
+[node name="LevelLocal2" type="Node2D"]
 script = ExtResource( 12 )
 level_scene_path = "res://scenes/demos/demo.tscn"
 
@@ -178,15 +179,19 @@ script = ExtResource( 3 )
 [node name="Shuriken" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 22 )]
 
 [node name="SmallGun" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 20 )]
+script = ExtResource( 26 )
 
 [node name="Shotgun" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 16 )]
+script = ExtResource( 26 )
 cooldown = 0.4
 
 [node name="SawBlade" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 19 )]
 
 [node name="PlasmaGun" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 17 )]
+script = ExtResource( 26 )
 
 [node name="PhaseRifle" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 18 )]
+script = ExtResource( 26 )
 
 [node name="ShotgunEnemy" parent="Units" instance=ExtResource( 25 )]
 position = Vector2( -448, 1362 )
