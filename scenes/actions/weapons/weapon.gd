@@ -25,6 +25,10 @@ export var forgiveness_duration := 0.25
 # will create a Pusher if recoil is not 0
 export var recoil := 0.0
 
+# experimental audio stuff
+onready var audio_player: AudioStreamPlayer2D
+export var audio_file: AudioStream
+
 
 # ----------
 # static methods
@@ -46,6 +50,7 @@ func do_action():
 	_ready_user_movement_stats()
 
 	create_bullet()
+	play_audio()
 
 	emit_signal("recoiled", user)
 
@@ -96,6 +101,11 @@ func _ready() -> void:
 		pusher.end_distance_falloff = 200
 		# warning-ignore:return_value_discarded
 		connect("recoiled", pusher, "push")
+	# handle audio
+	if audio_file:
+		audio_player = AudioStreamPlayer2D.new()
+		add_child(audio_player)
+		audio_player.stream = audio_file
 
 
 ## spawn_location is set up here since the user var might not be configured at ready time
@@ -112,3 +122,9 @@ func _ready_spawn_location():
 func _ready_user_movement_stats():
 	if not user_movement_stats:
 		user_movement_stats = MovementStats.get_movement_stats(user) # assume it has one
+
+
+# experimental
+func play_audio():
+	if audio_player:
+		audio_player.play()

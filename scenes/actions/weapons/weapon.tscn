@@ -1,15 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://scenes/actions/weapons/weapon.gd" type="Script" id=1]
-[ext_resource path="res://scenes/actions/attacks/pusher.gd" type="Script" id=2]
 
 [node name="Weapon" type="Node2D"]
 visible = false
 script = ExtResource( 1 )
-
-[node name="Pusher" type="Node2D" parent="."]
-position = Vector2( 100, 0 )
-script = ExtResource( 2 )
-strength = 500.0
-start_distance_falloff = 1000.0
-end_distance_falloff = 1000.0
