@@ -21,6 +21,12 @@ onready var recoil_pusher: Pusher = $RecoilPusher
 # experimental audio stuff
 onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
+# bullets are spread evenly
+export var num_bullets := 1
+export var max_angle_deg := 0
+onready var max_angle := deg2rad(max_angle_deg)
+
+var angles := []
 
 # ----------
 # static methods
@@ -49,14 +55,14 @@ func do_action():
 
 ## extendable helper
 func create_bullet():
-	var bullet: Bullet = bullet_scene.instance()
-	configure_bullet(bullet)
-
-	Spawner.spawn_node(
-		bullet,
-		spawn_location.get_global_position(),
-		user.get_global_rotation()
-	)
+	for n in range(num_bullets):
+		var bullet: Bullet = bullet_scene.instance()
+		configure_bullet(bullet)
+		Spawner.spawn_node(
+			bullet,
+			spawn_location.get_global_position(),
+			user.get_global_rotation() + angles[n]
+		)
 
 
 ## extendable helper
@@ -83,6 +89,15 @@ func _ready() -> void:
 			forgiveness_layer = 0b100
 		TEAM.BOTH:
 			forgiveness_layer = 0b110
+	# handle angle stuff
+	if num_bullets > 1:
+		var angle_range := max_angle * 2
+		var step = angle_range / (num_bullets - 1)
+
+		for n in range(num_bullets):
+			angles.append(max_angle - (step * n))
+	else:
+		angles = [0]
 
 
 ## spawn_location is set up here since the user var might not be configured at ready time

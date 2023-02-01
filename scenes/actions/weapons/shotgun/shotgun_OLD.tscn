@@ -1,4 +1,9 @@
-extends Weapon
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/actions/weapons/shotgun/shotgun_pellet.tscn" type="PackedScene" id=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Weapon
 class_name Shotgun
 ## extends the weapon class so it can shoot multiple bullets
 
@@ -41,3 +46,16 @@ func create_bullet():
 			spawn_location.get_global_position(),
 			user.get_global_rotation() + angles[n]
 		)
+"
+
+[node name="Shotgun" type="Node2D"]
+script = SubResource( 1 )
+basic_ammo_cost = 5
+cooldown = 0.5
+default_slot = 1
+bullet_scene = ExtResource( 2 )
+damage = 20
+main_ammo_type = 2
+forgiveness_duration = 1.0
+max_angle_deg = 20.0
+max_angle_deg = 20.0
