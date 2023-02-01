@@ -135,6 +135,9 @@ func get_remaining_cooldown() -> float:
 
 ## Returns true if the user has the resources to pay for this action
 func can_user_pay() -> bool:
+	if not user:
+		return false
+
 	for type in cost:
 		if not user.can_spend_resource(type, cost[type]):
 			return false

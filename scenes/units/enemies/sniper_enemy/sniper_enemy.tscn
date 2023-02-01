@@ -2,10 +2,10 @@
 
 [ext_resource path="res://scenes/units/enemies/sniper_enemy/sniper_enemy.png" type="Texture" id=1]
 [ext_resource path="res://scenes/units/enemies/enemy.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/actions/weapons/weapon.gd" type="Script" id=3]
 [ext_resource path="res://scenes/units/enemies/sniper_enemy/enemy_sniper_bullet.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/units/enemies/enemy_components/weapon_charger/weapon_charger.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/units/enemies/plasma_enemy/enemy_plasma_shot.png" type="Texture" id=6]
+[ext_resource path="res://scenes/actions/weapons/weapon.tscn" type="PackedScene" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 39.0
@@ -29,7 +29,7 @@ shape = SubResource( 1 )
 [node name="BulletSpawnPoint" parent="." index="6"]
 position = Vector2( 0, 0 )
 
-[node name="EnemyBrain" parent="." index="8"]
+[node name="EnemyBrain" parent="." index="7"]
 minimum_chase_distance = 600.0
 too_close_threshold = 400.0
 
@@ -45,8 +45,7 @@ cooldown = 0.0
 charge_texture = ExtResource( 6 )
 max_charge = 1.25
 
-[node name="Weapon" type="Node2D" parent="EnemyBrain/EnemyWeaponBar/WeaponCharger" index="1"]
-script = ExtResource( 3 )
+[node name="Weapon" parent="EnemyBrain/EnemyWeaponBar/WeaponCharger" index="1" instance=ExtResource( 7 )]
 cooldown = 1.0
 bullet_scene = ExtResource( 4 )
 damage = 30

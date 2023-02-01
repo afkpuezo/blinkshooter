@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://scenes/units/enemies/plasma_enemy/plasma_enemy.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/units/enemies/plasma_enemy/plasma_boss/boss_plasma_bullet.tscn" type="PackedScene" id=2]
 
 [node name="PlasmaBoss" instance=ExtResource( 1 )]
 scale = Vector2( 3, 3 )
@@ -23,10 +22,8 @@ sprite_z = "5"
 [node name="EnemyBrain" parent="." index="7"]
 is_boss = true
 
-[node name="PlasmaGun" parent="EnemyBrain/EnemyWeaponBar" index="0"]
-bullet_scene = ExtResource( 2 )
-damage = 20
-forgiveness_duration = 1.0
+[node name="Weapon" parent="EnemyBrain/EnemyWeaponBar" index="0"]
+visible = true
 
 [node name="ContactExplosionAnimator" parent="ContactAttack" index="1"]
 explosion_scale = 1.5

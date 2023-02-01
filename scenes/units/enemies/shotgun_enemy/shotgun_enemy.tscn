@@ -2,9 +2,9 @@
 
 [ext_resource path="res://scenes/units/enemies/enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/units/enemies/shotgun_enemy/shotgun_enemy.png" type="Texture" id=2]
-[ext_resource path="res://scenes/actions/weapons/shotgun/shotgun.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/units/enemies/shotgun_enemy/enemy_shotgun_pellet.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/movement/movement_stats.gd" type="Script" id=5]
+[ext_resource path="res://scenes/actions/weapons/weapon.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 18, 18 )
@@ -26,7 +26,7 @@ max_speed = 500.0
 visible = false
 shape = SubResource( 1 )
 
-[node name="EnemyBrain" parent="." index="8"]
+[node name="EnemyBrain" parent="." index="7"]
 minimum_chase_distance = 80.0
 too_close_threshold = 10.0
 has_attack_range_check = true
@@ -41,15 +41,14 @@ friction = 1.0
 [node name="PlayerDetection" parent="EnemyBrain" index="2"]
 detection_range = 800
 
-[node name="Shotgun" parent="EnemyBrain/EnemyWeaponBar" index="0" instance=ExtResource( 3 )]
-basic_ammo_cost = 0
+[node name="Weapon" parent="EnemyBrain/EnemyWeaponBar" index="0" instance=ExtResource( 6 )]
 cooldown = 1.0
 bullet_scene = ExtResource( 4 )
 damage = 10
+main_ammo_type = 2
 forgiveness_team = 1
-forgiveness_duration = 0.5
-recoil = 1000.0
 num_bullets = 3
+max_angle_deg = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ContactAttack/HitBox" index="0"]
 visible = false
