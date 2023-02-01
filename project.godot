@@ -209,11 +209,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/actions/weapons/plasma_gun/plasma_burst.gd"
 }, {
-"base": "Weapon",
-"class": "PlasmaGun",
-"language": "GDScript",
-"path": "res://scenes/actions/weapons/plasma_gun/plasma_gun.gd"
-}, {
 "base": "Node2D",
 "class": "PlayerBrain",
 "language": "GDScript",
@@ -400,7 +395,6 @@ _global_script_class_icons={
 "PickupMover": "",
 "PlasmaBullet": "",
 "PlasmaBurst": "",
-"PlasmaGun": "",
 "PlayerBrain": "",
 "PlayerDetection": "",
 "PlayerLoadHelper": "",

@@ -101,7 +101,7 @@ func _find_nearest_floor() -> Vector2:
 ## if the given pos is outside of range, return a new position which is on the
 ## same line, but at max range. otherwise return the given target pos
 func _cap_target_at_max_range(target_position: Vector2) -> Vector2:
-	if user.global_position.distance_squared_to(target_position) > max_range_squared:
+	if user and user.global_position.distance_squared_to(target_position) > max_range_squared:
 		var direction: Vector2 = \
 			user.global_position.direction_to(target_position).normalized()
 		return user.global_position + (direction * max_range)

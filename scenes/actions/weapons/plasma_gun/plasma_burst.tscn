@@ -30,8 +30,9 @@ script = ExtResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 
 [node name="Pusher" type="Node2D" parent="."]
+visible = false
 script = ExtResource( 5 )
-strength = -500.0
+strength = -1000.0
 end_distance_falloff = 448.0
 
 [node name="PickupPushArea" type="Area2D" parent="."]

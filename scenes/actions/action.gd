@@ -85,8 +85,16 @@ func do_action() -> void:
 
 
 ## Called by the ActionBar when the Action node is attached / when the Action is unlocked
+## have to clear ref when the user dies
 func configure_user(new_user) -> void:
 	user = new_user
+	# warning-ignore:return_value_discarded
+	user.connect("died", self, "on_user_death")
+
+
+## clears ref to avoid crash
+func on_user_death():
+	user = null
 
 
 ## Called by the ActionBar when the user TRIES to use this ability.

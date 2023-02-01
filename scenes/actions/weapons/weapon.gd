@@ -25,8 +25,15 @@ onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 export var num_bullets := 1
 export var max_angle_deg := 0
 onready var max_angle := deg2rad(max_angle_deg)
-
 var angles := []
+
+# used for plasma shots
+export var has_burst := false # needs to go along with a PlasmaBullet
+export var burst_damage := 50
+export var burst_radius := 128
+export var burst_duration := 1.0
+export var is_burst_green := true
+
 
 # ----------
 # static methods
@@ -73,6 +80,11 @@ func configure_bullet(bullet: Bullet):
 	bullet.forgiveness_duration = forgiveness_duration
 	bullet.initial_velocity = user_movement_stats.velocity
 	bullet.target = target
+	if has_burst:
+		bullet.burst_damage = burst_damage
+		bullet.burst_radius = burst_radius
+		bullet.burst_duration = burst_duration
+		bullet.is_burst_green = is_burst_green
 
 
 # ----------
