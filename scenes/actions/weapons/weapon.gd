@@ -3,12 +3,6 @@ class_name Weapon
 ## This is an base class for simple individual player weapons. When triggered,
 ## creates the appropriate bullet at the user's BulletSpawnPoint. Also keeps
 ## track of its own ammo
-## NOTE: This probably should have been a scene from the start, but it's easier
-## to keep it as a node for now
-
-
-# a little redundant but i'm just not going to worry about it
-signal recoiled(user)
 
 
 export(PackedScene) var bullet_scene
@@ -22,12 +16,10 @@ export(TEAM) var forgiveness_team = TEAM.PLAYER
 var forgiveness_layer :=  0b0 # set in ready
 export var forgiveness_duration := 0.25
 
-# will create a Pusher if recoil is not 0
-export var recoil := 0.0
+onready var recoil_pusher: Pusher = $RecoilPusher
 
 # experimental audio stuff
-onready var audio_player: AudioStreamPlayer2D
-export var audio_file: AudioStream
+onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 
 # ----------
@@ -50,9 +42,9 @@ func do_action():
 	_ready_user_movement_stats()
 
 	create_bullet()
-	play_audio()
 
-	emit_signal("recoiled", user)
+	recoil_pusher.push(user)
+	audio_player.play()
 
 
 ## extendable helper
@@ -91,21 +83,6 @@ func _ready() -> void:
 			forgiveness_layer = 0b100
 		TEAM.BOTH:
 			forgiveness_layer = 0b110
-	# handle recoil
-	if recoil != 0:
-		var pusher: Pusher = Pusher.new() # problems if switch to scene later?
-		add_child(pusher)
-		pusher.strength = recoil
-		pusher.position.x = 10
-		pusher.start_distance_falloff = 100
-		pusher.end_distance_falloff = 200
-		# warning-ignore:return_value_discarded
-		connect("recoiled", pusher, "push")
-	# handle audio
-	if audio_file:
-		audio_player = AudioStreamPlayer2D.new()
-		add_child(audio_player)
-		audio_player.stream = audio_file
 
 
 ## spawn_location is set up here since the user var might not be configured at ready time
@@ -122,9 +99,3 @@ func _ready_spawn_location():
 func _ready_user_movement_stats():
 	if not user_movement_stats:
 		user_movement_stats = MovementStats.get_movement_stats(user) # assume it has one
-
-
-# experimental
-func play_audio():
-	if audio_player:
-		audio_player.play()
