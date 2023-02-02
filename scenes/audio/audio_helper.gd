@@ -48,11 +48,9 @@ func play(_arg = null):
 
 ## stop playing the matching player when a timer ends
 func on_timer_timeout(index: int):
-	print("on_timer_timeout with index %d" % index)
 	players[index].stop()
 
 
 ## avoids issue if stop time is after actual end of sound effect
 func on_player_finished(index: int):
-	print("on_player_finished with index %d" % index)
 	timers[index].stop()
