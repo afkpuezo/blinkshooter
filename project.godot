@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/actions/attacks/area_over_time_attack.gd"
 }, {
+"base": "Node2D",
+"class": "AudioHelper",
+"language": "GDScript",
+"path": "res://scenes/audio/audio_helper.gd"
+}, {
 "base": "Action",
 "class": "Blink",
 "language": "GDScript",
@@ -360,6 +365,7 @@ _global_script_class_icons={
 "ActionUIContainer": "",
 "ActionUITile": "",
 "AreaOverTimeAttack": "",
+"AudioHelper": "",
 "Blink": "",
 "Bullet": "",
 "BulletMover": "",

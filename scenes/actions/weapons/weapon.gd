@@ -18,8 +18,6 @@ export var forgiveness_duration := 0.25
 
 onready var recoil_pusher: Pusher = $RecoilPusher
 
-# experimental audio stuff
-onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 # bullets are spread evenly
 export var num_bullets := 1
@@ -57,7 +55,6 @@ func do_action():
 	create_bullet()
 
 	recoil_pusher.push(user)
-	audio_player.play()
 
 
 ## extendable helper
