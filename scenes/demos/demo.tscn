@@ -133,6 +133,7 @@ rotation = 3.14159
 [node name="SmallGunEnemy5" parent="Units" instance=ExtResource( 2 )]
 position = Vector2( 453, 961 )
 rotation = 3.14159
+death_sound_scene = null
 
 [node name="PlasmaEnemy" parent="Units" instance=ExtResource( 7 )]
 position = Vector2( 767, -136 )

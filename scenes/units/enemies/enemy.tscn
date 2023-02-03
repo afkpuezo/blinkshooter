@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scenes/units/unit.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/units/unit_components/combat_resource.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://scenes/pickups/pickup.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/units/enemies/enemy_components/enemy_messager/enemy_messager.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/units/enemies/enemy_components/player_detection/player_detection.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/units/enemies/enemy_components/enemy_death_sound.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/units/enemies/enemy_components/enemy_idler/enemy_idler.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/actions/attacks/contact_attack.gd" type="Script" id=14]
 [ext_resource path="res://scenes/hit_boxes/hit_box.gd" type="Script" id=15]
@@ -39,6 +40,7 @@ tracks/0/keys = {
 [node name="Enemy" instance=ExtResource( 1 )]
 collision_layer = 4
 collision_mask = 71
+death_sound_scene = ExtResource( 11 )
 
 [node name="Health" type="Node" parent="CombatResources" index="0"]
 script = ExtResource( 2 )

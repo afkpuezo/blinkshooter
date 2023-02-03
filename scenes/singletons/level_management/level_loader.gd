@@ -6,7 +6,7 @@ var player: Unit
 var player_data: Dictionary
 var is_waiting_for_player_spawn := true
 
-const PLAYER_DEATH_LOAD_DELAY := 2.0
+const PLAYER_DEATH_LOAD_DELAY := 4.0
 
 
 func _ready() -> void:

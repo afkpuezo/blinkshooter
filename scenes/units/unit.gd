@@ -17,6 +17,10 @@ var combat_resources: Dictionary
 onready var buffs_node: Node2D = $Buffs
 onready var initial_rotation := rotation # used in enemy idler
 
+# since units are removed from the tree when they die, the audio player
+# has to be given to the Spawner
+export var death_sound_scene: PackedScene
+
 
 # ----------
 # setup funcs
@@ -103,6 +107,8 @@ func _check_for_death(new_health_value, _max) -> void:
 
 func die():
 	emit_signal("died")
+	if death_sound_scene:
+		Spawner.spawn_node(death_sound_scene.instance(), global_position)
 	queue_free()
 
 
