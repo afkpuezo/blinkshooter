@@ -23,7 +23,7 @@ strength = 700.0
 [node name="AudioHelper" parent="." index="1"]
 start_time = 0.1
 stops_early = true
-stop_time = 0.7
+stop_time = 0.8
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AudioHelper" index="0"]
 stream = SubResource( 1 )
