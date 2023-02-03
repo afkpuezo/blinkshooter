@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scenes/actions/weapons/weapon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/actions/weapons/plasma_gun/plasma_bullet.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/actions/weapons/plasma_gun/151016__bubaproducer__laser-shot-big-1.wav" type="AudioStream" id=3]
+[ext_resource path="res://scenes/actions/weapons/plasma_gun/plasma_gun.wav" type="AudioStream" id=3]
 
 [sub_resource type="AudioStreamRandomPitch" id=1]
 audio_stream = ExtResource( 3 )

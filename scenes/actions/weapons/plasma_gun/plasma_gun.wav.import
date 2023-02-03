@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/plasma_gun.wav-ada0c9c29c8cc9a4023a313c682bb0f8.sample"
+
+[deps]
+
+source_file="res://scenes/actions/weapons/plasma_gun/plasma_gun.wav"
+dest_files=[ "res://.import/plasma_gun.wav-ada0c9c29c8cc9a4023a313c682bb0f8.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
