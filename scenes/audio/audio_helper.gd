@@ -9,6 +9,7 @@ class_name AudioHelper
 
 
 export var start_time := 0.0
+# if no stop time, use stream's length
 export var stops_early := false
 export var stop_time := 0.0
 onready var play_duration := stop_time - start_time
@@ -19,27 +20,46 @@ var current_player := 0
 
 
 func _ready() -> void:
+	var index = 0
 	for c in get_children():
 		players.append(c)
 
-	if stops_early:
-		for index in players.size():
+		if stops_early:
 			var timer = Timer.new()
 			timer.connect("timeout", self, "on_timer_timeout", [index])
 			timers.append(timer)
 			add_child(timer)
-			players[index].connect("finished", self, "on_player_finished", [index])
+			c.connect("finished", self, "on_player_finished", [index])
+
+		index += 1
+	# end for c
+
+	# if we need to get the default stop_time
+	if not stops_early and not players.empty():
+		stop_time = players[0].stream.get_length()
+		play_duration = stop_time - start_time
 
 
-## starts the sound effect on the next player
+## starts the sound effect on the next available stream player
+## this one is called from signals
 # arg for signals
 func play(_arg = null):
+	play_from_percent(0.0)
+
+
+## starts the sound effect on the next available stream player,
+## starting at the given time (as a percent of the time between
+## the configured start time and stop time)
+## "percent" should actually be out of 1.0, eg half is 0.5
+func play_from_percent(start_percent: float):
 	if players.empty():
 		return
 
-	players[current_player].play(start_time)
+	var temp_duration := start_time + (play_duration * start_percent)
+
+	players[current_player].play(temp_duration)
 	if stops_early:
-		timers[current_player].start(play_duration)
+		timers[current_player].start(temp_duration)
 
 	current_player += 1
 	if current_player >= players.size():

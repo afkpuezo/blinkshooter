@@ -3,6 +3,7 @@ class_name WeaponCharger
 ## Adds a charge requirement to any weapon, only firing the actual weapon
 ## once the charge is full.
 ## Add this to the WeaponBar and add the actual weapon to this.
+## NOTE: this is still a weapon NODE, not the new scene!
 
 
 onready var sub_action: Action = null
