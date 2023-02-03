@@ -12,11 +12,11 @@ export var start_time := 0.0
 # if no stop time, use stream's length
 export var stops_early := false
 export var stop_time := 0.0
-onready var play_duration := stop_time - start_time
+var play_duration: float
 
 var players := []
 var timers := []
-var current_player := 0
+var current_index := 0
 
 
 func _ready() -> void:
@@ -37,7 +37,8 @@ func _ready() -> void:
 	# if we need to get the default stop_time
 	if not stops_early and not players.empty():
 		stop_time = players[0].stream.get_length()
-		play_duration = stop_time - start_time
+	# always
+	play_duration = stop_time - start_time
 
 
 ## starts the sound effect on the next available stream player
@@ -50,20 +51,23 @@ func play(_arg = null):
 ## starts the sound effect on the next available stream player,
 ## starting at the given time (as a percent of the time between
 ## the configured start time and stop time)
+## if force_restart is false (default true) and the sound is already playing,
+## the call will be ignored
 ## "percent" should actually be out of 1.0, eg half is 0.5
-func play_from_percent(start_percent: float):
-	if players.empty():
+func play_from_percent(start_percent: float, force_restart := true):
+	if players.empty() or ((not force_restart) and players[current_index].playing):
 		return
 
-	var temp_duration := start_time + (play_duration * start_percent)
+	var temp_start := start_time + (play_duration * start_percent)
+	var temp_duration = stop_time - temp_start
 
-	players[current_player].play(temp_duration)
+	players[current_index].play(temp_start)
 	if stops_early:
-		timers[current_player].start(temp_duration)
+		timers[current_index].start(temp_duration)
 
-	current_player += 1
-	if current_player >= players.size():
-		current_player = 0
+	current_index += 1
+	if current_index >= players.size():
+		current_index = 0
 
 
 ## stop playing the matching player when a timer ends
@@ -74,3 +78,12 @@ func on_timer_timeout(index: int):
 ## avoids issue if stop time is after actual end of sound effect
 func on_player_finished(index: int):
 	timers[index].stop()
+
+
+## stops ALL players and timers, which might be too much, but I suspect this
+## method will only be called by the WeaponCharger, which only has one player
+func stop():
+	for p in players:
+		p.stop()
+	for t in timers:
+		t.stop()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/units/enemies/sniper_enemy/sniper_enemy.png" type="Texture" id=1]
 [ext_resource path="res://scenes/units/enemies/enemy.tscn" type="PackedScene" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://scenes/units/enemies/sniper_enemy/enemy_sniper_bullet.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/units/enemies/enemy_components/weapon_charger/weapon_charger.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/units/enemies/plasma_enemy/enemy_plasma_shot.png" type="Texture" id=6]
+[ext_resource path="res://scenes/units/enemies/enemy_components/weapon_charger/sniper_charge_sound.wav" type="AudioStream" id=7]
+[ext_resource path="res://scenes/audio/audio_helper.tscn" type="PackedScene" id=8]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 39.0
@@ -49,6 +51,14 @@ max_charge = 1.25
 PLASMA_AMMO_cost = 0
 bullet_scene = ExtResource( 4 )
 forgiveness_team = 1
+
+[node name="AudioHelper" parent="EnemyBrain/EnemyWeaponBar/WeaponCharger" index="2" instance=ExtResource( 8 )]
+start_time = 2.38
+stops_early = true
+stop_time = 3.63
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="EnemyBrain/EnemyWeaponBar/WeaponCharger/AudioHelper" index="0"]
+stream = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ContactAttack" index="3"]
 visible = false

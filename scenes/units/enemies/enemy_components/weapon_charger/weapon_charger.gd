@@ -6,7 +6,8 @@ class_name WeaponCharger
 ## NOTE: this is still a weapon NODE, not the new scene!
 
 
-onready var sub_action: Action = null
+var sub_action: Action
+var audio_helper: AudioHelper
 
 onready var sprite: Sprite = $Sprite
 export var charge_texture: Texture
@@ -24,7 +25,9 @@ func _ready() -> void:
 	for c in get_children():
 		if Action.is_action(c):
 			sub_action = c
-			break
+		# jankludge
+		if c is AudioHelper:
+			audio_helper = c
 	if not sub_action:
 		print("WeaponCharger doesn't have an Action child!")
 		queue_free()
@@ -47,18 +50,19 @@ func _setup():
 
 ## due to all my kludge i'm not sure what the correct entry point for charging is
 func trigger(target: Unit = null):
-	handle_charge(target)
+	gain_charge(target)
 
 
 ## due to all my kludge i'm not sure what the correct entry point for charging is
 func do_action():
-	handle_charge()
+	gain_charge()
 
 
 ## add to the charge, if full, trigger the action
-func handle_charge(target: Unit = null):
+func gain_charge(target: Unit = null):
 	_setup()
 	charge += get_physics_process_delta_time()
+	print("After gaining, charge is %f" % charge)
 
 	if charge >= max_charge:
 		# warning-ignore:return_value_discarded
@@ -66,6 +70,11 @@ func handle_charge(target: Unit = null):
 		charge = 0
 
 	_scale_sprite()
+	if audio_helper:
+		audio_helper.play_from_percent(
+			charge / max_charge,
+			false # don't start playing again if already playing
+		)
 
 
 func _scale_sprite():
