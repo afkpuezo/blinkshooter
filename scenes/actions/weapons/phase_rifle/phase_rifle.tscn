@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/actions/weapons/weapon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/actions/weapons/phase_rifle/phase_bullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/actions/weapons/phase_rifle/phase_gun.wav" type="AudioStream" id=3]
 
 [node name="PhaseRifle" instance=ExtResource( 1 )]
 PLASMA_AMMO_cost = 1
@@ -10,3 +11,10 @@ default_slot = 3
 bullet_scene = ExtResource( 2 )
 damage = 30
 main_ammo_type = 3
+
+[node name="AudioHelper" parent="." index="1"]
+stops_early = true
+stop_time = 1.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AudioHelper" index="0"]
+stream = ExtResource( 3 )

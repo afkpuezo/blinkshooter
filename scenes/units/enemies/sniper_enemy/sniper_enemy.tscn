@@ -2,10 +2,10 @@
 
 [ext_resource path="res://scenes/units/enemies/sniper_enemy/sniper_enemy.png" type="Texture" id=1]
 [ext_resource path="res://scenes/units/enemies/enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/actions/weapons/phase_rifle/phase_rifle.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/units/enemies/sniper_enemy/enemy_sniper_bullet.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/units/enemies/enemy_components/weapon_charger/weapon_charger.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/units/enemies/plasma_enemy/enemy_plasma_shot.png" type="Texture" id=6]
-[ext_resource path="res://scenes/actions/weapons/weapon.tscn" type="PackedScene" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 39.0
@@ -45,13 +45,10 @@ cooldown = 0.0
 charge_texture = ExtResource( 6 )
 max_charge = 1.25
 
-[node name="Weapon" parent="EnemyBrain/EnemyWeaponBar/WeaponCharger" index="1" instance=ExtResource( 7 )]
-cooldown = 1.0
+[node name="PhaseRifle" parent="EnemyBrain/EnemyWeaponBar/WeaponCharger" index="1" instance=ExtResource( 3 )]
+PLASMA_AMMO_cost = 0
 bullet_scene = ExtResource( 4 )
-damage = 30
-main_ammo_type = 3
 forgiveness_team = 1
-forgiveness_duration = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ContactAttack" index="3"]
 visible = false
