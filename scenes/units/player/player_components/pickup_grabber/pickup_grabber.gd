@@ -13,6 +13,7 @@ export var grab_radius := 32
 export var vacuum_radius := 128
 
 onready var pickup_vacuum: Area2D = $PickupVacuum # should this have its own script?
+onready var audio_helper: AudioHelper = $AudioHelper
 
 # fuck it, this is easier
 onready var owner_resources := CombatResource.get_combat_resources(owner)
@@ -30,6 +31,7 @@ func _ready() -> void:
 
 # from our own Area2D Signal
 func grab(p: Pickup):
+	var is_needed := true
 	match p.meta_type:
 		Pickup.META_TYPE.ACTION:
 			emit_signal(
@@ -42,7 +44,7 @@ func grab(p: Pickup):
 				p.get_item()
 			)
 		Pickup.META_TYPE.RESOURCE:
-			var is_needed := false
+			is_needed = false
 
 			for cr in owner_resources:
 				if cr.type == p.resource_type:
@@ -56,6 +58,9 @@ func grab(p: Pickup):
 					p.resource_amount
 				)
 				p.consume()
+	if is_needed:
+		print("Grabber playing sound")
+		audio_helper.play()
 
 
 ## vacuum any pickups currently in the vacuum area

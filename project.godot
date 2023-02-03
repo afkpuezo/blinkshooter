@@ -197,7 +197,7 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "PickupGrabber",
 "language": "GDScript",
-"path": "res://scenes/units/player/player_components/pickup_grabber.gd"
+"path": "res://scenes/units/player/player_components/pickup_grabber/pickup_grabber.gd"
 }, {
 "base": "Mover",
 "class": "PickupMover",
@@ -464,6 +464,13 @@ static=false
 alias=false
 autoload=false
 main=false
+
+[importer_defaults]
+
+ogg_vorbis={
+"loop": false,
+"loop_offset": 0
+}
 
 [input]
 

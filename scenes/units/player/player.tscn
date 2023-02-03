@@ -9,7 +9,7 @@
 [ext_resource path="res://scenes/units/player/player_components/action_bar.gd" type="Script" id=7]
 [ext_resource path="res://scenes/units/player/player_damaged.png" type="Texture" id=8]
 [ext_resource path="res://scenes/units/unit_components/bullet_spawn_point.gd" type="Script" id=9]
-[ext_resource path="res://scenes/units/player/player_components/pickup_grabber.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/units/player/player_components/pickup_grabber/pickup_grabber.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/units/player/player_components/player_death_sound.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Animation" id=4]
