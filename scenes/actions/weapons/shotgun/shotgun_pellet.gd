@@ -8,3 +8,4 @@ class_name ShotgunPellet
 func handle_hit(victim: Unit):
 		victim.take_damage(damage, source)
 		emit_signal("exploded")
+		play_sound()

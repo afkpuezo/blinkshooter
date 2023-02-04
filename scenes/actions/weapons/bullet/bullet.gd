@@ -18,13 +18,16 @@ onready var forgiveness_timer: Timer = $ForgivenessTimer
 var initial_velocity: Vector2
 onready var mover: BulletMover = $BulletMover
 
-
 ## damage dealt to target when hit, set by weapon
 var damage = 1
 ## the unit responsible for shooting this bullet
 var source
 ## only actually used by homing bullets I guess
 var target
+
+# since units are removed from the tree when they die, the audio player
+# has to be given to the Spawner
+export var hit_sound_scene: PackedScene
 
 
 func _ready() -> void:
@@ -52,6 +55,7 @@ func handle_hit(victim: Unit):
 func end(do_explode := has_explosion):
 	if do_explode:
 		emit_signal("exploded")
+	play_sound()
 	queue_free()
 
 
@@ -63,3 +67,8 @@ func on_target_death():
 ## avoids crash after source is freed
 func on_source_death():
 	source = null
+
+
+func play_sound():
+	if hit_sound_scene:
+		Spawner.spawn_node(hit_sound_scene.instance(), global_position)
