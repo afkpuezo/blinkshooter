@@ -25,7 +25,13 @@ func _ready() -> void:
 
 func on_level_loaded(msg):
 	var level_scene_path: String = msg['level_scene_path']
-	var level_name = level_codes[level_scene_path]
+	var level_name: String
+
+	if level_scene_path in level_codes:
+		level_name = level_codes[level_scene_path]
+	else:
+		return
+
 	var data := load_data()
 
 	if not 'level_list' in data:
