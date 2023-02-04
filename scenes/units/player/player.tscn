@@ -14,6 +14,7 @@
 
 [sub_resource type="Animation" id=4]
 resource_name = "Damaged"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/DamagedSprite:visible")
 tracks/0/interp = 1
@@ -21,10 +22,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.01, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ true, false, true, false, true, false ]
+"values": [ false, true, false, true, false, true, false ]
 }
 
 [sub_resource type="Animation" id=2]
