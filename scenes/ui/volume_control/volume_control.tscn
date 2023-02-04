@@ -10,22 +10,31 @@ margin_bottom = 476.0
 alignment = 1
 
 [node name="Label" type="Label" parent="."]
-margin_left = 493.0
+margin_left = 429.0
 margin_top = 2.0
-margin_right = 741.0
+margin_right = 677.0
 margin_bottom = 61.0
 theme = ExtResource( 1 )
 text = "Volume:"
 align = 1
 valign = 1
 
-[node name="VolumeSlider" type="HSlider" parent="."]
-margin_left = 745.0
-margin_right = 873.0
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_left = 681.0
+margin_right = 937.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 128, 64 )
+
+[node name="VolumeSlider" type="HSlider" parent="CenterContainer"]
+margin_right = 256.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 256, 64 )
+size_flags_horizontal = 2
+size_flags_vertical = 2
+theme = ExtResource( 1 )
 max_value = 1.0
 step = 0.05
 script = ExtResource( 2 )
 
-[connection signal="value_changed" from="VolumeSlider" to="VolumeSlider" method="on_value_changed"]
+[connection signal="mouse_exited" from="CenterContainer/VolumeSlider" to="CenterContainer/VolumeSlider" method="release_focus"]
+[connection signal="value_changed" from="CenterContainer/VolumeSlider" to="CenterContainer/VolumeSlider" method="on_value_changed"]
