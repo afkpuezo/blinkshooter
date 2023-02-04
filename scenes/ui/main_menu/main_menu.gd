@@ -14,6 +14,7 @@ var is_working := false
 onready var main_menu_container: Container = $MainMenuContainer
 onready var level_select_container: Container = $LevelSelectContainer
 onready var no_levels_label: Label = $LevelSelectContainer/NoLevelsLabel
+
 # level_code: String -> button
 var level_buttons := {}
 # level_code: String -> scene_path: String

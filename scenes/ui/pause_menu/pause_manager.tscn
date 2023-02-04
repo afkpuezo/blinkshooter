@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://scenes/singletons/pause_manager.gd" type="Script" id=1]
+[ext_resource path="res://scenes/ui/pause_menu/pause_manager.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://scenes/ui/fonts/pause_menu_font.tres" type="DynamicFont" id=3]
 [ext_resource path="res://scenes/ui/main_menu/menu_theme.tres" type="Theme" id=4]
