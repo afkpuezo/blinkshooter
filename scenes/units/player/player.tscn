@@ -131,6 +131,7 @@ polygon = PoolVector2Array( -23, -26, 26, 0, -23, 26 )
 
 [node name="PickupGrabber" parent="." index="10" instance=ExtResource( 10 )]
 grab_radius = 24
+vacuum_radius = 96
 
 [node name="Sprites" type="Node2D" parent="." index="11"]
 

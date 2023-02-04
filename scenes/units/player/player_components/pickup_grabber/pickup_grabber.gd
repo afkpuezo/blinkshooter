@@ -60,6 +60,7 @@ func grab(p: Pickup):
 
 ## vacuum any pickups currently in the vacuum area
 func _physics_process(_delta: float) -> void:
-	for a in pickup_vacuum.get_overlapping_bodies():
+	for p in pickup_vacuum.get_overlapping_bodies():
 		# let's try just assuming it's a pickup
-		a.set_vacuum_position(global_position)
+		p.set_vacuum_position(global_position)
+		grab(p)

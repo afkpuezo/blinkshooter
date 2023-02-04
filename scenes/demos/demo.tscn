@@ -26,6 +26,7 @@
 [node name="LevelLocal" type="Node2D"]
 script = ExtResource( 12 )
 level_scene_path = "res://scenes/demos/demo.tscn"
+drop_chance_multiplier = 100.0
 
 [node name="WaveTest" type="Node2D" parent="."]
 

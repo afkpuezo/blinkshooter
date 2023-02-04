@@ -92,4 +92,5 @@ signal level_loaded(msg)
 signal game_won(msg)
 
 ## called by pause manager, informs the Spawner to remove spawned objects
+# warning-ignore:unused_signal
 signal returned_to_main_menu(msg)

@@ -51,7 +51,6 @@ pitch_scale = 0.9
 stream = ExtResource( 5 )
 volume_db = 8.0
 
-[connection signal="body_entered" from="." to="." method="grab"]
 [connection signal="found_action" from="." to="Sound/GrabAction" method="play"]
 [connection signal="found_resource" from="." to="Sound/GrabResource" method="play"]
 [connection signal="found_weapon" from="." to="Sound/GrabWeapon" method="play"]
