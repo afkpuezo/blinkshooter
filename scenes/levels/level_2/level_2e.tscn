@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scenes/singletons/level_management/level_local.gd" type="Script" id=1]
 [ext_resource path="res://scenes/actions/blink/blink.tscn" type="PackedScene" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://scenes/ui/triggered_canvas.gd" type="Script" id=14]
 [ext_resource path="res://scenes/ui/fonts/win_screen_font.tres" type="DynamicFont" id=15]
 [ext_resource path="res://scenes/pickups/trophy.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/actions/blink/teleport_effect.tscn" type="PackedScene" id=17]
 
 [node name="LevelLocal" type="Node2D"]
 script = ExtResource( 1 )
@@ -48,6 +49,9 @@ script = ExtResource( 4 )
 [node name="PlasmaGun" parent="Player/PlayerLoadHelper" instance=ExtResource( 12 )]
 
 [node name="PhaseRifle" parent="Player/PlayerLoadHelper" instance=ExtResource( 6 )]
+
+[node name="TeleportEffect" parent="Player" instance=ExtResource( 17 )]
+scale = Vector2( 2.5, 2.5 )
 
 [node name="Gateway" parent="." instance=ExtResource( 13 )]
 position = Vector2( 1376, 96 )

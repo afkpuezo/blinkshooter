@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://scenes/singletons/level_management/level_local.gd" type="Script" id=1]
 [ext_resource path="res://scenes/terrain/tilesets/floor_tile_map.tscn" type="PackedScene" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://scenes/units/enemies/plasma_enemy/plasma_enemy.tscn" type="PackedScene" id=19]
 [ext_resource path="res://scenes/units/enemies/sniper_enemy/sniper_enemy.tscn" type="PackedScene" id=20]
 [ext_resource path="res://scenes/pickups/pickup.tscn" type="PackedScene" id=21]
+[ext_resource path="res://scenes/actions/blink/teleport_effect.tscn" type="PackedScene" id=22]
 
 [node name="LevelLocal" type="Node2D"]
 script = ExtResource( 1 )
@@ -60,6 +61,9 @@ script = ExtResource( 10 )
 [node name="PlasmaGun" parent="CentralArea/Units/Player/PlayerLoadHelper" instance=ExtResource( 16 )]
 
 [node name="PhaseRifle" parent="CentralArea/Units/Player/PlayerLoadHelper" instance=ExtResource( 17 )]
+
+[node name="TeleportEffect" parent="CentralArea/Units/Player" instance=ExtResource( 22 )]
+scale = Vector2( 2.5, 2.5 )
 
 [node name="Gateway" parent="CentralArea" instance=ExtResource( 6 )]
 position = Vector2( 0, 256 )
