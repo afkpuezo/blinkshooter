@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/loot_grab.ogg-b34308a87a28ccb3de8ac8291b2e10c6.oggstr"
+
+[deps]
+
+source_file="res://scenes/units/player/assets/loot_grab.ogg"
+dest_files=[ "res://.import/loot_grab.ogg-b34308a87a28ccb3de8ac8291b2e10c6.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

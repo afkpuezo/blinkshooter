@@ -1,17 +1,19 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/actions/weapons/bullet/bullet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/actions/weapons/plasma_gun/assets/plasma_shot_base.png" type="Texture" id=2]
 [ext_resource path="res://scenes/actions/weapons/plasma_gun/zap_effect.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/actions/weapons/plasma_gun/plasma_burst.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/actions/weapons/plasma_gun/plasma_bullet.gd" type="Script" id=5]
-[ext_resource path="res://scenes/actions/weapons/plasma_gun/plasma_bullet.ogg" type="AudioStream" id=6]
+[ext_resource path="res://scenes/actions/weapons/plasma_gun/assets/plasma_bullet.ogg" type="AudioStream" id=6]
+[ext_resource path="res://scenes/actions/weapons/plasma_gun/plasma_bullet_hit_sound.tscn" type="PackedScene" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 16.0
 
 [node name="PlasmaBullet" instance=ExtResource( 1 )]
 script = ExtResource( 5 )
+hit_sound_scene = ExtResource( 7 )
 burst_damage = 50
 burst_radius = 128
 burst_duration = 0.5

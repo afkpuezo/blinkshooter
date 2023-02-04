@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/plasma_bullet.ogg-1fcf8ff86ca4c131fa93b80b8f77550b.oggstr"
+
+[deps]
+
+source_file="res://scenes/actions/weapons/plasma_gun/assets/plasma_bullet.ogg"
+dest_files=[ "res://.import/plasma_bullet.ogg-1fcf8ff86ca4c131fa93b80b8f77550b.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

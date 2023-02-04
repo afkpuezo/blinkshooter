@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/plasma_gun.wav-ada0c9c29c8cc9a4023a313c682bb0f8.sample"
+path="res://.import/player_death_sound.wav-57962bd387ee2fb3f781ef25fa102e51.sample"
 
 [deps]
 
-source_file="res://scenes/actions/weapons/plasma_gun/plasma_gun.wav"
-dest_files=[ "res://.import/plasma_gun.wav-ada0c9c29c8cc9a4023a313c682bb0f8.sample" ]
+source_file="res://scenes/units/player/assets/player_death_sound.wav"
+dest_files=[ "res://.import/player_death_sound.wav-57962bd387ee2fb3f781ef25fa102e51.sample" ]
 
 [params]
 

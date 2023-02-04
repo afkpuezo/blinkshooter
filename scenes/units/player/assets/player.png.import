@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/player_damaged.png-22d340b596b1340cc3ff9193b14f2349.stex"
+path="res://.import/player.png-b1d6b39c239cc845b2d19a998368b2c0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/units/player/player_damaged.png"
-dest_files=[ "res://.import/player_damaged.png-22d340b596b1340cc3ff9193b14f2349.stex" ]
+source_file="res://scenes/units/player/assets/player.png"
+dest_files=[ "res://.import/player.png-b1d6b39c239cc845b2d19a998368b2c0.stex" ]
 
 [params]
 
