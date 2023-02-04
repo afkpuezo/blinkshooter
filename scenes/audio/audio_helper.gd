@@ -14,6 +14,8 @@ export var stops_early := false
 export var stop_time := 0.0
 var play_duration: float
 
+export var autoplay := false
+
 var players := []
 var timers := []
 var current_index := 0
@@ -39,6 +41,9 @@ func _ready() -> void:
 		stop_time = players[0].stream.get_length()
 	# always
 	play_duration = stop_time - start_time
+
+	if autoplay:
+		play()
 
 
 ## starts the sound effect on the next available stream player

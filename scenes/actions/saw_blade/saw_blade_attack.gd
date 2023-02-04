@@ -21,6 +21,8 @@ onready var spin_anim: Animation = animation_player.get_animation("spin")
 onready var sprite: Sprite = $Sprite
 onready var attack: AreaOverTimeAttack = $AreaOverTimeAttack
 
+export var hit_sound_scene: PackedScene
+
 
 func _ready() -> void:
 	was_ready_called = true
@@ -48,10 +50,10 @@ func handle_sprite_rotation(delta):
 
 func _on_AreaOverTimeAttack_dealt_damage(victim, amount) -> void:
 	emit_signal("dealt_damage", victim, amount)
-	emit_signal(
-		"hit_at",
-		calculate_hit_position(victim.global_position)
-	)
+	var hit_pos := calculate_hit_position(victim.global_position)
+	emit_signal("hit_at", hit_pos)
+	if hit_sound_scene:
+		Spawner.spawn_node(hit_sound_scene.instance(), hit_pos)
 
 
 ## figure out where to place the hit explosion for this enemy

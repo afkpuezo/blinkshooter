@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/actions/saw_blade/saw_blade.gd" type="Script" id=1]
 [ext_resource path="res://scenes/actions/saw_blade/saw_blade_attack.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/audio/audio_helper.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/actions/saw_blade/assets/saw_sound.wav" type="AudioStream" id=4]
 
 [node name="SawBlade" type="Node2D"]
 script = ExtResource( 1 )
@@ -15,4 +17,13 @@ default_slot = 1
 wait_time = 2.0
 one_shot = true
 
+[node name="AudioHelper" parent="." instance=ExtResource( 3 )]
+start_time = 0.4
+stops_early = true
+stop_time = 2.4
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AudioHelper"]
+stream = ExtResource( 4 )
+
+[connection signal="action_started" from="." to="AudioHelper" method="play"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
