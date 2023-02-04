@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/actions/shuriken/shuriken.gd" type="Script" id=1]
 [ext_resource path="res://scenes/actions/shuriken/shuriken_attack.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/audio/audio_helper.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/actions/shuriken/assets/shuriken_launch.wav" type="AudioStream" id=4]
 
 [node name="Shuriken" type="Node2D"]
 script = ExtResource( 1 )
@@ -10,3 +12,17 @@ cooldown = 1.0
 default_slot = 2
 projectile_scene = ExtResource( 2 )
 launch_duration = 1.0
+
+[node name="AudioHelper" parent="." instance=ExtResource( 3 )]
+stops_early = true
+stop_time = 1.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AudioHelper"]
+stream = ExtResource( 4 )
+pitch_scale = 2.0
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="AudioHelper"]
+stream = ExtResource( 4 )
+pitch_scale = 2.0
+
+[connection signal="action_started" from="." to="AudioHelper" method="play"]

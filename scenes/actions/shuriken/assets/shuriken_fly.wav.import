@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/shuriken_fly.wav-3494efac6532704f3c9e01f24fd965eb.sample"
+
+[deps]
+
+source_file="res://scenes/actions/shuriken/assets/shuriken_fly.wav"
+dest_files=[ "res://.import/shuriken_fly.wav-3494efac6532704f3c9e01f24fd965eb.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
