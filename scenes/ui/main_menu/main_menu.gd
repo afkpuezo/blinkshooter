@@ -3,6 +3,9 @@ class_name MainMenu
 ## it's the main menu
 
 
+signal button_pressed()
+
+
 export var first_level_code := "1a"
 
 onready var timer: Timer = $Timer
@@ -43,20 +46,24 @@ func _ready() -> void:
 
 
 func start_new_game():
+	emit_signal("button_pressed")
 	on_level_select_button_pressed(first_level_code)
 
 
 func quit_game():
+	emit_signal("button_pressed")
 	get_tree().quit()
 
 
 func go_to_main_menu():
+	emit_signal("button_pressed")
 	main_menu_container.visible = true
 	level_select_container.visible = false
 
 
 ## adjusts the level select menu based on current save data
 func go_to_level_select():
+	emit_signal("button_pressed")
 	var data := SaveLoad.load_data()
 	var level_list := []
 	if 'level_list' in data:
@@ -78,6 +85,7 @@ func on_level_select_button_pressed(level_code: String):
 	if is_working:
 		return
 	else:
+		emit_signal("button_pressed")
 		is_working = true
 		timer.start()
 		yield(timer, "timeout")

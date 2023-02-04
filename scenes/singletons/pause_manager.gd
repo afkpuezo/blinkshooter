@@ -3,6 +3,9 @@ extends CanvasLayer
 ## handles pausing and displaying menu
 
 
+signal button_pressed()
+
+
 export var main_menu_scene_path := "res://scenes/ui/main_menu/main_menu.tscn"
 
 var is_pausable := true setget set_is_pausable
@@ -32,14 +35,21 @@ func pause():
 
 
 func resume():
+	#emit_signal("button_pressed")
 	get_tree().paused = false
 	visible = false
 
 
 func go_to_start_screen():
+	emit_signal("button_pressed")
 	# warning-ignore:return_value_discarded
 	get_tree().change_scene(main_menu_scene_path)
 
 
 func quit():
+	emit_signal("button_pressed")
 	get_tree().quit()
+
+
+func _on_ResumeButton_pressed(extra_arg_0: bool) -> void:
+	pass # Replace with function body.
