@@ -17,6 +17,7 @@ onready var sprite_scale_diff = max_sprite_scale - min_sprite_scale
 
 var charge := 0.0
 export var max_charge := 3.0 # seconds it takes to fill up
+var was_charge_gained_this_frame := false
 
 var setup_done := false
 
@@ -49,8 +50,8 @@ func _setup():
 
 
 ## due to all my kludge i'm not sure what the correct entry point for charging is
-func trigger(target: Unit = null):
-	gain_charge(target)
+func trigger(_target: Unit = null):
+	gain_charge()
 
 
 ## due to all my kludge i'm not sure what the correct entry point for charging is
@@ -59,10 +60,10 @@ func do_action():
 
 
 ## add to the charge, if full, trigger the action
-func gain_charge(target: Unit = null):
+func gain_charge():
 	_setup()
 	charge += get_physics_process_delta_time()
-	print("After gaining, charge is %f" % charge)
+	was_charge_gained_this_frame = true
 
 	if charge >= max_charge:
 		# warning-ignore:return_value_discarded
@@ -70,7 +71,7 @@ func gain_charge(target: Unit = null):
 		charge = 0
 
 	_scale_sprite()
-	if audio_helper:
+	if audio_helper and charge > 0:
 		audio_helper.play_from_percent(
 			charge / max_charge,
 			false # don't start playing again if already playing
@@ -84,3 +85,12 @@ func _scale_sprite():
 		scale_val,
 		scale_val
 	)
+
+
+## handles losing charge while not being called
+func _physics_process(_delta: float) -> void:
+	if not was_charge_gained_this_frame:
+		charge = max(0.0, charge - get_physics_process_delta_time())
+		_scale_sprite()
+
+	was_charge_gained_this_frame = false
