@@ -9,6 +9,8 @@ extends Node2D
 func _ready() -> void:
 	# warning-ignore:return_value_discarded
 	GameEvents.connect("level_loaded", self, "cleanup")
+	# warning-ignore:return_value_discarded
+	GameEvents.connect("returned_to_main_menu", self, "cleanup")
 
 
 func cleanup(_args = null):

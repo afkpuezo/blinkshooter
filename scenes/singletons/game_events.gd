@@ -90,3 +90,6 @@ signal level_loaded(msg)
 # player is passed to help the camera manager
 # warning-ignore:unused_signal
 signal game_won(msg)
+
+## called by pause manager, informs the Spawner to remove spawned objects
+signal returned_to_main_menu(msg)

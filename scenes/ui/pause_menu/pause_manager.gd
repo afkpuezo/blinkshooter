@@ -42,6 +42,7 @@ func resume():
 
 func go_to_start_screen():
 	emit_signal("button_pressed")
+	GameEvents.emit_signal("returned_to_main_menu", {})
 	# warning-ignore:return_value_discarded
 	get_tree().change_scene(main_menu_scene_path)
 
