@@ -319,6 +319,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/units/unit.gd"
 }, {
+"base": "HSlider",
+"class": "VolumeSlider",
+"language": "GDScript",
+"path": "res://scenes/ui/volume_control/volume_slider.gd"
+}, {
 "base": "Node2D",
 "class": "Wave",
 "language": "GDScript",
@@ -417,6 +422,7 @@ _global_script_class_icons={
 "TriggeredCanvas": "",
 "Trophy": "",
 "Unit": "",
+"VolumeSlider": "",
 "Wave": "",
 "WaveEnemy": "",
 "WaveManager": "",

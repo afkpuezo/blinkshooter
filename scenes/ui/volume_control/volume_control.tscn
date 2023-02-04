@@ -1,28 +1,31 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/ui/main_menu/menu_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/ui/volume_control/volume_slider.gd" type="Script" id=2]
 
 [node name="VolumeControl" type="HBoxContainer"]
-visible = false
 margin_top = 412.0
 margin_right = 1366.0
 margin_bottom = 476.0
 alignment = 1
 
 [node name="Label" type="Label" parent="."]
-margin_left = 517.0
+margin_left = 493.0
 margin_top = 2.0
-margin_right = 716.0
+margin_right = 741.0
 margin_bottom = 61.0
 theme = ExtResource( 1 )
 text = "Volume:"
 align = 1
 valign = 1
 
-[node name="HSlider" type="HSlider" parent="."]
-margin_left = 720.0
-margin_right = 848.0
+[node name="VolumeSlider" type="HSlider" parent="."]
+margin_left = 745.0
+margin_right = 873.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 128, 64 )
 max_value = 1.0
 step = 0.05
+script = ExtResource( 2 )
+
+[connection signal="value_changed" from="VolumeSlider" to="VolumeSlider" method="on_value_changed"]
