@@ -24,6 +24,7 @@ stop_time = 2.4
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AudioHelper"]
 stream = ExtResource( 4 )
+volume_db = 8.0
 
 [connection signal="action_started" from="." to="AudioHelper" method="play"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

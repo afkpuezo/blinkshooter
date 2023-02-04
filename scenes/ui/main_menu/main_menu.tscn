@@ -84,9 +84,9 @@ mouse_filter = 0
 alignment = 1
 
 [node name="TitleLabel" type="Label" parent="MainMenuContainer"]
-margin_top = 325.0
+margin_top = 291.0
 margin_right = 1366.0
-margin_bottom = 442.0
+margin_bottom = 408.0
 custom_fonts/font = ExtResource( 1 )
 text = "BLINKSHOOTER"
 align = 1

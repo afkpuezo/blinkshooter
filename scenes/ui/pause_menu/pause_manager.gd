@@ -49,7 +49,3 @@ func go_to_start_screen():
 func quit():
 	emit_signal("button_pressed")
 	get_tree().quit()
-
-
-func _on_ResumeButton_pressed(extra_arg_0: bool) -> void:
-	pass # Replace with function body.

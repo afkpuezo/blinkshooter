@@ -49,7 +49,7 @@ func _ready() -> void:
 ## starts the sound effect on the next available stream player
 ## this one is called from signals
 # arg for signals
-func play(_arg = null):
+func play(_arg = null, _arg1 = null):
 	play_from_percent(0.0)
 
 
