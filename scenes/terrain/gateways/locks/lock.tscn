@@ -64,7 +64,6 @@ expand = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 6 )
-volume_db = 8.0
 max_distance = 1e+08
 attenuation = 1.57969e-05
 

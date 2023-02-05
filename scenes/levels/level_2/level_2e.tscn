@@ -94,22 +94,25 @@ position = Vector2( 736, 96 )
 [node name="Sounds" type="Node2D" parent="."]
 
 [node name="TrophyGrab" parent="Sounds" instance=ExtResource( 19 )]
-position = Vector2( 512, 0 )
+position = Vector2( 737, 100 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Sounds/TrophyGrab"]
-position = Vector2( 219, 103 )
 stream = ExtResource( 18 )
 
 [node name="FinalTeleport" parent="Sounds" instance=ExtResource( 19 )]
+position = Vector2( 512, 0 )
 start_time = 5.9
 autoplay = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Sounds/FinalTeleport"]
+position = Vector2( 862, 91 )
 stream = SubResource( 1 )
 
 [node name="Victory" parent="Sounds" instance=ExtResource( 19 )]
+position = Vector2( 512, 0 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Sounds/Victory"]
+position = Vector2( 858, 93 )
 stream = ExtResource( 21 )
 
 [connection signal="triggered" from="Gateway" to="TriggeredCanvas" method="enable"]

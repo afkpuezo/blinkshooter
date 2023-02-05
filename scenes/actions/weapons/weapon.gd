@@ -18,6 +18,7 @@ export var forgiveness_duration := 0.25
 
 onready var recoil_pusher: Pusher = $RecoilPusher
 
+export var inherit_velocity := false
 
 # bullets are spread evenly
 export var num_bullets := 1
@@ -75,8 +76,9 @@ func configure_bullet(bullet: Bullet):
 	bullet.source = user
 	bullet.forgiveness_layer = forgiveness_layer
 	bullet.forgiveness_duration = forgiveness_duration
-	bullet.initial_velocity = user_movement_stats.velocity
 	bullet.target = target
+	if inherit_velocity:
+		bullet.initial_velocity = user_movement_stats.velocity
 	if has_burst:
 		bullet.burst_damage = burst_damage
 		bullet.burst_radius = burst_radius
