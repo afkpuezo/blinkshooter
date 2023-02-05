@@ -9,6 +9,8 @@ energy_cost = 30
 default_slot = 0
 min_range = 80
 raycast_offset = 64
+teleport_wait_time = 0.1
+destination_teleport_effect_delay = 0.05
 effect_scene = ExtResource( 2 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]

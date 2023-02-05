@@ -10,7 +10,6 @@ resource_name = "Idle"
 
 [sub_resource type="Animation" id=1]
 resource_name = "Teleport"
-length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("SubForScale:scale")
 tracks/0/interp = 1

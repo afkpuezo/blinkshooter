@@ -55,7 +55,7 @@ func do_action():
 
 	var destination_effect
 	if effect_scene:
-		Spawner.spawn_node(effect_scene.instance(), user.get_position())
+		Spawner.spawn_node(effect_scene.instance(), user.global_position)
 		destination_effect = effect_scene.instance()
 		Spawner.spawn_node(destination_effect, target_position, 0, destination_teleport_effect_delay)
 	GameEvents.emit_signal("player_teleport_started")
@@ -70,7 +70,8 @@ func do_action():
 		# by a wall after blinking
 		timer.start(0.05)
 		yield(timer, "timeout")
-		destination_effect.position = user.get_position()
+		if destination_effect: # in case it freed
+			destination_effect.position = user.global_position
 
 
 # ----------

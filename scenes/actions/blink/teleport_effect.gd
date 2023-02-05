@@ -4,6 +4,7 @@ class_name TeleportEffect
 
 
 export var anim_speed := 1.0
+var debug_time := 0.0
 
 
 func _ready() -> void:
@@ -12,7 +13,13 @@ func _ready() -> void:
 		-1, # blend
 		anim_speed
 	)
+	print("ready() for %s" % name)
 
 
 func _on_AnimationPlayer_animation_finished(_anim_name: String) -> void:
+	print("finished() for %s, lifespan: %f" % [name, debug_time])
 	queue_free()
+
+
+func _physics_process(delta: float) -> void:
+	debug_time += delta
