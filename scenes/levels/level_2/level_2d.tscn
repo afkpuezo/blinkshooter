@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scenes/singletons/level_management/level_local.gd" type="Script" id=1]
 [ext_resource path="res://scenes/terrain/tilesets/floor_tile_map.tscn" type="PackedScene" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://scenes/units/enemies/wave_boss/wave/wave.tscn" type="PackedScene" id=18]
 [ext_resource path="res://scenes/units/enemies/wave_boss/wave_enemy/wave_enemy.tscn" type="PackedScene" id=19]
 [ext_resource path="res://scenes/actions/blink/teleport_effect.tscn" type="PackedScene" id=20]
+[ext_resource path="res://scenes/ui/alarm.wav" type="AudioStream" id=21]
 
 [node name="LevelLocal" type="Node2D"]
 script = ExtResource( 1 )
@@ -240,5 +241,12 @@ position = Vector2( 160, -480 )
 [node name="GatewayDestination" parent="IntroArea/Gateway" instance=ExtResource( 16 )]
 position = Vector2( -384, 1760 )
 
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="Alarm" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource( 21 )
+volume_db = -5.0
+
 [connection signal="fakeout_triggered" from="BossArea/Gateway" to="BossArea/WaveManager" method="trigger"]
+[connection signal="fakeout_triggered" from="BossArea/Gateway" to="Sounds/Alarm" method="play"]
 [connection signal="defeated" from="BossArea/WaveManager" to="BossArea/Gateway" method="on_lock_unlock"]
