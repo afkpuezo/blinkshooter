@@ -51,9 +51,11 @@ func on_death():
 				modulation
 			)
 
-		var starting_rotation_deg = custom_randi_range(0, 359)
-		particle.rotation_degrees = starting_rotation_deg
-		Spawner.spawn_node(particle, global_position)
+		Spawner.spawn_node(
+			particle,
+			global_position,
+			rand_range(0.0, 2 * PI)
+		)
 
 
 func custom_randi_range(a, b):

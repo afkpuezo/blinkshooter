@@ -10,7 +10,7 @@ onready var sprite: Sprite = $Sprite
 # the sprite rotates, but not the entire scene
 export var move_speed := 0
 export var sprite_rotation_speed_deg := 0.0
-onready var sprite_rotation_speed_rad = deg2rad(sprite_rotation_speed_deg)
+var sprite_rotation_speed_rad: float
 export var lifespan := 1.0
 export var modulation: Color
 
@@ -29,6 +29,8 @@ func configure_particle(
 	move_speed = new_move_speed
 	sprite_rotation_speed_deg = new_rotation_speed_deg
 	modulation = new_modulation
+
+	sprite_rotation_speed_rad = deg2rad(sprite_rotation_speed_deg)
 
 
 func _ready() -> void:
