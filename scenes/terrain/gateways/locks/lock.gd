@@ -19,7 +19,8 @@ var was_touched := false
 var num_units_left := 0
 
 export var open_sprite: Texture
-export var locked_sprite: Texture
+export var locked_touch_sprite: Texture
+export var locked_enemy_sprite: Texture
 
 
 func _ready() -> void:
@@ -57,14 +58,18 @@ func update():
 		label.visible = false
 		texture_rect.visible = false
 
+	var temp_texture: Texture
+
 	match mode:
 		UNLOCK_MODE.TOUCH:
 			is_unlocked = was_touched
+			temp_texture = locked_touch_sprite
 		UNLOCK_MODE.KILL:
 			is_unlocked = num_units_left == 0
+			temp_texture = locked_enemy_sprite
 
 	if is_unlocked:
 		emit_signal("unlocked")
-		sprite.texture = open_sprite
-	else:
-		sprite.texture = locked_sprite
+		temp_texture = open_sprite
+
+	sprite.texture = temp_texture

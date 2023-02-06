@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/ui/bars/enemy_health_bar.gd" type="Script" id=1]
 [ext_resource path="res://scenes/ui/bars/resource_bar.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/terrain/gateways/locks/assets/lock_icon_red.png" type="Texture" id=3]
 
 [node name="EnemyHealthBar" type="Node2D"]
 script = ExtResource( 1 )
@@ -11,6 +12,11 @@ margin_left = -30.0
 margin_top = -70.0
 margin_right = 30.0
 margin_bottom = -60.0
+
+[node name="LockIcon" type="Sprite" parent="HealthBar"]
+position = Vector2( 80, 5 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 3 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 position = Vector2( 0, 49 )
