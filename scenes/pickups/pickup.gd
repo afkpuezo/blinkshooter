@@ -48,25 +48,25 @@ const TYPE_DETAILS = {
 	TYPE.SMALL_GUN: {
 		'scene': "res://scenes/actions/weapons/small_gun/small_gun.tscn",
 		'texture': "res://scenes/ui/player_ui/action_ui/assets/small_gun_tile.png",
-		'radius': 64,
+		'radius': 32,
 		'meta_type': META_TYPE.WEAPON,
 	},
 	TYPE.PLASMA_GUN: {
 		'scene': "res://scenes/actions/weapons/plasma_gun/plasma_gun.tscn",
 		'texture': "res://scenes/ui/player_ui/action_ui/assets/plasma_gun_tile.png",
-		'radius': 64,
+		'radius': 32,
 		'meta_type': META_TYPE.WEAPON,
 	},
 	TYPE.SHOTGUN: {
 		'scene': "res://scenes/actions/weapons/shotgun/shotgun.tscn",
 		'texture': "res://scenes/ui/player_ui/action_ui/assets/shotgun_tile.png",
-		'radius': 64,
+		'radius': 32,
 		'meta_type': META_TYPE.WEAPON,
 	},
 	TYPE.PHASE_RIFLE: {
 		'scene': "res://scenes/actions/weapons/phase_rifle/phase_rifle.tscn",
 		'texture': "res://scenes/ui/player_ui/action_ui/assets/phase_tile.png",
-		'radius': 64,
+		'radius': 32,
 		'meta_type': META_TYPE.WEAPON,
 	},
 	# ----------
@@ -75,19 +75,19 @@ const TYPE_DETAILS = {
 	TYPE.BLINK: {
 		'scene': "res://scenes/actions/blink/blink.tscn",
 		'texture': "res://scenes/ui/player_ui/action_ui/assets/blink_tile.png",
-		'radius': 64,
+		'radius': 32,
 		'meta_type': META_TYPE.ACTION,
 	},
 	TYPE.SAWBLADE: {
 		'scene': "res://scenes/actions/saw_blade/saw_blade.tscn",
 		'texture': "res://scenes/ui/player_ui/action_ui/assets/sawblade_tile.png",
-		'radius': 64,
+		'radius': 32,
 		'meta_type': META_TYPE.ACTION,
 	},
 	TYPE.SHURIKEN: {
 		'scene': "res://scenes/actions/shuriken/shuriken.tscn",
 		'texture': "res://scenes/ui/player_ui/action_ui/assets/shuriken_tile.png",
-		'radius': 64,
+		'radius': 32,
 		'meta_type': META_TYPE.ACTION,
 	},
 	# ----------
