@@ -68,6 +68,5 @@ func on_not_visible(_viewport = null):
 
 
 func on_lock_icons_enabled_changed(_msg = null):
-	print("EHB.on_lock_icons_enabled_changed() called")
 	lock_icon.visible = is_lock and LevelGlobal.are_lock_icons_enabled
 

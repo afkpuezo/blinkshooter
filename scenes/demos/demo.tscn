@@ -184,22 +184,22 @@ position = Vector2( -448, 1362 )
 [node name="Pickups" type="Node2D" parent="."]
 
 [node name="Pickup" parent="Pickups" instance=ExtResource( 16 )]
-position = Vector2( 98, 92 )
+position = Vector2( 100, 73 )
 type = 1
 can_be_vacuumed = false
 
 [node name="Pickup2" parent="Pickups" instance=ExtResource( 16 )]
-position = Vector2( 255, 124 )
+position = Vector2( 268, 122 )
 type = 3
 can_be_vacuumed = false
 
 [node name="Pickup3" parent="Pickups" instance=ExtResource( 16 )]
-position = Vector2( 235, 260 )
+position = Vector2( 257, 263 )
 type = 4
 can_be_vacuumed = false
 
 [node name="Pickup4" parent="Pickups" instance=ExtResource( 16 )]
-position = Vector2( 120, 349 )
+position = Vector2( 180, 411 )
 type = 5
 can_be_vacuumed = false
 

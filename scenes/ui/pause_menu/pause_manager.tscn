@@ -95,6 +95,5 @@ stream = ExtResource( 5 )
 
 [connection signal="button_pressed" from="." to="AudioHelper" method="play"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ResumeButton" to="." method="resume"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_ResumeButton_pressed" binds= [ true ]]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/StartButton" to="." method="go_to_start_screen"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/QuitButton" to="." method="quit"]

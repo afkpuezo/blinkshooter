@@ -22,9 +22,6 @@ sprite_z = "5"
 [node name="EnemyBrain" parent="." index="7"]
 is_boss = true
 
-[node name="Weapon" parent="EnemyBrain/EnemyWeaponBar" index="0"]
-visible = true
-
 [node name="ContactExplosionAnimator" parent="ContactAttack" index="1"]
 explosion_scale = 1.5
 

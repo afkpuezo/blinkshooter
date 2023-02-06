@@ -536,3 +536,6 @@ script = ExtResource( 17 )
 [node name="Shotgun" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 12 )]
 
 [node name="SawBlade" parent="Units/Player/PlayerLoadHelper" instance=ExtResource( 15 )]
+
+[connection signal="died" from="Terrain/Gateways/Gateway11/Lock/PlasmaBoss" to="Terrain/Gateways/Gateway11/Lock/PlasmaBoss/LootDropper" method="_on_Enemy_died"]
+[connection signal="took_damage" from="Terrain/Gateways/Gateway11/Lock/PlasmaBoss" to="Terrain/Gateways/Gateway11/Lock/PlasmaBoss/EnemyBrain" method="on_unit_took_damage"]

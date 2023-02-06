@@ -26,6 +26,5 @@ func _ready() -> void:
 
 ## called from signal in first level
 func enable_lock_icons():
-	print("LevelLocal.enable_lock_icons() called")
 	are_lock_icons_enabled = true
 	LevelGlobal.are_lock_icons_enabled = true
