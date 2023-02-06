@@ -22,6 +22,7 @@ enabled_loot_types = {
 11: false,
 12: true
 }
+are_lock_icons_enabled = false
 
 [node name="Labels" type="Node2D" parent="."]
 z_index = -10
@@ -220,3 +221,4 @@ position = Vector2( 0, -240 )
 
 [connection signal="triggered" from="Terrain/Gateways/Gateway" to="Labels/Movement" method="queue_free"]
 [connection signal="died" from="Terrain/Gateways/Gateway4/Lock/SmallGunEnemy" to="Labels/Shooting" method="queue_free"]
+[connection signal="consumed" from="Pickups/Actions/SmallGunPickup" to="." method="enable_lock_icons"]

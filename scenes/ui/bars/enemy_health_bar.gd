@@ -2,7 +2,8 @@ extends Node2D
 class_name EnemyHealthBar
 ## moves a little resource bar around an assigned enemy
 
-var enemy
+var enemy: Unit
+var is_lock: bool
 onready var bar = $HealthBar
 onready var lock_icon = $HealthBar/LockIcon
 
@@ -22,6 +23,7 @@ func assign_enemy(e: Unit, is_boss: bool):
 
 	enemy = e
 	# to follow an enemy
+	# warning-ignore:return_value_discarded
 	enemy.connect("tree_exiting", self, "on_enemy_died")
 	var hp: CombatResource = CombatResource.get_resource(
 		enemy,
@@ -34,8 +36,16 @@ func assign_enemy(e: Unit, is_boss: bool):
 	if not $VisibilityNotifier2D.visible:
 		on_not_visible()
 
-	# if the enemy is blocking a lock, display the icon
-	lock_icon.visible = enemy.get_parent() is Lock
+	# if the enemy is blocking a lock, display the icon (maybe)
+	is_lock = enemy.get_parent() is Lock
+	lock_icon.visible = is_lock and LevelGlobal.are_lock_icons_enabled
+	if is_lock:
+		# warning-ignore:return_value_discarded
+		GameEvents.connect(
+			"are_lock_icons_enabled_changed",
+			self,
+			"on_lock_icons_enabled_changed"
+		)
 
 
 ## moves to follow the enemy
@@ -56,4 +66,8 @@ func on_visible(_viewport = null):
 func on_not_visible(_viewport = null):
 	visible = false
 
+
+func on_lock_icons_enabled_changed(_msg = null):
+	print("EHB.on_lock_icons_enabled_changed() called")
+	lock_icon.visible = is_lock and LevelGlobal.are_lock_icons_enabled
 

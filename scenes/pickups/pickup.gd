@@ -4,6 +4,9 @@ class_name Pickup
 ## holds an item for the player to pick up by walking over it
 
 
+signal consumed()
+
+
 enum TYPE{
 	NONE,
 	SMALL_GUN, BIG_GUN, PLASMA_GUN, SHOTGUN, PHASE_RIFLE
@@ -229,6 +232,7 @@ func _setup_resource_pickup(details: Dictionary):
 func get_item():
 	done = true # wtb finally
 	if item_scene:
+		emit_signal("consumed")
 		return item_scene.instance()
 	else:
 		return null
@@ -236,7 +240,9 @@ func get_item():
 
 ## called when using up a resource pickup
 func consume():
+	emit_signal("consumed")
 	done = true
+
 
 ## handles freeing and scaling for resouce pickups
 func _process(_delta: float) -> void:

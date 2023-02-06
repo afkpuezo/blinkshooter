@@ -5,9 +5,6 @@ extends Node
 ## based on https://www.gdquest.com/docs/guidelines/best-practices/godot-gdscript/event-bus/
 ## events should have a single msg parameter, which is a dict of needed parameters
 
-# dummy event for demo purposes
-# warning-ignore:unused_signal
-signal test_event(msg)
 
 # ----------
 # Player related
@@ -94,3 +91,7 @@ signal game_won(msg)
 ## called by pause manager, informs the Spawner to remove spawned objects
 # warning-ignore:unused_signal
 signal returned_to_main_menu(msg)
+
+## 'enabled' -> new value
+# warning-ignore:unused_signal
+signal are_lock_icons_enabled_changed(msg)

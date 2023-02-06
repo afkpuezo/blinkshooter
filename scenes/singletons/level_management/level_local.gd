@@ -12,10 +12,20 @@ export var enabled_loot_types := {
 	Pickup.TYPE.PLASMA_AMMO: true,
 }
 export var drop_chance_multiplier := 1.0
+export var are_lock_icons_enabled := true
 
 
 func _ready() -> void:
 	LevelGlobal.level_scene_path = level_scene_path
 	LevelGlobal.enabled_loot_types = enabled_loot_types
 	LevelGlobal.drop_chance_multiplier = drop_chance_multiplier
+	LevelGlobal.are_lock_icons_enabled = are_lock_icons_enabled
+
 	PauseManager.is_pausable = true
+
+
+## called from signal in first level
+func enable_lock_icons():
+	print("LevelLocal.enable_lock_icons() called")
+	are_lock_icons_enabled = true
+	LevelGlobal.are_lock_icons_enabled = true
