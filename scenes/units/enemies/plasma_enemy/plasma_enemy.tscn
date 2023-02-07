@@ -46,6 +46,7 @@ cooldown = 2.0
 bullet_scene = ExtResource( 4 )
 damage = 20
 forgiveness_team = 1
+forgiveness_duration = 0.5
 burst_damage = 20
 is_burst_green = false
 

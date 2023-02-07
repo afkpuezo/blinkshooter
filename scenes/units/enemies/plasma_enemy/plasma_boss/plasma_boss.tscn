@@ -1,12 +1,17 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/units/enemies/plasma_enemy/plasma_enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/units/enemies/plasma_enemy/plasma_boss/boss_plasma_bullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/units/enemies/plasma_enemy/plasma_boss/phase_controller.gd" type="Script" id=3]
 
 [node name="PlasmaBoss" instance=ExtResource( 1 )]
 scale = Vector2( 3, 3 )
 
 [node name="Health" parent="CombatResources" index="0"]
 MAX_VALUE = 1300
+
+[node name="MovementStats" parent="." index="2"]
+max_speed = 150.0
 
 [node name="GibletsAnimator" parent="Animators" index="0"]
 min_num_particles = 6
@@ -22,6 +27,14 @@ sprite_z = "5"
 [node name="EnemyBrain" parent="." index="7"]
 is_boss = true
 
+[node name="PlasmaGun" parent="EnemyBrain/EnemyWeaponBar" index="0"]
+visible = true
+bullet_scene = ExtResource( 2 )
+forgiveness_duration = 1.0
+
+[node name="PhaseController" type="Node2D" parent="EnemyBrain" index="8"]
+script = ExtResource( 3 )
+
 [node name="ContactExplosionAnimator" parent="ContactAttack" index="1"]
 explosion_scale = 1.5
 
@@ -33,3 +46,5 @@ plasma_ammo_chance = 0
 num_rolls = 6
 max_push_strength = 1200
 min_push_strength = 100
+
+[connection signal="value_changed" from="CombatResources/Health" to="EnemyBrain/PhaseController" method="on_hp_update"]

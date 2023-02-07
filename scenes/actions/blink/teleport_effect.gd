@@ -13,11 +13,9 @@ func _ready() -> void:
 		-1, # blend
 		anim_speed
 	)
-	print("ready() for %s" % name)
 
 
 func _on_AnimationPlayer_animation_finished(_anim_name: String) -> void:
-	print("finished() for %s, lifespan: %f" % [name, debug_time])
 	queue_free()
 
 

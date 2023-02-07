@@ -4,7 +4,12 @@ class_name BulletMover
 
 
 onready var stats = owner.get_node("MovementStats")
-var initial_velocity: Vector2 = Vector2.ZERO
+
+var is_homing_blocked := true
+
+# this is used if the bullet gets the velocity of its user when fired,
+# which is probably not going to happen anymore
+var initial_velocity: Vector2 = Vector2.ZERO setget set_initial_velocity
 var is_initial_velocity_set := false
 
 
@@ -24,7 +29,7 @@ func _physics_process(_delta: float) -> void:
 		start_movement()
 		is_initial_velocity_set = false
 
-	if owner.is_homing and owner.target:
+	if (not is_homing_blocked) and owner.is_homing and owner.target:
 		chase(
 			owner,
 			stats,
@@ -32,3 +37,8 @@ func _physics_process(_delta: float) -> void:
 		)
 	else:
 		move_subject(owner, stats, true)
+
+
+## set by timer
+func unblock_homing():
+	is_homing_blocked = false

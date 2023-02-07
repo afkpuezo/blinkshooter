@@ -100,7 +100,10 @@ func _ready() -> void:
 			forgiveness_layer = 0b100
 		TEAM.BOTH:
 			forgiveness_layer = 0b110
-	# handle angle stuff
+	setup_angles()
+
+
+func setup_angles():
 	if num_bullets > 1:
 		var angle_range := max_angle * 2
 		var step = angle_range / (num_bullets - 1)

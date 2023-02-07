@@ -31,7 +31,7 @@ export var hit_sound_scene: PackedScene
 
 
 func _ready() -> void:
-	mover.set_initial_velocity(initial_velocity)
+	mover.initial_velocity = initial_velocity
 	forgiveness_timer.start(forgiveness_duration)
 	if target:
 		target.connect("died", self, "on_target_death")

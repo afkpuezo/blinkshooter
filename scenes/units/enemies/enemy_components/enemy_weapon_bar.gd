@@ -44,4 +44,14 @@ func trigger_random_action(target = null) -> bool:
 		return true
 
 
+## WILL unchild, returns array of removed
+func remove_all() -> Array:
+	var removed := []
+	for a in actions:
+		remove_child(a)
+		removed.append(a)
+	actions = []
+	return removed
+
+
 

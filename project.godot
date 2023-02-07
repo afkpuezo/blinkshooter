@@ -189,6 +189,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/actions/weapons/phase_rifle/phase_bullet.gd"
 }, {
+"base": "Node2D",
+"class": "PhaseController",
+"language": "GDScript",
+"path": "res://scenes/units/enemies/plasma_enemy/plasma_boss/phase_controller.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Pickup",
 "language": "GDScript",
@@ -396,6 +401,7 @@ _global_script_class_icons={
 "Mover": "",
 "PatrolPath": "",
 "PhaseBullet": "",
+"PhaseController": "",
 "Pickup": "",
 "PickupGrabber": "",
 "PickupMover": "",

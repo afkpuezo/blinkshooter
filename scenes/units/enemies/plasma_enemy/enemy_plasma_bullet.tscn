@@ -17,7 +17,7 @@ is_homing = true
 hit_sound_scene = ExtResource( 7 )
 burst_damage = 50
 burst_radius = 128
-burst_duration = 0.5
+burst_duration = 0.25
 is_burst_green = false
 burst_scene = ExtResource( 4 )
 
