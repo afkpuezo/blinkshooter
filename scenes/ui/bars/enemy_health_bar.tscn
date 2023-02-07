@@ -16,6 +16,7 @@ margin_bottom = -60.0
 [node name="LockIcon" type="Sprite" parent="HealthBar"]
 position = Vector2( 80, 5 )
 scale = Vector2( 0.75, 0.75 )
+z_index = 15
 texture = ExtResource( 3 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
