@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/small_gun.wav-22c670024f182805566ead749a0b27a2.sample"
+path="res://.import/laser5.wav-721e33a273f6ccad8ffe50752c969d34.sample"
 
 [deps]
 
-source_file="res://scenes/actions/weapons/small_gun/small_gun.wav"
-dest_files=[ "res://.import/small_gun.wav-22c670024f182805566ead749a0b27a2.sample" ]
+source_file="res://scenes/actions/weapons/small_gun/laser5.wav"
+dest_files=[ "res://.import/laser5.wav-721e33a273f6ccad8ffe50752c969d34.sample" ]
 
 [params]
 
