@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/ui/fonts/title_font.tres" type="DynamicFont" id=1]
-[ext_resource path="res://scenes/ui/main_menu/main_menu.gd" type="Script" id=2]
-[ext_resource path="res://scenes/ui/main_menu/menu_theme.tres" type="Theme" id=3]
+[ext_resource path="res://scenes/ui/menus/main_menu/main_menu.gd" type="Script" id=2]
+[ext_resource path="res://scenes/ui/menus/main_menu/menu_theme.tres" type="Theme" id=3]
 [ext_resource path="res://scenes/ui/fonts/pause_menu_font.tres" type="DynamicFont" id=4]
 [ext_resource path="res://scenes/audio/audio_helper.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/ui/main_menu/button_click.wav" type="AudioStream" id=6]
+[ext_resource path="res://scenes/ui/menus/main_menu/button_click.wav" type="AudioStream" id=6]
 [ext_resource path="res://scenes/ui/volume_control/volume_control.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Animation" id=1]

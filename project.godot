@@ -167,7 +167,7 @@ _global_script_classes=[ {
 "base": "CanvasLayer",
 "class": "MainMenu",
 "language": "GDScript",
-"path": "res://scenes/ui/main_menu/main_menu.gd"
+"path": "res://scenes/ui/menus/main_menu/main_menu.gd"
 }, {
 "base": "Node",
 "class": "MovementStats",
@@ -441,7 +441,7 @@ _global_script_class_icons={
 [application]
 
 config/name="blinkshooter"
-run/main_scene="res://scenes/ui/main_menu/main_menu.tscn"
+run/main_scene="res://scenes/ui/menus/main_menu/main_menu.tscn"
 
 [autoload]
 
@@ -452,7 +452,7 @@ EnemyBarManager="*res://scenes/singletons/enemy_bar_manager.gd"
 CameraManager="*res://scenes/singletons/camera_manager.gd"
 PlayerUI="*res://scenes/ui/player_ui/player_ui.tscn"
 LevelLoader="*res://scenes/singletons/level_management/level_loader.gd"
-PauseManager="*res://scenes/ui/pause_menu/pause_manager.tscn"
+PauseManager="*res://scenes/ui/menus/pause_menu/pause_manager.tscn"
 LevelGlobal="*res://scenes/singletons/level_management/level_global.gd"
 SaveLoad="*res://scenes/singletons/level_management/saveload.gd"
 

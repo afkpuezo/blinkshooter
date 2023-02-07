@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://scenes/ui/main_menu/menu_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/ui/menus/main_menu/menu_theme.tres" type="Theme" id=1]
 [ext_resource path="res://scenes/ui/volume_control/volume_slider.gd" type="Script" id=2]
 
 [node name="VolumeControl" type="HBoxContainer"]
