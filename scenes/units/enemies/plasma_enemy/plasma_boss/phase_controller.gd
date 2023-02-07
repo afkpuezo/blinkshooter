@@ -7,7 +7,7 @@ class_name PhaseController
 export var hp_threshold := 0.5
 
 # values will be changed TO this
-onready var attack_allows_diag := false
+export var attack_allows_diag := false
 export var weapon_num_bullets := 3
 export var weapon_max_degrees := 90
 export var rotation_speed_deg := 220
@@ -26,6 +26,7 @@ func on_hp_update(new_hp: float, max_hp: int):
 		var brain: EnemyBrain = owner.get_node("EnemyBrain")
 		brain.attack_allows_non_center_detection = attack_allows_diag
 
+		# maybe it would have been easier to just make a new weapon lol
 		var weapon_bar: EnemyWeaponBar = brain.get_node("EnemyWeaponBar")
 		var weapon: Weapon = weapon_bar.remove_all()[0]
 		weapon.spawn_location = null
@@ -34,6 +35,8 @@ func on_hp_update(new_hp: float, max_hp: int):
 		weapon.num_bullets = weapon_num_bullets
 		weapon.max_angle = deg2rad(weapon_max_degrees)
 		weapon.setup_angles()
+		owner.disconnect("died", weapon, "on_user_death")
+
 		weapon_bar.add_action(weapon)
 
 		var move_stats := MovementStats.get_movement_stats(owner)

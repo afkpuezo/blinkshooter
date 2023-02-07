@@ -8,7 +8,7 @@
 scale = Vector2( 3, 3 )
 
 [node name="Health" parent="CombatResources" index="0"]
-MAX_VALUE = 1300
+MAX_VALUE = 1400
 
 [node name="MovementStats" parent="." index="2"]
 max_speed = 150.0
@@ -34,6 +34,7 @@ forgiveness_duration = 1.0
 
 [node name="PhaseController" type="Node2D" parent="EnemyBrain" index="8"]
 script = ExtResource( 3 )
+attack_allows_diag = true
 
 [node name="ContactExplosionAnimator" parent="ContactAttack" index="1"]
 explosion_scale = 1.5
