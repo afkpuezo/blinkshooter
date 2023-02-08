@@ -6,7 +6,7 @@ extends CanvasLayer
 signal button_pressed()
 
 
-export var main_menu_scene_path := "res://scenes/ui/main_menu/main_menu.tscn"
+export var main_menu_scene_path := "res://scenes/ui/menus/main_menu/main_menu.tscn"
 
 var is_pausable := true setget set_is_pausable
 

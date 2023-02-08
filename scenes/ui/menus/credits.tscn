@@ -1,0 +1,109 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/ui/menus/main_menu/menu_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/ui/fonts/menshew_font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://scenes/ui/menus/credits.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Scroll"
+length = 28.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4, 28 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, -3000 ) ]
+}
+
+[node name="Credits" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 0.75
+anchor_bottom = 1.0
+margin_right = 445.0
+margin_bottom = 1915.0
+theme = ExtResource( 1 )
+text = "- CREDITS -
+
+BLINKSHOOTER
+
+A game by Andrew Curry
+
+Made in the Godot engine
+
+Thanks to the playtesters:
+Norrington III
+Ben \"Only If You Give Me a Funny Name\" Squibbles
+
+
+Sounds:
+\"Laser\" - Daleonfire
+\"Laser Fire\" - dklon
+\"laser\", \"Charge Up\" - SamsterBirdies
+\"explosion\" - idkmrgarcia
+\"Beam1\" - SieuAmThanh
+\"Space Hit\" - fons
+\"Sci-fi Engine\" - LaurenPonder
+\"Boomerang\" - UsuarioLeal
+\"In-Game Notification 02\" - MATRIXXX_
+\"Badass Victory\" - PearceWilsonKing
+\"alarm_fatal\" - sirplus
+
+Sounds used under Creative Commons Attribution 3.0:
+(https://creativecommons.org/licenses/by/3.0/)
+\"Laser Shot Big 1\" - Antisample
+
+Sounds used under Creative Commons Attribution 4.0:
+(https://creativecommons.org/licenses/by/4.0/)
+\"Charging Power\" - JavierZumer
+\"hit_002\" - leviclaassen
+\"Teleport Skill & Spell\" - EminYILDIRIM
+\"Explosion, 8-bit, 01.wav\", 
+by InspectorJ (www.jshaw.co.uk) of Freesound.org
+\"06177 wire launch\" - Robinhood76
+\"Gun Cock\" - SmartWentCody
+
+Sounds used under Creative Commons 
+Attribution-NonCommerical 3.0:
+(https://creativecommons.org/licenses/by-nc/3.0/)
+\"SonoKids-Omni.2\" - FannyLH
+
+
+
+
+Thanks for playing!"
+align = 1
+
+[node name="Label2" type="Label" parent="Label"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 675.0
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "
+
+
+
+
+
+
+
+
+
+DOUBLE DOCTOR Jacob Menshew"
+align = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Scroll = SubResource( 1 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
