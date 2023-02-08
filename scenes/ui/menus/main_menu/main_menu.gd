@@ -29,6 +29,8 @@ export var level_scene_paths := {
 	'2d': 'res://scenes/levels/level_2/level_2d.tscn',
 }
 
+export var credits_scene_path := "res://scenes/ui/menus/credits.tscn"
+
 
 func _ready() -> void:
 	PauseManager.is_pausable = false
@@ -94,4 +96,8 @@ func on_level_select_button_pressed(level_code: String):
 			level_scene_paths[level_code],
 			true# skip player data
 		)
+
+
+func go_to_credits():
+	get_tree().change_scene(credits_scene_path)
 
