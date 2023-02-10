@@ -14,6 +14,7 @@ export(TYPE) var type = TYPE.TELEPORT
 
 onready var sprite: Sprite = $Sprite
 onready var label: Label = $CenterContainer/Label
+onready var timer: Timer = $Timer
 
 var destination: GatewayDestination
 
@@ -85,7 +86,8 @@ func teleport_unit(unit: Unit):
 	if is_player:
 		GameEvents.emit_signal("player_teleport_started")
 
-	yield(get_tree().create_timer(teleport_wait_time, false), "timeout")
+	timer.start(teleport_wait_time)
+	yield(timer, "timeout")
 
 	unit.global_position = destination.global_position
 
@@ -95,7 +97,8 @@ func teleport_unit(unit: Unit):
 
 func move_to_next_level():
 	GameEvents.emit_signal("player_teleport_started")
-	yield(get_tree().create_timer(teleport_wait_time, false), "timeout")
+	timer.start(teleport_wait_time)
+	yield(timer, "timeout")
 	LevelLoader.load_level(level_scene_path)
 
 
@@ -130,7 +133,8 @@ func do_fakeout():
 func do_game_end(player: Unit):
 	# just assume it's the player
 	GameEvents.emit_signal("player_teleport_started")
-	yield(get_tree().create_timer(teleport_wait_time, false), "timeout")
+	timer.start(teleport_wait_time)
+	yield(timer, "timeout")
 	emit_signal("triggered")
 	GameEvents.emit_signal("game_won", {'player': player})
 	player.queue_free()
