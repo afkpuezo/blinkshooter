@@ -144,6 +144,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/effects/death_animator.gd"
 }, {
+"base": "Node2D",
+"class": "HitApprover",
+"language": "GDScript",
+"path": "res://scenes/actions/saw_blade/hit_approver.gd"
+}, {
 "base": "Area2D",
 "class": "HitBox",
 "language": "GDScript",
@@ -397,6 +402,7 @@ _global_script_class_icons={
 "Gateway": "",
 "GatewayDestination": "",
 "GibletAnimator": "",
+"HitApprover": "",
 "HitBox": "",
 "HurtBox": "",
 "LevelLocal": "",
