@@ -99,5 +99,6 @@ func on_level_select_button_pressed(level_code: String):
 
 
 func go_to_credits():
+	# warning-ignore:return_value_discarded
 	get_tree().change_scene(credits_scene_path)
 

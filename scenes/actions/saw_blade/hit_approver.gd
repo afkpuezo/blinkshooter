@@ -4,33 +4,46 @@ class_name HitApprover
 
 
 var rays := []
-export var num_clear_rays_required := 3
+export var num_valid_rays_required := 3
 
 
 func _ready() -> void:
-	#print("hit approver ready")
 	for c in get_children():
 		rays.append(c)
 
 
 func approve_hit(victim: Unit) -> bool:
-	#print("hit approver approve_hit()")
-	var num_clear_rays := 0
-
-	var victim_distance := global_position.distance_to(victim.global_position)
+	var num_valid_rays := 0
 
 	for ray in rays:
-		if is_ray_clear(ray, victim_distance):
-			num_clear_rays += 1
+		if is_ray_valid(ray, victim):
+			num_valid_rays += 1
+		else:
+			pass
 
-	return num_clear_rays >= num_clear_rays_required
+	return num_valid_rays >= num_valid_rays_required
 
 
-func is_ray_clear(ray: RayCast2D, victim_distance: float) -> bool:
-	if ray.is_colliding():
-		#print("ray %s is colliding" % ray.name)
-		var col_distance = global_position.distance_to(ray.get_collision_point())
-		return victim_distance < col_distance
-	else:
-		#print("ray %s is NOT colliding" % ray.name)
-		return true
+## valid if the ray hits the victi
+func is_ray_valid(ray: RayCast2D, victim: Unit) -> bool:
+	var return_val := false
+
+	while true:
+		if ray.is_colliding():
+			var collider = ray.get_collider()
+
+			if collider is Unit:
+				if collider == victim:
+					return_val = true
+					break
+				else: # wrong enemy, so ignore it and try again
+					ray.add_exception(collider)
+					ray.force_raycast_update()
+					continue
+			else: # it's a wall
+				break
+		else: # not colliding anything
+			break
+
+	ray.clear_exceptions()
+	return return_val

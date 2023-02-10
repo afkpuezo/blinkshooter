@@ -91,36 +91,52 @@ shape = SubResource( 3 )
 
 [node name="HitApprover" type="Node2D" parent="AreaOverTimeAttack"]
 script = ExtResource( 8 )
-num_clear_rays_required = 2
+num_valid_rays_required = 1
 
 [node name="RayCast2D" type="RayCast2D" parent="AreaOverTimeAttack/HitApprover"]
+position = Vector2( -8, 0 )
 enabled = true
-cast_to = Vector2( 48, 0 )
-collide_with_areas = true
+cast_to = Vector2( 64, 0 )
+collision_mask = 5
 
 [node name="RayCast2D2" type="RayCast2D" parent="AreaOverTimeAttack/HitApprover"]
-rotation = 0.523599
+position = Vector2( -6, 10 )
 enabled = true
-cast_to = Vector2( 48, 0 )
-collide_with_areas = true
+cast_to = Vector2( 60, 0 )
+collision_mask = 5
 
 [node name="RayCast2D3" type="RayCast2D" parent="AreaOverTimeAttack/HitApprover"]
-rotation = 0.261799
+position = Vector2( 0, 20 )
 enabled = true
 cast_to = Vector2( 48, 0 )
-collide_with_areas = true
+collision_mask = 5
 
 [node name="RayCast2D4" type="RayCast2D" parent="AreaOverTimeAttack/HitApprover"]
-rotation = -0.261799
+position = Vector2( 14, 30 )
 enabled = true
-cast_to = Vector2( 48, 0 )
-collide_with_areas = true
+cast_to = Vector2( 20, 0 )
+collision_mask = 5
 
 [node name="RayCast2D5" type="RayCast2D" parent="AreaOverTimeAttack/HitApprover"]
-rotation = -0.523599
+position = Vector2( -6, -10 )
+scale = Vector2( 1, 1 )
+enabled = true
+cast_to = Vector2( 60, 0 )
+collision_mask = 5
+
+[node name="RayCast2D6" type="RayCast2D" parent="AreaOverTimeAttack/HitApprover"]
+position = Vector2( 0, -20 )
+scale = Vector2( 1, 1 )
 enabled = true
 cast_to = Vector2( 48, 0 )
-collide_with_areas = true
+collision_mask = 5
+
+[node name="RayCast2D7" type="RayCast2D" parent="AreaOverTimeAttack/HitApprover"]
+position = Vector2( 14, -30 )
+scale = Vector2( 1, 1 )
+enabled = true
+cast_to = Vector2( 20, 0 )
+collision_mask = 5
 
 [node name="ExplosionAnimator" parent="." instance=ExtResource( 5 )]
 explosion_color = "green"

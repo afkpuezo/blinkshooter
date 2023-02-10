@@ -111,26 +111,12 @@ rotation = 3.14159
 
 [node name="Units" type="Node2D" parent="."]
 
-[node name="SmallGunEnemy" parent="Units" instance=ExtResource( 2 )]
-position = Vector2( 533, 680 )
-
-[node name="PatrolPath2" parent="Units/SmallGunEnemy" instance=ExtResource( 4 )]
-
-[node name="Node2D" type="Node2D" parent="Units/SmallGunEnemy/PatrolPath2"]
-position = Vector2( 151, 17 )
-
-[node name="Node2D2" type="Node2D" parent="Units/SmallGunEnemy/PatrolPath2"]
-position = Vector2( 201, 555 )
-
-[node name="Node2D3" type="Node2D" parent="Units/SmallGunEnemy/PatrolPath2"]
-position = Vector2( -349, 589 )
-
-[node name="Node2D4" type="Node2D" parent="Units/SmallGunEnemy/PatrolPath2"]
-position = Vector2( -355, -5 )
-
 [node name="SmallGunEnemy5" parent="Units" instance=ExtResource( 2 )]
 position = Vector2( 297, 861 )
-rotation = 3.14159
+death_sound_scene = null
+
+[node name="SmallGunEnemy6" parent="Units" instance=ExtResource( 2 )]
+position = Vector2( 344, 861 )
 death_sound_scene = null
 
 [node name="PlasmaEnemy" parent="Units" instance=ExtResource( 7 )]
