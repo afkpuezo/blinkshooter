@@ -11,7 +11,7 @@ scale = Vector2( 3, 3 )
 MAX_VALUE = 1400
 
 [node name="MovementStats" parent="." index="2"]
-max_speed = 150.0
+max_speed = 140.0
 
 [node name="GibletsAnimator" parent="Animators" index="0"]
 min_num_particles = 6

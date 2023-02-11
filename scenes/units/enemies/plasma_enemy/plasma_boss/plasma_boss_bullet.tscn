@@ -23,7 +23,7 @@ burst_scene = ExtResource( 4 )
 
 [node name="MovementStats" parent="." index="0"]
 acceleration = 500.0
-max_speed = 300.0
+max_speed = 350.0
 
 [node name="LifeTimer" parent="." index="2"]
 wait_time = 2.0
