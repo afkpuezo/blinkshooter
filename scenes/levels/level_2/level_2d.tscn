@@ -160,14 +160,17 @@ position = Vector2( -420, -420 )
 [node name="Wave9" parent="BossArea/WaveManager" instance=ExtResource( 18 )]
 
 [node name="WaveEnemy" parent="BossArea/WaveManager/Wave9" instance=ExtResource( 19 )]
+base_overall_delay = 2.0
 enemy_type = 4
 
 [node name="WaveEnemy2" parent="BossArea/WaveManager/Wave9" instance=ExtResource( 19 )]
 position = Vector2( 0, 300 )
+base_overall_delay = 2.0
 enemy_type = 1
 
 [node name="WaveEnemy3" parent="BossArea/WaveManager/Wave9" instance=ExtResource( 19 )]
 position = Vector2( 0, -300 )
+base_overall_delay = 2.0
 enemy_type = 1
 
 [node name="IntroArea" type="Node2D" parent="."]
