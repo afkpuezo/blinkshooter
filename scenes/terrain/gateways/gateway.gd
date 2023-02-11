@@ -38,6 +38,7 @@ var is_working := false
 
 # used in the wave boss
 var has_fakeout_started := false
+export var fakeout_label_text := "X"
 
 
 func _ready() -> void:
@@ -109,7 +110,10 @@ func on_lock_unlock():
 
 ## handles lock state and sprite
 func update():
-	label.text = String(num_locks_remaining)
+	if type == TYPE.FAKEOUT:
+		label.text = fakeout_label_text
+	else:
+		label.text = String(num_locks_remaining)
 	if num_locks_remaining <= 0:
 		is_unlocked = true
 		label.visible = false
