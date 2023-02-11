@@ -18,10 +18,10 @@ func approve_hit(victim: Unit) -> bool:
 	for ray in rays:
 		if is_ray_valid(ray, victim):
 			num_valid_rays += 1
-		else:
-			pass
+			if num_valid_rays >= num_valid_rays_required:
+				return true
 
-	return num_valid_rays >= num_valid_rays_required
+	return false
 
 
 ## valid if the ray hits the victi

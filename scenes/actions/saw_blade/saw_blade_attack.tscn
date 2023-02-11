@@ -119,21 +119,18 @@ collision_mask = 5
 
 [node name="RayCast2D5" type="RayCast2D" parent="AreaOverTimeAttack/HitApprover"]
 position = Vector2( -6, -10 )
-scale = Vector2( 1, 1 )
 enabled = true
 cast_to = Vector2( 60, 0 )
 collision_mask = 5
 
 [node name="RayCast2D6" type="RayCast2D" parent="AreaOverTimeAttack/HitApprover"]
 position = Vector2( 0, -20 )
-scale = Vector2( 1, 1 )
 enabled = true
 cast_to = Vector2( 48, 0 )
 collision_mask = 5
 
 [node name="RayCast2D7" type="RayCast2D" parent="AreaOverTimeAttack/HitApprover"]
 position = Vector2( 14, -30 )
-scale = Vector2( 1, 1 )
 enabled = true
 cast_to = Vector2( 20, 0 )
 collision_mask = 5
