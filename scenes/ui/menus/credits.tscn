@@ -27,11 +27,13 @@ margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 3 )
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Scroll = SubResource( 1 )
+
 [node name="Label" type="Label" parent="."]
-anchor_right = 0.75
-anchor_bottom = 1.0
-margin_right = 445.0
-margin_bottom = 1915.0
+anchor_right = 0.15
+margin_right = 1625.0
+margin_bottom = 3221.0
 theme = ExtResource( 1 )
 text = "- CREDITS -
 
@@ -59,11 +61,13 @@ Sounds:
 \"Badass Victory\" - PearceWilsonKing
 \"alarm_fatal\" - sirplus
 
-Sounds used under Creative Commons Attribution 3.0:
+Sounds used under 
+Creative Commons Attribution 3.0:
 (https://creativecommons.org/licenses/by/3.0/)
 \"Laser Shot Big 1\" - Antisample
 
-Sounds used under Creative Commons Attribution 4.0:
+Sounds used under 
+Creative Commons Attribution 4.0:
 (https://creativecommons.org/licenses/by/4.0/)
 \"Charging Power\" - JavierZumer
 \"hit_002\" - leviclaassen
@@ -73,7 +77,8 @@ by InspectorJ (www.jshaw.co.uk) of Freesound.org
 \"06177 wire launch\" - Robinhood76
 \"Gun Cock\" - SmartWentCody
 
-Sounds used under Creative Commons 
+Sounds used under 
+Creative Commons 
 Attribution-NonCommerical 3.0:
 (https://creativecommons.org/licenses/by-nc/3.0/)
 \"SonoKids-Omni.2\" - FannyLH
@@ -83,6 +88,7 @@ Attribution-NonCommerical 3.0:
 
 Thanks for playing!"
 align = 1
+valign = 1
 
 [node name="Label2" type="Label" parent="Label"]
 anchor_right = 1.0
@@ -102,8 +108,5 @@ text = "
 
 DOUBLE DOCTOR Jacob Menshew"
 align = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Scroll = SubResource( 1 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

@@ -4,7 +4,7 @@ extends Node
 ## of unlocked levels)
 
 
-const FILE_PATH = "save_data.dat"
+const FILE_PATH = "res://save_data.dat"
 
 # NOTE: some overlap with main menu, maybe centralize
 var level_codes := {
