@@ -37,13 +37,19 @@ func handle_event(event: InputEvent) -> void:
 		is_firing = true
 	elif event.is_action_released(weapon_shoot_event):
 		is_firing = false
+	elif event.is_action_pressed("weapon_scroll_up"):
+		# warning-ignore:return_value_discarded
+		_change_slot(current_slot - 1)
+	elif event.is_action_pressed("weapon_scroll_down"):
+		# warning-ignore:return_value_discarded
+		_change_slot(current_slot + 1)
 	# if selecting a slot
 	var slot_num = 0
 	for weapon_select_event in monitored_events:
 		if event.is_action_pressed(weapon_select_event):
 			# warning-ignore:return_value_discarded
 			_change_slot(slot_num)
-			return
+			break
 		slot_num += 1
 
 
@@ -83,7 +89,7 @@ func emit_update_tick_help(action_index: int) -> Dictionary:
 ## current slot to it
 ## returns true if actually changed
 func _change_slot(slot_num: int) -> bool:
-	if slot_num < 0 or slot_num > num_slots or actions[slot_num] == null:
+	if slot_num < 0 or slot_num >= num_slots or actions[slot_num] == null:
 		return false
 	else:
 		current_slot = slot_num
