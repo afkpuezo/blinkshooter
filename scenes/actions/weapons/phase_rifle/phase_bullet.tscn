@@ -10,8 +10,8 @@ height = 16.0
 
 [node name="PhaseBullet" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-max_scaling_distance = 960.0
-distance_unit = 160.0
+max_scaling_distance = 1200.0
+distance_unit = 150.0
 
 [node name="MovementStats" parent="." index="0"]
 max_speed = 500.0
