@@ -468,6 +468,10 @@ PauseManager="*res://scenes/ui/menus/pause_menu/pause_manager.tscn"
 LevelGlobal="*res://scenes/singletons/level_management/level_global.gd"
 SaveLoad="*res://scenes/singletons/level_management/saveload.gd"
 
+[debug]
+
+settings/stdout/print_fps=true
+
 [display]
 
 window/size/width=1920
@@ -485,6 +489,8 @@ static=false
 alias=false
 autoload=false
 main=false
+fps=false
+framerate=false
 
 [importer_defaults]
 

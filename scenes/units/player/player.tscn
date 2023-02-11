@@ -30,6 +30,18 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=2]
 resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/DamagedSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, false ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "Teleport"
@@ -145,6 +157,7 @@ texture = ExtResource( 8 )
 [connection signal="died" from="." to="PlayerBrain" method="on_unit_death"]
 [connection signal="decreased" from="CombatResources/Health" to="PlayerBrain" method="_on_Health_decreased"]
 [connection signal="value_changed" from="CombatResources/Health" to="." method="_check_for_death"]
+[connection signal="animation_finished" from="PlayerBrain/AnimationPlayer" to="PlayerBrain" method="_on_animation_end"]
 [connection signal="found_action" from="PickupGrabber" to="ActionBar" method="add_action"]
 [connection signal="found_resource" from="PickupGrabber" to="." method="gain_resource"]
 [connection signal="found_weapon" from="PickupGrabber" to="WeaponBar" method="add_weapon"]

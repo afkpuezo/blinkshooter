@@ -114,5 +114,5 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_Health_decreased() -> void:
-	anim_player.stop()
+	#anim_player.stop()
 	anim_player.play("Damaged")
