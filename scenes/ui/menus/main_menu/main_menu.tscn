@@ -37,6 +37,7 @@ tracks/1/keys = {
 }
 
 [node name="MainMenu" type="CanvasLayer"]
+layer = -5
 script = ExtResource( 2 )
 
 [node name="MainMenuContainer" type="VBoxContainer" parent="."]
