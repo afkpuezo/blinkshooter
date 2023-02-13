@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/reticle.png-36a4892d8f337969af934205fa2fc177.stex"
+path="res://.import/crosshair.png-43e3daeceda7e8d6a9eebba41c4a4bb8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/singletons/reticle/reticle.png"
-dest_files=[ "res://.import/reticle.png-36a4892d8f337969af934205fa2fc177.stex" ]
+source_file="res://scenes/ui/reticle/crosshair.png"
+dest_files=[ "res://.import/crosshair.png-43e3daeceda7e8d6a9eebba41c4a4bb8.stex" ]
 
 [params]
 
