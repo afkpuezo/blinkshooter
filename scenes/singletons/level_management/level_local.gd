@@ -15,11 +15,6 @@ export var drop_chance_multiplier := 1.0
 export var are_lock_icons_enabled := true
 
 
-# this won't happen while the game is paused
-func _process(_delta: float) -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
-
-
 func _ready() -> void:
 	LevelGlobal.level_scene_path = level_scene_path
 	LevelGlobal.enabled_loot_types = enabled_loot_types

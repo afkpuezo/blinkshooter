@@ -32,12 +32,11 @@ export var level_scene_paths := {
 export var credits_scene_path := "res://scenes/ui/menus/credits.tscn"
 
 
+## TODO put this somewhere else
 func _process(_delta: float) -> void:
-	#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	if Input.is_action_just_pressed("fullscreen_toggle"):
 		print("toggle")
 		OS.window_fullscreen = !OS.window_fullscreen
-		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 
 
 func _ready() -> void:
@@ -96,7 +95,6 @@ func on_level_select_button_pressed(level_code: String):
 	if is_working:
 		return
 	else:
-		#Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 		emit_signal("button_pressed")
 		is_working = true
 		timer.start()

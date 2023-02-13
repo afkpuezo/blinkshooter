@@ -9,6 +9,14 @@ signal button_pressed()
 export var main_menu_scene_path := "res://scenes/ui/menus/main_menu/main_menu.tscn"
 
 var is_pausable := true setget set_is_pausable
+var valid_pause_events := []
+
+
+func _ready() -> void:
+	if OS.get_name() == 'HTML5':
+		valid_pause_events = ["pause_f1"]
+	else:
+		valid_pause_events = ["pause_f1", "pause_esc"]
 
 
 func set_is_pausable(new_val: bool):
@@ -20,23 +28,26 @@ func set_is_pausable(new_val: bool):
 func _process(_delta: float) -> void:
 	if is_pausable:
 		if get_tree().paused:
-			if Input.is_action_just_pressed("pause"):
-				resume()
-			elif Input.is_action_just_pressed("quit"):
+			if Input.is_action_just_pressed("quit"):
 				get_tree().quit()
+
+			for event in valid_pause_events:
+				if Input.is_action_just_pressed(event):
+					resume()
+					break
 		else: # not paused
-			if Input.is_action_just_pressed("pause"):
-				pause()
+			for event in valid_pause_events:
+				if Input.is_action_just_pressed(event):
+					pause()
+					break
 
 
 func pause():
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	get_tree().paused = true
 	visible = true
 
 
 func resume():
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	#emit_signal("button_pressed")
 	get_tree().paused = false
 	visible = false

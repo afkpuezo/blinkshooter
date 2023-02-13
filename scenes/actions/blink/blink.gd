@@ -1,6 +1,6 @@
 extends Action
 class_name Blink
-## Teleport the player towards the target reticle
+## Teleport the player towards the cursor position
 ## NOTE: i'm keeping all of the old buffer param based code commented in case
 ## i need to go back to it
 
@@ -82,7 +82,7 @@ func do_action():
 ## regularly update the position of the raycast, starting at the mouse position
 ## and clamping it to the maximum range
 func _physics_process(_delta: float) -> void:
-	var raypos = TargetReticle.get_true_global_position()
+	var raypos = get_global_mouse_position()
 	raypos = _cap_target_at_max_range(raypos)
 	raycast.global_position = raypos
 	raycast.cast_to = raycast.to_local(global_position)

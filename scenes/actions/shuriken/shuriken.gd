@@ -30,7 +30,7 @@ func do_action():
 	projectile.target = user
 
 	# launch_to must be a minimum away
-	var launch_to = TargetReticle.get_true_global_position()
+	var launch_to = get_global_mouse_position()
 	projectile.launch_to = launch_to
 	projectile.launch_duration = launch_duration
 
@@ -45,4 +45,4 @@ func do_action():
 
 
 func can_do_action() -> bool:
-	return user.position.distance_to(TargetReticle.get_true_global_position()) >= min_launch_range
+	return user.position.distance_to(get_global_mouse_position()) >= min_launch_range

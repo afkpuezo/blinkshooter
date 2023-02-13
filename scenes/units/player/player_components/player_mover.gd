@@ -34,7 +34,7 @@ func physics_update(unit, movement_stats: MovementStats):
 	look_towards(
 		unit,
 		movement_stats,
-		TargetReticle.get_true_global_position()
+		get_global_mouse_position()
 	)
 
 
