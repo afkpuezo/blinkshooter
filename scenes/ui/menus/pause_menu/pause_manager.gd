@@ -30,11 +30,13 @@ func _process(_delta: float) -> void:
 
 
 func pause():
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	get_tree().paused = true
 	visible = true
 
 
 func resume():
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	#emit_signal("button_pressed")
 	get_tree().paused = false
 	visible = false
