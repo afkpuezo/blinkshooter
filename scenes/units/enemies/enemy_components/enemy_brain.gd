@@ -301,3 +301,11 @@ func do_teleport_animation():
 
 func _on_AnimationPlayer_animation_finished(_anim_name: String) -> void:
 	anim_player.play("Idle")
+
+
+func on_contact_attack(victim: Unit, _arg = null):
+	if PlayerBrain.is_player(victim):
+		_update_knowledge_of_player(
+			true,
+			victim
+		)

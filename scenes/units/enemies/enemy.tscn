@@ -126,5 +126,6 @@ min_push_strength = 200
 [connection signal="received_message" from="EnemyBrain/EnemyMessager" to="EnemyBrain" method="receive_enemy_message"]
 [connection signal="timeout" from="EnemyBrain/PlayerChaseTimer" to="EnemyBrain" method="_on_PlayerChaseTimer_timeout"]
 [connection signal="animation_finished" from="EnemyBrain/AnimationPlayer" to="EnemyBrain" method="_on_AnimationPlayer_animation_finished"]
+[connection signal="dealt_damage" from="ContactAttack" to="EnemyBrain" method="on_contact_attack"]
 [connection signal="dealt_damage" from="ContactAttack" to="ContactAttack/Pusher" method="push"]
 [connection signal="hit_at" from="ContactAttack" to="ContactAttack/ContactExplosionAnimator" method="create_explosion"]
