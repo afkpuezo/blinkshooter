@@ -129,6 +129,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/effects/explosions/explosion_animator.gd"
 }, {
+"base": "Button",
+"class": "FullScreenButton",
+"language": "GDScript",
+"path": "res://scenes/ui/menus/fullscreen_button.gd"
+}, {
 "base": "Node2D",
 "class": "Gateway",
 "language": "GDScript",
@@ -229,6 +234,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/actions/weapons/plasma_gun/plasma_burst.gd"
 }, {
+"base": "Node",
+"class": "PlatformDisabler",
+"language": "GDScript",
+"path": "res://scenes/ui/menus/platform_disabler.gd"
+}, {
 "base": "Node2D",
 "class": "PlayerBrain",
 "language": "GDScript",
@@ -268,11 +278,6 @@ _global_script_classes=[ {
 "class": "ResourceBarManager",
 "language": "GDScript",
 "path": "res://scenes/ui/player_ui/resource_bar_manager.gd"
-}, {
-"base": "Node2D",
-"class": "Reticle",
-"language": "GDScript",
-"path": "res://scenes/singletons/reticle/reticle.gd"
 }, {
 "base": "Action",
 "class": "SawBlade",
@@ -399,6 +404,7 @@ _global_script_class_icons={
 "EnemyWeaponBar": "",
 "Explosion": "",
 "ExplosionAnimator": "",
+"FullScreenButton": "",
 "Gateway": "",
 "GatewayDestination": "",
 "GibletAnimator": "",
@@ -419,6 +425,7 @@ _global_script_class_icons={
 "PickupMover": "",
 "PlasmaBullet": "",
 "PlasmaBurst": "",
+"PlatformDisabler": "",
 "PlayerBrain": "",
 "PlayerDetection": "",
 "PlayerLoadHelper": "",
@@ -427,7 +434,6 @@ _global_script_class_icons={
 "Receiver": "",
 "ResourceBar": "",
 "ResourceBarManager": "",
-"Reticle": "",
 "SawBlade": "",
 "SawBladeAttack": "",
 "ShotgunPellet": "",
@@ -458,7 +464,6 @@ run/main_scene="res://scenes/ui/menus/main_menu/main_menu.tscn"
 [autoload]
 
 GameEvents="*res://scenes/singletons/game_events.gd"
-TargetReticle="*res://scenes/singletons/reticle/reticle.tscn"
 Spawner="*res://scenes/singletons/spawner.gd"
 EnemyBarManager="*res://scenes/singletons/enemy_bar_manager.gd"
 CameraManager="*res://scenes/singletons/camera_manager.gd"
@@ -467,6 +472,7 @@ LevelLoader="*res://scenes/singletons/level_management/level_loader.gd"
 PauseManager="*res://scenes/ui/menus/pause_menu/pause_manager.tscn"
 LevelGlobal="*res://scenes/singletons/level_management/level_global.gd"
 SaveLoad="*res://scenes/singletons/level_management/saveload.gd"
+MouseManager="*res://scenes/singletons/mouse_manager/mouse_manager.tscn"
 
 [display]
 
@@ -474,7 +480,7 @@ window/size/width=1920
 window/size/height=1080
 window/size/resizable=false
 window/size/fullscreen=true
-mouse_cursor/custom_image="res://scenes/singletons/reticle/crosshair.png"
+mouse_cursor/custom_image="res://scenes/ui/crosshair.png"
 mouse_cursor/custom_image_hotspot=Vector2( 16, 16 )
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
@@ -623,7 +629,7 @@ quit={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":true,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":81,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
-pause={
+pause_esc={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777217,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
@@ -646,6 +652,11 @@ weapon_scroll_up={
 weapon_scroll_down={
 "deadzone": 0.5,
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":5,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+pause_f1={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777244,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 

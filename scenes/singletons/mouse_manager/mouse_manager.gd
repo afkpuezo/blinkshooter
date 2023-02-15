@@ -2,6 +2,7 @@ extends Node2D
 # singleton
 ## handles mouse confinement, etc
 ## this node WILL process while the game is paused
+# also handles fullscreen toggling
 
 
 onready var is_html := OS.get_name() == 'HTML5'
@@ -26,5 +27,4 @@ func _process(_delta: float) -> void:
 				Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-
 

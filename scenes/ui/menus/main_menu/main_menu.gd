@@ -32,13 +32,6 @@ export var level_scene_paths := {
 export var credits_scene_path := "res://scenes/ui/menus/credits.tscn"
 
 
-## TODO put this somewhere else
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("fullscreen_toggle"):
-		print("toggle")
-		OS.window_fullscreen = !OS.window_fullscreen
-
-
 func _ready() -> void:
 	PauseManager.is_pausable = false
 	$AnimationPlayer.play("Intro")

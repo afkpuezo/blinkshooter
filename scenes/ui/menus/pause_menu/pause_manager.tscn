@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/ui/menus/pause_menu/pause_manager.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://scenes/ui/menus/main_menu/button_click.wav" type="AudioStream" id=5]
 [ext_resource path="res://scenes/audio/audio_helper.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/ui/volume_control/volume_control.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/ui/menus/platform_disabler.gd" type="Script" id=8]
+[ext_resource path="res://scenes/ui/menus/fullscreen_button.tscn" type="PackedScene" id=9]
 
 [node name="PauseManager" type="CanvasLayer"]
 pause_mode = 2
@@ -87,6 +89,18 @@ size_flags_vertical = 4
 theme = ExtResource( 4 )
 text = "Quit (ALT+Q)"
 icon_align = 1
+
+[node name="PlatformDisabler" type="Node" parent="MarginContainer/VBoxContainer/QuitButton"]
+script = ExtResource( 8 )
+trigger_platform = "HTML5"
+method = "invisible"
+
+[node name="FullscreenButton" parent="MarginContainer/VBoxContainer" instance=ExtResource( 9 )]
+
+[node name="PlatformDisabler" type="Node" parent="MarginContainer/VBoxContainer/FullscreenButton"]
+script = ExtResource( 8 )
+trigger_platform = "Other"
+method = "invisible"
 
 [node name="AudioHelper" parent="." instance=ExtResource( 6 )]
 
