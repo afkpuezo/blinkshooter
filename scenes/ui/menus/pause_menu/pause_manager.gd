@@ -28,8 +28,8 @@ func set_is_pausable(new_val: bool):
 func _process(_delta: float) -> void:
 	if is_pausable:
 		if get_tree().paused:
-			if Input.is_action_just_pressed("quit"):
-				get_tree().quit()
+			if Input.is_action_just_pressed("quit") and OS.get_name() != "HTML5":
+				quit()
 
 			for event in valid_pause_events:
 				if Input.is_action_just_pressed(event):

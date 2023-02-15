@@ -37,9 +37,9 @@ grow_vertical = 2
 alignment = 1
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
-margin_top = 241.0
-margin_right = 1406.0
-margin_bottom = 362.0
+margin_top = 298.0
+margin_right = 1960.0
+margin_bottom = 419.0
 custom_fonts/font = ExtResource( 3 )
 text = "- PAUSED -
 "
@@ -47,10 +47,10 @@ align = 1
 valign = 1
 
 [node name="ResumeButton" type="Button" parent="MarginContainer/VBoxContainer"]
-margin_left = 485.0
-margin_top = 366.0
-margin_right = 920.0
-margin_bottom = 430.0
+margin_left = 762.0
+margin_top = 423.0
+margin_right = 1197.0
+margin_bottom = 487.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 0, 64 )
@@ -60,11 +60,35 @@ theme = ExtResource( 4 )
 text = "Resume (ESC)"
 icon_align = 1
 
+[node name="PlatformDisabler" type="Node" parent="MarginContainer/VBoxContainer/ResumeButton"]
+script = ExtResource( 8 )
+trigger_platform = "HTML5"
+method = "invisible"
+
+[node name="ResumeButtonHTML" type="Button" parent="MarginContainer/VBoxContainer"]
+margin_left = 762.0
+margin_top = 491.0
+margin_right = 1197.0
+margin_bottom = 555.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 0, 64 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource( 4 )
+text = "Resume (F1)"
+icon_align = 1
+
+[node name="PlatformDisabler" type="Node" parent="MarginContainer/VBoxContainer/ResumeButtonHTML"]
+script = ExtResource( 8 )
+trigger_platform = "Other"
+method = "invisible"
+
 [node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer"]
-margin_left = 505.0
-margin_top = 434.0
-margin_right = 900.0
-margin_bottom = 498.0
+margin_left = 782.0
+margin_top = 559.0
+margin_right = 1177.0
+margin_bottom = 623.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 0, 64 )
@@ -75,12 +99,15 @@ text = "Start Screen"
 icon_align = 1
 
 [node name="VolumeControl" parent="MarginContainer/VBoxContainer" instance=ExtResource( 7 )]
+margin_top = 627.0
+margin_right = 1960.0
+margin_bottom = 691.0
 
 [node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer"]
-margin_left = 513.0
-margin_top = 502.0
-margin_right = 893.0
-margin_bottom = 566.0
+margin_left = 790.0
+margin_top = 695.0
+margin_right = 1170.0
+margin_bottom = 759.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 0, 64 )
@@ -96,6 +123,9 @@ trigger_platform = "HTML5"
 method = "invisible"
 
 [node name="FullscreenButton" parent="MarginContainer/VBoxContainer" instance=ExtResource( 9 )]
+margin_top = 763.0
+margin_right = 1960.0
+margin_bottom = 822.0
 
 [node name="PlatformDisabler" type="Node" parent="MarginContainer/VBoxContainer/FullscreenButton"]
 script = ExtResource( 8 )
@@ -109,5 +139,6 @@ stream = ExtResource( 5 )
 
 [connection signal="button_pressed" from="." to="AudioHelper" method="play"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ResumeButton" to="." method="resume"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ResumeButtonHTML" to="." method="resume"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/StartButton" to="." method="go_to_start_screen"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/QuitButton" to="." method="quit"]

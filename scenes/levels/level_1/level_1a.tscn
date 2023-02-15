@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/singletons/level_management/level_local.gd" type="Script" id=1]
 [ext_resource path="res://scenes/terrain/gateways/gateway.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://scenes/terrain/tilesets/floor_tile_map.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/pickups/pickup.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/ui/fonts/lock_font.tres" type="DynamicFont" id=12]
+[ext_resource path="res://scenes/ui/menus/platform_disabler.gd" type="Script" id=13]
 
 [node name="LevelLocal" type="Node2D"]
 script = ExtResource( 1 )
@@ -39,6 +40,19 @@ Mouse
 to move"
 align = 1
 valign = 1
+
+[node name="HTMLF1" type="Label" parent="Labels/Movement"]
+margin_left = -27.0
+margin_top = 180.0
+margin_right = 149.0
+margin_bottom = 210.0
+custom_fonts/font = ExtResource( 12 )
+text = "F1 to pause"
+
+[node name="PlatformDisabler" type="Node" parent="Labels/Movement/HTMLF1"]
+script = ExtResource( 13 )
+trigger_platform = "Other"
+method = "invisible"
 
 [node name="Shooting" type="Label" parent="Labels"]
 margin_left = 1530.0
