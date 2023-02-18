@@ -8,7 +8,7 @@
 scale = Vector2( 3, 3 )
 
 [node name="Health" parent="CombatResources" index="0"]
-MAX_VALUE = 1400
+MAX_VALUE = 1600
 
 [node name="MovementStats" parent="." index="2"]
 max_speed = 140.0
