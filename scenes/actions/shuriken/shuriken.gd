@@ -9,7 +9,7 @@ export(PackedScene) var projectile_scene
 ## the projectile's speed may be modified in order to reach the original
 ## mouse cursor location within this time
 export var launch_duration := 0.5
-
+export var max_launch_range := 600.0
 export var min_launch_range := 64
 
 var spawn_point # bullet spawn point if the user has one
@@ -31,6 +31,11 @@ func do_action():
 
 	# launch_to must be a minimum away
 	var launch_to = get_global_mouse_position()
+	var distance = global_position.distance_to(launch_to)
+	if distance > max_launch_range:
+		var dir = global_position.direction_to(launch_to)
+		launch_to = global_position + (dir * max_launch_range)
+
 	projectile.launch_to = launch_to
 	projectile.launch_duration = launch_duration
 

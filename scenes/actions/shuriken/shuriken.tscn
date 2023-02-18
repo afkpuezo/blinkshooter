@@ -7,11 +7,12 @@
 
 [node name="Shuriken" type="Node2D"]
 script = ExtResource( 1 )
-energy_cost = 50
-cooldown = 1.0
+energy_cost = 35
+cooldown = 0.6
 default_slot = 2
 projectile_scene = ExtResource( 2 )
 launch_duration = 1.0
+max_launch_range = 500.0
 
 [node name="AudioHelper" parent="." instance=ExtResource( 3 )]
 stops_early = true
