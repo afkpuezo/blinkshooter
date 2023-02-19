@@ -31,9 +31,7 @@ script = ExtResource( 3 )
 anims/Scroll = SubResource( 1 )
 
 [node name="Label" type="Label" parent="."]
-anchor_right = 0.15
-margin_right = 1625.0
-margin_bottom = 3221.0
+anchor_right = 1.0
 theme = ExtResource( 1 )
 text = "- CREDITS -
 
@@ -43,7 +41,7 @@ A game by Andrew Curry
 
 Made in the Godot engine
 
-Thanks to the playtesters:
+Playtesters:
 Norrington III
 Ben \"Only If You Give Me a Funny Name\" Squibbles
 
@@ -93,7 +91,6 @@ valign = 1
 [node name="Label2" type="Label" parent="Label"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = 675.0
 theme = ExtResource( 1 )
 custom_fonts/font = ExtResource( 2 )
 text = "
