@@ -13,8 +13,9 @@ func _ready() -> void:
 
 ## esc key to quit early
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("pause"):
-		back_to_start_menu()
+	for code in ["pause_esc", "pause_f1"]:
+		if Input.is_action_just_pressed(code):
+			back_to_start_menu()
 
 
 func _on_AnimationPlayer_animation_finished(_anim_name: String) -> void:
